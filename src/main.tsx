@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import BookEditionRoute from '@/routes/BookEdition/Index';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import RootRoute from '@/routes/Root';
@@ -8,6 +9,12 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootRoute/>,
+    children: [
+      {
+        path: ':bookEdition',
+        element: <BookEditionRoute/>
+      }
+    ]
   },
 ]);
 
