@@ -12,3 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+
+  --primary-highlight-color: #f93;
+}

@@ -1,0 +1,50 @@
+.header {
+  background: var(--primary-highlight-color);
+  color: white;
+  display: flex;
+  position: relative;
+}
+
+.header__heading {
+  flex-grow: 1;
+  display: grid;
+  grid-template-areas:
+    "logo title"
+    "logo description";
+  grid-template-columns: 120px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0;
+}
+
+.header__description {
+  grid-area: description;
+  font-size: 1rem;
+  padding-inline-start: 300px;
+}
+
+.header__logo {
+  grid-area: logo;
+}
+
+.header__title {
+  font-size: 2.5rem;
+  grid-area: title;
+}
+
+.header__forkme {
+  background: #333;
+  color: white;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 30px;
+  text-decoration: none;
+  width: 200px;
+  text-align: center;
+  right: -55px;
+  transition: color ease-out 300ms, background ease-out 300ms;
+}
+
+.header__forkme:hover {
+  background: white;
+  color: #333;
+}
