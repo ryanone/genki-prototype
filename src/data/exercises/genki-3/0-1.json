@@ -1,0 +1,441 @@
+{
+  "supportedRenderModes": ["DRAG_DROP", "MULTIPLE_CHOICE"],
+  "questions": [
+    {
+      "content": "wa",
+      "choices": {
+        "correct": 0
+      }
+    },
+    {
+      "content": "wo",
+      "choices": {
+        "correct": 1
+      }
+    },
+    {
+      "content": "n",
+      "choices": {
+        "correct": 2
+      }
+    },
+    {
+      "content": "ra",
+      "choices": {
+        "correct": 3
+      }
+    },
+    {
+      "content": "ri",
+      "choices": {
+        "correct": 4
+      }
+    },
+    {
+      "content": "ru",
+      "choices": {
+        "correct": 5
+      }
+    },
+    {
+      "content": "re",
+      "choices": {
+        "correct": 6
+      }
+    },
+    {
+      "content": "ro",
+      "choices": {
+        "correct": 7
+      }
+    },
+    {
+      "content": "ya",
+      "choices": {
+        "correct": 8
+      }
+    },
+    {
+      "content": "yu",
+      "choices": {
+        "correct": 9
+      }
+    },
+    {
+      "content": "yo",
+      "choices": {
+        "correct": 10
+      }
+    },
+    {
+      "content": "ma",
+      "choices": {
+        "correct": 11
+      }
+    },
+    {
+      "content": "mi",
+      "choices": {
+        "correct": 12
+      }
+    },
+    {
+      "content": "mu",
+      "choices": {
+        "correct": 13
+      }
+    },
+    {
+      "content": "me",
+      "choices": {
+        "correct": 14
+      }
+    },
+    {
+      "content": "mo",
+      "choices": {
+        "correct": 15
+      }
+    },
+    {
+      "content": "ha",
+      "choices": {
+        "correct": 16
+      }
+    },
+    {
+      "content": "hi",
+      "choices": {
+        "correct": 17
+      }
+    },
+    {
+      "content": "hu",
+      "choices": {
+        "correct": 18
+      }
+    },
+    {
+      "content": "he",
+      "choices": {
+        "correct": 19
+      }
+    },
+    {
+      "content": "ho",
+      "choices": {
+        "correct": 20
+      }
+    },
+    {
+      "content": "na",
+      "choices": {
+        "correct": 21
+      }
+    },
+    {
+      "content": "ni",
+      "choices": {
+        "correct": 22
+      }
+    },
+    {
+      "content": "nu",
+      "choices": {
+        "correct": 23
+      }
+    },
+    {
+      "content": "ne",
+      "choices": {
+        "correct": 24
+      }
+    },
+    {
+      "content": "no",
+      "choices": {
+        "correct": 25
+      }
+    },
+    {
+      "content": "ta",
+      "choices": {
+        "correct": 26
+      }
+    },
+    {
+      "content": "chi",
+      "choices": {
+        "correct": 27
+      }
+    },
+    {
+      "content": "tsu",
+      "choices": {
+        "correct": 28
+      }
+    },
+    {
+      "content": "te",
+      "choices": {
+        "correct": 29
+      }
+    },
+    {
+      "content": "to",
+      "choices": {
+        "correct": 30
+      }
+    },
+    {
+      "content": "sa",
+      "choices": {
+        "correct": 31
+      }
+    },
+    {
+      "content": "shi",
+      "choices": {
+        "correct": 32
+      }
+    },
+    {
+      "content": "su",
+      "choices": {
+        "correct": 33
+      }
+    },
+    {
+      "content": "se",
+      "choices": {
+        "correct": 34
+      }
+    },
+    {
+      "content": "so",
+      "choices": {
+        "correct": 35
+      }
+    },
+    {
+      "content": "ka",
+      "choices": {
+        "correct": 36
+      }
+    },
+    {
+      "content": "ki",
+      "choices": {
+        "correct": 37
+      }
+    },
+    {
+      "content": "ku",
+      "choices": {
+        "correct": 38
+      }
+    },
+    {
+      "content": "ke",
+      "choices": {
+        "correct": 39
+      }
+    },
+    {
+      "content": "ko",
+      "choices": {
+        "correct": 40
+      }
+    },
+    {
+      "content": "a",
+      "choices": {
+        "correct": 41
+      }
+    },
+    {
+      "content": "i",
+      "choices": {
+        "correct": 42
+      }
+    },
+    {
+      "content": "u",
+      "choices": {
+        "correct": 43
+      }
+    },
+    {
+      "content": "e",
+      "choices": {
+        "correct": 44
+      }
+    },
+    {
+      "content": "o",
+      "choices": {
+        "correct": 45
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "わ"
+    },
+    {
+      "content": "を"
+    },
+    {
+      "content": "ん"
+    },
+    {
+      "content": "ら"
+    },
+    {
+      "content": "り"
+    },
+    {
+      "content": "る"
+    },
+    {
+      "content": "れ"
+    },
+    {
+      "content": "ろ"
+    },
+    {
+      "content": "や"
+    },
+    {
+      "content": "ゆ"
+    },
+    {
+      "content": "よ"
+    },
+    {
+      "content": "ま"
+    },
+    {
+      "content": "み"
+    },
+    {
+      "content": "む"
+    },
+    {
+      "content": "め"
+    },
+    {
+      "content": "も"
+    },
+    {
+      "content": "は"
+    },
+    {
+      "content": "ひ"
+    },
+    {
+      "content": "ふ"
+    },
+    {
+      "content": "へ"
+    },
+    {
+      "content": "ほ"
+    },
+    {
+      "content": "な"
+    },
+    {
+      "content": "に"
+    },
+    {
+      "content": "ぬ"
+    },
+    {
+      "content": "ね"
+    },
+    {
+      "content": "の"
+    },
+    {
+      "content": "た"
+    },
+    {
+      "content": "ち"
+    },
+    {
+      "content": "つ"
+    },
+    {
+      "content": "て"
+    },
+    {
+      "content": "と"
+    },
+    {
+      "content": "さ"
+    },
+    {
+      "content": "し"
+    },
+    {
+      "content": "す"
+    },
+    {
+      "content": "せ"
+    },
+    {
+      "content": "そ"
+    },
+    {
+      "content": "か"
+    },
+    {
+      "content": "き"
+    },
+    {
+      "content": "く"
+    },
+    {
+      "content": "け"
+    },
+    {
+      "content": "こ"
+    },
+    {
+      "content": "あ"
+    },
+    {
+      "content": "い"
+    },
+    {
+      "content": "う"
+    },
+    {
+      "content": "え"
+    },
+    {
+      "content": "お"
+    }
+  ],
+  "meta": {
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"],
+      "HORIZONTAL": {
+        "flow": "COLUMN",
+        "configuration": [
+          3,
+          5,
+          3,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    }
+  }
+}
