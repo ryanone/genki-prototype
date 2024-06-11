@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import BookEditionRoute from '@/routes/BookEdition/Index';
+import BookEditionIndexRoute from '@/routes/BookEdition/Index';
+import BookEditionRoute from '@/routes/BookEdition';
 import ExerciseRoute from '@/routes/Exercise';
+import { Paths } from '@/routes/loaders';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import RootRoute from '@/routes/Root';
@@ -14,15 +16,21 @@ const router = createBrowserRouter([
     element: <RootRoute/>,
     children: [
       {
-        path: ':bookEditionId',
+        path: Paths.bookEdition,
         element: <BookEditionRoute/>,
         loader: bookEditionLoader,
+        children: [
+          {
+            index: true,
+            element: <BookEditionIndexRoute/>,
+          },
+          {
+            path: Paths.exercise,
+            element: <ExerciseRoute/>,
+            loader: exerciseLoader,
+          }
+        ]
       },
-      {
-        path: ':bookEditionId/lesson/:lessonId/exercise/:exerciseId',
-        element: <ExerciseRoute/>,
-        loader: exerciseLoader,
-      }
     ]
   },
 ]);

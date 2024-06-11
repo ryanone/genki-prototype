@@ -1,27 +1,21 @@
+import { Paths } from '@/routes/loaders';
+import { loadData } from '@/api/dataLoader';
 import type { ActionFunctionArgs, Params, ParamParseKey } from 'react-router-dom';
-
-const Paths = {
-  bookEdition: ':bookEditionId',
-};
+import type { BookEdition } from '@/api/dataLoader';
 
 interface BookEditionLoaderArgs extends ActionFunctionArgs {
   params: Params<ParamParseKey<typeof Paths.bookEdition>>;
 }
 
-export type BookEditionData = {
-  description: string;
-  title: string;
-};
-
-export async function loader({ params }: BookEditionLoaderArgs): Promise<BookEditionData> {
+export async function loader({ params }: BookEditionLoaderArgs): Promise<BookEdition> {
   try {
-    const response = await import(`../../data/navigation/${params.bookEditionId}/index.json`) as BookEditionData;
+    const response = await loadData({ bookEditionId: params.bookEditionId as string }) as BookEdition;
     return {
       title: response.title,
       description: response.description,
     };
   } catch(e) {
-    console.error('BookEditionLoader error: %o', e);
+    console.error('BookEdition loader error: %o', e);
     throw e;
   }
 }

@@ -1,23 +1,12 @@
-import { Link, Outlet, useLoaderData } from 'react-router-dom';
-import Header from '@/components/Header';
-import type { BookEditionData } from '@/routes/loaders/bookEdition';
+import { Link } from 'react-router-dom';
 
 export default function Index() {
-  const bookEdition: BookEditionData = useLoaderData() as BookEditionData;
-
   return (
-    <div className="bookeditionroute">
-      <Header description={bookEdition.description} title={bookEdition.title}/>
-      {
-        /*
-        Navigation goes here
-        */
-      }
+    <div className="bookeditionindexroute">
       <h3>Lessons</h3>
       <ol>
         <li><Link to="lesson/0/exercise/0-1">Lesson 0, Exercise 1</Link></li>
       </ol>
-      <Outlet/>
     </div>
   )
 }
