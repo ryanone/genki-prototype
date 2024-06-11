@@ -15,7 +15,7 @@ export default function Index() {
       }
       <h3>Lessons</h3>
       <ol>
-        <li><Link to="lesson/1/exercise/1">Lesson 1, Exercise 1</Link></li>
+        <li><Link to="lesson/0/exercise/0-1">Lesson 0, Exercise 1</Link></li>
       </ol>
       <Outlet/>
     </div>

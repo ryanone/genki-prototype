@@ -13,12 +13,12 @@ const router = createBrowserRouter([
     element: <RootRoute/>,
     children: [
       {
-        path: ':bookEdition',
+        path: ':bookEditionId',
         element: <BookEditionRoute/>,
         loader: bookEditionLoader,
       },
       {
-        path: ':bookEdition/lesson/:lessonId/exercise/:exerciseId',
+        path: ':bookEditionId/lesson/:lessonId/exercise/:exerciseId',
         element: <ExerciseRoute/>
       }
     ]
