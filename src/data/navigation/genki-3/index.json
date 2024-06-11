@@ -1,11 +1,12 @@
 {
   "title": "Genky Study Resources",
   "description": "3rd Edition",
+  "id": "genki-3",
   "lessons": [
     {
       "title": "Lesson 0: Writing System, Greetings and Numbers (p. 20-35)",
       "id": "0",
-      "exercises": "lesson-0"
+      "exercisesId": "lesson-0"
     }
   ]
 }
