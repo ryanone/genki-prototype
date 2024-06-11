@@ -4,7 +4,7 @@ import type { ActionFunctionArgs, Params, ParamParseKey } from 'react-router-dom
 import type { Book } from '@/data/book';
 
 interface BookLoaderArgs extends ActionFunctionArgs {
-  params: Params<ParamParseKey<typeof Paths.bookEdition>>;
+  params: Params<ParamParseKey<typeof Paths.book>>;
 }
 
 export async function loader({ params }: BookLoaderArgs): Promise<Book> {

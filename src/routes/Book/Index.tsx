@@ -6,7 +6,7 @@ export default function Index() {
   const book = useOutletContext() as Book;
 
   return (
-    <div className="bookeditionindexroute">
+    <div className="bookindexroute">
       <h2>Lessons</h2>
       {
 
