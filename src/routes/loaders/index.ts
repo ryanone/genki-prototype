@@ -1,4 +1,4 @@
 export const Paths = {
-  bookEdition: ':bookEditionId',
+  book: ':bookId',
   exercise: 'lesson/:lessonId/exercise/:exerciseId',
 };

@@ -1,12 +1,12 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import BookEditionIndexRoute from '@/routes/BookEdition/Index';
-import BookEditionRoute from '@/routes/BookEdition';
+import BookIndexRoute from '@/routes/Book/Index';
+import BookRoute from '@/routes/Book';
 import ExerciseRoute from '@/routes/Exercise';
 import { Paths } from '@/routes/loaders';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import RootRoute from '@/routes/Root';
-import { loader as bookEditionLoader } from '@/routes/loaders/bookEdition';
+import { loader as bookLoader } from '@/routes/loaders/book';
 import { loader as exerciseLoader } from '@/routes/loaders/exercise';
 import './index.css';
 
@@ -16,13 +16,13 @@ const router = createBrowserRouter([
     element: <RootRoute/>,
     children: [
       {
-        path: Paths.bookEdition,
-        element: <BookEditionRoute/>,
-        loader: bookEditionLoader,
+        path: Paths.book,
+        element: <BookRoute/>,
+        loader: bookLoader,
         children: [
           {
             index: true,
-            element: <BookEditionIndexRoute/>,
+            element: <BookIndexRoute/>,
           },
           {
             path: Paths.exercise,

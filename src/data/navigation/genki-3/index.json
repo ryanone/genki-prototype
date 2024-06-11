@@ -4,9 +4,8 @@
   "lessons": [
     {
       "title": "Lesson 0: Writing System, Greetings and Numbers (p. 20-35)",
-      "exercises": [
-        "lesson-0"
-      ]
+      "id": "0",
+      "exercises": "lesson-0"
     }
   ]
 }
