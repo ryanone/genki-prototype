@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import RootRoute from '@/routes/Root';
 import { loader as bookEditionLoader } from '@/routes/loaders/bookEdition';
+import { loader as exerciseLoader } from '@/routes/loaders/exercise';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
       },
       {
         path: ':bookEditionId/lesson/:lessonId/exercise/:exerciseId',
-        element: <ExerciseRoute/>
+        element: <ExerciseRoute/>,
+        loader: exerciseLoader,
       }
     ]
   },
