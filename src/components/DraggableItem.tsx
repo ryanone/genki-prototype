@@ -4,7 +4,9 @@ type DraggableItemProps = {
   val: {
     content: string;
     id: string;
-  }
+  },
+  onSelect: (id: string) => void;
+  onUnselect: () => void;
 }
 
 export default function DraggableItem({ val }: DraggableItemProps) {

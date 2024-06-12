@@ -7,14 +7,20 @@ type DropTargetValue = {
   id: string;
 }
 
+type DropTargetValue2 = {
+  content: string;
+  id?: string;
+}
+
 type DropTargetProps = {
   layout: 'HORIZONTAL'|'VERTICAL';
+  styles?: Record<string, string>;
   val1: DropTargetValue;
-  val2?: DropTargetValue;
+  val2?: DropTargetValue2;
   onDrop: (value: string) => void;
 }
 
-export default function DropTarget({ layout, val1, val2, onDrop }: DropTargetProps) {
+export default function DropTarget({ layout, styles = {}, val1, val2, onDrop }: DropTargetProps) {
   const handleZoneDrop = () => {
     onDrop(val1.id);
   };
@@ -26,14 +32,14 @@ export default function DropTarget({ layout, val1, val2, onDrop }: DropTargetPro
     classes.push('droptarget--horizontal');
   }
 
-  const isIncorrect = val2 && val1.id !== val2.id;
+  const isIncorrect = val2?.id !== undefined && val1.id !== val2.id;
   const isCorrect = val2 && val1.id === val2.id;
   const zoneContent = val2 && val2.content;
 
   return (
-    <div className={classes.join(' ')}>
+    <div className={classes.join(' ')} style={styles}>
       <div className="droptarget__content">{val1.content}</div>
-      <div className="droptarget__zone" onDrop={handleZoneDrop}>{zoneContent}</div>
+      <div className="droptarget__zone" onDrop={handleZoneDrop} onDragOver={(e) => e.preventDefault()}>{zoneContent}</div>
       {isIncorrect && <ImCross aria-label="Incorrect" className="droptarget__icon droptarget__incorrect-icon"/>}
       {isCorrect && <FaStar arial-label="Correct" className="droptarget__icon droptarget__correct-icon"/>}
     </div>

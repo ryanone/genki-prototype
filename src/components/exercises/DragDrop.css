@@ -11,8 +11,24 @@
   flex-direction: row;
 }
 
+.dragdrop--vertical .dragdrop__questions {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dragdrop--horizontal .dragdrop__questions {
+  display: grid;
+  grid-auto-flow: var(--grid-auto-flow, 'column');
+  gap: 6px;
+}
+
 .dragdrop__choices {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+}
+
+.dragdrop--vertical .dragdrop__choices {
+  flex-direction: column;
 }

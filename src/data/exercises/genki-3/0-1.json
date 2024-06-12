@@ -468,7 +468,8 @@
     "DRAG_DROP": {
       "supportedLayouts": ["HORIZONTAL"],
       "HORIZONTAL": {
-        "flow": "COLUMN",
+        "questionsFlow": "VERTICAL",
+        "questionFlow": "HORIZONTAL",
         "configuration": [
           3,
           5,

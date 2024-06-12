@@ -1,4 +1,4 @@
-type Choice = {
+export type Choice = {
   content: string;
   id: string;
 };
@@ -7,13 +7,14 @@ type Meta = {
   DRAG_DROP?: DragDropMeta;
 }
 
-type DragDropLayouts = 'HORIZONTAL'|'VERTICAL'|'BOTH';
-type DragDropFlow = 'COLUMN'|'ROW';
+export type DragDropFlow = 'HORIZONTAL'|'VERTICAL';
+type DragDropLayouts = DragDropFlow|'BOTH';
 
 type DragDropMeta = {
   supportedLayouts: DragDropLayouts[];
   HORIZONTAL?: {
-    flow: DragDropFlow;
+    questionsFlow: DragDropFlow;
+    questionFlow: DragDropFlow;
     configuration: number[];
   }
 }
