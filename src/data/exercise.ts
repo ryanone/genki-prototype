@@ -1,5 +1,6 @@
 type Choice = {
   content: string;
+  id: string;
 };
 
 type Meta = {
@@ -17,10 +18,10 @@ type DragDropMeta = {
   }
 }
 
-type Question = {
+export type Question = {
   content: string;
   choices: {
-    correct: number;
+    correctId: string;
   };
 }
 

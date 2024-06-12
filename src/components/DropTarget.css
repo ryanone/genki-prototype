@@ -1,0 +1,56 @@
+.droptarget--vertical {
+  display: inline-flex;
+  gap: 4px;
+  flex-direction: column;
+  position: relative;
+}
+
+.droptarget--horizontal {
+  display: inline-flex;
+  gap: 6px;
+  position: relative;
+  width: auto;
+}
+
+.droptarget__content {
+  background-color: var(--drag-drop-background-color);
+  color: var(--primary-text-color);
+  min-width: 30px;
+  padding-inline: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.droptarget--horizontal .droptarget__zone {
+  min-width: 50px;
+}
+
+.droptarget--vertical .droptarget__zone {
+  min-height: 2rem;
+}
+
+.droptarget__zone {
+  display: flex;
+  justify-content: center;
+}
+
+.droptarget__content,
+.droptarget__zone {
+  border: 1px solid var(--drag-drop-border-color);
+}
+
+.droptarget__icon {
+  --icon-size: .75rem;
+  font-size: var(--icon-size);
+  position: absolute;
+  right: calc(-.5 * var(--icon-size));
+  top: calc(-.5 * var(--icon-size));
+}
+
+.droptarget__correct-icon {
+  color: var(--primary-highlight-color);
+}
+
+.droptarget__incorrect-icon {
+  color: var(--incorrect-color);
+}

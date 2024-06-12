@@ -1,0 +1,75 @@
+import DropTarget from './DropTarget';
+import { fn } from '@storybook/test';
+
+export const DropTargetActionsData = {
+  onDrop: fn(),
+};
+
+export default {
+  component: DropTarget,
+  title: 'DropTarget',
+  tags: ['autodocs'],
+  excludeStories: /.*Data$/,
+  args: {
+    ...DropTargetActionsData
+  },
+};
+
+export const DefaultHorizontal = {
+  args: {
+    layout: 'HORIZONTAL',
+    val1: {
+      content: 'wa',
+      id: '0',
+    }
+  }
+};
+
+export const DefaultVertical = {
+  args: {
+    ...DefaultHorizontal.args,
+    layout: 'VERTICAL',
+  },
+};
+
+export const CorrectHorizontal = {
+  args: {
+    ...DefaultHorizontal.args,
+    val2: {
+      content: 'わ',
+      id: DefaultHorizontal.args.val1.id,
+    },
+  },
+};
+
+export const CorrectVertical = {
+  args: {
+    ...DefaultHorizontal.args,
+    layout: 'VERTICAL',
+    val2: {
+      content: 'わ',
+      id: DefaultHorizontal.args.val1.id,
+    },
+  },
+};
+
+export const IncorrectHorizontal = {
+  args: {
+    ...DefaultHorizontal.args,
+    val2: {
+      content: 'ほ',
+      id: '50'
+    },
+  },
+};
+
+export const IncorrectVertical = {
+  args: {
+    ...DefaultHorizontal.args,
+    layout: 'VERTICAL',
+    val2: {
+      content: 'ほ',
+      id: '50'
+    },
+  },
+};

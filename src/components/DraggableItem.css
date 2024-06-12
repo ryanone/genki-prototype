@@ -1,0 +1,12 @@
+.draggableitem {
+  background-color: var(--drag-drop-background-color);
+  border: 1px solid var(--drag-drop-border-color);
+  display: inline-flex;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.draggableitem:focus {
+  border-color: var(--primary-highlight-color);
+  outline-color: var(--primary-highlight-color);
+}

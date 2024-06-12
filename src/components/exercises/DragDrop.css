@@ -1,0 +1,18 @@
+.dragdrop {
+  display: flex;
+}
+
+.dragdrop--horizontal {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dragdrop--vertical {
+  flex-direction: row;
+}
+
+.dragdrop__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
