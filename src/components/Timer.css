@@ -1,0 +1,11 @@
+.timer {
+  color: var(--primary-text-color);
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.timer__heading,
+.timer__count {
+  display: flex;
+  justify-content: center;
+}

@@ -3,6 +3,7 @@ import { FaArrowsRotate } from 'react-icons/fa6';
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
 import ReviewDialog from '@/components/ReviewDialog';
+import Timer from '@/components/Timer';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DragDropFlow, Exercise } from '@/data/exercise';
 import './DragDrop.css';
@@ -104,6 +105,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const selectedChoiceId = useRef<string>();
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
   const [isFinished, setIsFinished] = useState(false);
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
   const correctChoices = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
   const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
@@ -141,11 +143,17 @@ export default function DragDrop({ data }: DragDropProps) {
     selectedChoiceId.current = undefined;
   }, []);
   const handleReviewClick = () => {
+    setIsTimerRunning(false);
     setShowReviewDialog(true);
+  }
+  const handleReviewCancel = () => {
+    setIsTimerRunning(true);
+    setShowReviewDialog(false);
   }
   const handleReviewConfirm = () => {
     setShowReviewDialog(false);
     setIsFinished(true);
+    setIsTimerRunning(false);
     data.questions.forEach(question => {
       if (!answers.has(question.content)) {
         answers.set(question.content, {
@@ -162,6 +170,7 @@ export default function DragDrop({ data }: DragDropProps) {
     setAnswers(new Map());
     setShowReviewDialog(false);
     setIsFinished(false);
+    setIsTimerRunning(true);
   }
 
   useEffect(() => {
@@ -230,7 +239,8 @@ export default function DragDrop({ data }: DragDropProps) {
             <button className="dragdrop__button" onClick={handleReviewClick}><FaBook className="dragdrop__review-icon" role="presentation"/>Review</button>
         }
       </div>
-      <ReviewDialog isOpen={showReviewDialog} onConfirm={handleReviewConfirm} onCancel={() => setShowReviewDialog(false)}/>
+      <Timer isRunning={isTimerRunning}/>
+      <ReviewDialog isOpen={showReviewDialog} onConfirm={handleReviewConfirm} onCancel={handleReviewCancel}/>
     </div>
   )
 }
