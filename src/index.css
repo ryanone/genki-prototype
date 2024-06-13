@@ -18,8 +18,10 @@
   --drag-drop-border-color: #444;
   --drag-drop-background-color: #333;
   --incorrect-color: red;
+  --primary-background-color: white;
   --primary-highlight-color: #f93;
   --primary-text-color: #aaa;
+  --secondary-text-color: white;
 }
 
 body {

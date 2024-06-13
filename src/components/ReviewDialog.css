@@ -1,0 +1,35 @@
+.reviewdialog {
+  border: 1px solid var(--drag-drop-border-color);
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 50vw;
+  padding: 0;
+  --content-padding: 12px;
+}
+
+.reviewdialog__content {
+  flex-grow: 1;
+  padding: var(--content-padding);
+}
+
+.reviewdialog__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: var(--content-padding);
+}
+
+.reviewdialog__button {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--primary-highlight-color);
+  padding: 8px;
+}
+
+.reviewdialog__title {
+  background: var(--primary-highlight-color);
+  color: var(--secondary-text-color);
+  padding: var(--content-padding);
+}

@@ -51,3 +51,19 @@
 .dragdrop--vertical .dragdrop__choices {
   flex-direction: column;
 }
+
+.dragdrop__actions {
+  display: flex;
+  justify-content: center;
+}
+
+.dragdrop__review {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--primary-highlight-color);
+  padding: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}

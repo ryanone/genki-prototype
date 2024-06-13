@@ -1,6 +1,7 @@
+import { FaBook, FaInfoCircle } from 'react-icons/fa';
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
-import { FaInfoCircle } from 'react-icons/fa';
+import ReviewDialog from '@/components/ReviewDialog';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DragDropFlow, Exercise } from '@/data/exercise';
 import './DragDrop.css';
@@ -101,7 +102,9 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 export default function DragDrop({ data }: DragDropProps) {
   const selectedChoiceId = useRef<string>();
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
-  const correctChoices = Array.from(answers).filter(([_, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
+  const correctChoices = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
+  const [doReview, setDoReview] = useState(false);
+  const [showReviewDialog, setShowReviewDialog] = useState(false);
   const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
   const {
     dropTargetFlow,
@@ -136,6 +139,12 @@ export default function DragDrop({ data }: DragDropProps) {
   const handleChoiceUnselect = useCallback(() => {
     selectedChoiceId.current = undefined;
   }, []);
+  const handleReviewClick = () => {
+    setShowReviewDialog(true);
+  }
+  const handleReviewConfirm = () => {
+    setShowReviewDialog(false);
+  }
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
@@ -196,6 +205,10 @@ export default function DragDrop({ data }: DragDropProps) {
           }
         </div>
       </div>
+      <div className="dragdrop__actions">
+        <button className="dragdrop__review" onClick={handleReviewClick}><FaBook className="dragdrop__review-icon" role="presentation"/>Review</button>
+      </div>
+      <ReviewDialog isOpen={showReviewDialog} onConfirm={handleReviewConfirm} onCancel={() => setShowReviewDialog(false)}/>
     </div>
   )
 }
