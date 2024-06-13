@@ -22,7 +22,7 @@ type DropTargetProps = {
 }
 
 export default function DropTarget({ layout, result, styles = {}, val1, val2, onDrop }: DropTargetProps) {
-  const handleZoneDrop = () => {
+  const handleZoneDropClick = () => {
     onDrop(val1.id);
   };
 
@@ -40,7 +40,7 @@ export default function DropTarget({ layout, result, styles = {}, val1, val2, on
   return (
     <div className={classes.join(' ')} style={styles}>
       <div className="droptarget__content">{val1.content}</div>
-      <div className="droptarget__zone" onDrop={handleZoneDrop} onDragOver={(e) => e.preventDefault()}>{zoneContent}</div>
+      <div className="droptarget__zone" data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragOver={(e) => e.preventDefault()}>{zoneContent}</div>
       {isIncorrect && <ImCross aria-label="Incorrect" className="droptarget__icon droptarget__incorrect-icon"/>}
       {isCorrect && <FaStar arial-label="Correct" className="droptarget__icon droptarget__correct-icon"/>}
     </div>

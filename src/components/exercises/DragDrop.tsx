@@ -1,6 +1,6 @@
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DragDropFlow, Exercise } from '@/data/exercise';
 import './DragDrop.css';
 
@@ -96,7 +96,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 export default function DragDrop({ data }: DragDropProps) {
   const selectedChoiceId = useRef<string>();
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
-  const correctChoices = Array.from(answers).filter(([_, val]) => val.result === 'CORRECT').map(([_, val]) => val.id);
+  const correctChoices = Array.from(answers).filter(([_, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
   const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
   const {
     dropTargetFlow,
@@ -121,14 +121,30 @@ export default function DragDrop({ data }: DragDropProps) {
       } as Answer;
       answers.set(questionId, answer);
       setAnswers(new Map(answers));
+      selectedChoiceId.current = undefined;
     }
   }
   const handleChoiceSelect = (id: string) => {
     selectedChoiceId.current = id;
   }
-  const handleChoiceUnselect = () => {
+  const handleChoiceUnselect = useCallback(() => {
     selectedChoiceId.current = undefined;
-  }
+  }, []);
+
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      const target = e.target as Element;
+      if (target.attributes.getNamedItem('data-drop-target-zone')?.value !== 'true' &&
+          target.attributes.getNamedItem('data-draggable-item')?.value !== 'true') {
+        handleChoiceUnselect();
+      }
+    }
+    document.body.addEventListener('click', handleDocumentClick)
+
+    return () => {
+      document.body.removeEventListener('click', handleDocumentClick)
+    }
+  }, [handleChoiceUnselect]);
 
 
   let trackRemaining = questionsTrackConfig?.shift();
