@@ -41,6 +41,10 @@
   border: 1px solid var(--drag-drop-border-color);
 }
 
+.droptarget__zone--entered {
+  border-color: var(--primary-highlight-color);
+}
+
 .droptarget__icon {
   --icon-size: .75rem;
   font-size: var(--icon-size);

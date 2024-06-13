@@ -1,4 +1,5 @@
 import { FaBook, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowsRotate } from 'react-icons/fa6';
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
 import ReviewDialog from '@/components/ReviewDialog';
@@ -102,9 +103,9 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 export default function DragDrop({ data }: DragDropProps) {
   const selectedChoiceId = useRef<string>();
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
-  const correctChoices = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
-  const [doReview, setDoReview] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
+  const correctChoices = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
   const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
   const {
     dropTargetFlow,
@@ -144,6 +145,23 @@ export default function DragDrop({ data }: DragDropProps) {
   }
   const handleReviewConfirm = () => {
     setShowReviewDialog(false);
+    setIsFinished(true);
+    data.questions.forEach(question => {
+      if (!answers.has(question.content)) {
+        answers.set(question.content, {
+          id: question.choices.correctId,
+          result: undefined,
+          numGuesses: 0,
+        });
+      }
+    });
+    setAnswers(new Map(answers));
+  }
+  const handleRestartClick = () => {
+    selectedChoiceId.current = undefined;
+    setAnswers(new Map());
+    setShowReviewDialog(false);
+    setIsFinished(false);
   }
 
   useEffect(() => {
@@ -206,7 +224,11 @@ export default function DragDrop({ data }: DragDropProps) {
         </div>
       </div>
       <div className="dragdrop__actions">
-        <button className="dragdrop__review" onClick={handleReviewClick}><FaBook className="dragdrop__review-icon" role="presentation"/>Review</button>
+        {
+          isFinished ?
+            <button className="dragdrop__button" onClick={handleRestartClick}><FaArrowsRotate className="dragdrop__review-icon" role="presentation"/>Restart</button> :
+            <button className="dragdrop__button" onClick={handleReviewClick}><FaBook className="dragdrop__review-icon" role="presentation"/>Review</button>
+        }
       </div>
       <ReviewDialog isOpen={showReviewDialog} onConfirm={handleReviewConfirm} onCancel={() => setShowReviewDialog(false)}/>
     </div>

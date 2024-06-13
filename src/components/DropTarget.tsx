@@ -1,5 +1,6 @@
 import { FaStar } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
+import { useState } from 'react';
 import './DropTarget.css';
 
 type DropTargetValue = {
@@ -22,6 +23,7 @@ type DropTargetProps = {
 }
 
 export default function DropTarget({ layout, result, styles = {}, val1, val2, onDrop }: DropTargetProps) {
+  const [isZoneEntered, setIsZoneEntered] = useState(false);
   const handleZoneDropClick = () => {
     onDrop(val1.id);
   };
@@ -36,11 +38,15 @@ export default function DropTarget({ layout, result, styles = {}, val1, val2, on
   const isCorrect = result === 'CORRECT';
   const isIncorrect = result === 'INCORRECT';
   const zoneContent = val2 && val2.content;
+  const zoneClasses = ['droptarget__zone'];
+  if (isZoneEntered) {
+    zoneClasses.push('droptarget__zone--entered');
+  }
 
   return (
     <div className={classes.join(' ')} style={styles}>
       <div className="droptarget__content">{val1.content}</div>
-      <div className="droptarget__zone" data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragOver={(e) => e.preventDefault()}>{zoneContent}</div>
+      <div className={zoneClasses.join(' ')} data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragEnter={() => setIsZoneEntered(true)} onDragLeave={() => setIsZoneEntered(false)} onDragOver={(e) => e.preventDefault()}>{zoneContent}</div>
       {isIncorrect && <ImCross aria-label="Incorrect" className="droptarget__icon droptarget__incorrect-icon"/>}
       {isCorrect && <FaStar arial-label="Correct" className="droptarget__icon droptarget__correct-icon"/>}
     </div>
