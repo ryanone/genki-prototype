@@ -1,11 +1,12 @@
 import { FaBook, FaInfoCircle } from 'react-icons/fa';
-import { FaArrowsRotate } from 'react-icons/fa6';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
+import { FaArrowsRotate } from 'react-icons/fa6';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { DragDropFlow, Exercise } from '@/data/exercise';
+import { randomizeArray } from '@/utils/randomize';
+import type { Choice, DragDropFlow, Exercise } from '@/data/exercise';
 import './DragDrop.css';
 
 type DragDropProps = {
@@ -83,10 +84,10 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   } else {
     questionsStyles['--grid-auto-flow'] = 'column';
     if (crossAxisLen) {
-      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, 1fr)`;
+      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, min-content)`;
     }
     if (maxTrackLen > 0) {
-      questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, 1fr)`;
+      questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, min-content)`;
     }
   }
 
@@ -107,8 +108,9 @@ export default function DragDrop({ data }: DragDropProps) {
   const [isFinished, setIsFinished] = useState(false);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
-  const correctChoices = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
-  const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
+  const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
+  const correctChoiceIds = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
+  const remainingChoices = choices.filter(choice => !correctChoiceIds.includes(choice.id));
   const {
     dropTargetFlow,
     instructions,
@@ -169,6 +171,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const handleRestartClick = () => {
     selectedChoiceId.current = undefined;
     setAnswers(new Map());
+    setChoices(randomizeArray(data.choices) as Choice[]);
     setShowReviewDialog(false);
     setIsFinished(false);
     setIsTimerRunning(true);
