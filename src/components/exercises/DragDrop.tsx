@@ -14,19 +14,42 @@ type Answer = {
   numGuesses: number;
 }
 
-export default function DragDrop({ data }: DragDropProps) {
-  const selectedChoiceId = useRef<string>();
-  const classes = ['dragdrop'];
-  const meta = data.meta?.DRAG_DROP;
-  const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
-  const correctChoices = Array.from(answers).filter(([_, val]) => val.result === 'CORRECT').map(([_, val]) => val.id);
-  const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
+type LayoutConfiguration = {
+  dropTargetFlow: DragDropFlow;
+  maxTrackLen: number;
+  questionsFlow: DragDropFlow;
+  questionsTrackConfig: number[]|undefined;
+  rootClasses: string[];
+  questionsStyles: Record<string, string>;
+}
 
+function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
+  /*
+  Get the supported layouts
+  If 1 or more
+    Set to the first element (horizontal by default)
+  Else
+    Set the layout to HORIZONTAL
+
+  If horizontal
+    Set display: grid
+    Get flow value and set grid-auto-flow
+    Get num cols by checking configuration.length
+    Get num rows by getting max value in configuration
+    Questions should be rendered based on questionLayout value
+  If vertical
+    Set display: flex, flex-direction: column
+    Render items
+    Questions should be rendered in horizontal mode
+  */
+  const rootClasses = ['dragdrop'];
+  const questionsStyles: Record<string, string> = {};
+  const meta = data.meta?.DRAG_DROP;
   let isHorizontal = false;
   let dropTargetFlow: DragDropFlow = 'HORIZONTAL';
   let questionsFlow: DragDropFlow = 'HORIZONTAL';
   let maxTrackLen = Number.MIN_VALUE;
-  let questionsLayoutConfig: number[]|undefined;
+  let questionsTrackConfig: number[]|undefined;
   let crossAxisLen: number|undefined;
   if (meta) {
     if (meta.supportedLayouts?.length >= 1) {
@@ -36,17 +59,18 @@ export default function DragDrop({ data }: DragDropProps) {
     if (isHorizontal && meta.HORIZONTAL) {
       dropTargetFlow = meta.HORIZONTAL.questionFlow ?? 'VERTICAL';
       questionsFlow = meta.HORIZONTAL.questionsFlow ?? 'HORIZONTAL';
-      questionsLayoutConfig = meta.HORIZONTAL.configuration;
-      questionsLayoutConfig.forEach(val => maxTrackLen = Math.max(maxTrackLen, val));
-      crossAxisLen = questionsLayoutConfig.length;
+      if (meta.HORIZONTAL.configuration) {
+        questionsTrackConfig = [...meta.HORIZONTAL.configuration];
+        questionsTrackConfig.forEach(val => maxTrackLen = Math.max(maxTrackLen, val));
+        crossAxisLen = questionsTrackConfig.length;
+      }
     }
   }
   if (isHorizontal) {
-    classes.push('dragdrop--horizontal');
+    rootClasses.push('dragdrop--horizontal');
   } else {
-    classes.push('dragdrop--vertical');
+    rootClasses.push('dragdrop--vertical');
   }
-  const questionsStyles: Record<string, unknown> = {};
   if (questionsFlow === 'HORIZONTAL') {
     questionsStyles['--grid-auto-flow'] = 'row';
   } else {
@@ -58,6 +82,31 @@ export default function DragDrop({ data }: DragDropProps) {
       questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, 1fr)`;
     }
   }
+
+  return {
+    dropTargetFlow,
+    maxTrackLen,
+    questionsFlow,
+    questionsTrackConfig,
+    rootClasses,
+    questionsStyles
+  };
+}
+
+export default function DragDrop({ data }: DragDropProps) {
+  const selectedChoiceId = useRef<string>();
+  const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
+  const correctChoices = Array.from(answers).filter(([_, val]) => val.result === 'CORRECT').map(([_, val]) => val.id);
+  const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
+  const {
+    dropTargetFlow,
+    maxTrackLen,
+    questionsFlow,
+    questionsTrackConfig,
+    rootClasses,
+    questionsStyles
+  } = getLayoutConfiguration(data);
+
   const handleDropTargetDrop = (questionId: string) => {
     if (selectedChoiceId.current) {
       let result;
@@ -81,29 +130,11 @@ export default function DragDrop({ data }: DragDropProps) {
     selectedChoiceId.current = undefined;
   }
 
-  /*
-  Get the supported layouts
-  If 1 or more
-    Set to the first element (horizontal by default)
-  Else
-    Set the layout to HORIZONTAL
 
-  If horizontal
-    Set display: grid
-    Get flow value and set grid-auto-flow
-    Get num cols by checking configuration.length
-    Get num rows by getting max value in configuration
-    Questions should be rendered based on questionLayout value
-  If vertical
-    Set display: flex, flex-direction: column
-    Render items
-    Questions should be rendered in horizontal mode
-  */
-
-  let trackRemaining = questionsLayoutConfig?.shift();
+  let trackRemaining = questionsTrackConfig?.shift();
   let currTrackLen = 0;
   return (
-    <div className={classes.join(' ')}>
+    <div className={rootClasses.join(' ')}>
       <div className="dragdrop__questions" style={questionsStyles}>
         {
           data.questions.map(question => {
@@ -119,7 +150,7 @@ export default function DragDrop({ data }: DragDropProps) {
               result = answer.result;
             }
             const styles: Record<string, string> = {};
-            if (questionsLayoutConfig && trackRemaining !== undefined) {
+            if (questionsTrackConfig && trackRemaining !== undefined) {
               currTrackLen++;
               trackRemaining--;
               if (trackRemaining === 0) {
@@ -128,7 +159,7 @@ export default function DragDrop({ data }: DragDropProps) {
                 styles[trackStyle] = `span ${spanLen}`;
 
                 currTrackLen = 0;
-                trackRemaining = questionsLayoutConfig.shift();
+                trackRemaining = questionsTrackConfig.shift();
               }
             }
             return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} styles={styles} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
