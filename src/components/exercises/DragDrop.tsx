@@ -1,5 +1,6 @@
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
+import { FaInfoCircle } from 'react-icons/fa';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DragDropFlow, Exercise } from '@/data/exercise';
 import './DragDrop.css';
@@ -16,6 +17,7 @@ type Answer = {
 
 type LayoutConfiguration = {
   dropTargetFlow: DragDropFlow;
+  instructions: string|undefined;
   maxTrackLen: number;
   questionsFlow: DragDropFlow;
   questionsTrackConfig: number[]|undefined;
@@ -51,6 +53,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   let maxTrackLen = Number.MIN_VALUE;
   let questionsTrackConfig: number[]|undefined;
   let crossAxisLen: number|undefined;
+  let instructions: string|undefined;
   if (meta) {
     if (meta.supportedLayouts?.length >= 1) {
       isHorizontal = meta.supportedLayouts[0] === 'HORIZONTAL';
@@ -65,6 +68,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
         crossAxisLen = questionsTrackConfig.length;
       }
     }
+    instructions = meta.instructions;
   }
   if (isHorizontal) {
     rootClasses.push('dragdrop--horizontal');
@@ -85,6 +89,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 
   return {
     dropTargetFlow,
+    instructions,
     maxTrackLen,
     questionsFlow,
     questionsTrackConfig,
@@ -100,6 +105,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
   const {
     dropTargetFlow,
+    instructions,
     maxTrackLen,
     questionsFlow,
     questionsTrackConfig,
@@ -110,7 +116,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const handleDropTargetDrop = (questionId: string) => {
     if (selectedChoiceId.current) {
       let result;
-      const question = data.questions.find(q => q.id === questionId);
+      const question = data.questions.find(q => q.content === questionId);
       if (question) {
         result = question.choices.correctId === selectedChoiceId.current ? 'CORRECT' : 'INCORRECT';
       }
@@ -151,41 +157,44 @@ export default function DragDrop({ data }: DragDropProps) {
   let currTrackLen = 0;
   return (
     <div className={rootClasses.join(' ')}>
-      <div className="dragdrop__questions" style={questionsStyles}>
-        {
-          data.questions.map(question => {
-            const val1 = {
-              content: question.content,
-              id: question.id,
-            }
-            const answer = answers.get(val1.id);
-            let val2;
-            let result;
-            if (answer) {
-              val2 = data.choices.find(choice => choice.id === answer.id);
-              result = answer.result;
-            }
-            const styles: Record<string, string> = {};
-            if (questionsTrackConfig && trackRemaining !== undefined) {
-              currTrackLen++;
-              trackRemaining--;
-              if (trackRemaining === 0) {
-                const spanLen = maxTrackLen - currTrackLen + 1;
-                const trackStyle = questionsFlow === 'HORIZONTAL' ? 'gridColStart' : 'gridRowStart';
-                styles[trackStyle] = `span ${spanLen}`;
-
-                currTrackLen = 0;
-                trackRemaining = questionsTrackConfig.shift();
+      {instructions && <div className="dragdrop__instructions"><FaInfoCircle className="dragdrop__instructions-icon" role="presentation"/>{instructions}</div>}
+      <div className="dragdrop__main">
+        <div className="dragdrop__questions" style={questionsStyles}>
+          {
+            data.questions.map(question => {
+              const val1 = {
+                content: question.content,
+                id: question.content,
               }
-            }
-            return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} styles={styles} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
-          })
-        }
-      </div>
-      <div className="dragdrop__choices">
-        {
-          remainingChoices.map(choice => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>)
-        }
+              const answer = answers.get(val1.id);
+              let val2;
+              let result;
+              if (answer) {
+                val2 = data.choices.find(choice => choice.id === answer.id);
+                result = answer.result;
+              }
+              const styles: Record<string, string> = {};
+              if (questionsTrackConfig && trackRemaining !== undefined) {
+                currTrackLen++;
+                trackRemaining--;
+                if (trackRemaining === 0) {
+                  const spanLen = maxTrackLen - currTrackLen + 1;
+                  const trackStyle = questionsFlow === 'HORIZONTAL' ? 'gridColStart' : 'gridRowStart';
+                  styles[trackStyle] = `span ${spanLen}`;
+
+                  currTrackLen = 0;
+                  trackRemaining = questionsTrackConfig.shift();
+                }
+              }
+              return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} styles={styles} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
+            })
+          }
+        </div>
+        <div className="dragdrop__choices">
+          {
+            remainingChoices.map(choice => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>)
+          }
+        </div>
       </div>
     </div>
   )

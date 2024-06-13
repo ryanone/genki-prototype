@@ -12,6 +12,7 @@ type DragDropLayouts = DragDropFlow|'BOTH';
 
 type DragDropMeta = {
   supportedLayouts: DragDropLayouts[];
+  instructions: string;
   HORIZONTAL?: {
     questionsFlow: DragDropFlow;
     questionFlow: DragDropFlow;
