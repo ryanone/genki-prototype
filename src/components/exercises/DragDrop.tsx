@@ -120,6 +120,7 @@ export default function DragDrop({ data }: DragDropProps) {
   } = getLayoutConfiguration(data);
 
   const handleDropTargetDrop = (questionId: string) => {
+    // If there's a selected choice, update the entry in the `answers` map based on `questionId`
     if (selectedChoiceId.current) {
       let result;
       const question = data.questions.find(q => q.content === questionId);
@@ -174,6 +175,7 @@ export default function DragDrop({ data }: DragDropProps) {
   }
 
   useEffect(() => {
+    // If not clicking on another choice, or a drop zone, set the selected choice to undefined
     const handleDocumentClick = (e: MouseEvent) => {
       const target = e.target as Element;
       if (target.attributes.getNamedItem('data-drop-target-zone')?.value !== 'true' &&
