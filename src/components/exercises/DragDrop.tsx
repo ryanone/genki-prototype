@@ -1,6 +1,6 @@
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import type { DragDropFlow, Exercise } from '@/data/exercise';
 import './DragDrop.css';
 
@@ -8,11 +8,20 @@ type DragDropProps = {
   data: Exercise;
 }
 
+type Answer = {
+  id: string;
+  result: 'CORRECT'|'INCORRECT'|undefined;
+  numGuesses: number;
+}
+
 export default function DragDrop({ data }: DragDropProps) {
-  // const [selectedChoiceId, setSelectedChoiceId] = useState<string|undefined>();
   const selectedChoiceId = useRef<string>();
   const classes = ['dragdrop'];
   const meta = data.meta?.DRAG_DROP;
+  const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
+  const correctChoices = Array.from(answers).filter(([_, val]) => val.result === 'CORRECT').map(([_, val]) => val.id);
+  const remainingChoices = data.choices.filter(choice => !correctChoices.includes(choice.id));
+
   let isHorizontal = false;
   let dropTargetFlow: DragDropFlow = 'HORIZONTAL';
   let questionsFlow: DragDropFlow = 'HORIZONTAL';
@@ -50,7 +59,20 @@ export default function DragDrop({ data }: DragDropProps) {
     }
   }
   const handleDropTargetDrop = (questionId: string) => {
-    console.log('handleDropTargetDrop(): %o', questionId);
+    if (selectedChoiceId.current) {
+      let result;
+      const question = data.questions.find(q => q.id === questionId);
+      if (question) {
+        result = question.choices.correctId === selectedChoiceId.current ? 'CORRECT' : 'INCORRECT';
+      }
+      const answer = {
+        id: selectedChoiceId.current,
+        result,
+        numGuesses: answers.has(questionId) ? answers.get(questionId)?.numGuesses as number + 1 : 1
+      } as Answer;
+      answers.set(questionId, answer);
+      setAnswers(new Map(answers));
+    }
   }
   const handleChoiceSelect = (id: string) => {
     selectedChoiceId.current = id;
@@ -87,7 +109,14 @@ export default function DragDrop({ data }: DragDropProps) {
           data.questions.map(question => {
             const val1 = {
               content: question.content,
-              id: question.choices.correctId,
+              id: question.id,
+            }
+            const answer = answers.get(val1.id);
+            let val2;
+            let result;
+            if (answer) {
+              val2 = data.choices.find(choice => choice.id === answer.id);
+              result = answer.result;
             }
             const styles: Record<string, string> = {};
             if (questionsLayoutConfig && trackRemaining !== undefined) {
@@ -102,13 +131,13 @@ export default function DragDrop({ data }: DragDropProps) {
                 trackRemaining = questionsLayoutConfig.shift();
               }
             }
-            return <DropTarget key={val1.id} layout={dropTargetFlow} styles={styles} val1={val1} onDrop={handleDropTargetDrop} />
+            return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} styles={styles} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
           })
         }
       </div>
       <div className="dragdrop__choices">
         {
-          data.choices.map(choice => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>)
+          remainingChoices.map(choice => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>)
         }
       </div>
     </div>

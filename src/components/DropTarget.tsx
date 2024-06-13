@@ -14,13 +14,14 @@ type DropTargetValue2 = {
 
 type DropTargetProps = {
   layout: 'HORIZONTAL'|'VERTICAL';
+  result: 'CORRECT'|'INCORRECT'|undefined;
   styles?: Record<string, string>;
   val1: DropTargetValue;
   val2?: DropTargetValue2;
   onDrop: (value: string) => void;
 }
 
-export default function DropTarget({ layout, styles = {}, val1, val2, onDrop }: DropTargetProps) {
+export default function DropTarget({ layout, result, styles = {}, val1, val2, onDrop }: DropTargetProps) {
   const handleZoneDrop = () => {
     onDrop(val1.id);
   };
@@ -32,8 +33,8 @@ export default function DropTarget({ layout, styles = {}, val1, val2, onDrop }: 
     classes.push('droptarget--horizontal');
   }
 
-  const isIncorrect = val2?.id !== undefined && val1.id !== val2.id;
-  const isCorrect = val2 && val1.id === val2.id;
+  const isCorrect = result === 'CORRECT';
+  const isIncorrect = result === 'INCORRECT';
   const zoneContent = val2 && val2.content;
 
   return (

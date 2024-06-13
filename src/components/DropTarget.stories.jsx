@@ -35,6 +35,7 @@ export const DefaultVertical = {
 export const CorrectHorizontal = {
   args: {
     ...DefaultHorizontal.args,
+    result: 'CORRECT',
     val2: {
       content: 'わ',
       id: DefaultHorizontal.args.val1.id,
@@ -46,6 +47,7 @@ export const CorrectVertical = {
   args: {
     ...DefaultHorizontal.args,
     layout: 'VERTICAL',
+    result: 'CORRECT',
     val2: {
       content: 'わ',
       id: DefaultHorizontal.args.val1.id,
@@ -76,6 +78,7 @@ export const FilledVertical = {
 export const IncorrectHorizontal = {
   args: {
     ...DefaultHorizontal.args,
+    result: 'INCORRECT',
     val2: {
       content: 'ほ',
       id: '50'
@@ -87,6 +90,7 @@ export const IncorrectVertical = {
   args: {
     ...DefaultHorizontal.args,
     layout: 'VERTICAL',
+    result: 'INCORRECT',
     val2: {
       content: 'ほ',
       id: '50'
