@@ -26,7 +26,7 @@ export const ChoiceListActionsData = {
 
 export default {
   component: ChoiceList,
-  title: 'ChoiceList',
+  title: 'Choice List',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {

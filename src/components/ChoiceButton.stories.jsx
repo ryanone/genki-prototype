@@ -7,7 +7,7 @@ export const ChoiceButtonActionsData = {
 
 export default {
   component: ChoiceButton,
-  title: 'ChoiceButton',
+  title: 'Choice Button',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {

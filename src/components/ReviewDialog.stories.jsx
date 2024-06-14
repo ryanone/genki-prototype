@@ -7,7 +7,7 @@ export const ReviewDialogActionsData = {
 
 export default {
   component: ReviewDialog,
-  title: 'ReviewDialog',
+  title: 'Review Dialog',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {

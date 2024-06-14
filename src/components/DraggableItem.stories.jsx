@@ -2,7 +2,7 @@ import DraggableItem from './DraggableItem';
 
 export default {
   component: DraggableItem,
-  title: 'DraggableItem',
+  title: 'Draggable Item',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {},
