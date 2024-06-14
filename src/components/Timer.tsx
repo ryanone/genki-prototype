@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { formatTimer } from '@/utils/time';
 import './Timer.css';
 
 type TimerProps = {
@@ -8,9 +9,6 @@ type TimerProps = {
 
 export default function Timer({ isRunning, onTick }: TimerProps) {
   const [seconds, setSeconds] = useState(0);
-  const numHours = Math.floor(seconds / 3600);
-  const numMinutes = Math.floor(seconds / 60);
-  const numSeconds = seconds % 60;
 
   useEffect(() => {
     let intervalId: number|undefined;
@@ -34,7 +32,7 @@ export default function Timer({ isRunning, onTick }: TimerProps) {
   return (
     <div className="timer">
       <div className="timer__heading">Time Elapsed</div>
-      <div className="timer__count">{`${numHours}`.padStart(2, '0')}:{`${numMinutes}`.padStart(2, '0')}:{`${numSeconds}`.padStart(2, '0')}</div>
+      <div className="timer__count">{formatTimer(seconds)}</div>
     </div>
   )
 }

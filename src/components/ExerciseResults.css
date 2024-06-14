@@ -1,0 +1,52 @@
+.exerciseresults {
+  --padding-block: 12px;
+  border: 1px solid var(--drag-drop-background-color);
+}
+
+.exerciseresults__button {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--primary-highlight-color);
+  padding: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: auto;
+}
+
+.exerciseresults__header {
+  background: var(--primary-highlight-color);
+  color: white;
+  padding-block: var(--padding-block);
+  display: flex;
+  justify-content: center;
+}
+
+.exerciseresults__footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: var(--padding-block);
+  align-items: center;
+}
+
+.exerciseresults__content {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.exerciseresults__term {
+  width: 25%;
+  text-align: end;
+  border-bottom: 1px solid var(--drag-drop-background-color);
+}
+
+.exerciseresults__value {
+  padding-inline-start: 12px;
+  border-bottom: 1px solid var(--drag-drop-background-color);
+}
+
+.exerciseresults__advice {
+  margin-block: 6px;
+}
