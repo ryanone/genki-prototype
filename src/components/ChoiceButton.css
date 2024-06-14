@@ -1,0 +1,19 @@
+.choicebutton {
+  background: var(--secondary-background-color);
+  border: 1px solid var(--drag-drop-background-color);
+  cursor: pointer;
+  padding-block: 8px;
+  flex-grow: 1;
+}
+
+.choicebutton--selected-correct {
+  border: 2px solid var(--selected-correct-color);
+}
+
+.choicebutton--unselected-correct {
+  border: 2px solid var(--unselected-correct-color);
+}
+
+.choicebutton--incorrect {
+  border: 2px solid var(--incorrect-color);
+}

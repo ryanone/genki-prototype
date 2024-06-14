@@ -21,7 +21,11 @@
   --primary-background-color: white;
   --primary-highlight-color: #f93;
   --primary-text-color: #aaa;
+  --secondary-background-color: #1a1a1a;
   --secondary-text-color: white;
+  --selected-correct-color: #080;
+  --unselected-correct-color: #09f;
+  --incorrect-color: red;
 }
 
 body {
