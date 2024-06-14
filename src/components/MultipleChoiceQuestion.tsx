@@ -6,16 +6,17 @@ import './MultipleChoiceQuestion.css';
 type MultipleChoiceQuestionProps = {
   choices: ChoiceItem[];
   index: number;
+  isDisabled?: boolean;
   question: Question;
   onChoiceSelect: (id: string) => void;
 }
 
-export default function MultipleChoiceQuestion({ choices, index, question, onChoiceSelect }: MultipleChoiceQuestionProps) {
+export default function MultipleChoiceQuestion({ choices, index, isDisabled, question, onChoiceSelect }: MultipleChoiceQuestionProps) {
   return (
     <div className="multiplechoicequestion">
       <div className="multiplechoicequestion__content">{index + 1}. {question.content}</div>
       <div className="multiplechoicequestion__choices-container">
-        <ChoiceList choices={choices} onChoiceSelect={onChoiceSelect}/>
+        <ChoiceList choices={choices} isDisabled={isDisabled} onChoiceSelect={onChoiceSelect}/>
       </div>
     </div>
   )
