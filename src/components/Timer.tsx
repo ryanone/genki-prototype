@@ -3,9 +3,10 @@ import './Timer.css';
 
 type TimerProps = {
   isRunning: boolean;
+  onTick?: (numSeconds: number) => void;
 };
 
-export default function Timer({ isRunning }: TimerProps) {
+export default function Timer({ isRunning, onTick }: TimerProps) {
   const [seconds, setSeconds] = useState(0);
   const numHours = Math.floor(seconds / 3600);
   const numMinutes = Math.floor(seconds / 60);
@@ -15,14 +16,20 @@ export default function Timer({ isRunning }: TimerProps) {
     let intervalId: number|undefined;
     if (isRunning) {
       intervalId = window.setInterval(() => {
-        setSeconds(p => p + 1);
+        setSeconds(s => {
+          const nextTick = s + 1;
+          if (onTick) {
+            onTick(nextTick);
+          }
+          return nextTick;
+        });
       }, 1000);
     } else {
       clearInterval(intervalId);
     }
 
     return () => clearInterval(intervalId);
-  }, [isRunning])
+  }, [isRunning, onTick])
 
   return (
     <div className="timer">
