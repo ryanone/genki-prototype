@@ -1,4 +1,20 @@
 :root {
+  --drag-drop-border-color: #444;
+  --drag-drop-background-color: #333;
+  --incorrect-color: red;
+  --root-background-color: #000;
+  --primary-background-color: white;
+  --primary-highlight-color: #f93;
+  --primary-text-color: #aaa;
+  --secondary-background-color: #1a1a1a;
+  --tertiary-background-color: #222;
+  --secondary-text-color: white;
+  --selected-correct-color: #080;
+  --unselected-correct-color: #09f;
+  --incorrect-color: red;
+}
+
+:root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family:'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Inter, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -6,26 +22,12 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--root-background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-:root {
-  --drag-drop-border-color: #444;
-  --drag-drop-background-color: #333;
-  --incorrect-color: red;
-  --primary-background-color: white;
-  --primary-highlight-color: #f93;
-  --primary-text-color: #aaa;
-  --secondary-background-color: #1a1a1a;
-  --secondary-text-color: white;
-  --selected-correct-color: #080;
-  --unselected-correct-color: #09f;
-  --incorrect-color: red;
 }
 
 body {

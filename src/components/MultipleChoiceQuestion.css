@@ -1,0 +1,18 @@
+.multiplechoicequestion {
+  background: var(--tertiary-background-color);
+  display: flex;
+  flex-direction: column;
+  --container-padding: 12px;
+}
+
+.multiplechoicequestion__content {
+  border: 1px solid var(--drag-drop-background-color);
+  display: flex;
+  justify-content: center;
+  padding: var(--container-padding);
+}
+
+.multiplechoicequestion__choices-container {
+  border: 1px solid var(--drag-drop-background-color);
+  padding: var(--container-padding);
+}
