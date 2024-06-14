@@ -13,16 +13,20 @@ type ChoiceButtonProps = {
 
 export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButtonProps) {
   const classes = ['choicebutton'];
+  let ariaLabel = '';
   if (data.result === 'SELECTED_CORRECT') {
     classes.push('choicebutton--selected-correct');
+    ariaLabel = 'Correct answer chosen';
   } else if (data.result === 'UNSELECTED_CORRECT') {
     classes.push('choicebutton--unselected-correct');
+    ariaLabel = 'This is the correct answer';
   } else if (data.result === 'INCORRECT') {
     classes.push('choicebutton--incorrect');
+    ariaLabel = 'Incorrect answer chosen';
   }
 
   return (
-    <button className={classes.join(' ')} onClick={() => onClick(data.id)} role="button" disabled={isDisabled ?? false}>
+    <button className={classes.join(' ')} onClick={() => onClick(data.id)} aria-label={ariaLabel} disabled={isDisabled ?? false}>
       {data.content}
     </button>
   )

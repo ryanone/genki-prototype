@@ -15,7 +15,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div style={{ display: 'flex', width: '25vw' }}>
+      <div style={{ display: 'flex', width: '50vw' }}>
         <Story />
       </div>
     ),
