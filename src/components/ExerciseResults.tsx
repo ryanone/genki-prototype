@@ -12,7 +12,7 @@ type ExerciseResultsProps = {
 export default function ExerciseResults({ answers, timeElapsed, onRestart }: ExerciseResultsProps) {
   const numSolved = answers.length;
   const numWrong = answers.filter(a => !!a.find(c => c.result === 'INCORRECT')).length;
-  const score = Math.floor((numSolved - numWrong) / numSolved) * 100;
+  const score = Math.floor((numSolved - numWrong) / numSolved * 100);
   let message;
   if (score === 100) {
     message = <p className="exerciseresults__advice">PERFECT! Great job!</p>
@@ -36,7 +36,7 @@ export default function ExerciseResults({ answers, timeElapsed, onRestart }: Exe
         </tr>
         <tr>
           <th className="exerciseresults__term" scope="row">Score:</th>
-          <td className="exerciseresults__value">{score}</td>
+          <td className="exerciseresults__value">{score}%</td>
         </tr>
         <tr>
           <th className="exerciseresults__term" scope="row">Completion Time:</th>
