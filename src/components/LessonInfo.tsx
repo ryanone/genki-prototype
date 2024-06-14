@@ -36,8 +36,6 @@ export default function LessonInfo({ bookId, lesson }: LessonInfoProps) {
     </ol>);
 
 
-  // <li><Link to="lesson/0/exercise/0-1">Lesson 0, Exercise 1</Link></li>
-
   return (
     <div className="lessoninfo">
       <h3>{lesson.title}</h3>

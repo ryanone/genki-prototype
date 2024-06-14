@@ -2,6 +2,7 @@ import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
 import { useRef, useState } from 'react';
 import AnswerList from '@/components/AnswerList';
 import ExerciseResults from '@/components/ExerciseResults';
+import { FaInfoCircle } from 'react-icons/fa';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
@@ -27,8 +28,9 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
       []
   );
   const [answers, setAnswers] = useState<ChoiceItem[][]>([]);
-  const isExerciseFinished = currentIndex === questions.current.length;
   const timeElapsed = useRef(0);
+  const isExerciseFinished = currentIndex === questions.current.length;
+  const instructions = data.meta?.MULTIPLE_CHOICE?.instructions;
   const handleChoiceSelect = (id: string) => {
     const currentChoicesUpdated: ChoiceItem[] = currentChoices.map(c => {
       if (c.id === id) {
@@ -84,6 +86,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
             <AnswerList data={questionsAnswers as QuestionAnswer[]} />
           </> :
           <>
+            {instructions && <div className="multiplechoice__instructions"><FaInfoCircle className="multiplechoice__instructions-icon" role="presentation"/>{instructions}</div>}
             <MultipleChoiceQuestion
               key={currentIndex}
               choices={currentChoices}
@@ -92,11 +95,11 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
               question={currentQuestion}
               onChoiceSelect={handleChoiceSelect}
             />
-            <ProgressBar current={currentIndex + 1} total={data.questions.length}/>
-            <Timer isRunning={!isExerciseFinished} onTick={(numSeconds) => timeElapsed.current = numSeconds}/>
             <div className="multiplechoice__actions">
               {nextButton}
             </div>
+            <ProgressBar current={currentIndex} total={data.questions.length}/>
+            <Timer isRunning={!isExerciseFinished} onTick={(numSeconds) => timeElapsed.current = numSeconds}/>
           </>
       }
     </div>

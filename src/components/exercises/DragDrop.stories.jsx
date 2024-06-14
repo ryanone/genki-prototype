@@ -1,5 +1,5 @@
 import DragDropExercise from './DragDrop';
-import Genki3Exercise01 from '../../data/exercises/genki-3/0-1.json';
+import Genki3Exercise01 from '../../data/exercises/genki-3/hiragana-1.json';
 
 export default {
   component: DragDropExercise,

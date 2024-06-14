@@ -1,4 +1,5 @@
 {
+  "title": "Hiragana (p. 20-21)",
   "supportedRenderModes": ["DRAG_DROP", "MULTIPLE_CHOICE"],
   "questions": [
     {
@@ -465,6 +466,9 @@
     }
   ],
   "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct Hiragana for the Romaji."
+    },
     "DRAG_DROP": {
       "supportedLayouts": ["HORIZONTAL"],
       "instructions": "Drag the Kana to the matching Romaji. TIP: Click the kana to mark it, then click an empty field to drop the answer there.",

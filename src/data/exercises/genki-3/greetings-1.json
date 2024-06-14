@@ -1,0 +1,113 @@
+{
+  "title": "Greetings (p. 32)",
+  "supportedRenderModes": ["MULTIPLE_CHOICE"],
+  "questions": [
+    {
+      "content": "おはよう",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "ごちそうさま（でした）",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "よろしくおねがいします",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "いいえ",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "いってきます",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "おかえり（なさい）",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "〜です",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "ただいま",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "はじめまして",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "いただきます",
+      "choices": {
+        "correctId": "10"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "Good morning",
+      "id": "1"
+    },
+    {
+      "content": "Thank you for the meal. (after eating)",
+      "id": "2"
+    },
+    {
+      "content": "Nice to meet you.",
+      "id": "3"
+    },
+    {
+      "content": "No.; Not at all.",
+      "id": "4"
+    },
+    {
+      "content": "I'll go and come back.",
+      "id": "5"
+    },
+    {
+      "content": "Welcome home.",
+      "id": "6"
+    },
+    {
+      "content": "I am...",
+      "id": "7"
+    },
+    {
+      "content": "I'm home.",
+      "id": "8"
+    },
+    {
+      "content": "How do you do?",
+      "id": "9"
+    },
+    {
+      "content": "Thank you for the meal. (before eating)",
+      "id": "10"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct definition for each Japanese expression."
+    }
+  }
+}

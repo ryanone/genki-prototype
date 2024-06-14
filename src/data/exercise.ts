@@ -5,12 +5,17 @@ export type Choice = {
 
 type Meta = {
   DRAG_DROP?: DragDropMeta;
+  MULTIPLE_CHOICE?: MultipleChoiceMeta;
 }
 
 export type DragDropFlow = 'HORIZONTAL'|'VERTICAL';
 type DragDropLayouts = DragDropFlow|'BOTH';
 
-type DragDropMeta = {
+interface BaseMeta {
+  instructions: string;
+}
+
+interface DragDropMeta extends BaseMeta {
   supportedLayouts: DragDropLayouts[];
   instructions: string;
   HORIZONTAL?: {
@@ -18,6 +23,9 @@ type DragDropMeta = {
     questionFlow: DragDropFlow;
     configuration: number[];
   }
+}
+
+interface MultipleChoiceMeta extends BaseMeta {
 }
 
 export type Question = {
@@ -30,6 +38,7 @@ export type Question = {
 type RenderMode = 'DRAG_DROP'|'MULTIPLE_CHOICE';
 
 export type Exercise = {
+  title: string;
   choices: Choice[];
   questions: Question[];
   supportedRenderModes: RenderMode[];

@@ -7,6 +7,7 @@
 .multiplechoice__actions {
   display: flex;
   justify-content: center;
+  height: 2rem;
 }
 
 .multiplechoice__next-button {
@@ -20,4 +21,17 @@
 
 .multiplechoice__next-button:hover {
   border-color: var(--primary-highlight-color);
+}
+
+.multiplechoice__instructions {
+  background: var(--primary-highlight-color);
+  color: white;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.multiplechoice__instructions-icon {
+  font-size: 1.5rem;
 }
