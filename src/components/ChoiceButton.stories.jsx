@@ -35,6 +35,15 @@ export const Default = {
   },
 };
 
+export const Disabled = {
+  args: {
+    data: {
+      ...choice,
+    },
+    isDisabled: true,
+  },
+};
+
 export const SelectedCorrect = {
   args: {
     data: {

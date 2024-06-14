@@ -7,10 +7,11 @@ export interface ChoiceItem extends Choice {
 
 type ChoiceButtonProps = {
   data: ChoiceItem;
+  isDisabled?: boolean;
   onClick: (id: string) => void;
 }
 
-export default function ChoiceButton({ data, onClick }: ChoiceButtonProps) {
+export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButtonProps) {
   const classes = ['choicebutton'];
   if (data.result === 'SELECTED_CORRECT') {
     classes.push('choicebutton--selected-correct');
@@ -21,7 +22,7 @@ export default function ChoiceButton({ data, onClick }: ChoiceButtonProps) {
   }
 
   return (
-    <button className={classes.join(' ')} onClick={() => onClick(data.id)} role="button">
+    <button className={classes.join(' ')} onClick={() => onClick(data.id)} role="button" disabled={isDisabled ?? false}>
       {data.content}
     </button>
   )

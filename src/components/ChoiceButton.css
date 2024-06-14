@@ -1,19 +1,24 @@
-.choicebutton {
+.choicebutton,
+.choicebutton:disabled {
   background: var(--secondary-background-color);
+  color: var(--secondary-text-color);
   border: 1px solid var(--drag-drop-background-color);
   cursor: pointer;
   padding-block: 8px;
   flex-grow: 1;
 }
 
-.choicebutton--selected-correct {
+.choicebutton--selected-correct,
+.choicebutton--selected-correct:disabled {
   border: 2px solid var(--selected-correct-color);
 }
 
-.choicebutton--unselected-correct {
+.choicebutton--unselected-correct,
+.choicebutton--unselected-correct:disabled {
   border: 2px solid var(--unselected-correct-color);
 }
 
-.choicebutton--incorrect {
+.choicebutton--incorrect,
+.choicebutton--incorrect:disabled {
   border: 2px solid var(--incorrect-color);
 }
