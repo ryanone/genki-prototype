@@ -16,3 +16,16 @@ export const DefaultHorizontal = {
     data,
   }
 };
+
+export const DefaultVertical = {
+  args: {
+    data: {
+      ...data,
+      meta: {
+        DRAG_DROP: {
+          supportedLayouts: ['VERTICAL'],
+        },
+      },
+    },
+  },
+};

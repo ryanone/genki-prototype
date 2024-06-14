@@ -1,0 +1,23 @@
+.multiplechoice {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.multiplechoice__actions {
+  display: flex;
+  justify-content: center;
+}
+
+.multiplechoice__next-button {
+  background: var(--root-background-color);
+  color: var(--secondary-text-color);
+  border: 1px solid var(--drag-drop-background-color);
+  cursor: pointer;
+  padding-block: 8px;
+  flex-basis: 50%;
+}
+
+.multiplechoice__next-button:hover {
+  border-color: var(--primary-highlight-color);
+}

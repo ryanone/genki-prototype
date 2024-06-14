@@ -24,8 +24,11 @@ type DropTargetProps = {
 
 export default function DropTarget({ layout, result, styles = {}, val1, val2, onDrop }: DropTargetProps) {
   const [isZoneEntered, setIsZoneEntered] = useState(false);
+  const isDisabled = result === 'CORRECT';
   const handleZoneDropClick = () => {
-    onDrop(val1.id);
+    if (!isDisabled) {
+      onDrop(val1.id);
+    }
   };
 
   const classes = ['droptarget'];
@@ -46,7 +49,7 @@ export default function DropTarget({ layout, result, styles = {}, val1, val2, on
   return (
     <div className={classes.join(' ')} style={styles}>
       <div className="droptarget__content">{val1.content}</div>
-      <div className={zoneClasses.join(' ')} data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragEnter={() => setIsZoneEntered(true)} onDragLeave={() => setIsZoneEntered(false)} onDragOver={(e) => e.preventDefault()}>{zoneContent}</div>
+      <div className={zoneClasses.join(' ')} data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragEnter={() => setIsZoneEntered(true)} onDragLeave={() => setIsZoneEntered(false)} onDragOver={(e) => e.preventDefault()} role="button">{zoneContent}</div>
       {isIncorrect && <ImCross aria-label="Incorrect" className="droptarget__icon droptarget__incorrect-icon"/>}
       {isCorrect && <FaStar arial-label="Correct" className="droptarget__icon droptarget__correct-icon"/>}
     </div>
