@@ -5,7 +5,7 @@ import './ChoiceList.css';
 type ChoiceListProps = {
   choices: ChoiceItem[];
   isDisabled?: boolean;
-  onChoiceSelect: (id: string) => void;
+  onChoiceSelect?: (id: string) => void;
 }
 
 export default function ChoiceList({ choices, isDisabled, onChoiceSelect }: ChoiceListProps) {

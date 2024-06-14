@@ -8,7 +8,7 @@ type MultipleChoiceQuestionProps = {
   index: number;
   isDisabled?: boolean;
   question: Question;
-  onChoiceSelect: (id: string) => void;
+  onChoiceSelect?: (id: string) => void;
 }
 
 export default function MultipleChoiceQuestion({ choices, index, isDisabled, question, onChoiceSelect }: MultipleChoiceQuestionProps) {

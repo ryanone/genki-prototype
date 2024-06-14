@@ -8,7 +8,7 @@ export interface ChoiceItem extends Choice {
 type ChoiceButtonProps = {
   data: ChoiceItem;
   isDisabled?: boolean;
-  onClick: (id: string) => void;
+  onClick?: (id: string) => void;
 }
 
 export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButtonProps) {
@@ -25,8 +25,14 @@ export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButton
     ariaLabel = 'Incorrect answer chosen';
   }
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick(data.id);
+    }
+  }
+
   return (
-    <button className={classes.join(' ')} onClick={() => onClick(data.id)} aria-label={ariaLabel} disabled={isDisabled ?? false}>
+    <button className={classes.join(' ')} onClick={handleClick} aria-label={ariaLabel} disabled={isDisabled ?? false}>
       {data.content}
     </button>
   )
