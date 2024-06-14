@@ -21,7 +21,6 @@ type DragDropMeta = {
 }
 
 export type Question = {
-  id: string;
   content: string;
   choices: {
     correctId: string;
