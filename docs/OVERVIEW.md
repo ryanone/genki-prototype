@@ -13,13 +13,11 @@ The code for these two web applications are contained in 2 separate codebases:
 
 There's an opportunity to save on maintenance costs by creating an application where the data for each book and exercise is _completely data-driven_. This will result in creating less HTML files, speed up time to create exercises for new books if desired, and make it easier to test changes to the codebase. This codebase serves as a proposed prototype for where the future direction of the applications can go, based on the feedback of the BDFL of the current web apps.
 
-
-
 # Architecture and Implementation
 
 ## Running the application
 
-This prototype is implemented with Vite and React. To run the app, install dependencies by running `npm install` and then run `npm run dev` to run the app locally. You can then open a browser pointing to the URL indicated by the Terminal
+This prototype is implemented with Vite and React. To run the app, install dependencies by running `npm install` and then run `npm run dev` to run the app locally. You can then open a browser pointing to the URL indicated by the Terminal.
 
 ## Routes
 
@@ -83,13 +81,82 @@ For Lesson 0, the `exerciseId` is `"lesson-0"`. This means there should be a JSO
 
 The list of exercises for Lesson 0 are defined here.
 
+* `/[bookId]/lesson/[lessonId]/exercise/[exerciseId]` - This route's data comes from a JSON file in `/src/data/genki-3/exercises`. For example, with the "Hiragana (p. 20-21)" exercise, whose ID is `"hiragana-1"`, its data is defined in `/src/data/genki-3/exercises/hiragana-1.json`.
 
-* `/[bookId]/lesson/[lessonId]/exercise/[exerciseId]` - This route's data comes from a JSON file in `/src/data/genki-3/exercises`
+## Exercise JSON Format
 
+This file defines the questions and answer choices for a given exercise. It also defines the supported exercise types (ex. DRAG_DROP, MULTIPLE_CHOICE). Currently only Drag & Drop and Multiple Choice are supported. The following are the properties of the exercise object:
+
+* `supportedRenderModes` - List of enums of rendering modes
+* `choices` - List of objects corresponding to possible answers. Each object contains a `content` property (human-readable answer) and an `id`, which is the unique identifier of the answer within the exercise.
+* `questions` - List of objects corresponding to possible questions. Each object contains a `content `property (human-readable question) and a `choices` property, whose value is an object with a `correctId` property. The value of this property corresponds to the choice which is the correct answer for the question.
+
+The following is a snippet from `/src/data/genki-3/exercises/hiragana
+1.json`:
+
+```
+{
+  "questions": [
+    {
+      "content": "わ",
+      "choices": {
+        "correctId": "1"
+      }
+    }
+  ],
+  "choices": [
+    // "wa" is the correct Romaji for わ - the `correctId` is the same as this choice’s id
+    {
+      "content": "wa",
+      "id": "1"
+    }
+  ]
+}
+```
+### Meta
+
+The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given render mode. The `meta` object allows for this definition. In this object, for a given render mode, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-1.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on render mode.
+
+The following is a snippet from `/src/data/genki-3/exercises/hiragana
+1.json`:
+
+```
+{
+  "meta": {
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"], // Only horizontal drag & drop mode is supported
+      "instructions": "Drag the Kana to the matching Romaji. TIP: Click the kana to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {  // These values only apply to the horizontal drag & drop mode
+        "questionsFlow": "VERTICAL",  // Each question should be laid out vertically (i.e. by column)
+        "questionFlow": "HORIZONTAL", // Within each question, the content and click target
+        "configuration": [
+          // 3 questions go in the first column, then 5 questions in the second column, 3 in the third column, etc.
+          3,
+          5,
+          3,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    }
+  }
+}
+```
+
+## Storybook Integration
+
+To see each of the React components in action, [Storybook](https://storybook.js.org/) has been integrated with this repository. Run `npm run storybook` and open a browser to the specified URL to see the Storybook environment.
 
 # Future Direction
 
-UX for creating new exercises and saving them
-Validate new exercise data like unit tests
-Linting during development of exercise data and the ability interactively test it out
-Theming based on book
+This prototype is not meant to be proposal of any finalized approach. Rather it's meant to serve as a discussion starting point. If we like the general approach or idea, the following are some ideas of how this concept can be expanded:
+
+* Improve experience for creating new exercises
+  * Create a UX that facilitates creating and modifying of exercises. The UX should allow users to define exercises and test them out in some sort of playground. The current applications already do this.
+  * When a new exercise is added, its data should be validated against a schema, so as to ensure proper structure.
+* Feature parity with the existing applications
