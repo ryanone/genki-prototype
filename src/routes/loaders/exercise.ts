@@ -2,6 +2,7 @@ import { Paths } from '@/routes/loaders';
 import { loadData } from '@/api/dataLoader';
 import type { ActionFunctionArgs, Params, ParamParseKey } from 'react-router-dom';
 import type { Exercise } from '@/data/exercise';
+import type { LessonExercises } from '@/data/lesson';
 
 interface ExerciseLoaderArgs extends ActionFunctionArgs {
   params: Params<ParamParseKey<typeof Paths.exercise>>;
@@ -9,11 +10,18 @@ interface ExerciseLoaderArgs extends ActionFunctionArgs {
 
 export async function loader({ params }: ExerciseLoaderArgs): Promise<Exercise> {
   try {
-    const response = await loadData({
+    const resp = await loadData({
       bookId: params.bookId as string,
       exerciseId: params.exerciseId as string,
-   }) as Exercise;
-    return response;
+    }) as Exercise;
+    const exercise = { ...resp };
+    const lessonId = `lesson-${params.lessonId}`;
+    const lessonExercisesResponse = await loadData({
+      bookId: params.bookId as string,
+      lessonId,
+    }) as LessonExercises;
+    exercise.title = lessonExercisesResponse.exercises.find(e => e.id === params.exerciseId)?.title ?? '';
+    return exercise;
   } catch(e) {
     console.error('Exercise loader error: %o', e);
     throw e;
