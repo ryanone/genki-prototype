@@ -7,7 +7,7 @@ export const DropTargetActionsData = {
 
 export default {
   component: DropTarget,
-  title: 'Drop arget',
+  title: 'Drop Target',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
