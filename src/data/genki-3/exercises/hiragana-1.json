@@ -469,7 +469,7 @@
       "instructions": "Choose the correct Hiragana for the Romaji."
     },
     "DRAG_DROP": {
-      "supportedLayouts": ["HORIZONTAL"],
+      "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
       "instructions": "Drag the Kana to the matching Romaji. TIP: Click the kana to mark it, then click an empty field to drop the answer there.",
       "HORIZONTAL": {
         "questionsFlow": "VERTICAL",

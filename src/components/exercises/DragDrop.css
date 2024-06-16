@@ -17,6 +17,10 @@
   font-size: 1.5rem;
 }
 
+.dragdrop__button-icon {
+  font-size: 1.5rem;
+}
+
 .dragdrop__main {
   display: flex;
 }
@@ -58,6 +62,7 @@
 
 .dragdrop__actions {
   display: flex;
+  gap: 12px;
   justify-content: center;
 }
 

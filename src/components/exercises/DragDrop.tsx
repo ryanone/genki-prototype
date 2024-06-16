@@ -1,3 +1,4 @@
+import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
 import { FaBook, FaInfoCircle } from 'react-icons/fa';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import DropTarget from '@/components/DropTarget';
@@ -22,10 +23,10 @@ type Answer = {
 type LayoutConfiguration = {
   dropTargetFlow: DragDropFlow;
   instructions: string|undefined;
+  isHorizontal: boolean;
   maxTrackLen: number;
   questionsFlow: DragDropFlow;
   questionsTrackConfig: number[]|undefined;
-  rootClasses: string[];
   questionsStyles: Record<string, string>;
 }
 
@@ -48,7 +49,6 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
     Render items
     Questions should be rendered in horizontal mode
   */
-  const rootClasses = ['dragdrop'];
   const questionsStyles: Record<string, string> = {};
   const meta = data.meta?.DRAG_DROP;
   let isHorizontal = false;
@@ -74,11 +74,6 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
     }
     instructions = meta.instructions;
   }
-  if (isHorizontal) {
-    rootClasses.push('dragdrop--horizontal');
-  } else {
-    rootClasses.push('dragdrop--vertical');
-  }
   if (questionsFlow === 'HORIZONTAL') {
     questionsStyles['--grid-auto-flow'] = 'row';
   } else {
@@ -94,10 +89,10 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   return {
     dropTargetFlow,
     instructions,
+    isHorizontal,
     maxTrackLen,
     questionsFlow,
     questionsTrackConfig,
-    rootClasses,
     questionsStyles
   };
 }
@@ -111,13 +106,15 @@ export default function DragDrop({ data }: DragDropProps) {
   const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
   const correctChoiceIds = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
   const remainingChoices = choices.filter(choice => !correctChoiceIds.includes(choice.id));
+  const canChangeLayout = data.meta?.DRAG_DROP?.supportedLayouts?.length && data.meta?.DRAG_DROP?.supportedLayouts?.length > 1;
+  const [isHorizontal, setIsHorizontal] = useState(data.meta?.DRAG_DROP?.supportedLayouts?.[0] === 'HORIZONTAL');
+  const rootClasses = ['dragdrop', isHorizontal ? 'dragdrop--horizontal' : 'dragdrop--vertical'];
   const {
     dropTargetFlow,
     instructions,
     maxTrackLen,
     questionsFlow,
     questionsTrackConfig,
-    rootClasses,
     questionsStyles
   } = getLayoutConfiguration(data);
 
@@ -240,8 +237,16 @@ export default function DragDrop({ data }: DragDropProps) {
       <div className="dragdrop__actions">
         {
           isFinished ?
-            <button className="dragdrop__button" onClick={handleRestartClick}><FaArrowsRotate className="dragdrop__review-icon" role="presentation"/>Restart</button> :
-            <button className="dragdrop__button" onClick={handleReviewClick}><FaBook className="dragdrop__review-icon" role="presentation"/>Review</button>
+            <button className="dragdrop__button" onClick={handleRestartClick}><FaArrowsRotate className="dragdrop__button-icon" role="presentation"/>Restart</button> :
+            <button className="dragdrop__button" onClick={handleReviewClick}><FaBook className="dragdrop__button-icon" role="presentation"/>Review</button>
+        }
+        {
+          canChangeLayout && <button className="dragdrop__button" onClick={() => setIsHorizontal(ih => !ih)}>
+            {
+              isHorizontal ?
+                (<><CiGrid2V className="dragdrop__button-icon" role="presentation"/>Vertical Mode</>) :
+                (<><CiGrid2H className="dragdrop__button-icon" role="presentation"/>Horizontal Mode</>)
+            }</button>
         }
       </div>
       <Timer isRunning={isTimerRunning}/>
