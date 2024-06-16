@@ -9,7 +9,7 @@ export default function Index() {
       <h2>Lessons</h2>
       {
         book.lessons.map(lesson => {
-          return <LessonInfo bookId={book.id} lesson={lesson}/>
+          return <LessonInfo key={book.id} bookId={book.id} lesson={lesson}/>
         })
       }
     </div>

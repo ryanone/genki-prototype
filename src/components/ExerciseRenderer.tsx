@@ -1,14 +1,15 @@
+import { lazy, useState, Suspense } from 'react';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
-import DragDrop from '@/components/exercises/DragDrop';
 import { FaArrowsRotate } from 'react-icons/fa6';
-import MultipleChoice from '@/components/exercises/MultipleChoice';
-import { useState } from 'react';
 import type { Exercise, RenderMode } from '@/data/exercise';
 import './ExerciseRenderer.css';
 
 type ExerciseRendererProps = {
   data: Exercise
 }
+
+const DragDrop = lazy(() => import('@/components/exercises/DragDrop'));
+const MultipleChoice = lazy(() => import('@/components/exercises/MultipleChoice'));
 
 export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
@@ -27,7 +28,9 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
 
   return (
     <div className="exerciserenderer">
-      {exercise}
+      <Suspense fallback={<p className="exerciserenderer__loading" role="alert">Loading...</p>}>
+        {exercise}
+      </Suspense>
       {
         canChangeRenderMode &&
         <>
