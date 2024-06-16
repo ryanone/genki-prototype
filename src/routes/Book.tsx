@@ -7,7 +7,7 @@ export default function BookRoute() {
 
   return (
     <div className="bookroute">
-      <Header description={book.description} title={book.title}/>
+      <Header bookId={book.id} description={book.description} title={book.title}/>
       {
         /*
         Navigation goes here
