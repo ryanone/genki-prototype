@@ -35,7 +35,7 @@ export type Question = {
   };
 }
 
-type RenderMode = 'DRAG_DROP'|'MULTIPLE_CHOICE';
+export type RenderMode = 'DRAG_DROP'|'MULTIPLE_CHOICE';
 
 export type Exercise = {
   title: string;

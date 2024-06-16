@@ -1,0 +1,58 @@
+.changeexercisetypedialog {
+  border: 1px solid var(--drag-drop-border-color);
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 50vw;
+  padding: 0;
+  --content-padding: 12px;
+}
+
+.changeexercisetypedialog__form {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--content-padding);
+}
+
+.changeexercisetypedialog__content {
+  flex-grow: 1;
+}
+
+.changeexercisetypedialog__exercise-heading,
+.changeexercisetypedialog__exercise-title,
+.changeexercisetypedialog__label {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.changeexercisetypedialog__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: var(--content-padding);
+}
+
+.changeexercisetypedialog__label {
+  flex-grow: 1;
+  padding-block-start: var(--content-padding);
+}
+
+.changeexercisetypedialog__exercise-select {
+  margin: auto;
+}
+
+.changeexercisetypedialog__button {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--primary-highlight-color);
+  padding: 8px;
+}
+
+.changeexercisetypedialog__title {
+  background: var(--primary-highlight-color);
+  color: var(--secondary-text-color);
+  padding: var(--content-padding);
+}

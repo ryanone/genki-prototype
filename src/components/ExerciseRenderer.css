@@ -1,0 +1,12 @@
+.exerciserenderer__changerendermode-button {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--primary-highlight-color);
+  padding: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-block-start: 20px;
+  margin-inline: auto;
+}
