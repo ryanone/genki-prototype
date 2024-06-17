@@ -154,7 +154,7 @@ To see each of the React components in action, [Storybook](https://storybook.js.
 
 # Future Direction
 
-This prototype is not meant to be proposal of any finalized approach. Rather it's meant to serve as a discussion starting point. If we like the general approach or idea, the following are some ideas of how this concept can be expanded:
+This prototype is not meant to be proposal of any finalized approach, nor is it comprehensive in terms of its current feature set. Rather, the prototype is meant to serve as a discussion starting point. If we like the general approach or idea, the following are some ideas of how this concept can be expanded:
 
 * Improve experience for creating new exercises
   * Create a UX that facilitates creating and modifying of exercises. The UX should allow users to define exercises and test them out in some sort of playground. The current applications already do this.
