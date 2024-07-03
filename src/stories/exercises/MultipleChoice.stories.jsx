@@ -1,5 +1,5 @@
-import MultipleChoiceExercise from './MultipleChoice';
-import Genki3Exercise01 from '../../data/genki-3/exercises/hiragana-1.json';
+import MultipleChoiceExercise from '@/components/exercises/MultipleChoice';
+import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-1.json';
 
 export default {
   component: MultipleChoiceExercise,
