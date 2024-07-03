@@ -1,0 +1,41 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content {
+  padding: 4px;
+}
+
+.icon {
+  border: solid currentcolor;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  height: 8px;
+  pointer-events: none;
+  transform: translateY(-2px) rotate(45deg);
+  width: 8px;
+}
+
+.iconRotated {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  padding: 4px 0;
+}
+
+.title {
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  justify-content: space-between;
+  text-align: start;
+  display: flex;
+}
