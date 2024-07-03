@@ -1,11 +1,11 @@
-.progressbar {
+.progressBar {
   border: 1px solid var(--primary-highlight-color);
   display: flex;
   align-content: center;
   position: relative;
 }
 
-.progressbar__completion {
+.completion {
   background: var(--primary-highlight-color);
   color: var(--secondary-text-color);
   position: absolute;
@@ -14,7 +14,7 @@
   transition: width ease-out .25s;
 }
 
-.progressbar__status {
+.status {
   position: relative;
   text-align: center;
   width: 100%;

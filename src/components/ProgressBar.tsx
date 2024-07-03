@@ -1,4 +1,4 @@
-import './ProgressBar.css';
+import styles from './ProgressBar.module.css';
 
 type ProgressBarProps = {
   current: number;
@@ -11,9 +11,9 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
   };
 
   return (
-    <div className="progressbar">
-      <div className="progressbar__completion" style={completionStyles}></div>
-      <div className="progressbar__status">{current}/{total}</div>
+    <div className={styles.progressBar}>
+      <div className={styles.completion} style={completionStyles}></div>
+      <div className={styles.status}>{current}/{total}</div>
     </div>
   )
 }

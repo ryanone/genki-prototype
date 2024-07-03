@@ -1,7 +1,7 @@
 import ChoiceList from '@/components/ChoiceList';
 import { type ChoiceItem } from '@/components/ChoiceButton';
 import { type Question } from '@/data/exercise';
-import './MultipleChoiceQuestion.css';
+import styles from './MultipleChoiceQuestion.module.css';
 
 type MultipleChoiceQuestionProps = {
   choices: ChoiceItem[];
@@ -13,9 +13,9 @@ type MultipleChoiceQuestionProps = {
 
 export default function MultipleChoiceQuestion({ choices, index, isDisabled, question, onChoiceSelect }: MultipleChoiceQuestionProps) {
   return (
-    <div className="multiplechoicequestion">
-      <div className="multiplechoicequestion__content">{index + 1}. {question.content}</div>
-      <div className="multiplechoicequestion__choices-container">
+    <div className={styles.multipleChoiceQuestion}>
+      <div className={styles.content}>{index + 1}. {question.content}</div>
+      <div className={styles.choicesContainer}>
         <ChoiceList choices={choices} isDisabled={isDisabled} onChoiceSelect={onChoiceSelect}/>
       </div>
     </div>

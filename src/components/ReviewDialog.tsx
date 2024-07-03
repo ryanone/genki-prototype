@@ -1,5 +1,5 @@
 import { useEffect, useRef, type MouseEvent } from 'react';
-import './ReviewDialog.css';
+import styles from './ReviewDialog.module.css';
 
 type ReviewDialogProps = {
   isOpen: boolean;
@@ -29,12 +29,12 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
 
   return (
       isOpen &&
-      (<dialog className="reviewdialog" ref={ref} onCancel={handleCancel}>
-        <div className="reviewdialog__title">Activate Review Mode?</div>
-        <div className="reviewdialog__content">
+      (<dialog className={styles.reviewDialog} ref={ref} onCancel={handleCancel}>
+        <div className={styles.title}>Activate Review Mode?</div>
+        <div className={styles.content}>
           Are you sure you want to review? Your current progress will be lost.
         </div>
-        <form className="reviewdialog__actions">
+        <form className={styles.actions}>
           <button onClick={handleConfirmClick} className="reviewdialog__button" autoFocus>OK</button>
           <button onClick={handleCancel} formMethod="dialog" className="reviewdialog__button">Close</button>
         </form>

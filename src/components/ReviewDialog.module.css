@@ -1,4 +1,4 @@
-.reviewdialog {
+.reviewDialog {
   border: 1px solid var(--drag-drop-border-color);
   display: flex;
   flex-direction: column;
@@ -8,19 +8,19 @@
   --content-padding: 12px;
 }
 
-.reviewdialog__content {
+.content {
   flex-grow: 1;
   padding: var(--content-padding);
 }
 
-.reviewdialog__actions {
+.actions {
   display: flex;
   gap: 12px;
   justify-content: center;
   padding: var(--content-padding);
 }
 
-.reviewdialog__button {
+.button {
   border: 0;
   color: var(--secondary-text-color);
   cursor: pointer;
@@ -28,7 +28,7 @@
   padding: 8px;
 }
 
-.reviewdialog__title {
+.title {
   background: var(--primary-highlight-color);
   color: var(--secondary-text-color);
   padding: var(--content-padding);

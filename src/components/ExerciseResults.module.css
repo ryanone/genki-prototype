@@ -1,9 +1,9 @@
-.exerciseresults {
+.exerciseResults {
   --padding-block: 12px;
   border: 1px solid var(--drag-drop-background-color);
 }
 
-.exerciseresults__button {
+.button {
   border: 0;
   color: var(--secondary-text-color);
   cursor: pointer;
@@ -15,7 +15,7 @@
   margin: auto;
 }
 
-.exerciseresults__header {
+.header {
   background: var(--primary-highlight-color);
   color: white;
   padding-block: var(--padding-block);
@@ -23,7 +23,7 @@
   justify-content: center;
 }
 
-.exerciseresults__footer {
+.footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,22 +31,22 @@
   align-items: center;
 }
 
-.exerciseresults__content {
+.content {
   width: 100%;
   border-spacing: 0;
 }
 
-.exerciseresults__term {
+.term {
   width: 25%;
   text-align: end;
   border-bottom: 1px solid var(--drag-drop-background-color);
 }
 
-.exerciseresults__value {
+.value {
   padding-inline-start: 12px;
   border-bottom: 1px solid var(--drag-drop-background-color);
 }
 
-.exerciseresults__advice {
+.advice {
   margin-block: 0 12px;
 }
