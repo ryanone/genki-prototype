@@ -1,4 +1,4 @@
-import DropTarget from '../components/DropTarget';
+import DropTarget from '@/components/DropTarget';
 import { fn } from '@storybook/test';
 
 export const DropTargetActionsData = {

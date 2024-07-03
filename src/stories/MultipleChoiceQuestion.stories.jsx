@@ -1,4 +1,4 @@
-import MultipleChoiceQuestion from '../components/MultipleChoiceQuestion';
+import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import { fn } from '@storybook/test';
 
 export const MultipleChoiceQuestionActionsData = {

@@ -1,4 +1,4 @@
-import AnswerList from '../components/AnswerList';
+import AnswerList from '@/components/AnswerList';
 
 export const MultipleChoiceQuestionActionsData = {
 }

@@ -1,4 +1,4 @@
-import ChoiceList from '../components/ChoiceList';
+import ChoiceList from '@/components/ChoiceList';
 import { fn } from '@storybook/test';
 
 const choices = [

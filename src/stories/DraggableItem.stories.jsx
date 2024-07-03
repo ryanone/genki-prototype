@@ -1,4 +1,4 @@
-import DraggableItem from '../components/DraggableItem';
+import DraggableItem from '@/components/DraggableItem';
 
 export default {
   component: DraggableItem,
