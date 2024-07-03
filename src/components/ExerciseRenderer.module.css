@@ -1,4 +1,4 @@
-.exerciserenderer__changerendermode-button {
+.renderModeButton {
   border: 0;
   color: var(--secondary-text-color);
   cursor: pointer;
@@ -11,7 +11,7 @@
   margin-inline: auto;
 }
 
-.exerciserenderer__loading {
+.loading {
   display: flex;
   justify-content: center;
 }

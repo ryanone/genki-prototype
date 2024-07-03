@@ -4,8 +4,8 @@
   flex-direction: column;
 }
 
-.timer__heading,
-.timer__count {
+.heading,
+.count {
   display: flex;
   justify-content: center;
 }

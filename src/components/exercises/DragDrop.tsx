@@ -211,20 +211,20 @@ export default function DragDrop({ data }: DragDropProps) {
                 val2 = data.choices.find(choice => choice.id === answer.id);
                 result = answer.result;
               }
-              const styles: Record<string, string> = {};
+              const style: Record<string, string> = {};
               if (questionsTrackConfig && trackRemaining !== undefined) {
                 currTrackLen++;
                 trackRemaining--;
                 if (trackRemaining === 0) {
                   const spanLen = maxTrackLen - currTrackLen + 1;
                   const trackStyle = questionsFlow === 'HORIZONTAL' ? 'gridColStart' : 'gridRowStart';
-                  styles[trackStyle] = `span ${spanLen}`;
+                  style[trackStyle] = `span ${spanLen}`;
 
                   currTrackLen = 0;
                   trackRemaining = questionsTrackConfig.shift();
                 }
               }
-              return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} styles={styles} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
+              return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} style={style} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
             })
           }
         </div>

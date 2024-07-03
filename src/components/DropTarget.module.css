@@ -1,11 +1,11 @@
-.droptarget--vertical {
+.vertical {
   display: inline-flex;
   gap: 4px;
   flex-direction: column;
   position: relative;
 }
 
-.droptarget--horizontal {
+.horizontal {
   display: inline-flex;
   gap: 6px;
   height: 1.75rem;
@@ -13,7 +13,7 @@
   width: max-content;
 }
 
-.droptarget__content {
+.content {
   background-color: var(--drag-drop-background-color);
   color: var(--primary-text-color);
   min-width: 30px;
@@ -22,31 +22,31 @@
   justify-content: center;
 }
 
-.droptarget--horizontal .droptarget__zone {
+.horizontal .zone {
   min-width: 50px;
 }
 
-.droptarget--vertical .droptarget__zone {
+.vertical .zone {
   min-height: 2rem;
 }
 
-.droptarget__zone {
+.zone {
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.droptarget__content,
-.droptarget__zone {
+.content,
+.zone {
   border: 1px solid var(--drag-drop-border-color);
 }
 
-.droptarget__zone--entered {
+.zoneEntered {
   border-color: var(--primary-highlight-color);
 }
 
-.droptarget__icon {
+.icon {
   --icon-size: .75rem;
   font-size: var(--icon-size);
   position: absolute;
@@ -54,10 +54,10 @@
   top: calc(-.5 * var(--icon-size));
 }
 
-.droptarget__correct-icon {
+.iconCorrect {
   color: var(--primary-highlight-color);
 }
 
-.droptarget__incorrect-icon {
+.iconIncorrect {
   color: var(--incorrect-color);
 }

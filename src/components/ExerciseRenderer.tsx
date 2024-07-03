@@ -2,7 +2,7 @@ import { lazy, useState, Suspense } from 'react';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import { FaArrowsRotate } from 'react-icons/fa6';
 import type { Exercise, RenderMode } from '@/data/exercise';
-import './ExerciseRenderer.css';
+import styles from './ExerciseRenderer.module.css';
 
 type ExerciseRendererProps = {
   data: Exercise
@@ -27,14 +27,14 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   }
 
   return (
-    <div className="exerciserenderer">
-      <Suspense fallback={<p className="exerciserenderer__loading" role="alert">Loading...</p>}>
+    <div>
+      <Suspense fallback={<p className={styles.loading} role="alert">Loading...</p>}>
         {exercise}
       </Suspense>
       {
         canChangeRenderMode &&
         <>
-          <button className="exerciserenderer__changerendermode-button" onClick={() => setShowChangeRenderModeDialog(true)}><FaArrowsRotate role="presentation"/>Change Exercise Type</button>
+          <button className={styles.renderModeButton} onClick={() => setShowChangeRenderModeDialog(true)}><FaArrowsRotate role="presentation"/>Change Exercise Type</button>
           <ChangeExerciseTypeDialog isOpen={showChangeRenderModeDialog} exercise={data} onCancel={() => setShowChangeRenderModeDialog(false)} onRenderModeChoose={handleRenderModeChoose}/>
         </>
       }

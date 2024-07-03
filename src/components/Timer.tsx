@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { formatTimer } from '@/utils/time';
-import './Timer.css';
+import styles from './Timer.module.css';
 
 type TimerProps = {
   isRunning: boolean;
@@ -30,9 +30,9 @@ export default function Timer({ isRunning, onTick }: TimerProps) {
   }, [isRunning, onTick])
 
   return (
-    <div className="timer">
-      <div className="timer__heading">Time Elapsed</div>
-      <div className="timer__count">{formatTimer(seconds)}</div>
+    <div className={styles.timer}>
+      <div className={styles.heading}>Time Elapsed</div>
+      <div className={styles.count}>{formatTimer(seconds)}</div>
     </div>
   )
 }
