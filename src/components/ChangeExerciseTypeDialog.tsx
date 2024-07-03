@@ -1,6 +1,6 @@
 import { type ChangeEvent, useEffect, useRef, useState, type MouseEvent } from 'react';
 import type { Exercise, RenderMode } from '@/data/exercise';
-import './ChangeExerciseTypeDialog.css';
+import styles from './ChangeExerciseTypeDialog.module.css';
 
 type ChangeExerciseTypeDialogProps = {
   isOpen: boolean;
@@ -58,16 +58,16 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
   return (
     isOpen &&
     (
-      <dialog className="changeexercisetypedialog" ref={ref} onCancel={handleCancel}>
-        <div className="changeexercisetypedialog__title">Change Exercise Type</div>
-        <form className="changeexercisetypedialog__form">
-          <div className="changeexercisetypedialog__content">
+      <dialog className={styles.dialog} ref={ref} onCancel={handleCancel}>
+        <div className={styles.title}>Change Exercise Type</div>
+        <form className={styles.form}>
+          <div className={styles.content}>
             <p>Please select the type of exercise you would like to do, then click 'Begin' to start studying.</p>
-            <div className="changeexercisetypedialog__exercise-heading">Current Exercise</div>
-            <div className="changeexercisetypedialog__exercise-title">{exercise.title}</div>
-            <label htmlFor="select-exercise-type" className="changeexercisetypedialog__label">
+            <div className={styles.heading}>Current Exercise</div>
+            <div className={styles.title}>{exercise.title}</div>
+            <label htmlFor="select-exercise-type" className={styles.label}>
               Exercise Type
-              <select className="changeexercisetypedialog__exercise-select" id="select-exercise-type" onChange={handleSelectChange} value={renderMode}>
+              <select className="select" id="select-exercise-type" onChange={handleSelectChange} value={renderMode}>
                 <option value="">Choose a type</option>
                 {
                   (Object.keys(RenderModeDescription) as RenderMode[]).map((key) =>
@@ -77,9 +77,9 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
               </select>
             </label>
           </div>
-          <div className="changeexercisetypedialog__actions">
-            <button onClick={handleConfirmClick} className="changeexercisetypedialog__button" autoFocus>Begin</button>
-            <button onClick={handleCancel} formMethod="dialog" className="changeexercisetypedialog__button">Cancel</button>
+          <div className={styles.actions}>
+            <button onClick={handleConfirmClick} className={styles.button} autoFocus>Begin</button>
+            <button onClick={handleCancel} formMethod="dialog" className={styles.button}>Cancel</button>
           </div>
         </form>
       </dialog>

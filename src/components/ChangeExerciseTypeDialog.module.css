@@ -1,4 +1,4 @@
-.changeexercisetypedialog {
+.dialog {
   border: 1px solid var(--drag-drop-border-color);
   display: flex;
   flex-direction: column;
@@ -8,42 +8,42 @@
   --content-padding: 12px;
 }
 
-.changeexercisetypedialog__form {
+.form {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   padding: var(--content-padding);
 }
 
-.changeexercisetypedialog__content {
+.content {
   flex-grow: 1;
 }
 
-.changeexercisetypedialog__exercise-heading,
-.changeexercisetypedialog__exercise-title,
-.changeexercisetypedialog__label {
+.heading,
+.title,
+.label {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.changeexercisetypedialog__actions {
+.actions {
   display: flex;
   gap: 12px;
   justify-content: center;
   padding: var(--content-padding);
 }
 
-.changeexercisetypedialog__label {
+.label {
   flex-grow: 1;
   padding-block-start: var(--content-padding);
 }
 
-.changeexercisetypedialog__exercise-select {
+.select {
   margin: auto;
 }
 
-.changeexercisetypedialog__button {
+.button {
   border: 0;
   color: var(--secondary-text-color);
   cursor: pointer;
@@ -51,7 +51,7 @@
   padding: 8px;
 }
 
-.changeexercisetypedialog__title {
+.title {
   background: var(--primary-highlight-color);
   color: var(--secondary-text-color);
   padding: var(--content-padding);

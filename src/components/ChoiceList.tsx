@@ -1,6 +1,6 @@
 import ChoiceButton from '@/components/ChoiceButton';
 import { type ChoiceItem } from '@/components/ChoiceButton';
-import './ChoiceList.css';
+import styles from './ChoiceList.module.css';
 
 type ChoiceListProps = {
   choices: ChoiceItem[];
@@ -10,7 +10,7 @@ type ChoiceListProps = {
 
 export default function ChoiceList({ choices, isDisabled, onChoiceSelect }: ChoiceListProps) {
   return (
-    <ol className="choicelist">
+    <ol className={styles.list}>
       {
         choices.map(choice =>
           <ChoiceButton key={choice.id} data={choice} isDisabled={isDisabled} onClick={onChoiceSelect}/>

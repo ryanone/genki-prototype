@@ -1,5 +1,5 @@
 import { type Choice } from '@/data/exercise';
-import './ChoiceButton.css';
+import styles from './ChoiceButton.module.css';
 
 export interface ChoiceItem extends Choice {
   result?: 'SELECTED_CORRECT'|'UNSELECTED_CORRECT'|'INCORRECT'|undefined;
@@ -12,16 +12,16 @@ type ChoiceButtonProps = {
 }
 
 export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButtonProps) {
-  const classes = ['choicebutton'];
+  const classes = [styles.button];
   let ariaLabel = '';
   if (data.result === 'SELECTED_CORRECT') {
-    classes.push('choicebutton--selected-correct');
+    classes.push(styles.selectedCorrect);
     ariaLabel = 'Correct answer chosen';
   } else if (data.result === 'UNSELECTED_CORRECT') {
-    classes.push('choicebutton--unselected-correct');
+    classes.push(styles.unselectedCorrect);
     ariaLabel = 'This is the correct answer';
   } else if (data.result === 'INCORRECT') {
-    classes.push('choicebutton--incorrect');
+    classes.push(styles.incorrect);
     ariaLabel = 'Incorrect answer chosen';
   }
 

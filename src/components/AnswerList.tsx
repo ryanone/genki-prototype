@@ -1,7 +1,7 @@
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import type { ChoiceItem } from '@/components/ChoiceButton';
 import type { Question } from '@/data/exercise';
-import './AnswerList.css';
+import styles from './AnswerList.module.css';
 
 export type QuestionAnswer = {
   question: Question;
@@ -14,7 +14,7 @@ type AnswerListProps = {
 
 export default function AnswerList({ data }: AnswerListProps) {
   return (
-    <div className="answerlist">
+    <div className={styles.answerlist}>
       {
         data.map((item, i) =>
           <MultipleChoiceQuestion key={item.question.content} index={i} isDisabled={true} question={item.question} choices={item.choices}/>
