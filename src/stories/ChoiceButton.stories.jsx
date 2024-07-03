@@ -1,4 +1,4 @@
-import ChoiceButton from './ChoiceButton';
+import ChoiceButton from '../components/ChoiceButton';
 import { fn } from '@storybook/test';
 
 export const ChoiceButtonActionsData = {

@@ -1,4 +1,4 @@
-import ReviewDialog from './ReviewDialog';
+import ReviewDialog from '../components/ReviewDialog';
 import { fn } from '@storybook/test';
 
 export const ReviewDialogActionsData = {

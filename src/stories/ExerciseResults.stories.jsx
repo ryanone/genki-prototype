@@ -1,4 +1,4 @@
-import ExerciseResults from './ExerciseResults';
+import ExerciseResults from '../components/ExerciseResults';
 import { fn } from '@storybook/test';
 
 export const ExerciseResultsActionsData = {
