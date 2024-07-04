@@ -27,7 +27,7 @@ In this application, there are 3 routes defined:
 * `/genki-3` - This is the root route for the Genki 3rd edition book. On this route, there are links to exercises for this book, similar to [this link](https://sethclydesdale.github.io/genki-study-resources/lessons-3rd/).
   * This arrangement can be expanded to support other books. For example, `/genki-2` can be used for the Genki 2nd edition book, and `/tobira` can be used for the Tobira book.
 * `/genki-3/lesson/0/exercise/greetings-1` - This is the page for the `Greetings (p. 32)` exercise. This route renders the exercise based on supported render modes (ex. Drag and Drop, Multiple Choice, etc.).
-  * There's another exercise implemented, available at `/hiragana-1`
+  * There's another exercise implemented, available at `/hiragana-0`
 
 Generally speaking, the route URLs are actually defined as follows:
 
@@ -69,7 +69,7 @@ For Lesson 0, the `exerciseId` is `"lesson-0"`. This means there should be a JSO
   "exercises": [
     {
       "title": "Hiragana (p. 20-21)",
-      "id": "hiragana-1"
+      "id": "hiragana-0"
     },
     {
       "title": "Greetings (p. 32)",
@@ -81,7 +81,7 @@ For Lesson 0, the `exerciseId` is `"lesson-0"`. This means there should be a JSO
 
 The list of exercises for Lesson 0 are defined here.
 
-* `/[bookId]/lesson/[lessonId]/exercise/[exerciseId]` - This route's data comes from a JSON file in `/src/data/genki-3/exercises`. For example, with the "Hiragana (p. 20-21)" exercise, whose ID is `"hiragana-1"`, its data is defined in `/src/data/genki-3/exercises/hiragana-1.json`.
+* `/[bookId]/lesson/[lessonId]/exercise/[exerciseId]` - This route's data comes from a JSON file in `/src/data/genki-3/exercises`. For example, with the "Hiragana (p. 20-21)" exercise, whose ID is `"hiragana-0"`, its data is defined in `/src/data/genki-3/exercises/hiragana-0.json`.
 
 ## Exercise JSON Format
 
@@ -115,7 +115,7 @@ The following is a snippet from `/src/data/genki-3/exercises/hiragana
 ```
 ### Meta
 
-The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given render mode. The `meta` object allows for this definition. In this object, for a given render mode, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-1.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on render mode.
+The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given render mode. The `meta` object allows for this definition. In this object, for a given render mode, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-0.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on render mode.
 
 The following is a snippet from `/src/data/genki-3/exercises/hiragana
 1.json`:

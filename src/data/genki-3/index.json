@@ -4,7 +4,8 @@
   "id": "genki-3",
   "lessons": [
     {
-      "title": "Lesson 0: Writing System, Greetings and Numbers (p. 20-35)",
+      "title": "Lesson 0",
+      "description": "Writing System, Greetings and Numbers (p. 20-35)",
       "id": "0",
       "exercisesId": "lesson-0"
     }
