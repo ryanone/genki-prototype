@@ -1,9 +1,9 @@
-.exerciseroute {
-  max-width: 1200px;
+.exerciseRoute {
+  max-width: 1500px;
   margin-inline: auto;
 }
 
-.exerciseroute__heading {
+.heading {
   display: flex;
   justify-content: center;
   font-size: 2rem;
