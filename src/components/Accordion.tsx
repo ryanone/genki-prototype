@@ -5,20 +5,35 @@ type AccordionSection = {
   id: string;
   content: ReactNode;
   title: ReactNode;
+  defaultExpanded?: boolean;
+}
+
+type AccordionOptions = {
+  allowMultipleExpanded: boolean;
 }
 
 type AccordionProps = {
   sections: AccordionSection[];
+  options?: AccordionOptions;
 }
 
-export default function Accordion({ sections }: AccordionProps) {
+export default function Accordion({ sections, options }: AccordionProps) {
   const accordionId = useId();
   const [openSections, setOpenSections] = useState(
-    new Set(),
+    new Set(sections.filter(s => s.defaultExpanded === true).map(s => s.id)),
   );
   const handleTitleClick = (id: string) => {
     setOpenSections(os => {
-      os.has(id) ? os.delete(id) : os.add(id);
+      if (options?.allowMultipleExpanded) {
+        os.has(id) ? os.delete(id) : os.add(id);
+      } else {
+        if (os.has(id)) {
+          os.delete(id);
+        } else {
+          os.clear();
+          os.add(id);
+        }
+      }
       return new Set(os);
     });
   }
