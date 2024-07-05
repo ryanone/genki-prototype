@@ -20,7 +20,8 @@ export async function loader({ params }: ExerciseLoaderArgs): Promise<Exercise> 
       bookId: params.bookId as string,
       lessonId,
     }) as LessonExercises;
-    exercise.title = lessonExercisesResponse.exercises.find(e => e.id === params.exerciseId)?.title ?? '';
+    const exercises = lessonExercisesResponse.sections.flatMap(s => s.exercises);
+    exercise.title = exercises.find(e => e.id === params.exerciseId)?.title ?? '';
     return exercise;
   } catch(e) {
     console.error('Exercise loader error: %o', e);

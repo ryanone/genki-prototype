@@ -11,7 +11,6 @@ export type ExerciseInfo = {
 }
 
 export type LessonExercises = {
-  exercises: ExerciseInfo[];
   sections: LessonSection[];
 }
 
