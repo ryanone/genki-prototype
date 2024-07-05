@@ -1,4 +1,24 @@
 {
+  "sections": [
+    {
+      "content": "Japanese Writing System (Genki I: p.20-27)",
+      "exercises": [
+        {
+          "title": "Hiragana (p. 20-21)",
+          "id": "hiragana-0"
+        }
+      ]
+    },
+    {
+      "content": "Greetings (Genki I: p.30-34)",
+      "exercises": [
+        {
+          "title": "Greetings 2 (p. 32)",
+          "id": "greetings-1"
+        }
+      ]
+    }
+  ],
   "exercises": [
     {
       "title": "Hiragana (p. 20-21)",

@@ -14,7 +14,7 @@ const sections = [
     id: 'html',
     title: 'HTML',
     content:
-      'The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser.',
+      (<div>The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser.</div>),
   },
   {
     id: 'css',

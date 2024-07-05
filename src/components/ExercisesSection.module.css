@@ -1,0 +1,8 @@
+.exercisesSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-weight: 600;
+}

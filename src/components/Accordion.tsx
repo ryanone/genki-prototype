@@ -23,19 +23,18 @@ export default function Accordion({ sections, options }: AccordionProps) {
     new Set(sections.filter(s => s.defaultExpanded === true).map(s => s.id)),
   );
   const handleTitleClick = (id: string) => {
-    setOpenSections(os => {
-      if (options?.allowMultipleExpanded) {
-        os.has(id) ? os.delete(id) : os.add(id);
+    const newOpenSections = new Set(openSections);
+    if (options?.allowMultipleExpanded) {
+      newOpenSections.has(id) ? newOpenSections.delete(id) : newOpenSections.add(id);
+    } else {
+      if (newOpenSections.has(id)) {
+        newOpenSections.delete(id);
       } else {
-        if (os.has(id)) {
-          os.delete(id);
-        } else {
-          os.clear();
-          os.add(id);
-        }
+        newOpenSections.clear();
+        newOpenSections.add(id);
       }
-      return new Set(os);
-    });
+    }
+    setOpenSections(newOpenSections);
   }
 
   return (

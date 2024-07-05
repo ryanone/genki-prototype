@@ -1,4 +1,5 @@
 export type Lesson = {
+  description: string;
   title: string;
   id: string;
   exercisesId: string;
@@ -10,5 +11,11 @@ export type ExerciseInfo = {
 }
 
 export type LessonExercises = {
+  exercises: ExerciseInfo[];
+  sections: LessonSection[];
+}
+
+export type LessonSection = {
+  content: string;
   exercises: ExerciseInfo[];
 }

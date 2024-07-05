@@ -1,3 +1,4 @@
+// TODO: Delete when LessonDetail component is complete
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loadData } from '@/api/dataLoader';
