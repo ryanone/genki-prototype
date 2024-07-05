@@ -54,7 +54,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
                 type="button"
                 onClick={() => handleTitleClick(id)}
               >
-                {title}
+                <span className={styles.titleContent}>{title}</span>
                 <span
                   aria-hidden={true}
                   className={[

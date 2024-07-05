@@ -9,13 +9,16 @@
 }
 
 .icon {
+  --icon-size: 8px;
   border: solid currentcolor;
   border-width: 0 2px 2px 0;
-  display: inline-block;
-  height: 8px;
+  height: var(--icon-size);
   pointer-events: none;
   transform: translateY(-2px) rotate(45deg);
-  width: 8px;
+  width: var(--icon-size);
+  position: absolute;
+  right: var(--icon-size);
+  top: var(--icon-size);
 }
 
 .iconRotated {
@@ -38,4 +41,9 @@
   justify-content: space-between;
   text-align: start;
   display: flex;
+  position: relative;
+}
+
+.titleContent {
+  flex-grow: 1;
 }

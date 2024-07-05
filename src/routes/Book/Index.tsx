@@ -8,7 +8,7 @@ export default function Index() {
   return (
     <div className={styles.indexRoute}>
       <h2>Lessons</h2>
-      <LessonsAccordion data={book.lessons}/>
+      <LessonsAccordion bookId={book.id} lessons={book.lessons} viewMode="DETAILED"/>
     </div>
   )
 }

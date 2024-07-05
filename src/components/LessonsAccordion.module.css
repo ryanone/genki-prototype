@@ -1,0 +1,8 @@
+.compactHeader {
+}
+
+.detailedHeader {
+  border-bottom: 2px solid var(--primary-highlight-color);
+  color: var(--primary-highlight-color);
+  font-size: 1.5rem;
+}

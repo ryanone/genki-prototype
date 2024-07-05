@@ -15,7 +15,7 @@ export default function LessonDetail({ bookId, lessonId, viewMode }: LessonDetai
   useEffect(() => {
     async function getData() {
       try {
-        const response = await loadData({ bookId, lessonId }) as LessonExercises;
+        const response = await loadData({ bookId, lessonId: `lesson-${lessonId}` }) as LessonExercises;
         setSections(response.sections);
       } catch (e) {
         console.error(`LessonDetail - error in getData(): %o`, e);
