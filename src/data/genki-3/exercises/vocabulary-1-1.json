@@ -1,0 +1,114 @@
+{
+  "supportedRenderModes": ["DRAG_DROP", "MULTIPLE_CHOICE"],
+  "questions": [
+    {
+      "content": "だいがくせい",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "だいがく",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "〜ねんせい",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "がくせい",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "せんせい",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "りゅうがくせい",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "せんこう",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "こうこう",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "いちねんせい",
+      "choices": {
+        "correctId": "8"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "...year student",
+      "id": "1"
+    },
+    {
+      "content": "major",
+      "id": "2"
+    },
+    {
+      "content": "student",
+      "id": "3"
+    },
+    {
+      "content": "international student",
+      "id": "4"
+    },
+    {
+      "content": "high school",
+      "id": "5"
+    },
+    {
+      "content": "college; university",
+      "id": "6"
+    },
+    {
+      "content": "teacher; professor",
+      "id": "7"
+    },
+    {
+      "content": "first-year student",
+      "id": "8"
+    },
+    {
+      "content": "college student",
+      "id": "9"
+    }
+  ],
+  "meta": {
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"],
+      "instructions": "Drag the English expression to the Japanese expression that has the same meaning. TIP: Click an expression to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionsFlow": "HORIZONTAL",
+        "questionFlow": "VERTICAL",
+        "configuration": [
+          2,
+          2,
+          2,
+          2,
+          1
+        ]
+      }
+    }
+  }
+}

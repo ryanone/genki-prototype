@@ -76,13 +76,15 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const nextButton = (isQuestionFinished && <button className="multiplechoice__next-button" onClick={handleNextClick}>
     NEXT
   </button>);
+  const numSolved = isExerciseFinished ? answers.length : 0;
+  const numWrong = isExerciseFinished ? answers.filter(a => !!a.find(c => c.result === 'INCORRECT')).length : 0;
 
   return (
     <div className="multiplechoice">
       {
         isExerciseFinished ?
           <>
-            <ExerciseResults answers={answers} timeElapsed={timeElapsed.current} onRestart={handleRestart} />
+            <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} />
             <AnswerList data={questionsAnswers as QuestionAnswer[]} />
           </> :
           <>

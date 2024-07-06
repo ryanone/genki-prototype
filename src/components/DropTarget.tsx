@@ -28,6 +28,7 @@ export default function DropTarget({ layout, result, style = {}, val1, val2, onD
   const handleZoneDropClick = () => {
     if (!isDisabled) {
       onDrop(val1.id);
+      setIsZoneEntered(false);
     }
   };
 

@@ -9,6 +9,12 @@
       "description": "Writing System, Greetings and Numbers (p. 20-35)",
       "id": "0",
       "exercisesId": "lesson-0"
+    },
+    {
+      "title": "Lesson 1",
+      "description": "New Friends (p. 36-55)",
+      "id": "1",
+      "exercisesId": "lesson-1"
     }
   ]
 }

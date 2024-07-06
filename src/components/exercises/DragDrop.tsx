@@ -3,6 +3,7 @@ import { FaBook, FaInfoCircle } from 'react-icons/fa';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
+import ExerciseResults from '@/components/ExerciseResults';
 import { FaArrowsRotate } from 'react-icons/fa6';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
@@ -76,6 +77,9 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   }
   if (questionsFlow === 'HORIZONTAL') {
     questionsStyles['--grid-auto-flow'] = 'row';
+    if (crossAxisLen) {
+      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, 1fr)`;
+    }
   } else {
     questionsStyles['--grid-auto-flow'] = 'column';
     if (crossAxisLen) {
@@ -99,9 +103,9 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 
 export default function DragDrop({ data }: DragDropProps) {
   const selectedChoiceId = useRef<string>();
+  const timeElapsed = useRef(0);
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
-  const [isFinished, setIsFinished] = useState(false);
-  const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
   const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
   const correctChoiceIds = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
@@ -133,8 +137,8 @@ export default function DragDrop({ data }: DragDropProps) {
       } as Answer;
       answers.set(questionId, answer);
       setAnswers(new Map(answers));
-      selectedChoiceId.current = undefined;
     }
+    selectedChoiceId.current = undefined;
   }
   const handleChoiceSelect = (id: string) => {
     selectedChoiceId.current = id;
@@ -143,17 +147,14 @@ export default function DragDrop({ data }: DragDropProps) {
     selectedChoiceId.current = undefined;
   }, []);
   const handleReviewClick = () => {
-    setIsTimerRunning(false);
     setShowReviewDialog(true);
   }
   const handleReviewCancel = () => {
-    setIsTimerRunning(true);
     setShowReviewDialog(false);
   }
   const handleReviewConfirm = () => {
     setShowReviewDialog(false);
-    setIsFinished(true);
-    setIsTimerRunning(false);
+    setIsReviewConfirmed(true);
     data.questions.forEach(question => {
       if (!answers.has(question.content)) {
         answers.set(question.content, {
@@ -165,14 +166,19 @@ export default function DragDrop({ data }: DragDropProps) {
     });
     setAnswers(new Map(answers));
   }
-  const handleRestartClick = () => {
+  const handleRestart = () => {
     selectedChoiceId.current = undefined;
     setAnswers(new Map());
     setChoices(randomizeArray(data.choices) as Choice[]);
     setShowReviewDialog(false);
-    setIsFinished(false);
-    setIsTimerRunning(true);
+    setIsReviewConfirmed(false);
   }
+  const isFinished = isReviewConfirmed || !remainingChoices.length;
+  const isTimerRunning = !isFinished && !showReviewDialog;
+  const numSolved = isFinished && remainingChoices.length === 0 ? answers.size : 0;
+  const numWrong = isFinished && remainingChoices.length === 0 ?
+    Array.from(answers.values()).filter(a => a.numGuesses > 1).length : 0;
+
 
   useEffect(() => {
     // If not clicking on another choice, or a drop zone, set the selected choice to undefined
@@ -195,6 +201,11 @@ export default function DragDrop({ data }: DragDropProps) {
   let currTrackLen = 0;
   return (
     <div className={rootClasses.join(' ')}>
+      {
+        isFinished && remainingChoices.length === 0?
+          <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} /> :
+          <></>
+      }
       {instructions && <div className="dragdrop__instructions"><FaInfoCircle className="dragdrop__instructions-icon" role="presentation"/>{instructions}</div>}
       <div className="dragdrop__main">
         <div className="dragdrop__questions" style={questionsStyles}>
@@ -237,7 +248,7 @@ export default function DragDrop({ data }: DragDropProps) {
       <div className="dragdrop__actions">
         {
           isFinished ?
-            <button className="dragdrop__button" onClick={handleRestartClick}><FaArrowsRotate className="dragdrop__button-icon" role="presentation"/>Restart</button> :
+            <button className="dragdrop__button" onClick={handleRestart}><FaArrowsRotate className="dragdrop__button-icon" role="presentation"/>Restart</button> :
             <button className="dragdrop__button" onClick={handleReviewClick}><FaBook className="dragdrop__button-icon" role="presentation"/>Review</button>
         }
         {
@@ -249,7 +260,7 @@ export default function DragDrop({ data }: DragDropProps) {
             }</button>
         }
       </div>
-      <Timer isRunning={isTimerRunning}/>
+      <Timer isRunning={isTimerRunning} onTick={(numSeconds) => timeElapsed.current = numSeconds}/>
       <ReviewDialog isOpen={showReviewDialog} onConfirm={handleReviewConfirm} onCancel={handleReviewCancel}/>
     </div>
   )

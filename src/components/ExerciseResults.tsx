@@ -1,17 +1,15 @@
 import { FaArrowsRotate } from 'react-icons/fa6';
 import { formatTimer } from '@/utils/time';
-import type { ChoiceItem } from '@/components/ChoiceButton';
 import styles from './ExerciseResults.module.css';
 
 type ExerciseResultsProps = {
-  answers: ChoiceItem[][];
+  numSolved: number;
+  numWrong: number;
   timeElapsed: number;
   onRestart: () => void;
 }
 
-export default function ExerciseResults({ answers, timeElapsed, onRestart }: ExerciseResultsProps) {
-  const numSolved = answers.length;
-  const numWrong = answers.filter(a => !!a.find(c => c.result === 'INCORRECT')).length;
+export default function ExerciseResults({ numSolved, numWrong, timeElapsed, onRestart }: ExerciseResultsProps) {
   const score = Math.floor((numSolved - numWrong) / numSolved * 100);
   let message;
   if (score === 100) {
