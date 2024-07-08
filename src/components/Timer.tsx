@@ -32,7 +32,7 @@ export default function Timer({ isRunning, onTick }: TimerProps) {
   return (
     <div className={styles.timer}>
       <div className={styles.heading}>Time Elapsed</div>
-      <div className={styles.count}>{formatTimer(seconds)}</div>
+      <div className={styles.count} role="timer" aria-live="polite">{formatTimer(seconds)}</div>
     </div>
   )
 }

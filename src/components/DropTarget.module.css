@@ -35,6 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .content,
@@ -46,12 +47,17 @@
   border-color: var(--primary-highlight-color);
 }
 
+.zoneHasIncorrect {
+  border-color: var(--incorrect-color);
+}
+
 .icon {
   --icon-size: .75rem;
+  --icon-position: calc(-.5 * var(--icon-size));
   font-size: var(--icon-size);
   position: absolute;
-  right: 0;
-  top: calc(-.5 * var(--icon-size));
+  right: var(--icon-position);
+  top: var(--icon-position);
 }
 
 .iconCorrect {
@@ -60,4 +66,24 @@
 
 .iconIncorrect {
   color: var(--incorrect-color);
+}
+
+.numIncorrect {
+  color: var(--incorrect-color);
+}
+
+.horizontal .numIncorrect {
+  display: flex;
+  align-items: center;
+}
+
+.vertical .numIncorrect {
+  bottom: 0;
+  font-size: .75rem;
+  position: absolute;
+  right: 0;
+}
+
+.incorrectArrow {
+  margin-inline-end: 12px;
 }

@@ -97,3 +97,29 @@ export const IncorrectVertical = {
     },
   },
 };
+
+export const NumIncorrectGuessesHorizontal = {
+  args: {
+    ...DefaultHorizontal.args,
+    layout: 'HORIZONTAL',
+    result: 'CORRECT',
+    numIncorrectGuesses: 5,
+    val2: {
+      content: 'ほ',
+      id: '50'
+    },
+  },
+};
+
+export const NumIncorrectGuessesVertical = {
+  args: {
+    ...DefaultHorizontal.args,
+    layout: 'VERTICAL',
+    result: 'CORRECT',
+    numIncorrectGuesses: 5,
+    val2: {
+      content: 'ほ',
+      id: '50'
+    },
+  },
+};
