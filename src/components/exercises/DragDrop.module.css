@@ -1,10 +1,10 @@
-.dragdrop {
+.dragDrop {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.dragdrop__instructions {
+.instructions {
   background: var(--primary-highlight-color);
   color: white;
   padding: 16px;
@@ -13,65 +13,56 @@
   align-items: center;
 }
 
-.dragdrop__instructions-icon {
+.instructionsIcon {
   font-size: 1.5rem;
 }
 
-.dragdrop__button-icon {
-  font-size: 1.5rem;
-}
-
-.dragdrop__main {
+.main {
   display: flex;
 }
 
-.dragdrop--horizontal .dragdrop__main {
+.horizontal .main {
   flex-direction: column;
   gap: 20px;
 }
 
-.dragdrop--vertical .dragdrop__main {
+.vertical .main {
   flex-direction: row;
   gap: 1fr;
 }
 
-.dragdrop--vertical .dragdrop__questions {
+.vertical .questions {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   gap: 4px;
 }
 
-.dragdrop--horizontal .dragdrop__questions {
+.horizontal .questions {
   display: grid;
   grid-auto-flow: var(--grid-auto-flow, 'column');
   gap: 4px;
   justify-content: center;
 }
 
-.dragdrop__choices {
+.choices {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   justify-content: center;
 }
 
-.dragdrop--vertical .dragdrop__choices {
+.vertical .choices {
   flex-direction: column;
 }
 
-.dragdrop__actions {
+.actions {
   display: flex;
   gap: 12px;
   justify-content: center;
 }
 
-.dragdrop__button {
-  border: 0;
-  color: var(--secondary-text-color);
-  cursor: pointer;
-  background: var(--primary-highlight-color);
-  padding: 8px;
+.button {
   display: flex;
   gap: 6px;
   align-items: center;

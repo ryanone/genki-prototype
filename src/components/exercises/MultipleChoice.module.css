@@ -1,16 +1,16 @@
-.multiplechoice {
+.multip {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.multiplechoice__actions {
+.actions {
   display: flex;
   justify-content: center;
   height: 2rem;
 }
 
-.multiplechoice__next-button {
+.nextButton {
   background: var(--root-background-color);
   color: var(--secondary-text-color);
   border: 1px solid var(--drag-drop-background-color);
@@ -19,11 +19,11 @@
   flex-basis: 50%;
 }
 
-.multiplechoice__next-button:hover {
+.nextButton:hover {
   border-color: var(--primary-highlight-color);
 }
 
-.multiplechoice__instructions {
+.instructions {
   background: var(--primary-highlight-color);
   color: white;
   padding: 16px;
@@ -32,6 +32,6 @@
   align-items: center;
 }
 
-.multiplechoice__instructions-icon {
+.instructionsIcon {
   font-size: 1.5rem;
 }

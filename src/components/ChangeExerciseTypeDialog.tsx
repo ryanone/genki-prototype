@@ -1,6 +1,7 @@
 import { type ChangeEvent, useEffect, useRef, useState, type MouseEvent } from 'react';
 import type { Exercise, RenderMode } from '@/data/exercise';
 import styles from './ChangeExerciseTypeDialog.module.css';
+import commonStyles from '@/styles/common.module.css';
 
 type ChangeExerciseTypeDialogProps = {
   isOpen: boolean;
@@ -78,8 +79,8 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
             </label>
           </div>
           <div className={styles.actions}>
-            <button onClick={handleConfirmClick} className={styles.button} autoFocus>Begin</button>
-            <button onClick={handleCancel} formMethod="dialog" className={styles.button}>Cancel</button>
+            <button onClick={handleConfirmClick} className={commonStyles.button} autoFocus>Begin</button>
+            <button onClick={handleCancel} formMethod="dialog" className={commonStyles.button}>Cancel</button>
           </div>
         </form>
       </dialog>

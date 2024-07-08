@@ -9,7 +9,7 @@ import Timer from '@/components/Timer';
 import type { Exercise, Question } from '@/data/exercise';
 import type { ChoiceItem } from '@/components/ChoiceButton';
 import type { QuestionAnswer } from '@/components/AnswerList';
-import './MultipleChoice.css';
+import styles from './MultipleChoice.module.css';
 
 type MultipleChoiceProps = {
   data: Exercise;
@@ -67,7 +67,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
     const nextQuestion = questions.current[0];
     setCurrentChoices(generateRandomChoices(data, nextQuestion.content, NUM_CHOICES_PER_QUESTION));
   }
-  const nextButton = (isQuestionFinished && <button className="multiplechoice__next-button" onClick={handleNextClick}>
+  const nextButton = (isQuestionFinished && <button className={styles.nextButton} onClick={handleNextClick}>
     NEXT
   </button>);
   const questionsAnswers = isExerciseFinished ? questions.current.map((q, i) => (
@@ -80,7 +80,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const numWrong = isExerciseFinished ? answers.filter(a => !!a.find(c => c.result === 'INCORRECT')).length : 0;
 
   return (
-    <div className="multiplechoice">
+    <div className={styles.multipleChoice}>
       {
         isExerciseFinished ?
           <>
@@ -88,7 +88,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
             <AnswerList data={questionsAnswers as QuestionAnswer[]} />
           </> :
           <>
-            {instructions && <div className="multiplechoice__instructions"><FaInfoCircle className="multiplechoice__instructions-icon" role="presentation"/>{instructions}</div>}
+            {instructions && <div className={styles.instructions}><FaInfoCircle className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
             <MultipleChoiceQuestion
               key={currentIndex}
               choices={currentChoices}
@@ -97,7 +97,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
               question={currentQuestion}
               onChoiceSelect={handleChoiceSelect}
             />
-            <div className="multiplechoice__actions">
+            <div className={styles.actions}>
               {nextButton}
             </div>
             <ProgressBar current={currentIndex} total={questions.current.length}/>

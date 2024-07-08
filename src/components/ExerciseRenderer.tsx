@@ -3,6 +3,7 @@ import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import { FaArrowsRotate } from 'react-icons/fa6';
 import type { Exercise, RenderMode } from '@/data/exercise';
 import styles from './ExerciseRenderer.module.css';
+import commonStyles from '@/styles/common.module.css';
 
 type ExerciseRendererProps = {
   data: Exercise
@@ -34,7 +35,7 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
       {
         canChangeRenderMode &&
         <>
-          <button className={styles.renderModeButton} onClick={() => setShowChangeRenderModeDialog(true)}><FaArrowsRotate role="presentation"/>Change Exercise Type</button>
+          <button className={`${styles.renderModeButton} ${commonStyles.button}`} onClick={() => setShowChangeRenderModeDialog(true)}><FaArrowsRotate role="presentation"/>Change Exercise Type</button>
           <ChangeExerciseTypeDialog isOpen={showChangeRenderModeDialog} exercise={data} onCancel={() => setShowChangeRenderModeDialog(false)} onRenderModeChoose={handleRenderModeChoose}/>
         </>
       }

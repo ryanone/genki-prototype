@@ -1,0 +1,11 @@
+.button {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--primary-highlight-color);
+  padding: 8px;
+}
+
+.buttonIcon {
+  font-size: 1.5rem;
+}

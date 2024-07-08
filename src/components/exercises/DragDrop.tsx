@@ -9,7 +9,8 @@ import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import { randomizeArray } from '@/utils/randomize';
 import type { Choice, DragDropFlow, Exercise } from '@/data/exercise';
-import './DragDrop.css';
+import styles from './DragDrop.module.css';
+import commonStyles from '@/styles/common.module.css';
 
 type DragDropProps = {
   data: Exercise;
@@ -112,7 +113,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const remainingChoices = choices.filter(choice => !correctChoiceIds.includes(choice.id));
   const canChangeLayout = data.meta?.DRAG_DROP?.supportedLayouts?.length && data.meta?.DRAG_DROP?.supportedLayouts?.length > 1;
   const [isHorizontal, setIsHorizontal] = useState(data.meta?.DRAG_DROP?.supportedLayouts?.[0] === 'HORIZONTAL');
-  const rootClasses = ['dragdrop', isHorizontal ? 'dragdrop--horizontal' : 'dragdrop--vertical'];
+  const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
   const {
     dropTargetFlow,
     instructions,
@@ -206,9 +207,9 @@ export default function DragDrop({ data }: DragDropProps) {
           <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} /> :
           <></>
       }
-      {instructions && <div className="dragdrop__instructions"><FaInfoCircle className="dragdrop__instructions-icon" role="presentation"/>{instructions}</div>}
-      <div className="dragdrop__main">
-        <div className="dragdrop__questions" style={questionsStyles}>
+      {instructions && <div className={styles.instructions}><FaInfoCircle className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
+      <div className={styles.main}>
+        <div className={styles.questions} style={questionsStyles}>
           {
             data.questions.map(question => {
               const val1 = {
@@ -241,24 +242,24 @@ export default function DragDrop({ data }: DragDropProps) {
             })
           }
         </div>
-        <div className="dragdrop__choices">
+        <div className={styles.choices}>
           {
             remainingChoices.map(choice => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>)
           }
         </div>
       </div>
-      <div className="dragdrop__actions">
+      <div className={styles.actions}>
         {
           isFinished ?
-            <button className="dragdrop__button" onClick={handleRestart}><FaArrowsRotate className="dragdrop__button-icon" role="presentation"/>Restart</button> :
-            <button className="dragdrop__button" onClick={handleReviewClick}><FaBook className="dragdrop__button-icon" role="presentation"/>Review</button>
+            <button className={`${styles.button} ${commonStyles.button}`} onClick={handleRestart}><FaArrowsRotate className={commonStyles.buttonIcon} role="presentation"/>Restart</button> :
+            <button className={`${styles.button} ${commonStyles.button}`} onClick={handleReviewClick}><FaBook className={commonStyles.buttonIcon} role="presentation"/>Review</button>
         }
         {
-          canChangeLayout && <button className="dragdrop__button" onClick={() => setIsHorizontal(ih => !ih)}>
+          canChangeLayout && <button className={`${styles.button} ${commonStyles.button}`} onClick={() => setIsHorizontal(ih => !ih)}>
             {
               isHorizontal ?
-                (<><CiGrid2V className="dragdrop__button-icon" role="presentation"/>Vertical Mode</>) :
-                (<><CiGrid2H className="dragdrop__button-icon" role="presentation"/>Horizontal Mode</>)
+                (<><CiGrid2V className={commonStyles.buttonIcon} role="presentation"/>Vertical Mode</>) :
+                (<><CiGrid2H className={commonStyles.buttonIcon} role="presentation"/>Horizontal Mode</>)
             }</button>
         }
       </div>

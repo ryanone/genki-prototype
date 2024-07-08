@@ -1,6 +1,7 @@
 import { FaArrowsRotate } from 'react-icons/fa6';
 import { formatTimer } from '@/utils/time';
 import styles from './ExerciseResults.module.css';
+import commonStyles from '@/styles/common.module.css';
 
 type ExerciseResultsProps = {
   numSolved: number;
@@ -45,7 +46,7 @@ export default function ExerciseResults({ numSolved, numWrong, timeElapsed, onRe
       </table>
       <div className={styles.footer}>
         {message}
-        <button className={styles.button} onClick={onRestart}><FaArrowsRotate className="dragdrop__review-icon" role="presentation"/>Try Again</button>
+        <button className={`${styles.button} ${commonStyles.button}`} onClick={onRestart}><FaArrowsRotate className="dragdrop__review-icon" role="presentation"/>Try Again</button>
       </div>
     </div>
   )
