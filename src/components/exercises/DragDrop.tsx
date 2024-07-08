@@ -218,9 +218,11 @@ export default function DragDrop({ data }: DragDropProps) {
               const answer = answers.get(val1.id);
               let val2;
               let result;
+              let numIncorrectGuesses;
               if (answer) {
                 val2 = data.choices.find(choice => choice.id === answer.id);
                 result = answer.result;
+                numIncorrectGuesses = isFinished && answer.numGuesses > 1 ? answer.numGuesses - 1 : undefined;
               }
               const style: Record<string, string> = {};
               if (questionsTrackConfig && trackRemaining !== undefined) {
@@ -235,7 +237,7 @@ export default function DragDrop({ data }: DragDropProps) {
                   trackRemaining = questionsTrackConfig.shift();
                 }
               }
-              return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} style={style} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
+              return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} numIncorrectGuesses={numIncorrectGuesses} style={style} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
             })
           }
         </div>
