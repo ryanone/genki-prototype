@@ -67,15 +67,15 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
     const nextQuestion = questions.current[0];
     setCurrentChoices(generateRandomChoices(data, nextQuestion.content, NUM_CHOICES_PER_QUESTION));
   }
-  const questionsAnswers = isExerciseFinished ? data.questions.map((q, i) => (
+  const nextButton = (isQuestionFinished && <button className="multiplechoice__next-button" onClick={handleNextClick}>
+    NEXT
+  </button>);
+  const questionsAnswers = isExerciseFinished ? questions.current.map((q, i) => (
     {
       question: q,
       choices: answers[i]
     }
   )) : [];
-  const nextButton = (isQuestionFinished && <button className="multiplechoice__next-button" onClick={handleNextClick}>
-    NEXT
-  </button>);
   const numSolved = isExerciseFinished ? answers.length : 0;
   const numWrong = isExerciseFinished ? answers.filter(a => !!a.find(c => c.result === 'INCORRECT')).length : 0;
 
@@ -100,7 +100,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
             <div className="multiplechoice__actions">
               {nextButton}
             </div>
-            <ProgressBar current={currentIndex} total={data.questions.length}/>
+            <ProgressBar current={currentIndex} total={questions.current.length}/>
             <Timer isRunning={!isExerciseFinished} onTick={(numSeconds) => timeElapsed.current = numSeconds}/>
           </>
       }

@@ -24,22 +24,24 @@ export default function ExerciseResults({ numSolved, numWrong, timeElapsed, onRe
     <div className={styles.exerciseResults}>
       <div className={styles.header}>Quiz Complete!</div>
       <table className={styles.content}>
-        <tr>
-          <th className={styles.term} scope="row">Problems Solved:</th>
-          <td className={styles.value}>{numSolved}</td>
-        </tr>
-        <tr>
-          <th className={styles.term} scope="row">Answers Wrong:</th>
-          <td className={styles.value}>{numWrong}</td>
-        </tr>
-        <tr>
-          <th className={styles.term} scope="row">Score:</th>
-          <td className={styles.value}>{score}%</td>
-        </tr>
-        <tr>
-          <th className={styles.term} scope="row">Completion Time:</th>
-          <td className={styles.value}>{formatTimer(timeElapsed)}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th className={styles.term} scope="row">Problems Solved:</th>
+            <td className={styles.value}>{numSolved}</td>
+          </tr>
+          <tr>
+            <th className={styles.term} scope="row">Answers Wrong:</th>
+            <td className={styles.value}>{numWrong}</td>
+          </tr>
+          <tr>
+            <th className={styles.term} scope="row">Score:</th>
+            <td className={styles.value}>{score}%</td>
+          </tr>
+          <tr>
+            <th className={styles.term} scope="row">Completion Time:</th>
+            <td className={styles.value}>{formatTimer(timeElapsed)}</td>
+          </tr>
+        </tbody>
       </table>
       <div className={styles.footer}>
         {message}
