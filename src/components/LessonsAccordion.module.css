@@ -2,6 +2,7 @@
   border-bottom: 1px solid var(--outline-color-1);
   color: var(--foreground-color-1);
   font-size: 1.25rem;
+  padding-inline: 4px;
 }
 
 .compactHeader:hover {
@@ -12,4 +13,5 @@
   border-bottom: 2px solid var(--highlight-color-1);
   color: var(--highlight-color-1);
   font-size: 1.5rem;
+  padding-block-end: 4px;
 }

@@ -1,6 +1,7 @@
 .accordion {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   width: 100%;
 }
 
@@ -12,6 +13,7 @@
   --icon-size: 8px;
   border: solid currentcolor;
   border-width: 0 2px 2px 0;
+  color: var(--foreground-color-1);
   height: var(--icon-size);
   pointer-events: none;
   transform: translateY(-2px) rotate(45deg);
@@ -28,8 +30,7 @@
 .item {
   display: flex;
   flex-direction: column;
-  row-gap: 4px;
-  padding: 4px 0;
+  gap: 4px;
 }
 
 .title {
@@ -37,7 +38,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  padding: 4px;
+  padding-inline: 0;
   justify-content: space-between;
   text-align: start;
   display: flex;

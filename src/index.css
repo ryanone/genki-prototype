@@ -1,20 +1,42 @@
 :root {
-  --background-color-1: #161616;
-  --background-color-2: #1a1a1a;
-  --background-color-3: #222;
+  --background-color-1: #fff;
+  --background-color-2: #fff;
+  --background-color-3: #eee;
   --background-aside-color: #333;
   --outline-color-1: #333;
-  --outline-color-2: #444;
-  --outline-color-3: #999;
+  --outline-color-2: #999;
+  --outline-color-3: #444;
+  --link-color-1: #039;
+  --link-color-2: #ccc;
+  --link-color-3: #ff0;
+  --foreground-color-1: #333;
+  --foreground-color-2: #000;
+}
+
+:root {
   --highlight-color-1: #f93;
   --highlight-color-2: #c60;
-  --link-color-1: #69a;
-  --link-color-2: #ff0;
-  --foreground-color-1: #aaa;
-  --foreground-color-2: #fff;
+  --highlight-foreground-color: #fff;
   --incorrect-color: #f00;
   --selected-correct-color: #080;
   --unselected-correct-color: #09f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color-1: #161616;
+    --background-color-2: #1a1a1a;
+    --background-color-3: #222;
+    --background-aside-color: #333;
+    --outline-color-1: #333;
+    --outline-color-2: #444;
+    --outline-color-3: #999;
+    --link-color-1: #69a;
+    --link-color-2: #ccc;
+    --link-color-3: #ff0;
+    --foreground-color-1: #aaa;
+    --foreground-color-2: #fff;
+  }
 }
 
 :root {
@@ -24,9 +46,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  /* color: rgba(255, 255, 255, 0.87); */
-
+  color-scheme: only light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
