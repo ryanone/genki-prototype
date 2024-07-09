@@ -16,7 +16,3 @@
   flex-grow: 1;
   padding-block-start: var(--content-padding);
 }
-
-.select {
-  margin: auto;
-}
