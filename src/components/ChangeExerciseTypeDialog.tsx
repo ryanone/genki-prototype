@@ -59,10 +59,10 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
   return (
     isOpen &&
     (
-      <dialog className={styles.dialog} ref={ref} onCancel={handleCancel}>
-        <div className={styles.title}>Change Exercise Type</div>
+      <dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
+        <div className={commonStyles.dialogHeader}>Change Exercise Type</div>
         <form className={styles.form}>
-          <div className={styles.content}>
+          <div className={commonStyles.dialogContent}>
             <p>Please select the type of exercise you would like to do, then click 'Begin' to start studying.</p>
             <div className={styles.heading}>Current Exercise</div>
             <div className={styles.title}>{exercise.title}</div>
@@ -78,7 +78,7 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
               </select>
             </label>
           </div>
-          <div className={styles.actions}>
+          <div className={commonStyles.dialogActions}>
             <button onClick={handleConfirmClick} className={commonStyles.button} autoFocus>Begin</button>
             <button onClick={handleCancel} formMethod="dialog" className={commonStyles.button}>Cancel</button>
           </div>

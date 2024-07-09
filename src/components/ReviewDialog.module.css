@@ -1,27 +1,4 @@
 .reviewDialog {
-  border: 1px solid var(--highlight-color-1);
-  display: flex;
-  flex-direction: column;
   height: 50vh;
   width: 50vw;
-  padding: 0;
-  --content-padding: 12px;
-}
-
-.content {
-  flex-grow: 1;
-  padding: var(--content-padding);
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  padding: var(--content-padding);
-}
-
-.title {
-  background: var(--highlight-color-1);
-  color: var(--foreground-color-2);
-  padding: var(--content-padding);
 }

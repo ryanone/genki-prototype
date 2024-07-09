@@ -1,22 +1,7 @@
-.dialog {
-  border: 1px solid var(--highlight-color-1);
-  display: flex;
-  flex-direction: column;
-  height: 50vh;
-  width: 50vw;
-  padding: 0;
-  --content-padding: 12px;
-}
-
 .form {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: var(--content-padding);
-}
-
-.content {
-  flex-grow: 1;
 }
 
 .heading,
@@ -27,13 +12,6 @@
   flex-direction: column;
 }
 
-.actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  padding: var(--content-padding);
-}
-
 .label {
   flex-grow: 1;
   padding-block-start: var(--content-padding);
@@ -41,10 +19,4 @@
 
 .select {
   margin: auto;
-}
-
-.title {
-  background: var(--highlight-color-1);
-  color: var(--foreground-color-2);
-  padding: var(--content-padding);
 }

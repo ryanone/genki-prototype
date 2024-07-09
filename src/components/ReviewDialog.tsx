@@ -30,12 +30,12 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
 
   return (
       isOpen &&
-      (<dialog className={styles.reviewDialog} ref={ref} onCancel={handleCancel}>
-        <div className={styles.title}>Activate Review Mode?</div>
-        <div className={styles.content}>
+      (<dialog className={`${commonStyles.dialog} ${styles.reviewDialog}`} ref={ref} onCancel={handleCancel}>
+        <div className={commonStyles.dialogHeader}>Activate Review Mode?</div>
+        <div className={commonStyles.dialogContent}>
           Are you sure you want to review? Your current progress will be lost.
         </div>
-        <form className={styles.actions}>
+        <form className={commonStyles.dialogActions}>
           <button onClick={handleConfirmClick} className={commonStyles.button} autoFocus>OK</button>
           <button onClick={handleCancel} formMethod="dialog" className={commonStyles.button}>Close</button>
         </form>
