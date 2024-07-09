@@ -11,20 +11,20 @@
 }
 
 .nextButton {
-  background: var(--root-background-color);
-  color: var(--secondary-text-color);
-  border: 1px solid var(--drag-drop-background-color);
+  background: var(--background-color-2);
+  color: var(--foreground-color-2);
+  border: 1px solid var(--outline-color-1);
   cursor: pointer;
   padding-block: 8px;
   flex-basis: 50%;
 }
 
 .nextButton:hover {
-  border-color: var(--primary-highlight-color);
+  border-color: var(--highlight-color-1);
 }
 
 .instructions {
-  background: var(--primary-highlight-color);
+  background: var(--highlight-color-1);
   color: white;
   padding: 16px;
   display: flex;

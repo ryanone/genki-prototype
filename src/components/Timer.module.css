@@ -1,5 +1,5 @@
 .timer {
-  color: var(--primary-text-color);
+  color: var(--foreground-color-1);
   display: inline-flex;
   flex-direction: column;
 }

@@ -1,15 +1,15 @@
 .compactHeader {
-  border-bottom: 1px solid var(--drag-drop-background-color);
-  color: var(--primary-text-color);
+  border-bottom: 1px solid var(--outline-color-1);
+  color: var(--foreground-color-1);
   font-size: 1.25rem;
 }
 
 .compactHeader:hover {
-  color: var(--primary-highlight-color);
+  color: var(--highlight-color-1);
 }
 
 .detailedHeader {
-  border-bottom: 2px solid var(--primary-highlight-color);
-  color: var(--primary-highlight-color);
+  border-bottom: 2px solid var(--highlight-color-1);
+  color: var(--highlight-color-1);
   font-size: 1.5rem;
 }

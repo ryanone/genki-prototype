@@ -1,13 +1,13 @@
 .progressBar {
-  border: 1px solid var(--primary-highlight-color);
+  border: 1px solid var(--highlight-color-1);
   display: flex;
   align-content: center;
   position: relative;
 }
 
 .completion {
-  background: var(--primary-highlight-color);
-  color: var(--secondary-text-color);
+  background: var(--highlight-color-1);
+  color: var(--foreground-color-2);
   position: absolute;
   left: 0;
   height: 100%;

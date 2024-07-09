@@ -1,12 +1,12 @@
 .item {
-  background-color: var(--drag-drop-background-color);
-  border: 1px solid var(--drag-drop-border-color);
+  background-color: var(--background-color-3);
+  border: 1px solid var(--outline-color-1);
   display: inline-flex;
   padding: 6px;
   cursor: pointer;
 }
 
 .item:focus {
-  border-color: var(--primary-highlight-color);
-  outline-color: var(--primary-highlight-color);
+  border-color: var(--highlight-color-1);
+  outline-color: var(--highlight-color-1);
 }

@@ -1,19 +1,20 @@
 :root {
-  --drag-drop-border-color: #444;
-  --drag-drop-background-color: #333;
-  --incorrect-color: red;
-  --root-background-color: #000;
-  --primary-background-color: white;
-  --primary-highlight-color: #f93;
-  --primary-text-color: #aaa;
-  --primary-link-color: #69a;
-  --secondary-background-color: #1a1a1a;
-  --tertiary-background-color: #222;
-  --secondary-highlight-color: #c60;
-  --secondary-text-color: white;
+  --background-color-1: #161616;
+  --background-color-2: #1a1a1a;
+  --background-color-3: #222;
+  --background-aside-color: #333;
+  --outline-color-1: #333;
+  --outline-color-2: #444;
+  --outline-color-3: #999;
+  --highlight-color-1: #f93;
+  --highlight-color-2: #c60;
+  --link-color-1: #69a;
+  --link-color-2: #ff0;
+  --foreground-color-1: #aaa;
+  --foreground-color-2: #fff;
+  --incorrect-color: #f00;
   --selected-correct-color: #080;
   --unselected-correct-color: #09f;
-  --incorrect-color: red;
 }
 
 :root {
@@ -24,7 +25,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: var(--root-background-color);
+  background-color: var(--background-color-1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

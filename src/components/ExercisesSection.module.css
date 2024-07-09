@@ -4,6 +4,6 @@
 }
 
 .heading {
-  color: var(--primary-text-color);
+  color: var(--foreground-color-1);
   font-size: 1.25rem;
 }

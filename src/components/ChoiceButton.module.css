@@ -1,8 +1,8 @@
 .button,
 .button:disabled {
-  background: var(--root-background-color);
-  color: var(--secondary-text-color);
-  border: 2px solid var(--drag-drop-background-color);
+  background: var(--background-color-2);
+  color: var(--foreground-color-2);
+  border: 2px solid var(--outline-color-1);
   cursor: pointer;
   padding-block: 8px;
   flex-basis: 75%;

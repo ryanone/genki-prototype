@@ -1,8 +1,8 @@
 .button {
   border: 0;
-  color: var(--secondary-text-color);
+  color: var(--foreground-color-2);
   cursor: pointer;
-  background: var(--primary-highlight-color);
+  background: var(--highlight-color-1);
   padding: 8px;
 }
 
@@ -12,8 +12,8 @@
 
 .secondaryButton {
   border: 0;
-  color: var(--secondary-text-color);
+  color: var(--foreground-color-2);
   cursor: pointer;
-  background: var(--secondary-highlight-color);
+  background: var(--highlight-color-2);
   padding: 8px;
 }

@@ -5,7 +5,7 @@
 }
 
 .instructions {
-  background: var(--primary-highlight-color);
+  background: var(--highlight-color-1);
   color: white;
   padding: 16px;
   display: flex;

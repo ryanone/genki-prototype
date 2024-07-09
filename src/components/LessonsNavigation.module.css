@@ -1,6 +1,6 @@
 .lessonsNavigation {
   --width: 400px;
-  background: var(--root-background-color);
+  background: var(--background-color-3);
   position: absolute;
   width: var(--width);
   height: 100vh;
@@ -13,7 +13,7 @@
 
 .lessonsNavigation.expanded {
   left: 0;
-  border-right: 1px solid var(--drag-drop-background-color);
+  border-right: 1px solid var(--outline-color-1);
 }
 
 .header {
@@ -21,8 +21,8 @@
 }
 
 .title {
-  color: var(--primary-background-color);
-  background: var(--primary-highlight-color);
+  color: var(--foreground-color-2);
+  background: var(--highlight-color-1);
   font-size: 1.25rem;
   flex-grow: 1;
   display: flex;
