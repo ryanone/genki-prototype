@@ -1,10 +1,9 @@
 import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
-import { FaBook, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
 import ExerciseResults from '@/components/ExerciseResults';
-import { FaArrowsRotate } from 'react-icons/fa6';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import { randomizeArray } from '@/utils/randomize';
@@ -207,7 +206,7 @@ export default function DragDrop({ data }: DragDropProps) {
           <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} /> :
           <></>
       }
-      {instructions && <div className={styles.instructions}><FaInfoCircle className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
+      {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
       <div className={styles.main}>
         <div className={styles.questions} style={questionsStyles}>
           {

@@ -11,7 +11,8 @@ export default {
 }
 
 const defaultArgs = {
-  lessonId: 'genki-3',
+  bookId: 'genki-3',
+  lessonId: 'lesson-0',
   exercise: Genki3Lesson0.sections[0].exercises[0]
 };
 

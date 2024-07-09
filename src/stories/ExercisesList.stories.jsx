@@ -12,6 +12,7 @@ export default {
 };
 
 const defaultArgs = {
+  bookId: 'genki-3',
   lessonId: 'lesson-0',
   exercises: Genki3Lesson0.sections.flatMap(s => s.exercises),
 }

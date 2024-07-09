@@ -2,7 +2,7 @@ import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
 import { useRef, useState } from 'react';
 import AnswerList from '@/components/AnswerList';
 import ExerciseResults from '@/components/ExerciseResults';
-import { FaInfoCircle } from 'react-icons/fa';
+import { FaCircleInfo } from 'react-icons/fa6';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
@@ -88,7 +88,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
             <AnswerList data={questionsAnswers as QuestionAnswer[]} />
           </> :
           <>
-            {instructions && <div className={styles.instructions}><FaInfoCircle className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
+            {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
             <MultipleChoiceQuestion
               key={currentIndex}
               choices={currentChoices}

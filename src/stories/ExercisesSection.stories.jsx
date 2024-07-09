@@ -12,6 +12,7 @@ export default {
 };
 
 const defaultArgs = {
+  bookId: 'genki-3',
   lessonId: 'lesson-0',
   section: Genki3Lesson0.sections[0],
 }

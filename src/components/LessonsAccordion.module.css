@@ -1,4 +1,11 @@
 .compactHeader {
+  border-bottom: 1px solid var(--drag-drop-background-color);
+  color: var(--primary-text-color);
+  font-size: 1.25rem;
+}
+
+.compactHeader:hover {
+  color: var(--primary-highlight-color);
 }
 
 .detailedHeader {

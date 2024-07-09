@@ -1,5 +1,4 @@
-import { FaArrowLeft, FaStar } from 'react-icons/fa';
-import { ImCross } from 'react-icons/im';
+import { FaArrowLeft, FaStar, FaX } from 'react-icons/fa6';
 import { useState } from 'react';
 import styles from './DropTarget.module.css';
 
@@ -61,7 +60,7 @@ export default function DropTarget({ layout, result, numIncorrectGuesses, style 
       <div className={styles.content}>{val1.content}</div>
       <div className={zoneClasses.join(' ')} data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragEnter={() => setIsZoneEntered(true)} onDragLeave={() => setIsZoneEntered(false)} onDragOver={(e) => e.preventDefault()} role="button">
         {zoneContent}
-        {isIncorrect && <ImCross aria-label="Incorrect" className={`${styles.icon} ${styles.iconIncorrect}`}/>}
+        {isIncorrect && <FaX aria-label="Incorrect" className={`${styles.icon} ${styles.iconIncorrect}`}/>}
         {isCorrect && <FaStar aria-label="Correct" className={`${styles.icon} ${styles.iconCorrect}`}/>}
       </div>
       {numIncorrectContent}

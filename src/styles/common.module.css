@@ -9,3 +9,11 @@
 .buttonIcon {
   font-size: 1.5rem;
 }
+
+.secondaryButton {
+  border: 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  background: var(--secondary-highlight-color);
+  padding: 8px;
+}

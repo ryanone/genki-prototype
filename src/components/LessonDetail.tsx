@@ -27,12 +27,12 @@ export default function LessonDetail({ bookId, lessonId, viewMode }: LessonDetai
   const exercises: ExerciseInfo[] = viewMode === 'COMPACT' ? sections.flatMap(s => s.exercises) : [];
 
   return (
-    <div>
+    <>
       {
         viewMode === 'DETAILED' ?
-          sections.map(s => <ExercisesSection key={s.content} lessonId={lessonId} section={s}/>) :
-          <ExercisesList lessonId={lessonId} exercises={exercises}/>
+          (<div>{sections.map(s => <ExercisesSection key={s.content} bookId={bookId} lessonId={lessonId} section={s}/>)}</div>) :
+          <ExercisesList bookId={bookId} lessonId={lessonId} exercises={exercises}/>
       }
-    </div>
+    </>
   )
 }
