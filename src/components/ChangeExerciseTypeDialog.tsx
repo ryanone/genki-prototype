@@ -68,7 +68,7 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
             <div className={styles.title}>{exercise.title}</div>
             <label htmlFor="select-exercise-type" className={styles.label}>
               Exercise Type
-              <select className="select" id="select-exercise-type" onChange={handleSelectChange} value={renderMode}>
+              <select className={commonStyles.select} id="select-exercise-type" onChange={handleSelectChange} value={renderMode}>
                 <option value="">Choose a type</option>
                 {
                   (Object.keys(RenderModeDescription) as RenderMode[]).map((key) =>
