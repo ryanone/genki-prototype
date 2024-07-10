@@ -6,8 +6,9 @@ import DraggableItem from '@/components/DraggableItem';
 import ExerciseResults from '@/components/ExerciseResults';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
+import { createLayoutConfiguration } from '@/utils/dragDrop';
 import { randomizeArray } from '@/utils/randomize';
-import type { Choice, DragDropFlow, Exercise, Question } from '@/data/exercise';
+import type { Choice, Exercise, Question } from '@/data/exercise';
 import styles from './DragDrop.module.css';
 import commonStyles from '@/styles/common.module.css';
 
@@ -21,105 +22,29 @@ type Answer = {
   numGuesses: number;
 }
 
-type LayoutConfiguration = {
-  dropTargetLayout: DragDropFlow;
-  instructions: string|undefined;
-  isHorizontal: boolean;
-  maxTrackLen: number;
-  questionsFlow: DragDropFlow;
-  questionsTrackConfig: number[]|undefined;
-  questionsStyles: Record<string, string>;
-}
-
-function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
-  /*
-  Get the supported layouts
-  If 1 or more
-    Set to the first element (horizontal by default)
-  Else
-    Set the layout to HORIZONTAL
-
-  If horizontal
-    Set display: grid
-    Get flow value and set grid-auto-flow
-    Get num cols by checking configuration.length
-    Get num rows by getting max value in configuration
-    Questions should be rendered based on questionLayout value
-  If vertical
-    Set display: flex, flex-direction: column
-    Render items
-    Questions should be rendered in horizontal mode
-  */
-  const questionsStyles: Record<string, string> = {};
-  const meta = data.meta?.DRAG_DROP;
-  let isHorizontal = false;
-  let dropTargetLayout: DragDropFlow = 'HORIZONTAL';
-  let questionsFlow: DragDropFlow = 'HORIZONTAL';
-  let maxTrackLen = Number.MIN_VALUE;
-  let questionsTrackConfig: number[]|undefined;
-  let crossAxisLen: number|undefined;
-  let instructions: string|undefined;
-  if (meta) {
-    if (meta.supportedLayouts?.length >= 1) {
-      isHorizontal = meta.supportedLayouts[0] === 'HORIZONTAL';
-    }
-    if (isHorizontal && meta.HORIZONTAL) {
-      dropTargetLayout = meta.HORIZONTAL.questionLayout ?? 'VERTICAL';
-      questionsFlow = meta.HORIZONTAL.questionsFlow ?? 'HORIZONTAL';
-      if (meta.HORIZONTAL.configuration) {
-        questionsTrackConfig = [...meta.HORIZONTAL.configuration];
-        questionsTrackConfig.forEach(val => maxTrackLen = Math.max(maxTrackLen, val));
-        crossAxisLen = questionsTrackConfig.length;
-      }
-    }
-    instructions = meta.instructions;
-  }
-  if (questionsFlow === 'HORIZONTAL') {
-    questionsStyles['--grid-auto-flow'] = 'row';
-    if (crossAxisLen) {
-      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, 1fr)`;
-    }
-  } else {
-    questionsStyles['--grid-auto-flow'] = 'column';
-    if (crossAxisLen) {
-      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, min-content)`;
-    }
-    if (maxTrackLen > 0) {
-      questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, min-content)`;
-    }
-  }
-
-  return {
-    dropTargetLayout,
-    instructions,
-    isHorizontal,
-    maxTrackLen,
-    questionsFlow,
-    questionsTrackConfig,
-    questionsStyles
-  };
-}
-
 export default function DragDrop({ data }: DragDropProps) {
-  const selectedChoiceId = useRef<string|undefined>(undefined);
-  const timeElapsed = useRef(0);
-  const [questions, setQuestions] = useState<Question[]>(data.meta?.DRAG_DROP?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
-  const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
-  const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
-  const [showReviewDialog, setShowReviewDialog] = useState(false);
-  const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
-  const correctChoiceIds = new Set(Array.from(answers.values()).filter((val) => val.result === 'CORRECT').map((val) => val.id));
-  const remainingChoices = choices.filter(choice => !correctChoiceIds.has(choice.id));
-  const [isHorizontal, setIsHorizontal] = useState(data.meta?.DRAG_DROP?.supportedLayouts?.[0] === 'HORIZONTAL');
-  const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
+  const config = createLayoutConfiguration(data);
   const {
     dropTargetLayout,
     instructions,
     maxTrackLen,
     questionsFlow,
     questionsTrackConfig,
-    questionsStyles
-  } = getLayoutConfiguration(data);
+    questionsStyles,
+    randomizeQuestions
+  } = config;
+  const selectedChoiceId = useRef<string|undefined>(undefined);
+  const timeElapsed = useRef(0);
+  const [questions, setQuestions] = useState<Question[]>(randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
+  const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
+  const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
+  const [showReviewDialog, setShowReviewDialog] = useState(false);
+  const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
+  const [isHorizontal, setIsHorizontal] = useState(config.isHorizontal);
+
+  const correctChoiceIds = new Set(Array.from(answers.values()).filter((val) => val.result === 'CORRECT').map((val) => val.id));
+  const remainingChoices = choices.filter(choice => !correctChoiceIds.has(choice.id));
+  const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
 
   const handleDropTargetDrop = (questionId: string) => {
     // If there's a selected choice, update the entry in the `answers` map based on `questionId`
@@ -167,7 +92,7 @@ export default function DragDrop({ data }: DragDropProps) {
   }
   const handleRestart = () => {
     selectedChoiceId.current = undefined;
-    setQuestions(data.meta?.DRAG_DROP?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
+    setQuestions(randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
     setAnswers(new Map());
     setChoices(randomizeArray(data.choices) as Choice[]);
     setShowReviewDialog(false);
