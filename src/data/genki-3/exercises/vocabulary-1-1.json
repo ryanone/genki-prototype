@@ -98,6 +98,7 @@
     "DRAG_DROP": {
       "supportedLayouts": ["HORIZONTAL"],
       "instructions": "Drag the English expression to the Japanese expression that has the same meaning. TIP: Click an expression to mark it, then click an empty field to drop the answer there.",
+      "randomizeQuestions": true,
       "HORIZONTAL": {
         "questionLayout": "VERTICAL",
         "questionsFlow": "HORIZONTAL",

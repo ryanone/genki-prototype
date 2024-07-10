@@ -466,7 +466,8 @@
   ],
   "meta": {
     "MULTIPLE_CHOICE": {
-      "instructions": "Choose the correct Hiragana for the Romaji."
+      "instructions": "Choose the correct Hiragana for the Romaji.",
+      "randomizeQuestions": false
     },
     "DRAG_DROP": {
       "supportedLayouts": ["HORIZONTAL", "VERTICAL"],

@@ -7,7 +7,7 @@ import ExerciseResults from '@/components/ExerciseResults';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import { randomizeArray } from '@/utils/randomize';
-import type { Choice, DragDropFlow, Exercise } from '@/data/exercise';
+import type { Choice, DragDropFlow, Exercise, Question } from '@/data/exercise';
 import styles from './DragDrop.module.css';
 import commonStyles from '@/styles/common.module.css';
 
@@ -103,13 +103,13 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 export default function DragDrop({ data }: DragDropProps) {
   const selectedChoiceId = useRef<string|undefined>(undefined);
   const timeElapsed = useRef(0);
+  const [questions, setQuestions] = useState<Question[]>(data.meta?.DRAG_DROP?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
   const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
   const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
-  const correctChoiceIds = Array.from(answers).filter(([, val]) => val.result === 'CORRECT').map(([, val]) => val.id);
-  const remainingChoices = choices.filter(choice => !correctChoiceIds.includes(choice.id));
-  const canChangeLayout = data.meta?.DRAG_DROP?.supportedLayouts?.length && data.meta?.DRAG_DROP?.supportedLayouts?.length > 1;
+  const correctChoiceIds = new Set(Array.from(answers.values()).filter((val) => val.result === 'CORRECT').map((val) => val.id));
+  const remainingChoices = choices.filter(choice => !correctChoiceIds.has(choice.id));
   const [isHorizontal, setIsHorizontal] = useState(data.meta?.DRAG_DROP?.supportedLayouts?.[0] === 'HORIZONTAL');
   const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
   const {
@@ -125,7 +125,7 @@ export default function DragDrop({ data }: DragDropProps) {
     // If there's a selected choice, update the entry in the `answers` map based on `questionId`
     if (selectedChoiceId.current) {
       let result;
-      const question = data.questions.find(q => q.content === questionId);
+      const question = questions.find(q => q.content === questionId);
       if (question) {
         result = question.choices.correctId === selectedChoiceId.current ? 'CORRECT' : 'INCORRECT';
       }
@@ -154,7 +154,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const handleReviewConfirm = () => {
     setShowReviewDialog(false);
     setIsReviewConfirmed(true);
-    data.questions.forEach(question => {
+    questions.forEach(question => {
       if (!answers.has(question.content)) {
         answers.set(question.content, {
           id: question.choices.correctId,
@@ -167,12 +167,14 @@ export default function DragDrop({ data }: DragDropProps) {
   }
   const handleRestart = () => {
     selectedChoiceId.current = undefined;
+    setQuestions(data.meta?.DRAG_DROP?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
     setAnswers(new Map());
     setChoices(randomizeArray(data.choices) as Choice[]);
     setShowReviewDialog(false);
     setIsReviewConfirmed(false);
   }
   const isFinished = isReviewConfirmed || !remainingChoices.length;
+  const canChangeLayout = !isFinished && data.meta?.DRAG_DROP?.supportedLayouts?.length && data.meta?.DRAG_DROP?.supportedLayouts?.length > 1;
   const isTimerRunning = !isFinished && !showReviewDialog;
   const numSolved = isFinished && remainingChoices.length === 0 ? answers.size : 0;
   const numWrong = isFinished && remainingChoices.length === 0 ?
@@ -208,7 +210,7 @@ export default function DragDrop({ data }: DragDropProps) {
       <div className={styles.main}>
         <div className={styles.questions} style={questionsStyles}>
           {
-            data.questions.map(question => {
+            questions.map(question => {
               const val1 = {
                 content: question.content,
                 id: question.content,
@@ -218,7 +220,7 @@ export default function DragDrop({ data }: DragDropProps) {
               let result;
               let numIncorrectGuesses;
               if (answer) {
-                val2 = data.choices.find(choice => choice.id === answer.id);
+                val2 = choices.find(choice => choice.id === answer.id);
                 result = answer.result;
                 numIncorrectGuesses = isFinished && answer.numGuesses > 1 ? answer.numGuesses - 1 : undefined;
               }

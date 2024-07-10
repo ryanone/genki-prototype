@@ -13,11 +13,11 @@ type DragDropLayouts = DragDropFlow|'BOTH';
 
 interface BaseMeta {
   instructions: string;
+  randomizeQuestions?: boolean;
 }
 
 interface DragDropMeta extends BaseMeta {
   supportedLayouts: DragDropLayouts[];
-  instructions: string;
   HORIZONTAL?: {
     questionsFlow: DragDropFlow;
     questionLayout: DragDropFlow;
@@ -26,6 +26,7 @@ interface DragDropMeta extends BaseMeta {
 }
 
 interface MultipleChoiceMeta extends BaseMeta {
+
 }
 
 export type Question = {

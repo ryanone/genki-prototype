@@ -20,7 +20,7 @@ const NUM_CHOICES_PER_QUESTION = 4;
 export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isQuestionFinished, setIsQuestionFinished] = useState(false);
-  const questions = useRef(randomizeArray(data.questions) as Question[]);
+  const questions = useRef(data.meta?.MULTIPLE_CHOICE?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
   const currentQuestion = questions.current[currentIndex];
   const [currentChoices, setCurrentChoices] = useState(
     currentQuestion ?
