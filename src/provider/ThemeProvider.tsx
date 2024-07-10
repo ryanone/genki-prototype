@@ -50,18 +50,12 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
   }, []);
 
   useEffect(() => {
-    console.log('updating theme: %o', theme)
-    if (theme === LIGHT) {
-      if (document.documentElement.classList.contains(DARK)) {
-        document.documentElement.classList.replace(DARK, LIGHT);
+    if (theme) {
+      const oldTheme = theme === DARK ? LIGHT : DARK;
+      if (document.documentElement.classList.contains(oldTheme)) {
+        document.documentElement.classList.replace(oldTheme, theme);
       } else {
-        document.documentElement.classList.add(LIGHT);
-      }
-    } else if (theme === DARK) {
-      if (document.documentElement.classList.contains(LIGHT)) {
-        document.documentElement.classList.replace(LIGHT, DARK);
-      } else {
-        document.documentElement.classList.add(DARK);
+        document.documentElement.classList.add(theme);
       }
     } else {
       document.documentElement.classList.remove(DARK, LIGHT);

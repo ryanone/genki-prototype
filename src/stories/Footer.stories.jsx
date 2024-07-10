@@ -1,9 +1,15 @@
 import Footer from '@/components/Footer';
-import { withRouter } from 'storybook-addon-remix-react-router';
+import ThemeProvider from '@/provider/ThemeProvider';
 
 export default {
   component: Footer,
-  decorators: [ withRouter ],
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    )
+  ],
   title: 'Footer',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,

@@ -1,11 +1,12 @@
-import ThemeContext from '@/context/ThemeContext';
-import { useContext } from 'react';
+import { FaGear } from 'react-icons/fa6';
+import SettingsDialog from '@/components/SettingsDialog';
+import { useState } from 'react';
 import styles from './Footer.module.css';
 
 export default function Footer() {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const handleToggleThemeClick = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
+  const handleSettingsDialogClose = () => {
+    setShowSettingsDialog(false);
   }
 
   return (
@@ -13,11 +14,12 @@ export default function Footer() {
       <ul className={styles.links}>
         <li><a href="#">Dummy link</a></li>
       </ul>
-      <div className={styles.actions}>
-        <button onClick={handleToggleThemeClick}>Toggle theme</button>
-      </div>
       <div className={styles.copyright}>
         Created by John Doe and the GitHub Community
+      </div>
+      <div className={styles.actions}>
+        <button className={styles.settingsButton} onClick={() => setShowSettingsDialog(true)}><FaGear className={styles.settingsIcon} aria-label="Settings"/></button>
+        <SettingsDialog isOpen={showSettingsDialog} onClose={handleSettingsDialogClose}/>
       </div>
     </footer>
   )

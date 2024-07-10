@@ -2,12 +2,12 @@
   background-color: var(--background-aside-color);
   color: var(--highlight-foreground-color);
   display: flex;
-  padding: 16px;
+  align-items: center;
+  padding: 8px;
 }
 
 .actions {
   display: flex;
-  flex-grow: 1;
   justify-content: center;
 }
 
@@ -19,5 +19,24 @@
 
 .copyright {
   display: flex;
-  align-items: flex-end;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.settingsButton {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.settingsButton:hover,
+.settingsButton:focus {
+  background: color-mix(in srgb, var(--background-aside-color), white 25%);
+}
+
+.settingsIcon {
+  font-size: 1rem;
 }
