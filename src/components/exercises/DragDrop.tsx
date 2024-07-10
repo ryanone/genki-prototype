@@ -22,7 +22,7 @@ type Answer = {
 }
 
 type LayoutConfiguration = {
-  dropTargetFlow: DragDropFlow;
+  dropTargetLayout: DragDropFlow;
   instructions: string|undefined;
   isHorizontal: boolean;
   maxTrackLen: number;
@@ -53,7 +53,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   const questionsStyles: Record<string, string> = {};
   const meta = data.meta?.DRAG_DROP;
   let isHorizontal = false;
-  let dropTargetFlow: DragDropFlow = 'HORIZONTAL';
+  let dropTargetLayout: DragDropFlow = 'HORIZONTAL';
   let questionsFlow: DragDropFlow = 'HORIZONTAL';
   let maxTrackLen = Number.MIN_VALUE;
   let questionsTrackConfig: number[]|undefined;
@@ -62,10 +62,9 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   if (meta) {
     if (meta.supportedLayouts?.length >= 1) {
       isHorizontal = meta.supportedLayouts[0] === 'HORIZONTAL';
-      // isMultipleLayoutsSupported = meta.supportedLayouts.length > 1;
     }
     if (isHorizontal && meta.HORIZONTAL) {
-      dropTargetFlow = meta.HORIZONTAL.questionFlow ?? 'VERTICAL';
+      dropTargetLayout = meta.HORIZONTAL.questionLayout ?? 'VERTICAL';
       questionsFlow = meta.HORIZONTAL.questionsFlow ?? 'HORIZONTAL';
       if (meta.HORIZONTAL.configuration) {
         questionsTrackConfig = [...meta.HORIZONTAL.configuration];
@@ -91,7 +90,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
   }
 
   return {
-    dropTargetFlow,
+    dropTargetLayout,
     instructions,
     isHorizontal,
     maxTrackLen,
@@ -102,7 +101,7 @@ function getLayoutConfiguration(data: Exercise): LayoutConfiguration {
 }
 
 export default function DragDrop({ data }: DragDropProps) {
-  const selectedChoiceId = useRef<string>();
+  const selectedChoiceId = useRef<string|undefined>(undefined);
   const timeElapsed = useRef(0);
   const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
   const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
@@ -114,7 +113,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const [isHorizontal, setIsHorizontal] = useState(data.meta?.DRAG_DROP?.supportedLayouts?.[0] === 'HORIZONTAL');
   const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
   const {
-    dropTargetFlow,
+    dropTargetLayout,
     instructions,
     maxTrackLen,
     questionsFlow,
@@ -179,7 +178,6 @@ export default function DragDrop({ data }: DragDropProps) {
   const numWrong = isFinished && remainingChoices.length === 0 ?
     Array.from(answers.values()).filter(a => a.numGuesses > 1).length : 0;
 
-
   useEffect(() => {
     // If not clicking on another choice, or a drop zone, set the selected choice to undefined
     const handleDocumentClick = (e: MouseEvent) => {
@@ -237,7 +235,7 @@ export default function DragDrop({ data }: DragDropProps) {
                   trackRemaining = questionsTrackConfig.shift();
                 }
               }
-              return <DropTarget key={val1.id} layout={dropTargetFlow} result={result} numIncorrectGuesses={numIncorrectGuesses} style={style} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
+              return <DropTarget key={val1.id} layout={dropTargetLayout} result={result} numIncorrectGuesses={numIncorrectGuesses} style={style} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
             })
           }
         </div>

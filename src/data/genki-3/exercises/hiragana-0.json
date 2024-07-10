@@ -472,8 +472,8 @@
       "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
       "instructions": "Drag the Kana to the matching Romaji. TIP: Click the kana to mark it, then click an empty field to drop the answer there.",
       "HORIZONTAL": {
+        "questionLayout": "HORIZONTAL",
         "questionsFlow": "VERTICAL",
-        "questionFlow": "HORIZONTAL",
         "configuration": [
           3,
           5,

@@ -20,7 +20,7 @@ interface DragDropMeta extends BaseMeta {
   instructions: string;
   HORIZONTAL?: {
     questionsFlow: DragDropFlow;
-    questionFlow: DragDropFlow;
+    questionLayout: DragDropFlow;
     configuration: number[];
   }
 }
@@ -42,5 +42,5 @@ export type Exercise = {
   choices: Choice[];
   questions: Question[];
   supportedRenderModes: RenderMode[];
-  meta?: Meta;
+  meta: Meta;
 }

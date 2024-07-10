@@ -7,7 +7,9 @@
 
 .content {
   border: 1px solid var(--outline-color-1);
+  border-bottom-width: 0;
   display: flex;
+  font-size: 1.25rem;
   justify-content: center;
   padding: var(--container-padding);
 }

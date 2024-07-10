@@ -1,11 +1,17 @@
 .button,
 .button:disabled {
   background: var(--background-color-2);
-  color: var(--foreground-color-2);
+  color: var(--foreground-color-1);
   border: 2px solid var(--outline-color-1);
   cursor: pointer;
   padding-block: 8px;
   flex-basis: 75%;
+  font-size: 1rem;
+}
+
+.button:hover:enabled,
+.button:focus:enabled {
+  border-color: var(--highlight-color-1);
 }
 
 .selectedCorrect,
