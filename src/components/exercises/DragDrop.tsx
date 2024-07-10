@@ -17,9 +17,10 @@ type DragDropProps = {
 }
 
 type Answer = {
-  id: string;
-  result: 'CORRECT'|'INCORRECT'|undefined;
-  numGuesses: number;
+  question: Question;
+  selectedChoiceId?: string;
+  numGuesses?: number;
+  result?: 'CORRECT'|'INCORRECT';
 }
 
 export default function DragDrop({ data }: DragDropProps) {
@@ -35,32 +36,35 @@ export default function DragDrop({ data }: DragDropProps) {
   } = config;
   const selectedChoiceId = useRef<string|undefined>(undefined);
   const timeElapsed = useRef(0);
-  const [questions, setQuestions] = useState<Question[]>(randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
-  const [answers, setAnswers] = useState<Map<string, Answer>>(new Map());
+  const questions = useRef(randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
   const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
-  const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
   const [isHorizontal, setIsHorizontal] = useState(config.isHorizontal);
+  const [answers, setAnswers] = useState<Answer[]>(questions.current.map(question => ({ question })));
+  const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
 
-  const correctChoiceIds = new Set(Array.from(answers.values()).filter((val) => val.result === 'CORRECT').map((val) => val.id));
+  const correctChoiceIds = new Set(Array.from(answers.values()).filter((val) => val.result === 'CORRECT').map((val) => val.selectedChoiceId));
   const remainingChoices = choices.filter(choice => !correctChoiceIds.has(choice.id));
   const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
 
   const handleDropTargetDrop = (questionId: string) => {
-    // If there's a selected choice, update the entry in the `answers` map based on `questionId`
+    // If there's a selected choice, update the entry in the `answers` list
     if (selectedChoiceId.current) {
-      let result;
-      const question = questions.find(q => q.content === questionId);
-      if (question) {
-        result = question.choices.correctId === selectedChoiceId.current ? 'CORRECT' : 'INCORRECT';
+      const index = answers.findIndex(a => a.question.content === questionId);
+      const answer = answers[index];
+      if (answer) {
+        answer.numGuesses = answer.numGuesses === undefined ? 1 : answer.numGuesses + 1;
+        answer.selectedChoiceId = selectedChoiceId.current;
+        answer.result = answer.selectedChoiceId === answer.question.choices.correctId ?
+          'CORRECT' : 'INCORRECT';
+        setAnswers(a => {
+          return [
+            ...a.slice(0, index),
+            { ...answer },
+            ...a.slice(index + 1)
+          ]
+        });
       }
-      const answer = {
-        id: selectedChoiceId.current,
-        result,
-        numGuesses: answers.has(questionId) ? answers.get(questionId)?.numGuesses as number + 1 : 1
-      } as Answer;
-      answers.set(questionId, answer);
-      setAnswers(new Map(answers));
     }
     selectedChoiceId.current = undefined;
   }
@@ -79,21 +83,17 @@ export default function DragDrop({ data }: DragDropProps) {
   const handleReviewConfirm = () => {
     setShowReviewDialog(false);
     setIsReviewConfirmed(true);
-    questions.forEach(question => {
-      if (!answers.has(question.content)) {
-        answers.set(question.content, {
-          id: question.choices.correctId,
-          result: undefined,
-          numGuesses: 0,
-        });
+    setAnswers(answers.map(a => {
+      if (!a.result) {
+        a.selectedChoiceId = a.question.choices.correctId;
       }
-    });
-    setAnswers(new Map(answers));
+      return a;
+    }))
   }
   const handleRestart = () => {
     selectedChoiceId.current = undefined;
-    setQuestions(randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
-    setAnswers(new Map());
+    questions.current = randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions;
+    setAnswers(questions.current.map(question => ({ question })));
     setChoices(randomizeArray(data.choices) as Choice[]);
     setShowReviewDialog(false);
     setIsReviewConfirmed(false);
@@ -101,9 +101,9 @@ export default function DragDrop({ data }: DragDropProps) {
   const isFinished = isReviewConfirmed || !remainingChoices.length;
   const canChangeLayout = !isFinished && data.meta?.DRAG_DROP?.supportedLayouts?.length && data.meta?.DRAG_DROP?.supportedLayouts?.length > 1;
   const isTimerRunning = !isFinished && !showReviewDialog;
-  const numSolved = isFinished && remainingChoices.length === 0 ? answers.size : 0;
+  const numSolved = isFinished && remainingChoices.length === 0 ? answers.length : 0;
   const numWrong = isFinished && remainingChoices.length === 0 ?
-    Array.from(answers.values()).filter(a => a.numGuesses > 1).length : 0;
+    answers.filter(a => a.numGuesses && a.numGuesses > 1).length : 0;
 
   useEffect(() => {
     // If not clicking on another choice, or a drop zone, set the selected choice to undefined
@@ -127,28 +127,26 @@ export default function DragDrop({ data }: DragDropProps) {
   return (
     <div className={rootClasses.join(' ')}>
       {
-        isFinished && remainingChoices.length === 0?
+        isFinished && remainingChoices.length === 0 ?
           <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} /> :
-          <></>
+          undefined
       }
       {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
       <div className={styles.main}>
         <div className={styles.questions} style={questionsStyles}>
           {
-            questions.map(question => {
+            answers.map(a => {
               const val1 = {
-                content: question.content,
-                id: question.content,
+                content: a.question.content,
+                id: a.question.content,
+              };
+              let numIncorrectGuesses, result, val2;
+              if (a.selectedChoiceId) {
+                val2 = choices.find(c => c.id === a.selectedChoiceId);
+                result = a.result;
+                numIncorrectGuesses = isFinished && a.numGuesses && a.numGuesses > 1 ? a.numGuesses - 1 : undefined;
               }
-              const answer = answers.get(val1.id);
-              let val2;
-              let result;
-              let numIncorrectGuesses;
-              if (answer) {
-                val2 = choices.find(choice => choice.id === answer.id);
-                result = answer.result;
-                numIncorrectGuesses = isFinished && answer.numGuesses > 1 ? answer.numGuesses - 1 : undefined;
-              }
+
               const style: Record<string, string> = {};
               if (questionsTrackConfig && trackRemaining !== undefined) {
                 currTrackLen++;
@@ -162,6 +160,7 @@ export default function DragDrop({ data }: DragDropProps) {
                   trackRemaining = questionsTrackConfig.shift();
                 }
               }
+
               return <DropTarget key={val1.id} layout={dropTargetLayout} result={result} numIncorrectGuesses={numIncorrectGuesses} style={style} val1={val1} val2={val2} onDrop={handleDropTargetDrop} />
             })
           }

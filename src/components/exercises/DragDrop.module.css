@@ -41,7 +41,7 @@
 .horizontal .questions {
   display: grid;
   grid-auto-flow: var(--grid-auto-flow, 'column');
-  gap: 4px;
+  gap: 12px;
   justify-content: center;
 }
 
