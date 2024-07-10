@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import styles from './Footer.module.css';
 
 export default function Footer() {
-  const { value, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   const handleToggleThemeClick = () => {
-    setTheme(value === 'dark' ? 'light' : 'dark');
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
   return (

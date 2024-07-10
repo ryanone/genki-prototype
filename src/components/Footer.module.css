@@ -1,6 +1,6 @@
 .footer {
   background-color: var(--background-aside-color);
-  color: var(--foreground-color-2);
+  color: var(--highlight-foreground-color);
   display: flex;
   padding: 16px;
 }
