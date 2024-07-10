@@ -36,11 +36,12 @@ export default function DragDrop({ data }: DragDropProps) {
   } = config;
   const selectedChoiceId = useRef<string|undefined>(undefined);
   const timeElapsed = useRef(0);
-  const questions = useRef(randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
   const [isReviewConfirmed, setIsReviewConfirmed] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
   const [isHorizontal, setIsHorizontal] = useState(config.isHorizontal);
-  const [answers, setAnswers] = useState<Answer[]>(questions.current.map(question => ({ question })));
+  const [answers, setAnswers] = useState<Answer[]>(
+    (randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions).map(question => ({ question }))
+  );
   const [choices, setChoices] = useState(randomizeArray(data.choices) as Choice[]);
 
   const correctChoiceIds = new Set(Array.from(answers.values()).filter((val) => val.result === 'CORRECT').map((val) => val.selectedChoiceId));
@@ -92,8 +93,9 @@ export default function DragDrop({ data }: DragDropProps) {
   }
   const handleRestart = () => {
     selectedChoiceId.current = undefined;
-    questions.current = randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions;
-    setAnswers(questions.current.map(question => ({ question })));
+    setAnswers(
+      (randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions).map(question => ({ question }))
+    );
     setChoices(randomizeArray(data.choices) as Choice[]);
     setShowReviewDialog(false);
     setIsReviewConfirmed(false);
