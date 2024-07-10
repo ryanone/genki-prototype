@@ -30,7 +30,7 @@ export default function LessonDetail({ bookId, lessonId, viewMode }: LessonDetai
     <>
       {
         viewMode === 'DETAILED' ?
-          (<div>{sections.map(s => <ExercisesSection key={s.content} bookId={bookId} lessonId={lessonId} section={s}/>)}</div>) :
+          (<div>{sections.map((s, i) => <ExercisesSection key={s.content ?? i} bookId={bookId} lessonId={lessonId} section={s}/>)}</div>) :
           <ExercisesList bookId={bookId} lessonId={lessonId} exercises={exercises}/>
       }
     </>
