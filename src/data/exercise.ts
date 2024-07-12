@@ -21,7 +21,7 @@ interface DragDropMeta extends BaseMeta {
   HORIZONTAL?: {
     questionsFlow: DragDropFlow;
     questionLayout: DragDropFlow;
-    configuration: number[];
+    configuration?: number[];
   }
 }
 
@@ -44,4 +44,10 @@ export type Exercise = {
   questions: Question[];
   supportedRenderModes: RenderMode[];
   meta: Meta;
+}
+
+export type Results = {
+  numWrong: number;
+  numSolved: number;
+  timeElapsed?: number;
 }

@@ -4,11 +4,13 @@ import BookRoute from '@/routes/Book';
 import ExerciseRoute from '@/routes/Exercise';
 import IndexRoute from '@/routes/Index';
 import { Paths } from '@/routes/loaders';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import RootRoute from '@/routes/Root';
 import { loader as bookLoader } from '@/routes/loaders/book';
 import { loader as exerciseLoader } from '@/routes/loaders/exercise';
+import { store } from '@/app/store';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -42,6 +44,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <RouterProvider router={router}/>
+    </Provider>
   </React.StrictMode>,
 )

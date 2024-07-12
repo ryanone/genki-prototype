@@ -1,7 +1,7 @@
 import type { Exercise } from '@/data/exercise';
 import type { ChoiceItem } from '@/components/ChoiceButton';
 
-export function randomizeArray(input: unknown[]): unknown[] {
+export function randomizeArray<T>(input: T[]): T[] {
   const copy = [...input];
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i  + 1));

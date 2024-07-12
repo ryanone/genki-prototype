@@ -1,6 +1,6 @@
 import type { DragDropFlow, Exercise } from '@/data/exercise';
 
-type LayoutConfiguration = {
+export type LayoutConfiguration = {
   canSupportMultipleLayouts: boolean;
   dropTargetLayout: DragDropFlow;
   instructions: string|undefined;
@@ -13,6 +13,73 @@ type LayoutConfiguration = {
 }
 
 const HORIZONTAL = 'HORIZONTAL';
+
+interface LC2Horizontal extends LC2Base {
+  layout: 'HORIZONTAL';
+  maxTrackLen: number;
+  dropTargetLayout: DragDropFlow;
+  questionsFlow: DragDropFlow;
+  questionsTrackConfig?: number[];
+}
+
+interface LC2Vertical extends LC2Base {
+  layout: 'VERTICAL';
+}
+
+type LC2Base = {
+  canSupportMultipleLayouts: boolean;
+  instructions: string;
+  randomizeQuestions: boolean;
+  questionsStyles: Record<string, string>;
+}
+
+type LC2 = LC2Horizontal|LC2Vertical;
+
+const BASE_HORIZONTAL_CONFIG: Omit<LC2Horizontal, 'questionsStyles'> = {
+  canSupportMultipleLayouts: false,
+  instructions: '',
+  randomizeQuestions: false,
+
+  layout: HORIZONTAL,
+  dropTargetLayout: HORIZONTAL,
+  questionsFlow: HORIZONTAL,
+  maxTrackLen: Number.MIN_VALUE,
+};
+
+const BASE_VERTICAL_CONFIG: Omit<LC2Vertical, 'questionsStyles'> = {
+  canSupportMultipleLayouts: false,
+  instructions: '',
+  randomizeQuestions: false,
+
+  layout: 'VERTICAL',
+}
+
+export function createLayoutConfiguration2(data: Exercise, layout?: DragDropFlow): LC2 {
+  const meta = data.meta?.DRAG_DROP;
+  const questionsStyles: Record<string, string> = {};
+  let config: LC2Base = {
+    canSupportMultipleLayouts: (meta?.supportedLayouts?.length ?? 1) > 1,
+    instructions: meta?.instructions ?? '',
+    randomizeQuestions: meta?.randomizeQuestions ?? false,
+    questionsStyles,
+  };
+  if (layout === HORIZONTAL || !layout) {
+    config = {
+      ...config,
+      ...BASE_HORIZONTAL_CONFIG,
+      dropTargetLayout: meta?.HORIZONTAL?.questionLayout ?? 'VERTICAL',
+      questionsFlow: meta?.HORIZONTAL?.questionsFlow ?? 'HORIZONTAL',
+    } as LC2Horizontal;
+
+
+  } else {
+    config = {
+      ...config,
+      ...BASE_VERTICAL_CONFIG,
+    };
+  }
+  return config as LC2;
+}
 
 export function createLayoutConfiguration(data: Exercise): LayoutConfiguration {
   /*
@@ -53,7 +120,7 @@ export function createLayoutConfiguration(data: Exercise): LayoutConfiguration {
     if (isHorizontal && meta.HORIZONTAL) {
       dropTargetLayout = meta.HORIZONTAL.questionLayout ?? 'VERTICAL';
       questionsFlow = meta.HORIZONTAL.questionsFlow ?? HORIZONTAL;
-      if (meta.HORIZONTAL.configuration) {
+      if (meta.HORIZONTAL.configuration && Array.isArray(meta.HORIZONTAL.configuration)) {
         questionsTrackConfig = [...meta.HORIZONTAL.configuration];
         questionsTrackConfig.forEach(val => maxTrackLen = Math.max(maxTrackLen, val));
         crossAxisLen = questionsTrackConfig.length;

@@ -22,7 +22,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const [isQuestionFinished, setIsQuestionFinished] = useState(false);
   const questions = useRef(data.meta?.MULTIPLE_CHOICE?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
   const currentQuestion = questions.current[currentIndex];
-  const [currentChoices, setCurrentChoices] = useState(
+  const [currentChoices, setCurrentChoices] = useState<ChoiceItem[]>(
     currentQuestion ?
       generateRandomChoices(data, currentQuestion.content, NUM_CHOICES_PER_QUESTION) :
       []
