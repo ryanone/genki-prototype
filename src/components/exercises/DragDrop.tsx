@@ -8,7 +8,7 @@ import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import VerticalDropTargetList from '@/components/VerticalDropTargetList';
-import { createLayoutConfiguration } from '@/utils/dragDrop';
+import { createLayoutConfiguration, type LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useDispatch } from 'react-redux';
 import type { Exercise } from '@/data/exercise';
@@ -23,17 +23,12 @@ export default function DragDrop({ data }: DragDropProps) {
   const config = createLayoutConfiguration(data);
   const {
     canSupportMultipleLayouts,
-    dropTargetLayout,
     instructions,
-    maxTrackLen,
-    questionsFlow,
-    questionsTrackConfig,
-    questionsStyles,
   } = config;
   const selectedChoiceId = useRef<string|undefined>(undefined);
   const timeElapsed = useRef(0);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
-  const [isHorizontal, setIsHorizontal] = useState(config.isHorizontal);
+  const [isHorizontal, setIsHorizontal] = useState(config.layout === 'HORIZONTAL');
 
   const results = useAppSelector(selectResults);
   const startTime = useAppSelector((state) => state.dragDrop.startTime);
@@ -103,19 +98,14 @@ export default function DragDrop({ data }: DragDropProps) {
       }
       {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
       <div className={styles.main}>
-        <div className={styles.questions} style={questionsStyles}>
-          {
-            isHorizontal ?
-              <HorizontalDropTargetList
-                dropTargetLayout={dropTargetLayout}
-                maxTrackLen={maxTrackLen}
-                questionsFlow={questionsFlow}
-                questionsTrackConfig={questionsTrackConfig}
-                onDropTargetDrop={handleDropTargetDrop}
-              /> :
-              <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop}/>
-          }
-        </div>
+        {
+          isHorizontal ?
+            <HorizontalDropTargetList
+              layoutConfig={config as LayoutConfigurationHorizontal}
+              onDropTargetDrop={handleDropTargetDrop}
+            /> :
+            <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop}/>
+        }
         <div className={styles.choices}>
           {
             remainingChoices.map(choice => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>) ?? null

@@ -1,0 +1,6 @@
+.horizontalDropTargetList {
+  display: grid;
+  grid-auto-flow: var(--grid-auto-flow, 'column');
+  gap: 12px;
+  justify-content: center;
+}

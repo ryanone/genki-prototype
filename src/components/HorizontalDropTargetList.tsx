@@ -1,17 +1,18 @@
 import { selectChoicesMap, selectIsFinished } from '@/features/dragDrop/dragDropSlice';
 import DropTarget from '@/components/DropTarget';
-import { DragDropFlow } from '@/data/exercise';
 import useAppSelector from '@/hooks/useAppSelector';
+import { type LayoutConfigurationHorizontal } from '@/utils/dragDrop';
+import styles from './HorizontalDropTargetList.module.css';
 
 type HorizontalDropTargetListProps = {
-  dropTargetLayout: DragDropFlow;
-  maxTrackLen: number;
-  questionsFlow: DragDropFlow;
-  questionsTrackConfig: number[]|undefined;
+  layoutConfig: LayoutConfigurationHorizontal;
   onDropTargetDrop: (questionId: string) => void;
 }
 
-export default function HorizontalDropTargetList({ dropTargetLayout, maxTrackLen, questionsFlow, questionsTrackConfig, onDropTargetDrop }: HorizontalDropTargetListProps) {
+export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDrop }: HorizontalDropTargetListProps) {
+  const {
+    dropTargetLayout, maxTrackLen, questionsFlow, questionsTrackConfig,
+  } = layoutConfig;
   const answers = useAppSelector((state) => state.dragDrop.answers);
   const choicesMap = useAppSelector(selectChoicesMap);
   const isFinished = useAppSelector(selectIsFinished);
@@ -19,7 +20,7 @@ export default function HorizontalDropTargetList({ dropTargetLayout, maxTrackLen
   let trackIndex = 0;
   let currTrackLen = 0;
   return(
-    <>
+    <div className={styles.horizontalDropTargetList} style={layoutConfig.questionsStyles}>
       {
         answers?.map(a => {
           let style: Record<string, string>|undefined;
@@ -50,6 +51,6 @@ export default function HorizontalDropTargetList({ dropTargetLayout, maxTrackLen
           />
         })
       }
-    </>
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 import { selectChoicesMap, selectIsFinished } from '@/features/dragDrop/dragDropSlice';
 import DropTarget from '@/components/DropTarget';
 import useAppSelector from '@/hooks/useAppSelector';
+import styles from './VerticalDropTargetList.module.css';
 
 type VerticalDropTargetListProps = {
   onDropTargetDrop: (questionId: string) => void;
@@ -12,7 +13,7 @@ export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDro
   const isFinished = useAppSelector(selectIsFinished);
 
   return (
-    <>
+    <div className={styles.verticalDropTargetList}>
       {
         answers?.map(a => {
           return <DropTarget
@@ -26,6 +27,6 @@ export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDro
           />
         })
       }
-    </>
+    </div>
   )
 }

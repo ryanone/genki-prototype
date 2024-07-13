@@ -68,6 +68,7 @@ export const dragDropSlice = createSlice({
       // For each answer...
       //   If no choice is selected, fill it in, but with no result
       //   If choice is incorrect, select correct choice, and clear out the result and num of incorrect guesses
+      //   If choice is correct, clear out the number of incorrect guesses
       state.answers?.forEach(a => {
         if (!a.result) {
           a.selectedChoiceId = a.question.choices.correctId;
