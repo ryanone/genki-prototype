@@ -21,7 +21,7 @@ interface DragDropMeta extends BaseMeta {
   HORIZONTAL?: {
     questionsFlow: DragDropFlow;
     questionLayout: DragDropFlow;
-    configuration?: number[];
+    configuration?: number|number[];
   }
 }
 

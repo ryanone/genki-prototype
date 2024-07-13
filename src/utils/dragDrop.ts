@@ -120,10 +120,14 @@ export function createLayoutConfiguration(data: Exercise): LayoutConfiguration {
     if (isHorizontal && meta.HORIZONTAL) {
       dropTargetLayout = meta.HORIZONTAL.questionLayout ?? 'VERTICAL';
       questionsFlow = meta.HORIZONTAL.questionsFlow ?? HORIZONTAL;
-      if (meta.HORIZONTAL.configuration && Array.isArray(meta.HORIZONTAL.configuration)) {
-        questionsTrackConfig = [...meta.HORIZONTAL.configuration];
-        questionsTrackConfig.forEach(val => maxTrackLen = Math.max(maxTrackLen, val));
-        crossAxisLen = questionsTrackConfig.length;
+      if (meta.HORIZONTAL.configuration) {
+        if (Array.isArray(meta.HORIZONTAL.configuration)) {
+          questionsTrackConfig = meta.HORIZONTAL.configuration;
+          maxTrackLen = Math.max(...questionsTrackConfig);
+          crossAxisLen = questionsTrackConfig.length;
+        } else if (Number.isInteger(meta.HORIZONTAL.configuration)) {
+          crossAxisLen = meta.HORIZONTAL.configuration;
+        }
       }
     }
     instructions = meta.instructions;
@@ -136,10 +140,10 @@ export function createLayoutConfiguration(data: Exercise): LayoutConfiguration {
   } else {
     questionsStyles['--grid-auto-flow'] = 'column';
     if (crossAxisLen) {
-      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, min-content)`;
+      questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, max-content)`;
     }
     if (maxTrackLen > 0) {
-      questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, min-content)`;
+      questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, max-content)`;
     }
   }
 
