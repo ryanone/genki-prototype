@@ -2,7 +2,6 @@ import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
 import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
 import { chooseChoice, initialize, fillRemainingAnswers, selectIsFinished, selectRemainingChoices, selectResults } from '@/features/dragDrop/dragDropSlice';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import DropTarget from '@/components/DropTarget';
 import DraggableItem from '@/components/DraggableItem';
 import ExerciseResults from '@/components/ExerciseResults';
 import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
@@ -38,6 +37,7 @@ export default function DragDrop({ data }: DragDropProps) {
 
   const results = useAppSelector(selectResults);
   const startTime = useAppSelector((state) => state.dragDrop.startTime);
+
   const remainingChoices = useAppSelector(selectRemainingChoices);
   const isFinished = useAppSelector(selectIsFinished);
   const dispatch = useDispatch();

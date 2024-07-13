@@ -1,17 +1,24 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { randomizeArray } from '@/utils/randomize';
 import type { Answer, DragDropState } from '@/features/dragDrop/dragDropSlice';
-import type { Choice } from '@/data/exercise';
 
 const selectAnswers = (state: DragDropState) => state.answers as Answer[];
+
+export const selectChoicesMap = createSelector(
+  [
+    (state: DragDropState) => state.choices
+  ],
+  (choices) => new Map(randomizeArray(choices).map(c => [c.id, c]))
+);
 
 export const selectRemainingChoices = createSelector(
   [
     selectAnswers,
-    (state) => state.choices as Record<string, Choice>,
+    selectChoicesMap,
   ],
   (answers, choices) => {
     const correctChoiceIds = new Set(answers.filter(val => val.selectedChoiceId && val.result === 'CORRECT').map(val => val.selectedChoiceId));
-    return Object.entries(choices).filter(([id]) => !correctChoiceIds.has(id)).map(([, choice]) => choice);
+    return Array.from(choices).filter(([id,]) => !correctChoiceIds.has(id)).map(([, choice]) => choice);
   }
 );
 

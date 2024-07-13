@@ -1,7 +1,7 @@
+import { selectChoicesMap, selectIsFinished } from '@/features/dragDrop/dragDropSlice';
 import DropTarget from '@/components/DropTarget';
 import { DragDropFlow } from '@/data/exercise';
 import useAppSelector from '@/hooks/useAppSelector';
-import { selectIsFinished } from '@/features/dragDrop/dragDropSlice';
 
 type HorizontalDropTargetListProps = {
   dropTargetLayout: DragDropFlow;
@@ -13,26 +13,28 @@ type HorizontalDropTargetListProps = {
 
 export default function HorizontalDropTargetList({ dropTargetLayout, maxTrackLen, questionsFlow, questionsTrackConfig, onDropTargetDrop }: HorizontalDropTargetListProps) {
   const answers = useAppSelector((state) => state.dragDrop.answers);
-  const choices = useAppSelector((state) => state.dragDrop.choices);
+  const choicesMap = useAppSelector(selectChoicesMap);
   const isFinished = useAppSelector(selectIsFinished);
 
-  let trackRemaining = questionsTrackConfig?.shift();
+  let trackIndex = 0;
   let currTrackLen = 0;
   return(
     <>
       {
         answers?.map(a => {
-          const style: Record<string, string> = {};
-          if (questionsTrackConfig && trackRemaining !== undefined) {
+          let style: Record<string, string>|undefined;
+          if (questionsTrackConfig) {
             currTrackLen++;
-            trackRemaining--;
-            if (trackRemaining === 0) {
+            if (currTrackLen === questionsTrackConfig[trackIndex]) {
               const spanLen = maxTrackLen - currTrackLen + 1;
-              const trackStyle = questionsFlow === 'HORIZONTAL' ? 'gridColStart' : 'gridRowStart';
-              style[trackStyle] = `span ${spanLen}`;
-
+              if (spanLen > 1) {
+                const trackStyle = questionsFlow === 'HORIZONTAL' ? 'gridColStart' : 'gridRowStart';
+                style = {
+                  [trackStyle]: `span ${spanLen}`
+                };
+              }
               currTrackLen = 0;
-              trackRemaining = questionsTrackConfig.shift();
+              trackIndex++;
             }
           }
 
@@ -43,7 +45,7 @@ export default function HorizontalDropTargetList({ dropTargetLayout, maxTrackLen
             numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
             style={style}
             val1={{ id: a.question.content, content: a.question.content }}
-            val2={a.selectedChoiceId ? choices[a.selectedChoiceId] : undefined}
+            val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
             onDrop={onDropTargetDrop}
           />
         })

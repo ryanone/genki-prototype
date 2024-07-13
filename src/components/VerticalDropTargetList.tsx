@@ -1,6 +1,6 @@
+import { selectChoicesMap, selectIsFinished } from '@/features/dragDrop/dragDropSlice';
 import DropTarget from '@/components/DropTarget';
 import useAppSelector from '@/hooks/useAppSelector';
-import { selectIsFinished } from '@/features/dragDrop/dragDropSlice';
 
 type VerticalDropTargetListProps = {
   onDropTargetDrop: (questionId: string) => void;
@@ -8,7 +8,7 @@ type VerticalDropTargetListProps = {
 
 export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDropTargetListProps) {
   const answers = useAppSelector((state) => state.dragDrop.answers);
-  const choices = useAppSelector((state) => state.dragDrop.choices);
+  const choicesMap = useAppSelector(selectChoicesMap);
   const isFinished = useAppSelector(selectIsFinished);
 
   return (
@@ -21,7 +21,7 @@ export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDro
             result={a.result}
             numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
             val1={{ id: a.question.content, content: a.question.content }}
-            val2={a.selectedChoiceId ? choices[a.selectedChoiceId] : undefined}
+            val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
             onDrop={onDropTargetDrop}
           />
         })

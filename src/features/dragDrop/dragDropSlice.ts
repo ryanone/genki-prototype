@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { selectIsFinished as selectIsFinishedDraft, selectRemainingChoices as selectRemainingChoicesDraft, selectResults as selectResultsDraft } from '@/features/dragDrop/selectors';
+import { selectChoicesMap as selectChoicesMapDraft, selectIsFinished as selectIsFinishedDraft, selectRemainingChoices as selectRemainingChoicesDraft, selectResults as selectResultsDraft } from '@/features/dragDrop/selectors';
 import { randomizeArray } from '@/utils/randomize';
 import type { Choice, Exercise, Question } from '@/data/exercise';
 
@@ -12,7 +12,7 @@ export type Answer = {
 
 export type DragDropState = {
   answers: Answer[];
-  choices: Record<string, Choice>;
+  choices: Choice[];
   doReview: boolean;
   startTime: number;
 }
@@ -28,7 +28,7 @@ type SelectChoicePayload = {
 
 const initialState: DragDropState = {
   answers: [],
-  choices: {},
+  choices: [],
   doReview: false,
   startTime: Date.now(),
 }
@@ -59,13 +59,7 @@ export const dragDropSlice = createSlice({
         exercise.questions
       ).map(question => ({ question }));
       state.answers = answers;
-      state.choices = randomizeArray(exercise.choices).reduce(
-        (acc, choice) => {
-          acc[choice.id] = choice;
-          return acc;
-        },
-        {} as Record<string, Choice>
-      );
+      state.choices = exercise.choices;
       state.doReview = false;
       state.startTime = Date.now();
     },
@@ -89,6 +83,7 @@ export const dragDropSlice = createSlice({
     },
   },
   selectors: {
+    selectChoicesMap: selectChoicesMapDraft,
     selectIsFinished: selectIsFinishedDraft,
     selectRemainingChoices: selectRemainingChoicesDraft,
     selectResults: selectResultsDraft,
@@ -96,5 +91,5 @@ export const dragDropSlice = createSlice({
 });
 
 export const { chooseChoice, initialize, fillRemainingAnswers } = dragDropSlice.actions;
-export const { selectIsFinished, selectRemainingChoices, selectResults } = dragDropSlice.selectors;
+export const { selectChoicesMap, selectIsFinished, selectRemainingChoices, selectResults } = dragDropSlice.selectors;
 export default dragDropSlice.reducer;

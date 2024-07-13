@@ -22,7 +22,7 @@ type DropTargetProps = {
   onDrop: (value: string) => void;
 }
 
-export default function DropTarget({ layout, result, numIncorrectGuesses, style = {}, val1, val2, onDrop }: DropTargetProps) {
+export default function DropTarget({ layout, result, numIncorrectGuesses, style, val1, val2, onDrop }: DropTargetProps) {
   const [isZoneEntered, setIsZoneEntered] = useState(false);
   const isDisabled = result === 'CORRECT';
   const handleZoneDropClick = () => {
