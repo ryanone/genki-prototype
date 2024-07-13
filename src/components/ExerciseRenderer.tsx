@@ -1,7 +1,7 @@
 import { lazy, useState, Suspense } from 'react';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import { FaArrowsRotate } from 'react-icons/fa6';
-import type { Exercise, RenderMode } from '@/data/exercise';
+import type { DragDropExercise, Exercise, MultipleChoiceExercise, RenderMode } from '@/data/exercise';
 import styles from './ExerciseRenderer.module.css';
 import commonStyles from '@/styles/common.module.css';
 
@@ -16,9 +16,9 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
   let exercise = <></>;
   if (renderMode === 'DRAG_DROP') {
-    exercise = <DragDrop data={data} key={Date.now()}/>
+    exercise = <DragDrop data={data as DragDropExercise} key={Date.now()}/>
   } else if (renderMode === 'MULTIPLE_CHOICE') {
-    exercise = <MultipleChoice data={data} key={Date.now()}/>
+    exercise = <MultipleChoice data={data as MultipleChoiceExercise} key={Date.now()}/>
   }
   const canChangeRenderMode = data.supportedRenderModes.length > 1;
   const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] = useState(false);

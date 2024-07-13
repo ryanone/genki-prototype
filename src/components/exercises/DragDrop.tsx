@@ -1,42 +1,47 @@
 import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
 import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
-import { chooseChoice, initialize, fillRemainingAnswers, selectIsFinished, selectRemainingChoices, selectResults } from '@/features/dragDrop/dragDropSlice';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  chooseChoice,
+  initialize,
+  fillRemainingAnswers,
+  selectIsFinished,
+  selectLayoutConfiguration,
+  selectRemainingChoices,
+  selectResults,
+  toggleLayout,
+} from '@/features/dragDrop/dragDropSlice';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DraggableItem from '@/components/DraggableItem';
 import ExerciseResults from '@/components/ExerciseResults';
 import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import VerticalDropTargetList from '@/components/VerticalDropTargetList';
-import { createLayoutConfiguration, type LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useDispatch } from 'react-redux';
-import type { Exercise } from '@/data/exercise';
+import type { DragDropExercise } from '@/data/exercise';
+import type { LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import styles from './DragDrop.module.css';
 import commonStyles from '@/styles/common.module.css';
 
 type DragDropProps = {
-  data: Exercise;
+  data: DragDropExercise;
 }
 
 export default function DragDrop({ data }: DragDropProps) {
-  const config = createLayoutConfiguration(data);
-  const {
-    canSupportMultipleLayouts,
-    instructions,
-  } = config;
   const selectedChoiceId = useRef<string|undefined>(undefined);
   const timeElapsed = useRef(0);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
-  const [isHorizontal, setIsHorizontal] = useState(config.layout === 'HORIZONTAL');
 
+  const dispatch = useDispatch();
+  const layout = useAppSelector((state) => state.dragDrop.layout);
+  const layoutConfig = useAppSelector(selectLayoutConfiguration);
   const results = useAppSelector(selectResults);
   const startTime = useAppSelector((state) => state.dragDrop.startTime);
-
   const remainingChoices = useAppSelector(selectRemainingChoices);
   const isFinished = useAppSelector(selectIsFinished);
-  const dispatch = useDispatch();
 
+  const isHorizontal = useMemo(() => layout !== 'VERTICAL', [layout]);
   const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
 
   const handleDropTargetDrop = (questionId: string) => {
@@ -44,6 +49,9 @@ export default function DragDrop({ data }: DragDropProps) {
       dispatch(chooseChoice({ choiceId: selectedChoiceId.current, questionId }));
     }
     selectedChoiceId.current = undefined;
+  }
+  const handleChangeLayoutClick = () => {
+    dispatch(toggleLayout());
   }
   const handleChoiceSelect = (id: string) => {
     selectedChoiceId.current = id;
@@ -64,7 +72,7 @@ export default function DragDrop({ data }: DragDropProps) {
     }));
     setShowReviewDialog(false);
   }
-  const canChangeLayout = !isFinished && canSupportMultipleLayouts;
+  const canChangeLayout = !isFinished && layoutConfig?.canSupportMultipleLayouts;
   const isTimerRunning = !isFinished && !showReviewDialog;
 
   useEffect(() => {
@@ -96,12 +104,12 @@ export default function DragDrop({ data }: DragDropProps) {
           <ExerciseResults numSolved={results.numSolved} numWrong={results.numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} /> :
           null
       }
-      {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
+      {layoutConfig?.instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{layoutConfig.instructions}</div>}
       <div className={styles.main}>
         {
-          isHorizontal ?
+          (isHorizontal && layoutConfig) ?
             <HorizontalDropTargetList
-              layoutConfig={config as LayoutConfigurationHorizontal}
+              layoutConfig={layoutConfig as LayoutConfigurationHorizontal}
               onDropTargetDrop={handleDropTargetDrop}
             /> :
             <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop}/>
@@ -119,7 +127,7 @@ export default function DragDrop({ data }: DragDropProps) {
             <button className={`${styles.button} ${commonStyles.button}`} onClick={() => setShowReviewDialog(true)}><FaBook className={commonStyles.buttonIcon} role="presentation"/>Review</button>
         }
         {
-          canChangeLayout && <button className={`${styles.button} ${commonStyles.button}`} onClick={() => setIsHorizontal(ih => !ih)}>
+          canChangeLayout && <button className={`${styles.button} ${commonStyles.button}`} onClick={handleChangeLayoutClick}>
             {
               isHorizontal ?
                 (<><CiGrid2V className={commonStyles.buttonIcon} role="presentation"/>Vertical Mode</>) :

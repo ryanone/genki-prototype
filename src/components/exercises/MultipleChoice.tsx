@@ -6,13 +6,13 @@ import { FaCircleInfo } from 'react-icons/fa6';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
-import type { Exercise, Question } from '@/data/exercise';
+import type { MultipleChoiceExercise, Question } from '@/data/exercise';
 import type { ChoiceItem } from '@/components/ChoiceButton';
 import type { QuestionAnswer } from '@/components/AnswerList';
 import styles from './MultipleChoice.module.css';
 
 type MultipleChoiceProps = {
-  data: Exercise;
+  data: MultipleChoiceExercise;
 }
 
 const NUM_CHOICES_PER_QUESTION = 4;

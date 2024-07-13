@@ -1,4 +1,4 @@
-import type { DragDropFlow, Exercise } from '@/data/exercise';
+import type { DragDropFlow, DragDropMeta } from '@/data/exercise';
 
 const HORIZONTAL = 'HORIZONTAL';
 
@@ -43,13 +43,13 @@ const BASE_VERTICAL_CONFIG = {
   layout: 'VERTICAL',
 }
 
-export function createLayoutConfiguration(data: Exercise, layout?: DragDropFlow): LayoutConfiguration {
-  const meta = data.meta?.DRAG_DROP;
+export function createLayoutConfiguration(meta: DragDropMeta, layout?: DragDropFlow): LayoutConfiguration {
   const config: LayoutConfigurationBase = {
     canSupportMultipleLayouts: (meta?.supportedLayouts?.length ?? 1) > 1,
     instructions: meta?.instructions ?? '',
     randomizeQuestions: meta?.randomizeQuestions ?? false,
   };
+
   if (layout === HORIZONTAL || !layout) {
     const horizontalConfig = {
       ...BASE_HORIZONTAL_CONFIG,

@@ -9,15 +9,14 @@ type Meta = {
 }
 
 export type DragDropFlow = 'HORIZONTAL'|'VERTICAL';
-type DragDropLayouts = DragDropFlow|'BOTH';
 
 interface BaseMeta {
   instructions: string;
   randomizeQuestions?: boolean;
 }
 
-interface DragDropMeta extends BaseMeta {
-  supportedLayouts: DragDropLayouts[];
+export interface DragDropMeta extends BaseMeta {
+  supportedLayouts: DragDropFlow[];
   HORIZONTAL?: {
     questionsFlow: DragDropFlow;
     questionLayout: DragDropFlow;
@@ -38,13 +37,27 @@ export type Question = {
 
 export type RenderMode = 'DRAG_DROP'|'MULTIPLE_CHOICE';
 
-export type Exercise = {
+export type BaseExercise = {
   title: string;
   choices: Choice[];
   questions: Question[];
   supportedRenderModes: RenderMode[];
   meta: Meta;
 }
+
+export interface DragDropExercise extends BaseExercise {
+  meta: {
+    DRAG_DROP: DragDropMeta;
+  }
+}
+
+export interface MultipleChoiceExercise extends BaseExercise {
+  meta: {
+    MULTIPLE_CHOICE: MultipleChoiceMeta;
+  }
+}
+
+export type Exercise = DragDropExercise|MultipleChoiceExercise;
 
 export type Results = {
   numWrong: number;

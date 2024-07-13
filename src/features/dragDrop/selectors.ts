@@ -1,6 +1,8 @@
+import { createLayoutConfiguration } from '@/utils/dragDrop';
 import { createSelector } from '@reduxjs/toolkit';
 import { randomizeArray } from '@/utils/randomize';
 import type { Answer, DragDropState } from '@/features/dragDrop/dragDropSlice';
+import type { DragDropMeta } from '@/data/exercise';
 
 const selectAnswers = (state: DragDropState) => state.answers as Answer[];
 
@@ -10,6 +12,16 @@ export const selectChoicesMap = createSelector(
   ],
   (choices) => new Map(randomizeArray(choices).map(c => [c.id, c]))
 );
+
+export const selectLayoutConfiguration = createSelector(
+  [
+    (state: DragDropState) => state.meta,
+    (state: DragDropState) => state.layout
+  ],
+  (meta, layout) => {
+    return meta ? createLayoutConfiguration(meta as DragDropMeta, layout) : undefined
+  }
+)
 
 export const selectRemainingChoices = createSelector(
   [
