@@ -1,4 +1,6 @@
-import { type ChangeEvent, useEffect, useRef, useState, type MouseEvent } from 'react';
+import {
+  type ChangeEvent, useEffect, useRef, useState, type MouseEvent,
+} from 'react';
 import type { Exercise, RenderMode } from '@/data/exercise';
 import styles from './ChangeExerciseTypeDialog.module.css';
 import commonStyles from '@/styles/common.module.css';
@@ -8,7 +10,7 @@ type ChangeExerciseTypeDialogProps = {
   exercise: Exercise;
   onRenderModeChoose: (renderMode: RenderMode) => void;
   onCancel?: () => void;
-}
+};
 
 /*
 Flow
@@ -26,9 +28,11 @@ const RenderModeDescription: Record<RenderMode, string> = {
   MULTIPLE_CHOICE: 'Multiple Choice',
 };
 
-export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderModeChoose, onCancel }: ChangeExerciseTypeDialogProps) {
+export default function ChangeExerciseTypeDialog({
+  isOpen, exercise, onRenderModeChoose, onCancel,
+}: ChangeExerciseTypeDialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
-  const [renderMode, setRenderMode] = useState<RenderMode|''>('');
+  const [renderMode, setRenderMode] = useState<RenderMode | ''>('');
   const handleConfirmClick = (e: MouseEvent) => {
     e.preventDefault();
     ref.current?.close();
@@ -48,7 +52,7 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
     } else {
       setRenderMode('');
     }
-  }
+  };
 
   useEffect(() => {
     if (isOpen && ref.current) {
@@ -57,8 +61,8 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
   }, [isOpen]);
 
   return (
-    isOpen &&
-    (
+    isOpen
+    && (
       <dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
         <div className={commonStyles.dialogHeader}>Change Exercise Type</div>
         <form className={styles.form}>
@@ -71,9 +75,7 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
               <select className={commonStyles.select} id="select-exercise-type" onChange={handleSelectChange} value={renderMode}>
                 <option value="">Choose a type</option>
                 {
-                  (Object.keys(RenderModeDescription) as RenderMode[]).map((key) =>
-                    <option key={key} value={key}>{RenderModeDescription[key]}</option>
-                  )
+                  (Object.keys(RenderModeDescription) as RenderMode[]).map((key) => <option key={key} value={key}>{RenderModeDescription[key]}</option>)
                 }
               </select>
             </label>
@@ -85,6 +87,5 @@ export default function ChangeExerciseTypeDialog({ isOpen, exercise, onRenderMod
         </form>
       </dialog>
     )
-  )
+  );
 }
-

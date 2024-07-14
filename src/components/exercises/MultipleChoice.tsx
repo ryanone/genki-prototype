@@ -13,7 +13,7 @@ import styles from './MultipleChoice.module.css';
 
 type MultipleChoiceProps = {
   data: MultipleChoiceExercise;
-}
+};
 
 const NUM_CHOICES_PER_QUESTION = 4;
 
@@ -23,16 +23,16 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const questions = useRef(data.meta?.MULTIPLE_CHOICE?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
   const currentQuestion = questions.current[currentIndex];
   const [currentChoices, setCurrentChoices] = useState<ChoiceItem[]>(
-    currentQuestion ?
-      generateRandomChoices(data, currentQuestion.content, NUM_CHOICES_PER_QUESTION) :
-      []
+    currentQuestion
+      ? generateRandomChoices(data, currentQuestion.content, NUM_CHOICES_PER_QUESTION)
+      : [],
   );
   const [answers, setAnswers] = useState<ChoiceItem[][]>([]);
   const timeElapsed = useRef(0);
   const isExerciseFinished = currentIndex === questions.current.length;
   const instructions = data.meta?.MULTIPLE_CHOICE?.instructions;
   const handleChoiceSelect = (id: string) => {
-    const currentChoicesUpdated: ChoiceItem[] = currentChoices.map(c => {
+    const currentChoicesUpdated: ChoiceItem[] = currentChoices.map((c) => {
       if (c.id === id) {
         return {
           ...c,
@@ -47,9 +47,9 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
       return c;
     });
     setCurrentChoices(currentChoicesUpdated);
-    setAnswers(a => [...a, currentChoicesUpdated]);
+    setAnswers((a) => [...a, currentChoicesUpdated]);
     setIsQuestionFinished(true);
-  }
+  };
   const handleNextClick = () => {
     const nextIndex = currentIndex + 1;
     setCurrentIndex(nextIndex);
@@ -58,7 +58,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
       setCurrentChoices(generateRandomChoices(data, nextQuestion.content, NUM_CHOICES_PER_QUESTION));
       setIsQuestionFinished(false);
     }
-  }
+  };
   const handleRestart = () => {
     setCurrentIndex(0);
     setIsQuestionFinished(false);
@@ -66,28 +66,28 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
     questions.current = randomizeArray(data.questions) as Question[];
     const nextQuestion = questions.current[0];
     setCurrentChoices(generateRandomChoices(data, nextQuestion.content, NUM_CHOICES_PER_QUESTION));
-  }
+  };
   const nextButton = (isQuestionFinished && <button className={styles.nextButton} onClick={handleNextClick}>
     NEXT
   </button>);
   const questionsAnswers = isExerciseFinished ? questions.current.map((q, i) => (
     {
       question: q,
-      choices: answers[i]
+      choices: answers[i],
     }
   )) : [];
   const numSolved = isExerciseFinished ? answers.length : 0;
-  const numWrong = isExerciseFinished ? answers.filter(a => !!a.find(c => c.result === 'INCORRECT')).length : 0;
+  const numWrong = isExerciseFinished ? answers.filter((a) => !!a.find((c) => c.result === 'INCORRECT')).length : 0;
 
   return (
     <div className={styles.multipleChoice}>
       {
-        isExerciseFinished ?
-          <>
+        isExerciseFinished
+          ? <>
             <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} />
             <AnswerList data={questionsAnswers as QuestionAnswer[]} />
-          </> :
-          <>
+          </>
+          : <>
             {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
             <MultipleChoiceQuestion
               key={currentIndex}
@@ -105,5 +105,5 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
           </>
       }
     </div>
-  )
+  );
 }

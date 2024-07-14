@@ -4,7 +4,7 @@ import { withRouter } from 'storybook-addon-remix-react-router';
 
 export default {
   component: LessonsAccordion,
-  decorators: [ withRouter ],
+  decorators: [withRouter],
   title: 'Lesson Accordion',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
@@ -15,7 +15,7 @@ const defaultArgs = {
   bookId: Genki3.id,
   lessons: Genki3.lessons,
   viewMode: 'DETAILED',
-}
+};
 
 export const Default = {
   args: { ...defaultArgs },

@@ -2,8 +2,8 @@ import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import { fn } from '@storybook/test';
 
 export const MultipleChoiceQuestionActionsData = {
-  onChoiceSelect: fn()
-}
+  onChoiceSelect: fn(),
+};
 
 export default {
   component: MultipleChoiceQuestion,
@@ -11,7 +11,7 @@ export default {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
-    ...MultipleChoiceQuestionActionsData
+    ...MultipleChoiceQuestionActionsData,
   },
   decorators: [
     (Story) => (
@@ -31,32 +31,32 @@ const data = {
         '1',
         '2',
         '3',
-      ]
-    }
+      ],
+    },
   },
   choices: [
     {
       id: '0',
-      content: 'わ'
+      content: 'わ',
     },
     {
       id: '1',
-      content: 'み'
+      content: 'み',
     },
     {
       id: '2',
-      content: 'へ'
+      content: 'へ',
     },
     {
       id: '3',
-      content: 'ふ'
+      content: 'ふ',
     },
   ],
-}
+};
 
 export const Default = {
   args: {
     ...data,
     index: 0,
-  }
+  },
 };

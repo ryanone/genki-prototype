@@ -12,7 +12,7 @@ export const DefaultHiragana = {
   args: {
     val: {
       content: 'つ',
-      id: "0"
+      id: '0',
     },
   },
 };
@@ -21,7 +21,7 @@ export const DefaultEnglish = {
   args: {
     val: {
       content: 'graduate student',
-      id: "0"
+      id: '0',
     },
   },
 };

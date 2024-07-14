@@ -4,7 +4,7 @@ import { withRouter } from 'storybook-addon-remix-react-router';
 
 export default {
   component: ExercisesSection,
-  decorators: [ withRouter ],
+  decorators: [withRouter],
   title: 'Exercises Section',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
@@ -15,7 +15,7 @@ const defaultArgs = {
   bookId: 'genki-3',
   lessonId: 'lesson-0',
   section: Genki3Lesson0.sections[0],
-}
+};
 
 export const Default = {
   args: { ...defaultArgs },

@@ -11,10 +11,10 @@ export default function Timer({ isRunning, onTick }: TimerProps) {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    let intervalId: number|undefined;
+    let intervalId: number | undefined;
     if (isRunning) {
       intervalId = window.setInterval(() => {
-        setSeconds(s => {
+        setSeconds((s) => {
           const nextTick = s + 1;
           if (onTick) {
             onTick(nextTick);
@@ -27,12 +27,12 @@ export default function Timer({ isRunning, onTick }: TimerProps) {
     }
 
     return () => clearInterval(intervalId);
-  }, [isRunning, onTick])
+  }, [isRunning, onTick]);
 
   return (
     <div className={styles.timer}>
       <div className={styles.heading}>Time Elapsed</div>
       <div className={styles.count} role="timer" aria-live="polite">{formatTimer(seconds)}</div>
     </div>
-  )
+  );
 }

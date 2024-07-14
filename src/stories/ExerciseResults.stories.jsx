@@ -11,7 +11,7 @@ export default {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
-    ...ExerciseResultsActionsData
+    ...ExerciseResultsActionsData,
   },
   decorators: [
     (Story) => (
@@ -27,5 +27,5 @@ export const Default = {
     numSolved: 20,
     numWrong: 2,
     timeElapsed: 60,
-  }
+  },
 };

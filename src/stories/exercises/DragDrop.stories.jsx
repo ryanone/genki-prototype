@@ -14,7 +14,7 @@ const data = { ...Genki3Exercise01 };
 export const DefaultHorizontal = {
   args: {
     data,
-  }
+  },
 };
 
 export const DefaultVertical = {

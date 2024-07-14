@@ -5,7 +5,7 @@ import styles from './VerticalDropTargetList.module.css';
 
 type VerticalDropTargetListProps = {
   onDropTargetDrop: (questionId: string) => void;
-}
+};
 
 export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDropTargetListProps) {
   const answers = useAppSelector((state) => state.dragDrop.answers);
@@ -15,18 +15,18 @@ export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDro
   return (
     <div className={styles.verticalDropTargetList}>
       {
-        answers?.map(a => {
+        answers?.map((a) => {
           return <DropTarget
             key={a.question.content}
-            layout={"HORIZONTAL"}
+            layout={'HORIZONTAL'}
             result={a.result}
             numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
             val1={{ id: a.question.content, content: a.question.content }}
             val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
             onDrop={onDropTargetDrop}
-          />
+          />;
         })
       }
     </div>
-  )
+  );
 }

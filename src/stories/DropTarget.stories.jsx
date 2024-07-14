@@ -11,7 +11,7 @@ export default {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
-    ...DropTargetActionsData
+    ...DropTargetActionsData,
   },
 };
 
@@ -71,7 +71,7 @@ export const FilledVertical = {
     layout: 'VERTICAL',
     val2: {
       content: 'わ',
-    }
+    },
   },
 };
 
@@ -81,7 +81,7 @@ export const IncorrectHorizontal = {
     result: 'INCORRECT',
     val2: {
       content: 'ほ',
-      id: '50'
+      id: '50',
     },
   },
 };
@@ -93,7 +93,7 @@ export const IncorrectVertical = {
     result: 'INCORRECT',
     val2: {
       content: 'ほ',
-      id: '50'
+      id: '50',
     },
   },
 };
@@ -106,7 +106,7 @@ export const NumIncorrectGuessesHorizontal = {
     numIncorrectGuesses: 5,
     val2: {
       content: 'ほ',
-      id: '50'
+      id: '50',
     },
   },
 };
@@ -119,7 +119,7 @@ export const NumIncorrectGuessesVertical = {
     numIncorrectGuesses: 5,
     val2: {
       content: 'ほ',
-      id: '50'
+      id: '50',
     },
   },
 };

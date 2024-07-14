@@ -9,9 +9,11 @@ type MultipleChoiceQuestionProps = {
   isDisabled?: boolean;
   question: Question;
   onChoiceSelect?: (id: string) => void;
-}
+};
 
-export default function MultipleChoiceQuestion({ choices, index, isDisabled, question, onChoiceSelect }: MultipleChoiceQuestionProps) {
+export default function MultipleChoiceQuestion({
+  choices, index, isDisabled, question, onChoiceSelect,
+}: MultipleChoiceQuestionProps) {
   return (
     <div className={styles.multipleChoiceQuestion}>
       <div className={styles.content}>{index + 1}. {question.content}</div>
@@ -19,5 +21,5 @@ export default function MultipleChoiceQuestion({ choices, index, isDisabled, que
         <ChoiceList choices={choices} isDisabled={isDisabled} onChoiceSelect={onChoiceSelect}/>
       </div>
     </div>
-  )
+  );
 }

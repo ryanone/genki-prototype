@@ -21,5 +21,5 @@ const data = { ...Genki3Exercise01 };
 export const Default = {
   args: {
     data,
-  }
+  },
 };

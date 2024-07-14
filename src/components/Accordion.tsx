@@ -6,21 +6,21 @@ type AccordionSection = {
   content: ReactNode;
   title: ReactNode;
   defaultExpanded?: boolean;
-}
+};
 
 type AccordionOptions = {
   allowMultipleExpanded: boolean;
-}
+};
 
 type AccordionProps = {
   sections: AccordionSection[];
   options?: AccordionOptions;
-}
+};
 
 export default function Accordion({ sections, options }: AccordionProps) {
   const accordionId = useId();
   const [openSections, setOpenSections] = useState(
-    new Set(sections.filter(s => s.defaultExpanded === true).map(s => s.id)),
+    new Set(sections.filter((s) => s.defaultExpanded === true).map((s) => s.id)),
   );
   const handleTitleClick = (id: string) => {
     const newOpenSections = new Set(openSections);
@@ -35,7 +35,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
       }
     }
     setOpenSections(newOpenSections);
-  }
+  };
 
   return (
     <div className={styles.accordion}>
@@ -56,7 +56,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
               >
                 <span className={styles.titleContent}>{title}</span>
                 <span
-                  aria-hidden={true}
+                  aria-hidden
                   className={[
                     styles.icon,
                     isExpanded && styles.iconRotated,
@@ -75,9 +75,9 @@ export default function Accordion({ sections, options }: AccordionProps) {
                 {content}
               </div>
             </div>
-          )
+          );
         })
       }
     </div>
-  )
+  );
 }

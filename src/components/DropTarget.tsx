@@ -5,24 +5,26 @@ import styles from './DropTarget.module.css';
 type DropTargetValue = {
   content: string;
   id: string;
-}
+};
 
 type DropTargetValue2 = {
   content: string;
   id?: string;
-}
+};
 
 type DropTargetProps = {
-  layout: 'HORIZONTAL'|'VERTICAL';
-  result: 'CORRECT'|'INCORRECT'|undefined;
+  layout: 'HORIZONTAL' | 'VERTICAL';
+  result: 'CORRECT' | 'INCORRECT' | undefined;
   numIncorrectGuesses?: number;
   style?: Record<string, string>;
   val1: DropTargetValue;
   val2?: DropTargetValue2;
   onDrop: (value: string) => void;
-}
+};
 
-export default function DropTarget({ layout, result, numIncorrectGuesses, style, val1, val2, onDrop }: DropTargetProps) {
+export default function DropTarget({
+  layout, result, numIncorrectGuesses, style, val1, val2, onDrop,
+}: DropTargetProps) {
   const [isZoneEntered, setIsZoneEntered] = useState(false);
   const isDisabled = result === 'CORRECT';
   const handleZoneDropClick = () => {
@@ -49,9 +51,9 @@ export default function DropTarget({ layout, result, numIncorrectGuesses, style,
 
   let numIncorrectContent;
   if (numIncorrectGuesses && numIncorrectGuesses > 0) {
-    numIncorrectContent = layout === 'HORIZONTAL' ?
-      (<span className={styles.numIncorrect}><FaArrowLeft className={styles.incorrectArrow} role="presentation"/>wrong {numIncorrectGuesses}x</span>) :
-      (<span className={styles.numIncorrect}>x{numIncorrectGuesses}</span>)
+    numIncorrectContent = layout === 'HORIZONTAL'
+      ? (<span className={styles.numIncorrect}><FaArrowLeft className={styles.incorrectArrow} role="presentation"/>wrong {numIncorrectGuesses}x</span>)
+      : (<span className={styles.numIncorrect}>x{numIncorrectGuesses}</span>);
     zoneClasses.push(styles.zoneHasIncorrect);
   }
 
@@ -65,5 +67,5 @@ export default function DropTarget({ layout, result, numIncorrectGuesses, style,
       </div>
       {numIncorrectContent}
     </div>
-  )
+  );
 }

@@ -6,7 +6,7 @@ type HeaderProps = {
   bookId: string;
   description: string;
   title: string;
-}
+};
 
 export default function Header({ bookId, description, title }: HeaderProps) {
   return (
@@ -18,5 +18,5 @@ export default function Header({ bookId, description, title }: HeaderProps) {
       </h1>
       <a className={styles.forkMe} href="https://github.com/SethClydesdale/genki-study-resources" target="_blank">FORK ME</a>
     </header>
-  )
+  );
 }

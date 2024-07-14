@@ -7,8 +7,8 @@ import { type ExerciseInfo, type LessonExercises, type LessonSection } from '@/d
 type LessonDetailProps = {
   bookId: string;
   lessonId: string;
-  viewMode: 'COMPACT'|'DETAILED';
-}
+  viewMode: 'COMPACT' | 'DETAILED';
+};
 
 export default function LessonDetail({ bookId, lessonId, viewMode }: LessonDetailProps) {
   const [sections, setSections] = useState<LessonSection[]>([]);
@@ -18,21 +18,21 @@ export default function LessonDetail({ bookId, lessonId, viewMode }: LessonDetai
         const response = await loadData({ bookId, lessonId: `lesson-${lessonId}` }) as LessonExercises;
         setSections(response.sections);
       } catch (e) {
-        console.error(`LessonDetail - error in getData(): %o`, e);
+        console.error('LessonDetail - error in getData(): %o', e);
       }
     }
 
     getData();
   }, [bookId, lessonId]);
-  const exercises: ExerciseInfo[] = viewMode === 'COMPACT' ? sections.flatMap(s => s.exercises) : [];
+  const exercises: ExerciseInfo[] = viewMode === 'COMPACT' ? sections.flatMap((s) => s.exercises) : [];
 
   return (
     <>
       {
-        viewMode === 'DETAILED' ?
-          (<div>{sections.map((s, i) => <ExercisesSection key={s.content ?? i} bookId={bookId} lessonId={lessonId} section={s}/>)}</div>) :
-          <ExercisesList bookId={bookId} lessonId={lessonId} exercises={exercises}/>
+        viewMode === 'DETAILED'
+          ? (<div>{sections.map((s, i) => <ExercisesSection key={s.content ?? i} bookId={bookId} lessonId={lessonId} section={s}/>)}</div>)
+          : <ExercisesList bookId={bookId} lessonId={lessonId} exercises={exercises}/>
       }
     </>
-  )
+  );
 }

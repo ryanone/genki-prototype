@@ -4,17 +4,19 @@ import {
   selectIsFinished as selectIsFinishedDraft,
   selectLayoutConfiguration as selectLayoutConfigurationDraft,
   selectRemainingChoices as selectRemainingChoicesDraft,
-  selectResults as selectResultsDraft
+  selectResults as selectResultsDraft,
 } from '@/features/dragDrop/selectors';
 import { randomizeArray } from '@/utils/randomize';
-import type { Choice, DragDropExercise, DragDropFlow, DragDropMeta, Question } from '@/data/exercise';
+import type {
+  Choice, DragDropExercise, DragDropFlow, DragDropMeta, Question,
+} from '@/data/exercise';
 
 export type Answer = {
   question: Question;
   selectedChoiceId?: string;
   numIncorrectGuesses?: number;
-  result?: 'CORRECT'|'INCORRECT';
-}
+  result?: 'CORRECT' | 'INCORRECT';
+};
 
 export type DragDropState = {
   answers: Answer[];
@@ -23,7 +25,7 @@ export type DragDropState = {
   startTime: number;
   meta?: DragDropMeta;
   layout?: DragDropFlow;
-}
+};
 
 type InitializePayload = {
   exercise: DragDropExercise;
@@ -32,14 +34,14 @@ type InitializePayload = {
 type SelectChoicePayload = {
   choiceId: string;
   questionId: string;
-}
+};
 
 const initialState: DragDropState = {
   answers: [],
   choices: [],
   doReview: false,
   startTime: Date.now(),
-}
+};
 
 export const dragDropSlice = createSlice({
   name: 'dragDrop',
@@ -47,13 +49,13 @@ export const dragDropSlice = createSlice({
   reducers: {
     chooseChoice(state, action: PayloadAction<SelectChoicePayload>) {
       const { choiceId, questionId } = action.payload;
-      const answer = state.answers?.find(a => a.question.content === questionId);
+      const answer = state.answers?.find((a) => a.question.content === questionId);
       if (answer) {
         // Mark the corresponding answer with the selected choice.
         // If all answers have been filled, create results
         answer.selectedChoiceId = choiceId;
-        answer.result = answer.selectedChoiceId === answer.question.choices.correctId ?
-          'CORRECT' : 'INCORRECT';
+        answer.result = answer.selectedChoiceId === answer.question.choices.correctId
+          ? 'CORRECT' : 'INCORRECT';
         if (answer.result === 'INCORRECT') {
           answer.numIncorrectGuesses = answer.numIncorrectGuesses === undefined ? 1 : answer.numIncorrectGuesses + 1;
         }
@@ -62,10 +64,10 @@ export const dragDropSlice = createSlice({
     initialize(state, action: PayloadAction<InitializePayload>) {
       const { exercise } = action.payload;
       const randomizeQuestions = !!exercise.meta.DRAG_DROP?.randomizeQuestions;
-      const answers = (randomizeQuestions ?
-        randomizeArray(exercise.questions) as Question[] :
-        exercise.questions
-      ).map(question => ({ question }));
+      const answers = (randomizeQuestions
+        ? randomizeArray(exercise.questions) as Question[]
+        : exercise.questions
+      ).map((question) => ({ question }));
       state.answers = answers;
       state.choices = exercise.choices;
       state.doReview = false;
@@ -79,7 +81,7 @@ export const dragDropSlice = createSlice({
       //   If no choice is selected, fill it in, but with no result
       //   If choice is incorrect, select correct choice, and clear out the result and num of incorrect guesses
       //   If choice is correct, clear out the number of incorrect guesses
-      state.answers?.forEach(a => {
+      state.answers?.forEach((a) => {
         if (!a.result) {
           a.selectedChoiceId = a.question.choices.correctId;
         } else if (a.result === 'INCORRECT') {
@@ -102,7 +104,7 @@ export const dragDropSlice = createSlice({
     selectLayoutConfiguration: selectLayoutConfigurationDraft,
     selectRemainingChoices: selectRemainingChoicesDraft,
     selectResults: selectResultsDraft,
-  }
+  },
 });
 
 export const {
@@ -116,6 +118,6 @@ export const {
   selectIsFinished,
   selectLayoutConfiguration,
   selectRemainingChoices,
-  selectResults
+  selectResults,
 } = dragDropSlice.selectors;
 export default dragDropSlice.reducer;

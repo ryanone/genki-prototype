@@ -7,7 +7,7 @@ type ProgressBarProps = {
 
 export default function ProgressBar({ current, total }: ProgressBarProps) {
   const completionStyles: Record<string, string> = {
-    'width': `${(current/total) * 100}%`,
+    'width': `${(current / total) * 100}%`,
   };
 
   return (
@@ -15,5 +15,5 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
       <div className={styles.completion} style={completionStyles}></div>
       <div className={styles.status}>{current}/{total}</div>
     </div>
-  )
+  );
 }

@@ -1,7 +1,7 @@
 import AnswerList from '@/components/AnswerList';
 
 export const MultipleChoiceQuestionActionsData = {
-}
+};
 
 export default {
   component: AnswerList,
@@ -31,15 +31,15 @@ const data = [
       },
       {
         id: '1',
-        content: 'み'
+        content: 'み',
       },
       {
         id: '2',
-        content: 'へ'
+        content: 'へ',
       },
       {
         id: '3',
-        content: 'ふ'
+        content: 'ふ',
       },
     ],
   },
@@ -50,7 +50,7 @@ const data = [
     choices: [
       {
         id: '0',
-        content: 'わ'
+        content: 'わ',
       },
       {
         id: '1',
@@ -64,7 +64,7 @@ const data = [
       },
       {
         id: '3',
-        content: 'ふ'
+        content: 'ふ',
       },
     ],
   },
@@ -73,5 +73,5 @@ const data = [
 export const Default = {
   args: {
     data,
-  }
+  },
 };

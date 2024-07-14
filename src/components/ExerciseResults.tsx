@@ -8,17 +8,19 @@ type ExerciseResultsProps = {
   numWrong: number;
   timeElapsed: number;
   onRestart: () => void;
-}
+};
 
-export default function ExerciseResults({ numSolved, numWrong, timeElapsed, onRestart }: ExerciseResultsProps) {
+export default function ExerciseResults({
+  numSolved, numWrong, timeElapsed, onRestart,
+}: ExerciseResultsProps) {
   const score = Math.floor((numSolved - numWrong) / numSolved * 100);
   let message;
   if (score === 100) {
-    message = <p className={styles.advice}>PERFECT! Great job!</p>
+    message = <p className={styles.advice}>PERFECT! Great job!</p>;
   } else if (score > 70) {
-    message = <p className={styles.advice}>Nice work!</p>
+    message = <p className={styles.advice}>Nice work!</p>;
   } else {
-    message = <p className={styles.advice}>Keep studying!</p>
+    message = <p className={styles.advice}>Keep studying!</p>;
   }
 
   return (
@@ -49,5 +51,5 @@ export default function ExerciseResults({ numSolved, numWrong, timeElapsed, onRe
         <button className={`${styles.button} ${commonStyles.button}`} onClick={onRestart}><FaArrowsRotate className="dragdrop__review-icon" role="presentation"/>Try Again</button>
       </div>
     </div>
-  )
+  );
 }

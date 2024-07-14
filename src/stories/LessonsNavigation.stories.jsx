@@ -22,7 +22,7 @@ const defaultArgs = {
   bookId: Genki3.id,
   lessons: Genki3.lessons,
   viewMode: 'COMPACT',
-}
+};
 
 export const Default = {
   args: { ...defaultArgs },

@@ -4,25 +4,25 @@ import { fn } from '@storybook/test';
 const choices = [
   {
     id: '0',
-    content: 'Lorem ipsum dolor sit amet'
+    content: 'Lorem ipsum dolor sit amet',
   },
   {
     id: '1',
-    content: 'Mauris at feugiat mauris'
+    content: 'Mauris at feugiat mauris',
   },
   {
     id: '2',
-    content: 'Vestibulum eleifend neque'
+    content: 'Vestibulum eleifend neque',
   },
   {
     id: '3',
-    content: 'Quisque arcu odio'
+    content: 'Quisque arcu odio',
   },
-]
+];
 
 export const ChoiceListActionsData = {
   onChoiceSelect: fn(),
-}
+};
 
 export default {
   component: ChoiceList,
@@ -30,7 +30,7 @@ export default {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
-    ...ChoiceListActionsData
+    ...ChoiceListActionsData,
   },
   decorators: [
     (Story) => (

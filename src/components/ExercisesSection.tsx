@@ -6,7 +6,7 @@ type ExercisesSectionProps = {
   bookId: string;
   lessonId: string;
   section: LessonSection;
-}
+};
 
 export default function ExercisesSection({ bookId, lessonId, section }: ExercisesSectionProps) {
   return (
@@ -14,5 +14,5 @@ export default function ExercisesSection({ bookId, lessonId, section }: Exercise
       { section.content ? <div className={styles.heading}>{section.content}</div> : null }
       <ExercisesList bookId={bookId} lessonId={lessonId} exercises={section.exercises}/>
     </div>
-  )
+  );
 }

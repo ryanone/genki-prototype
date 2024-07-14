@@ -6,7 +6,7 @@ type LayoutConfigurationBase = {
   canSupportMultipleLayouts: boolean;
   instructions: string;
   randomizeQuestions: boolean;
-}
+};
 
 export interface LayoutConfigurationHorizontal extends LayoutConfigurationBase {
   layout: 'HORIZONTAL';
@@ -21,7 +21,7 @@ export interface LayoutConfigurationVertical extends LayoutConfigurationBase {
   layout: 'VERTICAL';
 }
 
-export type LayoutConfiguration = LayoutConfigurationHorizontal|LayoutConfigurationVertical;
+export type LayoutConfiguration = LayoutConfigurationHorizontal | LayoutConfigurationVertical;
 
 const BASE_HORIZONTAL_CONFIG = {
   canSupportMultipleLayouts: false,
@@ -41,7 +41,7 @@ const BASE_VERTICAL_CONFIG = {
   randomizeQuestions: false,
 
   layout: 'VERTICAL',
-}
+};
 
 export function createLayoutConfiguration(meta: DragDropMeta, layout?: DragDropFlow): LayoutConfiguration {
   const config: LayoutConfigurationBase = {
@@ -60,7 +60,7 @@ export function createLayoutConfiguration(meta: DragDropMeta, layout?: DragDropF
 
     const questionsStyles: Record<string, string> = {};
     let maxTrackLen = Number.MIN_VALUE;
-    let crossAxisLen: number|undefined;
+    let crossAxisLen: number | undefined;
     if (meta?.HORIZONTAL?.configuration) {
       if (Array.isArray(meta.HORIZONTAL.configuration)) {
         const questionsTrackConfig = meta.HORIZONTAL.configuration;

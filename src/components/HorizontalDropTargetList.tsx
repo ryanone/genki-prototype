@@ -7,7 +7,7 @@ import styles from './HorizontalDropTargetList.module.css';
 type HorizontalDropTargetListProps = {
   layoutConfig: LayoutConfigurationHorizontal;
   onDropTargetDrop: (questionId: string) => void;
-}
+};
 
 export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDrop }: HorizontalDropTargetListProps) {
   const {
@@ -19,11 +19,11 @@ export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDro
 
   let trackIndex = 0;
   let currTrackLen = 0;
-  return(
+  return (
     <div className={styles.horizontalDropTargetList} style={layoutConfig.questionsStyles}>
       {
-        answers?.map(a => {
-          let style: Record<string, string>|undefined;
+        answers?.map((a) => {
+          let style: Record<string, string> | undefined;
           if (questionsTrackConfig) {
             currTrackLen++;
             if (currTrackLen === questionsTrackConfig[trackIndex]) {
@@ -31,7 +31,7 @@ export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDro
               if (spanLen > 1) {
                 const trackStyle = questionsFlow === 'HORIZONTAL' ? 'gridColStart' : 'gridRowStart';
                 style = {
-                  [trackStyle]: `span ${spanLen}`
+                  [trackStyle]: `span ${spanLen}`,
                 };
               }
               currTrackLen = 0;
@@ -48,9 +48,9 @@ export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDro
             val1={{ id: a.question.content, content: a.question.content }}
             val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
             onDrop={onDropTargetDrop}
-          />
+          />;
         })
       }
     </div>
-  )
+  );
 }

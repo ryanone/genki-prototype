@@ -17,5 +17,5 @@ export default function Exercise() {
       </div>
       <ExerciseRenderer data={exercise} />
     </div>
-  )
+  );
 }

@@ -9,14 +9,14 @@ type BookParams = {
 type ExerciseParams = {
   bookId: string;
   exerciseId: string;
-}
+};
 
 type LessonExercisesParams = {
   bookId: string;
   lessonId: string;
-}
+};
 
-export async function loadData(params: BookParams|ExerciseParams|LessonExercisesParams): Promise<Book|Exercise|LessonExercises> {
+export async function loadData(params: BookParams | ExerciseParams | LessonExercisesParams): Promise<Book | Exercise | LessonExercises> {
   if ('lessonId' in params) {
     return await import (`../data/${params.bookId}/lessons/${params.lessonId}.json`);
   } else if ('exerciseId' in params) {

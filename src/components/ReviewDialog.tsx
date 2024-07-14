@@ -5,7 +5,7 @@ type ReviewDialogProps = {
   isOpen: boolean;
   onConfirm: () => void;
   onCancel?: () => void;
-}
+};
 
 export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -13,13 +13,13 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
     e.preventDefault();
     ref.current?.close();
     onConfirm();
-  }
+  };
   const handleCancel = () => {
     ref.current?.close();
     if (onCancel) {
       onCancel();
     }
-  }
+  };
 
   useEffect(() => {
     if (isOpen && ref.current) {
@@ -28,8 +28,8 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
   }, [isOpen]);
 
   return (
-      isOpen &&
-      (<dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
+    isOpen
+      && (<dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
         <div className={commonStyles.dialogHeader}>Activate Review Mode?</div>
         <div className={commonStyles.dialogContent}>
           Are you sure you want to review? Your current progress will be lost.
@@ -39,5 +39,5 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
           <button onClick={handleCancel} formMethod="dialog" className={commonStyles.button}>Close</button>
         </form>
       </dialog>)
-  )
+  );
 }

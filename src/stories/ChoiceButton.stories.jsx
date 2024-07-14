@@ -11,7 +11,7 @@ export default {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {
-    ...ChoiceButtonActionsData
+    ...ChoiceButtonActionsData,
   },
   decorators: [
     (Story) => (

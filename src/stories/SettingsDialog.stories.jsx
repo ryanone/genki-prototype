@@ -6,7 +6,6 @@ export const SettingsDialogActionsData = {
   onClose: fn(),
 };
 
-
 export default {
   component: SettingsDialog,
   title: 'Settings Dialog',
@@ -21,8 +20,8 @@ export default {
       <ThemeProvider>
         <Story />
       </ThemeProvider>
-    )
-  ]
+    ),
+  ],
 };
 
 export const DefaultOpen = {

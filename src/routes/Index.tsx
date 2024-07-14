@@ -8,5 +8,5 @@ export default function Index() {
         <Link to="/genki-3">Genki, 3rd edition</Link>
       </p>
     </div>
-  )
+  );
 }

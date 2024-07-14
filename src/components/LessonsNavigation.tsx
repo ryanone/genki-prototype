@@ -8,7 +8,7 @@ import commonStyles from '@/styles/common.module.css';
 type LessonsNavigationProps = {
   bookId: string;
   lessons: Lesson[];
-}
+};
 
 export default function LessonsNavigation({ bookId, lessons }: LessonsNavigationProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,5 +28,5 @@ export default function LessonsNavigation({ bookId, lessons }: LessonsNavigation
         <LessonsAccordion bookId={bookId} lessons={lessons} viewMode="COMPACT"/>
       </nav>
     </>
-  )
+  );
 }

@@ -11,5 +11,5 @@ export default function Index() {
       <h2>Lessons</h2>
       <LessonsAccordion bookId={book.id} lessons={book.lessons} viewMode="DETAILED"/>
     </div>
-  )
+  );
 }

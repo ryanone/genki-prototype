@@ -1,4 +1,6 @@
-import { useContext, useEffect, useRef, type MouseEvent } from 'react';
+import {
+  useContext, useEffect, useRef, type MouseEvent,
+} from 'react';
 import ThemeContext, { type Theme } from '@/context/ThemeContext';
 import styles from './SettingsDialog.module.css';
 import commonStyles from '@/styles/common.module.css';
@@ -6,7 +8,7 @@ import commonStyles from '@/styles/common.module.css';
 type SettingsDialogProps = {
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
 export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -20,17 +22,17 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
 
   const handleDarkModeChange = (value: Theme) => {
     setTheme(value);
-  }
+  };
 
   const handleCloseClick = (e: MouseEvent) => {
     e.preventDefault();
     ref.current?.close();
     onClose();
-  }
+  };
 
   return (
-    isOpen &&
-    <dialog className={commonStyles.dialog} ref={ref}>
+    isOpen
+    && <dialog className={commonStyles.dialog} ref={ref}>
       <div className={commonStyles.dialogHeader}>Settings</div>
       <div className={commonStyles.dialogContent}>
         <div className={styles.heading}>
@@ -66,5 +68,5 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
         <button onClick={handleCloseClick} className={commonStyles.button} autoFocus>Close</button>
       </form>
     </dialog>
-  )
+  );
 }

@@ -8,20 +8,20 @@ const selectAnswers = (state: DragDropState) => state.answers as Answer[];
 
 export const selectChoicesMap = createSelector(
   [
-    (state: DragDropState) => state.choices
+    (state: DragDropState) => state.choices,
   ],
-  (choices) => new Map(randomizeArray(choices).map(c => [c.id, c]))
+  (choices) => new Map(randomizeArray(choices).map((c) => [c.id, c])),
 );
 
 export const selectLayoutConfiguration = createSelector(
   [
     (state: DragDropState) => state.meta,
-    (state: DragDropState) => state.layout
+    (state: DragDropState) => state.layout,
   ],
   (meta, layout) => {
-    return meta ? createLayoutConfiguration(meta as DragDropMeta, layout) : undefined
-  }
-)
+    return meta ? createLayoutConfiguration(meta as DragDropMeta, layout) : undefined;
+  },
+);
 
 export const selectRemainingChoices = createSelector(
   [
@@ -29,23 +29,22 @@ export const selectRemainingChoices = createSelector(
     selectChoicesMap,
   ],
   (answers, choices) => {
-    const correctChoiceIds = new Set(answers.filter(val => val.selectedChoiceId && val.result === 'CORRECT').map(val => val.selectedChoiceId));
-    return Array.from(choices).filter(([id,]) => !correctChoiceIds.has(id)).map(([, choice]) => choice);
-  }
+    const correctChoiceIds = new Set(answers.filter((val) => val.selectedChoiceId && val.result === 'CORRECT').map((val) => val.selectedChoiceId));
+    return Array.from(choices).filter(([id]) => !correctChoiceIds.has(id)).map(([, choice]) => choice);
+  },
 );
 
 export const selectResults = createSelector(
   [
     selectAnswers,
-    selectRemainingChoices
+    selectRemainingChoices,
   ],
-  (answers, remainingChoices) =>
-    remainingChoices.length === 0 ?
-      {
-        numSolved: answers.length,
-        numWrong: answers.filter(a => a.numIncorrectGuesses).length,
-      } :
-      null
+  (answers, remainingChoices) => remainingChoices.length === 0
+    ? {
+      numSolved: answers.length,
+      numWrong: answers.filter((a) => a.numIncorrectGuesses).length,
+    }
+    : null,
 );
 
 export const selectIsFinished = createSelector(
@@ -56,5 +55,5 @@ export const selectIsFinished = createSelector(
   ],
   (answers, remainingChoices, doReview) => {
     return answers.length && (doReview || !remainingChoices.length);
-  }
+  },
 );

@@ -10,5 +10,5 @@ export default function BookRoute() {
       <Header bookId={book.id} description={book.description} title={book.title}/>
       <Outlet context={book}/>
     </div>
-  )
+  );
 }

@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <IndexRoute/>
+        element: <IndexRoute/>,
       },
       {
         path: Paths.book,
@@ -35,10 +35,10 @@ const router = createBrowserRouter([
             path: Paths.exercise,
             element: <ExerciseRoute/>,
             loader: exerciseLoader,
-          }
-        ]
+          },
+        ],
       },
-    ]
+    ],
   },
 ]);
 
@@ -48,4 +48,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <RouterProvider router={router}/>
     </Provider>
   </React.StrictMode>,
-)
+);

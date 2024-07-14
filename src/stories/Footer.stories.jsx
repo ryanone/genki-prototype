@@ -8,14 +8,13 @@ export default {
       <ThemeProvider>
         <Story />
       </ThemeProvider>
-    )
+    ),
   ],
   title: 'Footer',
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {},
 };
-
 
 export const Default = {
   args: { },

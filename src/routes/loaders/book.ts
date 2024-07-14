@@ -11,7 +11,7 @@ export async function loader({ params }: BookLoaderArgs): Promise<Book> {
   try {
     const response = await loadData({ bookId: params.bookId as string }) as Book;
     return { ...response };
-  } catch(e) {
+  } catch (e) {
     console.error('Book loader error: %o', e);
     throw e;
   }

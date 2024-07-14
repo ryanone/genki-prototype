@@ -18,17 +18,17 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
       localStorage.removeItem(THEME_KEY);
     }
     setTheme(theme);
-  }
+  };
 
   useEffect(() => {
     const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
     const darkMediaListener = (e: MediaQueryListEvent) => {
       e.matches && setTheme(DARK);
-    }
+    };
     const lightMedia = window.matchMedia('(prefers-color-scheme: light)');
     const lightMediaListener = (e: MediaQueryListEvent) => {
       e.matches && setTheme(LIGHT);
-    }
+    };
 
     const initialTheme = localStorage.getItem(THEME_KEY) as ThemeType;
     if (initialTheme) {
@@ -46,7 +46,7 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     return () => {
       darkMedia.removeEventListener('change', darkMediaListener);
       lightMedia.removeEventListener('change', lightMediaListener);
-    }
+    };
   }, []);
 
   useEffect(() => {
@@ -66,5 +66,5 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     <ThemeContext.Provider value={{ theme, setTheme: handleSetTheme }}>
       {children}
     </ThemeContext.Provider>
-  )
+  );
 }

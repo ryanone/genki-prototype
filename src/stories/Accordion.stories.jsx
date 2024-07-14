@@ -45,9 +45,8 @@ export const AllowMultipleExpanded = {
   },
 };
 
-
 export const DefaultExpanded = {
   args: {
-    sections: sections.map(s => ({ ...s, defaultExpanded: true, }))
+    sections: sections.map((s) => ({ ...s, defaultExpanded: true })),
   },
 };
