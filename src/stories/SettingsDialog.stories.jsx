@@ -1,6 +1,6 @@
+import { fn } from '@storybook/test';
 import SettingsDialog from '@/components/SettingsDialog';
 import ThemeProvider from '@/provider/ThemeProvider';
-import { fn } from '@storybook/test';
 
 export const SettingsDialogActionsData = {
   onClose: fn(),

@@ -1,6 +1,6 @@
+import { withRouter } from 'storybook-addon-remix-react-router';
 import Genki3 from '@/data/genki-3/index.json';
 import LessonsAccordion from '@/components/LessonsAccordion';
-import { withRouter } from 'storybook-addon-remix-react-router';
 
 export default {
   component: LessonsAccordion,

@@ -1,5 +1,5 @@
-import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import { fn } from '@storybook/test';
+import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 
 export const MultipleChoiceQuestionActionsData = {
   onChoiceSelect: fn(),

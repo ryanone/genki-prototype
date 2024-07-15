@@ -2,12 +2,12 @@ import type { KeyboardEvent } from 'react';
 import styles from './DraggableItem.module.css';
 
 type DraggableItemProps = {
+  onSelect: (id: string) => void;
+  onUnselect: () => void;
   val: {
     content: string;
     id: string;
-  },
-  onSelect: (id: string) => void;
-  onUnselect: () => void;
+  }
 };
 
 export default function DraggableItem({ val, onSelect, onUnselect }: DraggableItemProps) {

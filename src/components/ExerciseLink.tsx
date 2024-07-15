@@ -4,8 +4,8 @@ import { type ExerciseInfo } from '@/data/lesson';
 
 type ExerciseLinkProps = {
   bookId: string;
-  lessonId: string;
   exercise: ExerciseInfo;
+  lessonId: string;
 };
 
 export default function ExerciseLink({ bookId, lessonId, exercise }: ExerciseLinkProps) {

@@ -1,5 +1,5 @@
-import DropTarget from '@/components/DropTarget';
 import { fn } from '@storybook/test';
+import DropTarget from '@/components/DropTarget';
 
 export const DropTargetActionsData = {
   onDrop: fn(),

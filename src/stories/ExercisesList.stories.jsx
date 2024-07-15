@@ -1,6 +1,6 @@
+import { withRouter } from 'storybook-addon-remix-react-router';
 import ExercisesList from '@/components/ExercisesList';
 import Genki3Lesson0 from '@/data/genki-3/lessons/lesson-0.json';
-import { withRouter } from 'storybook-addon-remix-react-router';
 
 export default {
   component: ExercisesList,

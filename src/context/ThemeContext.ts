@@ -3,8 +3,8 @@ import { createContext } from 'react';
 export type Theme = 'dark' | 'light' | null | undefined;
 
 type ThemeContextValue = {
-  theme: Theme;
   setTheme: (value: Theme) => void;
+  theme: Theme;
 };
 
 const ThemeContext = createContext({

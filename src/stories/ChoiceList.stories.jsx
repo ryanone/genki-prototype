@@ -1,5 +1,5 @@
-import ChoiceList from '@/components/ChoiceList';
 import { fn } from '@storybook/test';
+import ChoiceList from '@/components/ChoiceList';
 
 const choices = [
   {

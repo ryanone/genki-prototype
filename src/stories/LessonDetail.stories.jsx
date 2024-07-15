@@ -1,5 +1,5 @@
-import LessonDetail from '@/components/LessonDetail';
 import { withRouter } from 'storybook-addon-remix-react-router';
+import LessonDetail from '@/components/LessonDetail';
 
 export default {
   component: LessonDetail,

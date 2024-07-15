@@ -1,5 +1,5 @@
-import ReviewDialog from '@/components/ReviewDialog';
 import { fn } from '@storybook/test';
+import ReviewDialog from '@/components/ReviewDialog';
 
 export const ReviewDialogActionsData = {
   onConfirm: fn(),

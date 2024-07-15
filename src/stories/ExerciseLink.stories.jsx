@@ -1,6 +1,6 @@
+import { withRouter } from 'storybook-addon-remix-react-router';
 import ExerciseLink from '@/components/ExerciseLink';
 import Genki3Lesson0 from '@/data/genki-3/lessons/lesson-0.json';
-import { withRouter } from 'storybook-addon-remix-react-router';
 
 export default {
   component: ExerciseLink,

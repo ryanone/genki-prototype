@@ -1,5 +1,5 @@
-import ChoiceButton from '@/components/ChoiceButton';
 import { fn } from '@storybook/test';
+import ChoiceButton from '@/components/ChoiceButton';
 
 export const ChoiceButtonActionsData = {
   onClick: fn(),

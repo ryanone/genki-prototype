@@ -12,19 +12,19 @@ import type {
 } from '@/data/exercise';
 
 export type Answer = {
-  question: Question;
-  selectedChoiceId?: string;
   numIncorrectGuesses?: number;
+  question: Question;
   result?: 'CORRECT' | 'INCORRECT';
+  selectedChoiceId?: string;
 };
 
 export type DragDropState = {
   answers: Answer[];
   choices: Choice[];
   doReview: boolean;
-  startTime: number;
-  meta?: DragDropMeta;
   layout?: DragDropFlow;
+  meta?: DragDropMeta;
+  startTime: number;
 };
 
 type InitializePayload = {

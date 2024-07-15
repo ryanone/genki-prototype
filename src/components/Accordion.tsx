@@ -2,10 +2,10 @@ import { useId, useState, type ReactNode } from 'react';
 import styles from './Accordion.module.css';
 
 type AccordionSection = {
-  id: string;
   content: ReactNode;
-  title: ReactNode;
   defaultExpanded?: boolean;
+  id: string;
+  title: ReactNode;
 };
 
 type AccordionOptions = {
@@ -13,8 +13,8 @@ type AccordionOptions = {
 };
 
 type AccordionProps = {
-  sections: AccordionSection[];
   options?: AccordionOptions;
+  sections: AccordionSection[];
 };
 
 export default function Accordion({ sections, options }: AccordionProps) {

@@ -9,9 +9,9 @@ type LayoutConfigurationBase = {
 };
 
 export interface LayoutConfigurationHorizontal extends LayoutConfigurationBase {
+  dropTargetLayout: DragDropFlow;
   layout: 'HORIZONTAL';
   maxTrackLen: number;
-  dropTargetLayout: DragDropFlow;
   questionsFlow: DragDropFlow;
   questionsStyles: Record<string, string>;
   questionsTrackConfig?: number[];

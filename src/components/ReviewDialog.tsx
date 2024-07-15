@@ -3,8 +3,8 @@ import commonStyles from '@/styles/common.module.css';
 
 type ReviewDialogProps = {
   isOpen: boolean;
-  onConfirm: () => void;
   onCancel?: () => void;
+  onConfirm: () => void;
 };
 
 export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDialogProps) {

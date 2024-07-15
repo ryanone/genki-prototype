@@ -14,12 +14,12 @@ type DropTargetValue2 = {
 
 type DropTargetProps = {
   layout: 'HORIZONTAL' | 'VERTICAL';
-  result: 'CORRECT' | 'INCORRECT' | undefined;
   numIncorrectGuesses?: number;
+  onDrop: (value: string) => void;
+  result: 'CORRECT' | 'INCORRECT' | undefined;
   style?: Record<string, string>;
   val1: DropTargetValue;
   val2?: DropTargetValue2;
-  onDrop: (value: string) => void;
 };
 
 export default function DropTarget({

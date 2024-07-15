@@ -16,12 +16,12 @@ interface BaseMeta {
 }
 
 export interface DragDropMeta extends BaseMeta {
-  supportedLayouts: DragDropFlow[];
   HORIZONTAL?: {
-    questionsFlow: DragDropFlow;
-    questionLayout: DragDropFlow;
     configuration?: number | number[];
-  }
+    questionLayout: DragDropFlow;
+    questionsFlow: DragDropFlow;
+  },
+  supportedLayouts: DragDropFlow[];
 }
 
 interface MultipleChoiceMeta extends BaseMeta {
@@ -29,20 +29,20 @@ interface MultipleChoiceMeta extends BaseMeta {
 }
 
 export type Question = {
-  content: string;
   choices: {
     correctId: string;
   };
+  content: string;
 };
 
 export type RenderMode = 'DRAG_DROP' | 'MULTIPLE_CHOICE';
 
 export type BaseExercise = {
-  title: string;
   choices: Choice[];
+  meta: Meta;
   questions: Question[];
   supportedRenderModes: RenderMode[];
-  meta: Meta;
+  title: string;
 };
 
 export interface DragDropExercise extends BaseExercise {
@@ -60,7 +60,7 @@ export interface MultipleChoiceExercise extends BaseExercise {
 export type Exercise = DragDropExercise | MultipleChoiceExercise;
 
 export type Results = {
-  numWrong: number;
   numSolved: number;
+  numWrong: number;
   timeElapsed?: number;
 };

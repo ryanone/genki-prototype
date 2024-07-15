@@ -1,5 +1,5 @@
-import ExerciseResults from '@/components/ExerciseResults';
 import { fn } from '@storybook/test';
+import ExerciseResults from '@/components/ExerciseResults';
 
 export const ExerciseResultsActionsData = {
   onRestart: fn(),

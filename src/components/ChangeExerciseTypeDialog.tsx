@@ -6,10 +6,10 @@ import styles from './ChangeExerciseTypeDialog.module.css';
 import commonStyles from '@/styles/common.module.css';
 
 type ChangeExerciseTypeDialogProps = {
-  isOpen: boolean;
   exercise: Exercise;
-  onRenderModeChoose: (renderMode: RenderMode) => void;
+  isOpen: boolean;
   onCancel?: () => void;
+  onRenderModeChoose: (renderMode: RenderMode) => void;
 };
 
 /*

@@ -4,8 +4,8 @@ import type { Question } from '@/data/exercise';
 import styles from './AnswerList.module.css';
 
 export type QuestionAnswer = {
-  question: Question;
   choices: ChoiceItem[];
+  question: Question;
 };
 
 type AnswerListProps = {

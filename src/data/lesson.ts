@@ -1,13 +1,13 @@
 export type Lesson = {
   description: string;
-  title: string;
-  id: string;
   exercisesId: string;
+  id: string;
+  title: string;
 };
 
 export type ExerciseInfo = {
-  title: string;
   id: string;
+  title: string;
 };
 
 export type LessonExercises = {

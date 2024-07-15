@@ -6,8 +6,8 @@ import commonStyles from '@/styles/common.module.css';
 type ExerciseResultsProps = {
   numSolved: number;
   numWrong: number;
-  timeElapsed: number;
   onRestart: () => void;
+  timeElapsed: number;
 };
 
 export default function ExerciseResults({
