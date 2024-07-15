@@ -1,6 +1,6 @@
+import { useOutletContext } from 'react-router-dom';
 import { Book } from '@/data/book';
 import LessonsAccordion from '@/components/LessonsAccordion';
-import { useOutletContext } from 'react-router-dom';
 import styles from './Index.module.css';
 
 export default function Index() {
@@ -9,7 +9,7 @@ export default function Index() {
     <div className={styles.indexRoute}>
       <p>{book.introduction}</p>
       <h2>Lessons</h2>
-      <LessonsAccordion bookId={book.id} lessons={book.lessons} viewMode="DETAILED"/>
+      <LessonsAccordion bookId={book.id} lessons={book.lessons} viewMode="DETAILED" />
     </div>
   );
 }

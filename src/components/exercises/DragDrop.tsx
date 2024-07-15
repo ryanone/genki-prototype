@@ -1,6 +1,10 @@
 import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
 import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
 import {
+  useCallback, useEffect, useMemo, useRef, useState,
+} from 'react';
+import { useDispatch } from 'react-redux';
+import {
   chooseChoice,
   initialize,
   fillRemainingAnswers,
@@ -10,9 +14,6 @@ import {
   selectResults,
   toggleLayout,
 } from '@/features/dragDrop/dragDropSlice';
-import {
-  useCallback, useEffect, useMemo, useRef, useState,
-} from 'react';
 import DraggableItem from '@/components/DraggableItem';
 import ExerciseResults from '@/components/ExerciseResults';
 import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
@@ -20,7 +21,6 @@ import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import VerticalDropTargetList from '@/components/VerticalDropTargetList';
 import useAppSelector from '@/hooks/useAppSelector';
-import { useDispatch } from 'react-redux';
 import type { DragDropExercise } from '@/data/exercise';
 import type { LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import styles from './DragDrop.module.css';
@@ -102,43 +102,99 @@ export default function DragDrop({ data }: DragDropProps) {
   return (
     <div className={rootClasses.join(' ')}>
       {
-        isFinished && results
-          ? <ExerciseResults numSolved={results.numSolved} numWrong={results.numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} />
+        (isFinished && results)
+          ? (
+            <ExerciseResults
+              numSolved={results.numSolved}
+              numWrong={results.numWrong}
+              timeElapsed={timeElapsed.current}
+              onRestart={handleRestart}
+            />
+          )
           : null
       }
-      {layoutConfig?.instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{layoutConfig.instructions}</div>}
+      {layoutConfig?.instructions && (
+      <div className={styles.instructions}>
+        <FaCircleInfo className={styles.instructionsIcon} role="presentation" />
+        {layoutConfig.instructions}
+      </div>
+      )}
       <div className={styles.main}>
         {
           (isHorizontal && layoutConfig)
-            ? <HorizontalDropTargetList
-              layoutConfig={layoutConfig as LayoutConfigurationHorizontal}
-              onDropTargetDrop={handleDropTargetDrop}
-            />
-            : <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop}/>
+            ? (
+              <HorizontalDropTargetList
+                layoutConfig={layoutConfig as LayoutConfigurationHorizontal}
+                onDropTargetDrop={handleDropTargetDrop}
+              />
+            )
+            : <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop} />
         }
         <div className={styles.choices}>
           {
-            remainingChoices.map((choice) => <DraggableItem key={choice.id} val={choice} onSelect={handleChoiceSelect} onUnselect={handleChoiceUnselect}/>) ?? null
+            remainingChoices.map((choice) => (
+              <DraggableItem
+                key={choice.id}
+                val={choice}
+                onSelect={handleChoiceSelect}
+                onUnselect={handleChoiceUnselect}
+              />
+            )) ?? null
           }
         </div>
       </div>
       <div className={styles.actions}>
         {
           isFinished
-            ? <button className={`${styles.button} ${commonStyles.button}`} onClick={handleRestart}><FaArrowsRotate className={commonStyles.buttonIcon} role="presentation"/>Restart</button>
-            : <button className={`${styles.button} ${commonStyles.button}`} onClick={() => setShowReviewDialog(true)}><FaBook className={commonStyles.buttonIcon} role="presentation"/>Review</button>
+            ? (
+              <button className={`${styles.button} ${commonStyles.button}`} onClick={handleRestart} type="button">
+                <FaArrowsRotate className={commonStyles.buttonIcon} role="presentation" />
+                Restart
+              </button>
+            )
+            : (
+              <button
+                className={`${styles.button} ${commonStyles.button}`}
+                onClick={() => setShowReviewDialog(true)}
+                type="button"
+              >
+                <FaBook className={commonStyles.buttonIcon} role="presentation" />
+                Review
+              </button>
+            )
         }
         {
-          canChangeLayout && <button className={`${styles.button} ${commonStyles.button}`} onClick={handleChangeLayoutClick}>
+          canChangeLayout && (
+          <button className={`${styles.button} ${commonStyles.button}`} onClick={handleChangeLayoutClick} type="button">
             {
               isHorizontal
-                ? (<><CiGrid2V className={commonStyles.buttonIcon} role="presentation"/>Vertical Mode</>)
-                : (<><CiGrid2H className={commonStyles.buttonIcon} role="presentation"/>Horizontal Mode</>)
-            }</button>
+                ? (
+                  <>
+                    <CiGrid2V className={commonStyles.buttonIcon} role="presentation" />
+                    Vertical Mode
+                  </>
+                )
+                : (
+                  <>
+                    <CiGrid2H className={commonStyles.buttonIcon} role="presentation" />
+                    Horizontal Mode
+                  </>
+                )
+            }
+          </button>
+          )
         }
       </div>
-      <Timer key={`${startTime}`} isRunning={isTimerRunning} onTick={(numSeconds) => timeElapsed.current = numSeconds}/>
-      <ReviewDialog isOpen={showReviewDialog} onConfirm={handleReviewConfirm} onCancel={() => setShowReviewDialog(false)}/>
+      <Timer
+        key={`${startTime}`}
+        isRunning={isTimerRunning}
+        onTick={(numSeconds) => { timeElapsed.current = numSeconds; }}
+      />
+      <ReviewDialog
+        isOpen={showReviewDialog}
+        onConfirm={handleReviewConfirm}
+        onCancel={() => setShowReviewDialog(false)}
+      />
     </div>
   );
 }

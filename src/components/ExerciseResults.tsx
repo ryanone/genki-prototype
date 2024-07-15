@@ -1,5 +1,5 @@
 import { FaArrowsRotate } from 'react-icons/fa6';
-import { formatTimer } from '@/utils/time';
+import formatTimer from '@/utils/time';
 import styles from './ExerciseResults.module.css';
 import commonStyles from '@/styles/common.module.css';
 

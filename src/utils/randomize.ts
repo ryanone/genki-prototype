@@ -3,7 +3,7 @@ import type { ChoiceItem } from '@/components/ChoiceButton';
 
 export function randomizeArray<T>(input: T[]): T[] {
   const copy = [...input];
-  for (let i = copy.length - 1; i > 0; i--) {
+  for (let i = copy.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
@@ -14,14 +14,15 @@ export function generateRandomChoices(data: Exercise, questionKey: string, numCh
   const question = data.questions.find((q) => q.content === questionKey);
   let availableChoices = [...data.choices];
   const randomChoices: ChoiceItem[] = [];
+  let numChoicesRemaining = numChoices;
   if (question) {
     const correctChoice = data.choices.find((c) => c.id === question.choices.correctId);
     if (correctChoice) {
       availableChoices = availableChoices.filter((c) => c.id !== correctChoice.id);
       randomChoices.push({ ...correctChoice });
-      numChoices--;
+      numChoicesRemaining -= 1;
     }
-    while (numChoices) {
+    while (numChoicesRemaining) {
       randomChoices.push(
         {
           ...availableChoices.splice(
@@ -30,7 +31,7 @@ export function generateRandomChoices(data: Exercise, questionKey: string, numCh
           )[0],
         },
       );
-      numChoices--;
+      numChoicesRemaining -= 1;
     }
     return randomizeArray(randomChoices) as ChoiceItem[];
   }

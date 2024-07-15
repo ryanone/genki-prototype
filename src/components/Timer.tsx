@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { formatTimer } from '@/utils/time';
+import formatTimer from '@/utils/time';
 import styles from './Timer.module.css';
 
 type TimerProps = {

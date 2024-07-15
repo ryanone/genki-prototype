@@ -1,5 +1,7 @@
+import {
+  useCallback, useEffect, useMemo, useState, type ReactNode,
+} from 'react';
 import ThemeContext, { type Theme as ThemeType } from '@/context/ThemeContext';
-import { useEffect, useState, type ReactNode } from 'react';
 
 const THEME_KEY = 'theme';
 const DARK = 'dark';
@@ -11,24 +13,20 @@ type ThemeProviderProps = {
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<ThemeType>();
-  const handleSetTheme = (theme: ThemeType) => {
-    if (theme) {
-      localStorage.setItem(THEME_KEY, theme);
+  const handleSetTheme = useCallback((t: ThemeType) => {
+    if (t) {
+      localStorage.setItem(THEME_KEY, t);
     } else {
       localStorage.removeItem(THEME_KEY);
     }
-    setTheme(theme);
-  };
+    setTheme(t);
+  }, []);
 
   useEffect(() => {
     const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
-    const darkMediaListener = (e: MediaQueryListEvent) => {
-      e.matches && setTheme(DARK);
-    };
+    const darkMediaListener = (e: MediaQueryListEvent) => e.matches && setTheme(DARK);
     const lightMedia = window.matchMedia('(prefers-color-scheme: light)');
-    const lightMediaListener = (e: MediaQueryListEvent) => {
-      e.matches && setTheme(LIGHT);
-    };
+    const lightMediaListener = (e: MediaQueryListEvent) => e.matches && setTheme(LIGHT);
 
     const initialTheme = localStorage.getItem(THEME_KEY) as ThemeType;
     if (initialTheme) {
@@ -62,8 +60,9 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     }
   }, [theme]);
 
+  const providerValue = useMemo(() => ({ theme, setTheme: handleSetTheme }), [handleSetTheme, theme]);
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: handleSetTheme }}>
+    <ThemeContext.Provider value={providerValue}>
       {children}
     </ThemeContext.Provider>
   );

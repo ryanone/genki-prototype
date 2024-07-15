@@ -32,7 +32,8 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
 
   return (
     isOpen
-    && <dialog className={commonStyles.dialog} ref={ref}>
+    && (
+    <dialog className={commonStyles.dialog} ref={ref}>
       <div className={commonStyles.dialogHeader}>Settings</div>
       <div className={commonStyles.dialogContent}>
         <div className={styles.heading}>
@@ -43,20 +44,44 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
           <dd className={styles.settingContent}>
             <ul className={styles.darkModeList}>
               <li>
+                { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
                 <label className={styles.darkModeLabel}>
-                  <input className={styles.darkModeRadio} type="radio" name="darkMode" value="" defaultChecked={!theme} onClick={() => handleDarkModeChange(null)}/>
+                  <input
+                    className={styles.darkModeRadio}
+                    type="radio"
+                    name="darkMode"
+                    value=""
+                    defaultChecked={!theme}
+                    onClick={() => handleDarkModeChange(null)}
+                  />
                   Device settings
                 </label>
               </li>
               <li>
+                { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
                 <label className={styles.darkModeLabel}>
-                  <input className={styles.darkModeRadio} type="radio" name="darkMode" value="light" defaultChecked={theme === 'light'} onClick={() => handleDarkModeChange('light')}/>
+                  <input
+                    className={styles.darkModeRadio}
+                    type="radio"
+                    name="darkMode"
+                    value="light"
+                    defaultChecked={theme === 'light'}
+                    onClick={() => handleDarkModeChange('light')}
+                  />
                   Off
                 </label>
               </li>
               <li>
+                { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
                 <label className={styles.darkModeLabel}>
-                  <input className={styles.darkModeRadio} type="radio" name="darkMode" value="dark" defaultChecked={theme === 'dark'} onClick={() => handleDarkModeChange('dark')}/>
+                  <input
+                    className={styles.darkModeRadio}
+                    type="radio"
+                    name="darkMode"
+                    value="dark"
+                    defaultChecked={theme === 'dark'}
+                    onClick={() => handleDarkModeChange('dark')}
+                  />
                   Dark
                 </label>
               </li>
@@ -65,8 +90,9 @@ export default function SettingsDialog({ isOpen, onClose }: SettingsDialogProps)
         </dl>
       </div>
       <form className={commonStyles.dialogActions}>
-        <button onClick={handleCloseClick} className={commonStyles.button} autoFocus>Close</button>
+        <button onClick={handleCloseClick} className={commonStyles.button} type="button">Close</button>
       </form>
     </dialog>
+    )
   );
 }

@@ -1,8 +1,8 @@
-import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
 import { useRef, useState } from 'react';
+import { FaCircleInfo } from 'react-icons/fa6';
+import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
 import AnswerList from '@/components/AnswerList';
 import ExerciseResults from '@/components/ExerciseResults';
-import { FaCircleInfo } from 'react-icons/fa6';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
@@ -20,7 +20,12 @@ const NUM_CHOICES_PER_QUESTION = 4;
 export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isQuestionFinished, setIsQuestionFinished] = useState(false);
-  const questions = useRef(data.meta?.MULTIPLE_CHOICE?.randomizeQuestions ? randomizeArray(data.questions) as Question[] : data.questions);
+  const questions = useRef(
+    (data.meta?.MULTIPLE_CHOICE?.randomizeQuestions
+      ? randomizeArray(data.questions) as Question[]
+      : data.questions
+    ),
+  );
   const currentQuestion = questions.current[currentIndex];
   const [currentChoices, setCurrentChoices] = useState<ChoiceItem[]>(
     currentQuestion
@@ -38,7 +43,8 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
           ...c,
           result: (c.id === currentQuestion.choices.correctId) ? 'SELECTED_CORRECT' : 'INCORRECT',
         };
-      } else if (c.id === currentQuestion.choices.correctId) {
+      }
+      if (c.id === currentQuestion.choices.correctId) {
         return {
           ...c,
           result: 'UNSELECTED_CORRECT',
@@ -67,9 +73,14 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
     const nextQuestion = questions.current[0];
     setCurrentChoices(generateRandomChoices(data, nextQuestion.content, NUM_CHOICES_PER_QUESTION));
   };
-  const nextButton = (isQuestionFinished && <button className={styles.nextButton} onClick={handleNextClick}>
-    NEXT
-  </button>);
+  const nextButton = (
+    isQuestionFinished
+    && (
+      <button className={styles.nextButton} onClick={handleNextClick} type="button">
+        NEXT
+      </button>
+    )
+  );
   const questionsAnswers = isExerciseFinished ? questions.current.map((q, i) => (
     {
       question: q,
@@ -83,26 +94,40 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
     <div className={styles.multipleChoice}>
       {
         isExerciseFinished
-          ? <>
-            <ExerciseResults numSolved={numSolved} numWrong={numWrong} timeElapsed={timeElapsed.current} onRestart={handleRestart} />
-            <AnswerList data={questionsAnswers as QuestionAnswer[]} />
-          </>
-          : <>
-            {instructions && <div className={styles.instructions}><FaCircleInfo className={styles.instructionsIcon} role="presentation"/>{instructions}</div>}
-            <MultipleChoiceQuestion
-              key={currentIndex}
-              choices={currentChoices}
-              index={currentIndex}
-              isDisabled={isQuestionFinished}
-              question={currentQuestion}
-              onChoiceSelect={handleChoiceSelect}
-            />
-            <div className={styles.actions}>
-              {nextButton}
-            </div>
-            <ProgressBar current={currentIndex} total={questions.current.length}/>
-            <Timer isRunning={!isExerciseFinished} onTick={(numSeconds) => timeElapsed.current = numSeconds}/>
-          </>
+          ? (
+            <>
+              <ExerciseResults
+                numSolved={numSolved}
+                numWrong={numWrong}
+                timeElapsed={timeElapsed.current}
+                onRestart={handleRestart}
+              />
+              <AnswerList data={questionsAnswers as QuestionAnswer[]} />
+            </>
+          )
+          : (
+            <>
+              {instructions && (
+              <div className={styles.instructions}>
+                <FaCircleInfo className={styles.instructionsIcon} role="presentation" />
+                {instructions}
+              </div>
+              )}
+              <MultipleChoiceQuestion
+                key={currentIndex}
+                choices={currentChoices}
+                index={currentIndex}
+                isDisabled={isQuestionFinished}
+                question={currentQuestion}
+                onChoiceSelect={handleChoiceSelect}
+              />
+              <div className={styles.actions}>
+                {nextButton}
+              </div>
+              <ProgressBar current={currentIndex} total={questions.current.length} />
+              <Timer isRunning={!isExerciseFinished} onTick={(numSeconds) => { timeElapsed.current = numSeconds; }} />
+            </>
+          )
       }
     </div>
   );

@@ -15,17 +15,17 @@ export default function VerticalDropTargetList({ onDropTargetDrop }: VerticalDro
   return (
     <div className={styles.verticalDropTargetList}>
       {
-        answers?.map((a) => {
-          return <DropTarget
+        answers?.map((a) => (
+          <DropTarget
             key={a.question.content}
-            layout={'HORIZONTAL'}
+            layout="HORIZONTAL"
             result={a.result}
             numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
             val1={{ id: a.question.content, content: a.question.content }}
             val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
             onDrop={onDropTargetDrop}
-          />;
-        })
+          />
+        ))
       }
     </div>
   );

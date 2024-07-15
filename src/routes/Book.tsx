@@ -7,8 +7,8 @@ export default function BookRoute() {
 
   return (
     <div className="bookroute">
-      <Header bookId={book.id} description={book.description} title={book.title}/>
-      <Outlet context={book}/>
+      <Header bookId={book.id} description={book.description} title={book.title} />
+      <Outlet context={book} />
     </div>
   );
 }

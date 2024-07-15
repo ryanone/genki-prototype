@@ -30,7 +30,8 @@ module.exports = {
       'error',
       'never',
       {
-        css: 'always'
+        css: 'always',
+        png: 'always',
       }
     ],
     'max-len': [

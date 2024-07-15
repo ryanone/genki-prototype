@@ -75,15 +75,15 @@ export function createLayoutConfiguration(meta: DragDropMeta, layout?: DragDropF
     if (horizontalConfig.questionsFlow === HORIZONTAL) {
       questionsStyles['--grid-auto-flow'] = 'row';
       if (crossAxisLen) {
-        questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, 1fr)`;
+        questionsStyles.gridTemplateColumns = `repeat(${crossAxisLen}, 1fr)`;
       }
     } else {
       questionsStyles['--grid-auto-flow'] = 'column';
       if (crossAxisLen) {
-        questionsStyles['gridTemplateColumns'] = `repeat(${crossAxisLen}, max-content)`;
+        questionsStyles.gridTemplateColumns = `repeat(${crossAxisLen}, max-content)`;
       }
       if (maxTrackLen > 0) {
-        questionsStyles['gridTemplateRows'] = `repeat(${maxTrackLen}, max-content)`;
+        questionsStyles.gridTemplateRows = `repeat(${maxTrackLen}, max-content)`;
       }
     }
 
