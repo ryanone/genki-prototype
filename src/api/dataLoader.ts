@@ -16,12 +16,15 @@ type LessonExercisesParams = {
   lessonId: string;
 };
 
-export async function loadData(params: BookParams | ExerciseParams | LessonExercisesParams): Promise<Book | Exercise | LessonExercises> {
+export default async function loadData(params: BookParams | ExerciseParams | LessonExercisesParams):
+Promise<Book | Exercise | LessonExercises> {
+  let result;
   if ('lessonId' in params) {
-    return await import (`../data/${params.bookId}/lessons/${params.lessonId}.json`);
+    result = await import (`../data/${params.bookId}/lessons/${params.lessonId}.json`);
   } else if ('exerciseId' in params) {
-    return await import (`../data/${params.bookId}/exercises/${params.exerciseId}.json`);
+    result = await import (`../data/${params.bookId}/exercises/${params.exerciseId}.json`);
   } else {
-    return await import (`../data/${params.bookId}/index.json`);
+    result = await import (`../data/${params.bookId}/index.json`);
   }
+  return result;
 }

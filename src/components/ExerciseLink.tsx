@@ -9,5 +9,12 @@ type ExerciseLinkProps = {
 };
 
 export default function ExerciseLink({ bookId, lessonId, exercise }: ExerciseLinkProps) {
-  return <Link className={styles.exerciseLink} to={`/${bookId}/lesson/${lessonId}/exercise/${exercise.id}`}>{exercise.title}</Link>;
+  return (
+    <Link
+      className={styles.exerciseLink}
+      to={`/${bookId}/lesson/${lessonId}/exercise/${exercise.id}`}
+    >
+      {exercise.title}
+    </Link>
+  );
 }

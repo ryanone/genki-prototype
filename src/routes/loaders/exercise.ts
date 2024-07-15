@@ -1,6 +1,6 @@
-import { Paths } from '@/routes/loaders';
-import { loadData } from '@/api/dataLoader';
 import type { ActionFunctionArgs, Params, ParamParseKey } from 'react-router-dom';
+import { Paths } from '@/routes/loaders';
+import loadData from '@/api/dataLoader';
 import type { Exercise } from '@/data/exercise';
 import type { LessonExercises } from '@/data/lesson';
 
@@ -8,7 +8,7 @@ interface ExerciseLoaderArgs extends ActionFunctionArgs {
   params: Params<ParamParseKey<typeof Paths.exercise>>;
 }
 
-export async function loader({ params }: ExerciseLoaderArgs): Promise<Exercise> {
+export default async function loader({ params }: ExerciseLoaderArgs): Promise<Exercise> {
   try {
     const resp = await loadData({
       bookId: params.bookId as string,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ExercisesList from '@/components/ExercisesList';
 import ExercisesSection from '@/components/ExercisesSection';
-import { loadData } from '@/api/dataLoader';
+import loadData from '@/api/dataLoader';
 import { type ExerciseInfo, type LessonExercises, type LessonSection } from '@/data/lesson';
 
 type LessonDetailProps = {
@@ -30,8 +30,8 @@ export default function LessonDetail({ bookId, lessonId, viewMode }: LessonDetai
     <>
       {
         viewMode === 'DETAILED'
-          ? (<div>{sections.map((s, i) => <ExercisesSection key={s.content ?? i} bookId={bookId} lessonId={lessonId} section={s}/>)}</div>)
-          : <ExercisesList bookId={bookId} lessonId={lessonId} exercises={exercises}/>
+          ? (<div>{sections.map((s, i) => <ExercisesSection key={s.content ?? i} bookId={bookId} lessonId={lessonId} section={s} />)}</div>)
+          : <ExercisesList bookId={bookId} lessonId={lessonId} exercises={exercises} />
       }
     </>
   );

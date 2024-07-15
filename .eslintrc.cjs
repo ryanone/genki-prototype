@@ -9,6 +9,7 @@ module.exports = {
     'airbnb-typescript',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended'
@@ -25,6 +26,13 @@ module.exports = {
     'react-refresh'
   ],
   rules: {
+    'import/extensions': [
+      'error',
+      'never',
+      {
+        css: 'always'
+      }
+    ],
     'max-len': [
       'error',
       { code: 120 }
@@ -37,11 +45,13 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/prop-types': 'off',
+    'react/require-default-props': 'off',
   },
   overrides: [
     {
       // feel free to replace with your preferred file pattern - eg. 'src/**/*Slice.ts'
-      files: ['src/features/*Slice.ts'],
+      files: ['src/features/**/*Slice.ts'],
       // avoid state param assignment
       rules: { 'no-param-reassign': ['error', { props: false }] },
     },

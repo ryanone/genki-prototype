@@ -32,7 +32,13 @@ export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButton
   };
 
   return (
-    <button className={classes.join(' ')} onClick={handleClick} aria-label={ariaLabel} disabled={isDisabled ?? false}>
+    <button
+      className={classes.join(' ')}
+      onClick={handleClick}
+      aria-label={ariaLabel}
+      disabled={isDisabled ?? false}
+      type="button"
+    >
       {data.content}
     </button>
   );

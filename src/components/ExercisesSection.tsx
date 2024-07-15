@@ -12,7 +12,7 @@ export default function ExercisesSection({ bookId, lessonId, section }: Exercise
   return (
     <div className={styles.exercisesSection}>
       { section.content ? <div className={styles.heading}>{section.content}</div> : null }
-      <ExercisesList bookId={bookId} lessonId={lessonId} exercises={section.exercises}/>
+      <ExercisesList bookId={bookId} lessonId={lessonId} exercises={section.exercises} />
     </div>
   );
 }

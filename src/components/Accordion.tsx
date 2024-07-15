@@ -24,15 +24,13 @@ export default function Accordion({ sections, options }: AccordionProps) {
   );
   const handleTitleClick = (id: string) => {
     const newOpenSections = new Set(openSections);
-    if (options?.allowMultipleExpanded) {
-      newOpenSections.has(id) ? newOpenSections.delete(id) : newOpenSections.add(id);
+    if (newOpenSections.has(id)) {
+      newOpenSections.delete(id);
     } else {
-      if (newOpenSections.has(id)) {
-        newOpenSections.delete(id);
-      } else {
+      if (options?.allowMultipleExpanded) {
         newOpenSections.clear();
-        newOpenSections.add(id);
       }
+      newOpenSections.add(id);
     }
     setOpenSections(newOpenSections);
   };
@@ -63,7 +61,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
                   ]
                     .filter(Boolean)
                     .join(' ')}
-                ></span>
+                />
               </button>
               <div
                 className={styles.content}

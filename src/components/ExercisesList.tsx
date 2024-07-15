@@ -12,7 +12,7 @@ export default function ExercisesList({ bookId, exercises, lessonId }: Exercises
   return (
     <ol className={styles.exercisesList}>
       {
-        exercises.map((e) => <li key={e.id}><ExerciseLink bookId={bookId} lessonId={lessonId} exercise={e}/></li>)
+        exercises.map((e) => <li key={e.id}><ExerciseLink bookId={bookId} lessonId={lessonId} exercise={e} /></li>)
       }
     </ol>
   );

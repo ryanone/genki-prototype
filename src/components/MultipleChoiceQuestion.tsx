@@ -16,7 +16,9 @@ export default function MultipleChoiceQuestion({
 }: MultipleChoiceQuestionProps) {
   return (
     <div className={styles.multipleChoiceQuestion}>
-      <div className={styles.content}>{index + 1}. {question.content}</div>
+      <div className={styles.content}>
+        {`${index + 1}. ${question.content}`}
+      </div>
       <div className={styles.choicesContainer}>
         <ChoiceList choices={choices} isDisabled={isDisabled} onChoiceSelect={onChoiceSelect}/>
       </div>
