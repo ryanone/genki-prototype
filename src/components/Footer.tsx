@@ -1,6 +1,6 @@
 import { FaGear } from 'react-icons/fa6';
-import SettingsDialog from '@/components/SettingsDialog';
 import { useState } from 'react';
+import SettingsDialog from '@/components/SettingsDialog';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -18,8 +18,14 @@ export default function Footer() {
         Created by John Doe and the GitHub Community
       </div>
       <div className={styles.actions}>
-        <button className={styles.settingsButton} onClick={() => setShowSettingsDialog(true)}><FaGear className={styles.settingsIcon} aria-label="Settings"/></button>
-        <SettingsDialog isOpen={showSettingsDialog} onClose={handleSettingsDialogClose}/>
+        <button
+          className={styles.settingsButton}
+          onClick={() => setShowSettingsDialog(true)}
+          type="button"
+        >
+          <FaGear className={styles.settingsIcon} aria-label="Settings" />
+        </button>
+        <SettingsDialog isOpen={showSettingsDialog} onClose={handleSettingsDialogClose} />
       </div>
     </footer>
   );

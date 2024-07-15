@@ -20,7 +20,7 @@ export default function MultipleChoiceQuestion({
         {`${index + 1}. ${question.content}`}
       </div>
       <div className={styles.choicesContainer}>
-        <ChoiceList choices={choices} isDisabled={isDisabled} onChoiceSelect={onChoiceSelect}/>
+        <ChoiceList choices={choices} isDisabled={isDisabled} onChoiceSelect={onChoiceSelect} />
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ type ExerciseResultsProps = {
 export default function ExerciseResults({
   numSolved, numWrong, timeElapsed, onRestart,
 }: ExerciseResultsProps) {
-  const score = Math.floor((numSolved - numWrong) / numSolved * 100);
+  const score = Math.floor((numSolved - numWrong) / (numSolved * 100));
   let message;
   if (score === 100) {
     message = <p className={styles.advice}>PERFECT! Great job!</p>;
@@ -38,7 +38,10 @@ export default function ExerciseResults({
           </tr>
           <tr>
             <th className={styles.term} scope="row">Score:</th>
-            <td className={styles.value}>{score}%</td>
+            <td className={styles.value}>
+              {score}
+              %
+            </td>
           </tr>
           <tr>
             <th className={styles.term} scope="row">Completion Time:</th>
@@ -48,7 +51,10 @@ export default function ExerciseResults({
       </table>
       <div className={styles.footer}>
         {message}
-        <button className={`${styles.button} ${commonStyles.button}`} onClick={onRestart}><FaArrowsRotate className="dragdrop__review-icon" role="presentation"/>Try Again</button>
+        <button className={`${styles.button} ${commonStyles.button}`} onClick={onRestart} type="button">
+          <FaArrowsRotate className="dragdrop__review-icon" role="presentation" />
+          Try Again
+        </button>
       </div>
     </div>
   );

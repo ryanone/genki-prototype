@@ -25,7 +25,7 @@ export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDro
         answers?.map((a) => {
           let style: Record<string, string> | undefined;
           if (questionsTrackConfig) {
-            currTrackLen++;
+            currTrackLen += 1;
             if (currTrackLen === questionsTrackConfig[trackIndex]) {
               const spanLen = maxTrackLen - currTrackLen + 1;
               if (spanLen > 1) {
@@ -35,20 +35,22 @@ export default function HorizontalDropTargetList({ layoutConfig, onDropTargetDro
                 };
               }
               currTrackLen = 0;
-              trackIndex++;
+              trackIndex += 1;
             }
           }
 
-          return <DropTarget
-            key={a.question.content}
-            layout={dropTargetLayout}
-            result={a.result}
-            numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
-            style={style}
-            val1={{ id: a.question.content, content: a.question.content }}
-            val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
-            onDrop={onDropTargetDrop}
-          />;
+          return (
+            <DropTarget
+              key={a.question.content}
+              layout={dropTargetLayout}
+              result={a.result}
+              numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
+              style={style}
+              val1={{ id: a.question.content, content: a.question.content }}
+              val2={a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined}
+              onDrop={onDropTargetDrop}
+            />
+          );
         })
       }
     </div>

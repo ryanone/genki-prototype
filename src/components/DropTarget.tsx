@@ -1,5 +1,5 @@
 import { FaArrowLeft, FaStar, FaX } from 'react-icons/fa6';
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import styles from './DropTarget.module.css';
 
 type DropTargetValue = {
@@ -27,6 +27,12 @@ export default function DropTarget({
 }: DropTargetProps) {
   const [isZoneEntered, setIsZoneEntered] = useState(false);
   const isDisabled = result === 'CORRECT';
+  const handleZoneDropKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (!isDisabled && (e.key === 'Enter' || e.key === ' ')) {
+      onDrop(val1.id);
+      setIsZoneEntered(false);
+    }
+  };
   const handleZoneDropClick = () => {
     if (!isDisabled) {
       onDrop(val1.id);
@@ -52,18 +58,34 @@ export default function DropTarget({
   let numIncorrectContent;
   if (numIncorrectGuesses && numIncorrectGuesses > 0) {
     numIncorrectContent = layout === 'HORIZONTAL'
-      ? (<span className={styles.numIncorrect}><FaArrowLeft className={styles.incorrectArrow} role="presentation"/>wrong {numIncorrectGuesses}x</span>)
-      : (<span className={styles.numIncorrect}>x{numIncorrectGuesses}</span>);
+      ? (
+        <span className={styles.numIncorrect}>
+          <FaArrowLeft className={styles.incorrectArrow} role="presentation" />
+          {`wrong ${numIncorrectGuesses}x`}
+        </span>
+      )
+      : (<span className={styles.numIncorrect}>{`x${numIncorrectGuesses}`}</span>);
     zoneClasses.push(styles.zoneHasIncorrect);
   }
 
   return (
     <div className={classes.join(' ')} style={style}>
       <div className={styles.content}>{val1.content}</div>
-      <div className={zoneClasses.join(' ')} data-drop-target-zone="true" onDrop={handleZoneDropClick} onClick={handleZoneDropClick} onDragEnter={() => setIsZoneEntered(true)} onDragLeave={() => setIsZoneEntered(false)} onDragOver={(e) => e.preventDefault()} role="button">
+      <div
+        className={zoneClasses.join(' ')}
+        data-drop-target-zone="true"
+        onDrop={handleZoneDropClick}
+        onClick={handleZoneDropClick}
+        onDragEnter={() => setIsZoneEntered(true)}
+        onDragLeave={() => setIsZoneEntered(false)}
+        onDragOver={(e) => e.preventDefault()}
+        onKeyDown={handleZoneDropKeyDown}
+        tabIndex={0}
+        role="button"
+      >
         {zoneContent}
-        {isIncorrect && <FaX aria-label="Incorrect" className={`${styles.icon} ${styles.iconIncorrect}`}/>}
-        {isCorrect && <FaStar aria-label="Correct" className={`${styles.icon} ${styles.iconCorrect}`}/>}
+        {isIncorrect && <FaX aria-label="Incorrect" className={`${styles.icon} ${styles.iconIncorrect}`} />}
+        {isCorrect && <FaStar aria-label="Correct" className={`${styles.icon} ${styles.iconCorrect}`} />}
       </div>
       {numIncorrectContent}
     </div>

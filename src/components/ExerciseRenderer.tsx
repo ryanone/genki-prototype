@@ -1,6 +1,6 @@
 import { lazy, useState, Suspense } from 'react';
-import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import { FaArrowsRotate } from 'react-icons/fa6';
+import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import type {
   DragDropExercise, Exercise, MultipleChoiceExercise, RenderMode,
 } from '@/data/exercise';
@@ -16,16 +16,16 @@ const MultipleChoice = lazy(() => import('@/components/exercises/MultipleChoice'
 
 export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
-  let exercise = <></>;
+  let exercise;
   if (renderMode === 'DRAG_DROP') {
-    exercise = <DragDrop data={data as DragDropExercise} key={Date.now()}/>;
+    exercise = <DragDrop data={data as DragDropExercise} key={Date.now()} />;
   } else if (renderMode === 'MULTIPLE_CHOICE') {
-    exercise = <MultipleChoice data={data as MultipleChoiceExercise} key={Date.now()}/>;
+    exercise = <MultipleChoice data={data as MultipleChoiceExercise} key={Date.now()} />;
   }
   const canChangeRenderMode = data.supportedRenderModes.length > 1;
   const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] = useState(false);
-  const handleRenderModeChoose = (renderMode: RenderMode) => {
-    setRenderMode(renderMode);
+  const handleRenderModeChoose = (value: RenderMode) => {
+    setRenderMode(value);
     setShowChangeRenderModeDialog(false);
   };
 
@@ -36,10 +36,24 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
       </Suspense>
       {
         canChangeRenderMode
-        && <>
-          <button className={`${styles.renderModeButton} ${commonStyles.button}`} onClick={() => setShowChangeRenderModeDialog(true)}><FaArrowsRotate role="presentation"/>Change Exercise Type</button>
-          <ChangeExerciseTypeDialog isOpen={showChangeRenderModeDialog} exercise={data} onCancel={() => setShowChangeRenderModeDialog(false)} onRenderModeChoose={handleRenderModeChoose}/>
+        && (
+        <>
+          <button
+            className={`${styles.renderModeButton} ${commonStyles.button}`}
+            onClick={() => setShowChangeRenderModeDialog(true)}
+            type="button"
+          >
+            <FaArrowsRotate role="presentation" />
+            Change Exercise Type
+          </button>
+          <ChangeExerciseTypeDialog
+            isOpen={showChangeRenderModeDialog}
+            exercise={data}
+            onCancel={() => setShowChangeRenderModeDialog(false)}
+            onRenderModeChoose={handleRenderModeChoose}
+          />
         </>
+        )
       }
     </div>
   );

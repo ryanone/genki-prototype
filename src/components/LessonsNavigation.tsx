@@ -1,6 +1,6 @@
 import { FaBars, FaX } from 'react-icons/fa6';
-import LessonsAccordion from '@/components/LessonsAccordion';
 import { useState } from 'react';
+import LessonsAccordion from '@/components/LessonsAccordion';
 import { type Lesson } from '@/data/lesson';
 import styles from './LessonsNavigation.module.css';
 import commonStyles from '@/styles/common.module.css';
@@ -19,13 +19,27 @@ export default function LessonsNavigation({ bookId, lessons }: LessonsNavigation
 
   return (
     <>
-      <button className={`${commonStyles.button} ${styles.openButton}`} onClick={() => setIsVisible(true)} aria-label="Open navigation"><FaBars/></button>
+      <button
+        className={`${commonStyles.button} ${styles.openButton}`}
+        onClick={() => setIsVisible(true)}
+        aria-label="Open navigation"
+        type="button"
+      >
+        <FaBars />
+      </button>
       <nav className={navigationClasses.join(' ')}>
         <div className={styles.header}>
           <span className={styles.title}>Exercise List</span>
-          <button className={commonStyles.secondaryButton} onClick={() => setIsVisible(false)} aria-label="Close navigation"><FaX/></button>
+          <button
+            className={commonStyles.secondaryButton}
+            onClick={() => setIsVisible(false)}
+            aria-label="Close navigation"
+            type="button"
+          >
+            <FaX />
+          </button>
         </div>
-        <LessonsAccordion bookId={bookId} lessons={lessons} viewMode="COMPACT"/>
+        <LessonsAccordion bookId={bookId} lessons={lessons} viewMode="COMPACT" />
       </nav>
     </>
   );
