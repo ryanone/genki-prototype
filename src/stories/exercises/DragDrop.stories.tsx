@@ -30,7 +30,7 @@ export default meta;
 
 const data = {
   ...Genki3Exercise01,
-  title: '"Hiragana (p. 20-21)',
+  title: 'Hiragana (p. 20-21)',
 } as DragDropExerciseType;
 
 type Story = StoryObj<typeof DragDropExercise>;
