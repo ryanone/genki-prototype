@@ -1,11 +1,15 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import { fn } from '@storybook/test';
 import ExerciseResults from '@/components/ExerciseResults';
+
+type ExerciseResultsPropsAndCustomArgs = ComponentProps<typeof ExerciseResults>;
 
 export const ExerciseResultsActionsData = {
   onRestart: fn(),
 };
 
-export default {
+const meta: Meta<ExerciseResultsPropsAndCustomArgs> = {
   component: ExerciseResults,
   title: 'Exercise Results',
   tags: ['autodocs'],
@@ -21,6 +25,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 export const Default = {
   args: {

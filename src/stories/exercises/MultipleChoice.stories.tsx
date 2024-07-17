@@ -1,7 +1,13 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import MultipleChoiceExercise from '@/components/exercises/MultipleChoice';
 import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
 
-export default {
+type MultipleChoiceExercisePropsAndCustomArgs = ComponentProps<
+  typeof MultipleChoiceExercise
+>;
+
+const meta: Meta<MultipleChoiceExercisePropsAndCustomArgs> = {
   component: MultipleChoiceExercise,
   title: 'Multiple Choice Exercise',
   tags: ['autodocs'],
@@ -15,6 +21,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 const data = { ...Genki3Exercise01 };
 

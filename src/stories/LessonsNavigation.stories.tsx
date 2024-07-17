@@ -1,8 +1,14 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-remix-react-router';
 import Genki3 from '@/data/genki-3/index.json';
 import LessonsNavigation from '@/components/LessonsNavigation';
 
-export default {
+type LessonsNavigationPropsAndCustomArgs = ComponentProps<
+  typeof LessonsNavigation
+>;
+
+const meta: Meta<LessonsNavigationPropsAndCustomArgs> = {
   component: LessonsNavigation,
   title: 'Lessons Navigation',
   tags: ['autodocs'],
@@ -17,6 +23,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 const defaultArgs = {
   bookId: Genki3.id,

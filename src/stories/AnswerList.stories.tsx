@@ -1,9 +1,10 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import AnswerList from '@/components/AnswerList';
 
-export const MultipleChoiceQuestionActionsData = {
-};
+type AnswerListPropsAndCustomArgs = ComponentProps<typeof AnswerList>;
 
-export default {
+const meta: Meta<AnswerListPropsAndCustomArgs> = {
   component: AnswerList,
   title: 'Answer List',
   tags: ['autodocs'],
@@ -17,6 +18,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 const data = [
   {

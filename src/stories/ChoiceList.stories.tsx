@@ -1,5 +1,9 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import { fn } from '@storybook/test';
 import ChoiceList from '@/components/ChoiceList';
+
+type ChoiceListPropsAndCustomArgs = ComponentProps<typeof ChoiceList>;
 
 const choices = [
   {
@@ -24,7 +28,7 @@ export const ChoiceListActionsData = {
   onChoiceSelect: fn(),
 };
 
-export default {
+const meta: Meta<ChoiceListPropsAndCustomArgs> = {
   component: ChoiceList,
   title: 'Choice List',
   tags: ['autodocs'],
@@ -40,6 +44,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 export const Default = {
   args: {

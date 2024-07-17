@@ -1,11 +1,17 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import { fn } from '@storybook/test';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
+
+type MultipleChoiceQuestionPropsAndCustomArgs = ComponentProps<
+  typeof MultipleChoiceQuestion
+>;
 
 export const MultipleChoiceQuestionActionsData = {
   onChoiceSelect: fn(),
 };
 
-export default {
+const meta: Meta<MultipleChoiceQuestionPropsAndCustomArgs> = {
   component: MultipleChoiceQuestion,
   title: 'Multiple Choice Question',
   tags: ['autodocs'],
@@ -22,16 +28,14 @@ export default {
   ],
 };
 
+export default meta;
+
 const data = {
   question: {
     content: 'wa',
     choices: {
       correctId: '0',
-      suggestions: [
-        '1',
-        '2',
-        '3',
-      ],
+      suggestions: ['1', '2', '3'],
     },
   },
   choices: [

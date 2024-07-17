@@ -35,6 +35,7 @@ module.exports = {
       {
         css: 'always',
         png: 'always',
+        json: 'always',
       }
     ],
     'max-len': [
@@ -59,6 +60,17 @@ module.exports = {
       files: ['src/features/**/*Slice.ts'],
       // avoid state param assignment
       rules: { 'no-param-reassign': ['error', { props: false }] },
+    },
+    {
+      files: ['src/stories/**/*.tsx'],
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'error',
+          {
+            devDependencies: true,
+          },
+        ],
+      },
     },
   ],
   settings: {

@@ -9,7 +9,10 @@ export const ChangeExerciseTypeDialogActionsData = {
 
 const exercise = {
   ...Genki3Exercise01,
-  title: Genki3Lesson0.sections.flatMap((s) => s.exercises).find((e) => e.id === 'hiragana-0')?.title ?? '',
+  title:
+    Genki3Lesson0.sections
+      .flatMap((s) => s.exercises)
+      .find((e) => e.id === 'hiragana-0')?.title ?? '',
 };
 
 export default {

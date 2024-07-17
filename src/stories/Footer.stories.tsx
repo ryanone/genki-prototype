@@ -1,7 +1,11 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/provider/ThemeProvider';
 
-export default {
+type FooterPropsAndCustomArgs = ComponentProps<typeof Footer>;
+
+const meta: Meta<FooterPropsAndCustomArgs> = {
   component: Footer,
   decorators: [
     (Story) => (
@@ -16,6 +20,8 @@ export default {
   args: {},
 };
 
+export default meta;
+
 export const Default = {
-  args: { },
+  args: {},
 };

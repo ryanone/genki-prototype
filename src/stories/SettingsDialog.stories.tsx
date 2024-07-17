@@ -1,12 +1,16 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import { fn } from '@storybook/test';
 import SettingsDialog from '@/components/SettingsDialog';
 import ThemeProvider from '@/provider/ThemeProvider';
+
+type SettingsDialogPropsAndCustomArgs = ComponentProps<typeof SettingsDialog>;
 
 export const SettingsDialogActionsData = {
   onClose: fn(),
 };
 
-export default {
+const meta: Meta<SettingsDialogPropsAndCustomArgs> = {
   component: SettingsDialog,
   title: 'Settings Dialog',
   tags: ['autodocs'],
@@ -23,6 +27,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 export const DefaultOpen = {
   args: {

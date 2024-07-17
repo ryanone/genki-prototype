@@ -1,3 +1,5 @@
+import { ComponentProps } from 'react';
+import type { Meta } from '@storybook/react';
 import { fn } from '@storybook/test';
 import ChoiceButton from '@/components/ChoiceButton';
 
@@ -5,7 +7,9 @@ export const ChoiceButtonActionsData = {
   onClick: fn(),
 };
 
-export default {
+type ChoiceButtonPropsAndCustomArgs = ComponentProps<typeof ChoiceButton>;
+
+const meta: Meta<ChoiceButtonPropsAndCustomArgs> = {
   component: ChoiceButton,
   title: 'Choice Button',
   tags: ['autodocs'],
@@ -21,6 +25,8 @@ export default {
     ),
   ],
 };
+
+export default meta;
 
 const choice = {
   content: 'あそこにレストランがあります。',
