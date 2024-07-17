@@ -9,22 +9,27 @@ type LessonsAccordionProps = {
   viewMode: 'COMPACT' | 'DETAILED';
 };
 
-export default function LessonsAccordion({ bookId, lessons, viewMode }: LessonsAccordionProps) {
+export default function LessonsAccordion({
+  bookId,
+  lessons,
+  viewMode,
+}: LessonsAccordionProps) {
   const isViewModeDetailed = viewMode === 'DETAILED';
-  const headerClass = isViewModeDetailed ? styles.detailedHeader : styles.compactHeader;
+  const headerClass = isViewModeDetailed
+    ? styles.detailedHeader
+    : styles.compactHeader;
   const sections = lessons.map((l: Lesson) => {
-    const title = isViewModeDetailed
-      ? `${l.title}: ${l.description}` : l.title;
+    const title = isViewModeDetailed ? `${l.title}: ${l.description}` : l.title;
     return {
       id: l.id,
-      title: (<div className={headerClass}>{title}</div>),
-      content: (<LessonDetail bookId={bookId} lessonId={l.id} viewMode={viewMode} />),
+      title: <div className={headerClass}>{title}</div>,
+      content: (
+        <LessonDetail bookId={bookId} lessonId={l.id} viewMode={viewMode} />
+      ),
     };
   });
   const options = {
     allowMultipleExpanded: true,
   };
-  return (
-    <Accordion sections={sections} options={options} />
-  );
+  return <Accordion sections={sections} options={options} />;
 }

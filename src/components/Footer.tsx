@@ -12,7 +12,9 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <ul className={styles.links}>
-        <li><a href="https://sethclydesdale.github.io">Dummy link</a></li>
+        <li>
+          <a href="https://sethclydesdale.github.io">Dummy link</a>
+        </li>
       </ul>
       <div className={styles.copyright}>
         Created by John Doe and the GitHub Community
@@ -25,7 +27,10 @@ export default function Footer() {
         >
           <FaGear className={styles.settingsIcon} aria-label="Settings" />
         </button>
-        <SettingsDialog isOpen={showSettingsDialog} onClose={handleSettingsDialogClose} />
+        <SettingsDialog
+          isOpen={showSettingsDialog}
+          onClose={handleSettingsDialogClose}
+        />
       </div>
     </footer>
   );

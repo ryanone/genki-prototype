@@ -10,10 +10,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:typescript-sort-keys/recommended',
+    'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
-    'plugin:storybook/recommended'
+    'plugin:storybook/recommended',
+    'plugin:typescript-sort-keys/recommended',
+    'prettier',
   ],
   ignorePatterns: [
     'dist',

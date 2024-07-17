@@ -7,7 +7,11 @@ type ReviewDialogProps = {
   onConfirm: () => void;
 };
 
-export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDialogProps) {
+export default function ReviewDialog({
+  isOpen,
+  onConfirm,
+  onCancel,
+}: ReviewDialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const handleConfirmClick = (e: MouseEvent) => {
     e.preventDefault();
@@ -28,15 +32,20 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
   }, [isOpen]);
 
   return (
-    isOpen
-      && (
+    isOpen && (
       <dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
         <div className={commonStyles.dialogHeader}>Activate Review Mode?</div>
         <div className={commonStyles.dialogContent}>
           Are you sure you want to review? Your current progress will be lost.
         </div>
         <form className={commonStyles.dialogActions}>
-          <button onClick={handleConfirmClick} className={commonStyles.button} type="button">OK</button>
+          <button
+            onClick={handleConfirmClick}
+            className={commonStyles.button}
+            type="button"
+          >
+            OK
+          </button>
           <button
             onClick={handleCancel}
             formMethod="dialog"
@@ -47,6 +56,6 @@ export default function ReviewDialog({ isOpen, onConfirm, onCancel }: ReviewDial
           </button>
         </form>
       </dialog>
-      )
+    )
   );
 }

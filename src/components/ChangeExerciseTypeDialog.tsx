@@ -1,5 +1,9 @@
 import {
-  type ChangeEvent, useEffect, useRef, useState, type MouseEvent,
+  type ChangeEvent,
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent,
 } from 'react';
 import type { Exercise, RenderMode } from '@/data/exercise';
 import styles from './ChangeExerciseTypeDialog.module.css';
@@ -29,7 +33,10 @@ const RenderModeDescription: Record<RenderMode, string> = {
 };
 
 export default function ChangeExerciseTypeDialog({
-  isOpen, exercise, onRenderModeChoose, onCancel,
+  isOpen,
+  exercise,
+  onRenderModeChoose,
+  onCancel,
 }: ChangeExerciseTypeDialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const [renderMode, setRenderMode] = useState<RenderMode | ''>('');
@@ -61,15 +68,14 @@ export default function ChangeExerciseTypeDialog({
   }, [isOpen]);
 
   return (
-    isOpen
-    && (
+    isOpen && (
       <dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
         <div className={commonStyles.dialogHeader}>Change Exercise Type</div>
         <form className={styles.form}>
           <div className={commonStyles.dialogContent}>
             <p>
-              Please select the type of exercise you would like to do,
-              then click &apos;Begin&apos; to start studying.
+              Please select the type of exercise you would like to do, then
+              click &apos;Begin&apos; to start studying.
             </p>
             <div className={styles.heading}>Current Exercise</div>
             <div className={styles.title}>{exercise.title}</div>
@@ -82,15 +88,24 @@ export default function ChangeExerciseTypeDialog({
                 value={renderMode}
               >
                 <option value="">Choose a type</option>
-                {
-                  (Object.keys(RenderModeDescription) as RenderMode[]).map((key) => (
-                    <option key={key} value={key}>{RenderModeDescription[key]}</option>))
-                }
+                {(Object.keys(RenderModeDescription) as RenderMode[]).map(
+                  (key) => (
+                    <option key={key} value={key}>
+                      {RenderModeDescription[key]}
+                    </option>
+                  ),
+                )}
               </select>
             </label>
           </div>
           <div className={commonStyles.dialogActions}>
-            <button onClick={handleConfirmClick} className={commonStyles.button} type="button">Begin</button>
+            <button
+              onClick={handleConfirmClick}
+              className={commonStyles.button}
+              type="button"
+            >
+              Begin
+            </button>
             <button
               onClick={handleCancel}
               formMethod="dialog"

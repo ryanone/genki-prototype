@@ -20,13 +20,11 @@ export interface DragDropMeta extends BaseMeta {
     configuration?: number | number[];
     questionLayout: DragDropFlow;
     questionsFlow: DragDropFlow;
-  },
+  };
   supportedLayouts: DragDropFlow[];
 }
 
-interface MultipleChoiceMeta extends BaseMeta {
-
-}
+interface MultipleChoiceMeta extends BaseMeta {}
 
 export type Question = {
   choices: {
@@ -48,13 +46,13 @@ export type BaseExercise = {
 export interface DragDropExercise extends BaseExercise {
   meta: {
     DRAG_DROP: DragDropMeta;
-  }
+  };
 }
 
 export interface MultipleChoiceExercise extends BaseExercise {
   meta: {
     MULTIPLE_CHOICE: MultipleChoiceMeta;
-  }
+  };
 }
 
 export type Exercise = DragDropExercise | MultipleChoiceExercise;

@@ -11,7 +11,11 @@ type ChoiceButtonProps = {
   onClick?: (id: string) => void;
 };
 
-export default function ChoiceButton({ data, isDisabled, onClick }: ChoiceButtonProps) {
+export default function ChoiceButton({
+  data,
+  isDisabled,
+  onClick,
+}: ChoiceButtonProps) {
   const classes = [styles.button];
   let ariaLabel = '';
   if (data.result === 'SELECTED_CORRECT') {

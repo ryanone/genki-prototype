@@ -21,7 +21,9 @@ export interface LayoutConfigurationVertical extends LayoutConfigurationBase {
   layout: 'VERTICAL';
 }
 
-export type LayoutConfiguration = LayoutConfigurationHorizontal | LayoutConfigurationVertical;
+export type LayoutConfiguration =
+  | LayoutConfigurationHorizontal
+  | LayoutConfigurationVertical;
 
 const BASE_HORIZONTAL_CONFIG = {
   canSupportMultipleLayouts: false,
@@ -43,7 +45,10 @@ const BASE_VERTICAL_CONFIG = {
   layout: 'VERTICAL',
 };
 
-export function createLayoutConfiguration(meta: DragDropMeta, layout?: DragDropFlow): LayoutConfiguration {
+export function createLayoutConfiguration(
+  meta: DragDropMeta,
+  layout?: DragDropFlow,
+): LayoutConfiguration {
   const config: LayoutConfigurationBase = {
     canSupportMultipleLayouts: (meta?.supportedLayouts?.length ?? 1) > 1,
     instructions: meta?.instructions ?? '',

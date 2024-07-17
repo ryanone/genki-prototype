@@ -1,8 +1,6 @@
 import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
 import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
-import {
-  useCallback, useEffect, useMemo, useRef, useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   chooseChoice,
@@ -44,11 +42,16 @@ export default function DragDrop({ data }: DragDropProps) {
   const isFinished = useAppSelector(selectIsFinished);
 
   const isHorizontal = useMemo(() => layout !== 'VERTICAL', [layout]);
-  const rootClasses = [styles.dragDrop, isHorizontal ? styles.horizontal : styles.vertical];
+  const rootClasses = [
+    styles.dragDrop,
+    isHorizontal ? styles.horizontal : styles.vertical,
+  ];
 
   const handleDropTargetDrop = (questionId: string) => {
     if (selectedChoiceId.current) {
-      dispatch(chooseChoice({ choiceId: selectedChoiceId.current, questionId }));
+      dispatch(
+        chooseChoice({ choiceId: selectedChoiceId.current, questionId }),
+      );
     }
     selectedChoiceId.current = undefined;
   };
@@ -69,26 +72,34 @@ export default function DragDrop({ data }: DragDropProps) {
   };
   const handleRestart = () => {
     selectedChoiceId.current = undefined;
-    dispatch(initialize({
-      exercise: data,
-    }));
+    dispatch(
+      initialize({
+        exercise: data,
+      }),
+    );
     setShowReviewDialog(false);
   };
-  const canChangeLayout = !isFinished && layoutConfig?.canSupportMultipleLayouts;
+  const canChangeLayout =
+    !isFinished && layoutConfig?.canSupportMultipleLayouts;
   const isTimerRunning = !isFinished && !showReviewDialog;
 
   useEffect(() => {
-    dispatch(initialize({
-      exercise: data,
-    }));
+    dispatch(
+      initialize({
+        exercise: data,
+      }),
+    );
   }, [data, dispatch]);
 
   useEffect(() => {
     // If not clicking on another choice, or a drop zone, set the selected choice to undefined
     const handleDocumentClick = (e: MouseEvent) => {
       const target = e.target as Element;
-      if (target.attributes.getNamedItem('data-drop-target-zone')?.value !== 'true'
-          && target.attributes.getNamedItem('data-draggable-item')?.value !== 'true') {
+      if (
+        target.attributes.getNamedItem('data-drop-target-zone')?.value !==
+          'true' &&
+        target.attributes.getNamedItem('data-draggable-item')?.value !== 'true'
+      ) {
         handleChoiceUnselect();
       }
     };
@@ -101,94 +112,98 @@ export default function DragDrop({ data }: DragDropProps) {
 
   return (
     <div className={rootClasses.join(' ')}>
-      {
-        (isFinished && results)
-          ? (
-            <ExerciseResults
-              numSolved={results.numSolved}
-              numWrong={results.numWrong}
-              timeElapsed={timeElapsed.current}
-              onRestart={handleRestart}
-            />
-          )
-          : null
-      }
+      {isFinished && results ? (
+        <ExerciseResults
+          numSolved={results.numSolved}
+          numWrong={results.numWrong}
+          timeElapsed={timeElapsed.current}
+          onRestart={handleRestart}
+        />
+      ) : null}
       {layoutConfig?.instructions && (
-      <div className={styles.instructions}>
-        <FaCircleInfo className={styles.instructionsIcon} role="presentation" />
-        {layoutConfig.instructions}
-      </div>
+        <div className={styles.instructions}>
+          <FaCircleInfo
+            className={styles.instructionsIcon}
+            role="presentation"
+          />
+          {layoutConfig.instructions}
+        </div>
       )}
       <div className={styles.main}>
-        {
-          (isHorizontal && layoutConfig)
-            ? (
-              <HorizontalDropTargetList
-                layoutConfig={layoutConfig as LayoutConfigurationHorizontal}
-                onDropTargetDrop={handleDropTargetDrop}
-              />
-            )
-            : <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop} />
-        }
+        {isHorizontal && layoutConfig ? (
+          <HorizontalDropTargetList
+            layoutConfig={layoutConfig as LayoutConfigurationHorizontal}
+            onDropTargetDrop={handleDropTargetDrop}
+          />
+        ) : (
+          <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop} />
+        )}
         <div className={styles.choices}>
-          {
-            remainingChoices.map((choice) => (
-              <DraggableItem
-                key={choice.id}
-                val={choice}
-                onSelect={handleChoiceSelect}
-                onUnselect={handleChoiceUnselect}
-              />
-            )) ?? null
-          }
+          {remainingChoices.map((choice) => (
+            <DraggableItem
+              key={choice.id}
+              val={choice}
+              onSelect={handleChoiceSelect}
+              onUnselect={handleChoiceUnselect}
+            />
+          )) ?? null}
         </div>
       </div>
       <div className={styles.actions}>
-        {
-          isFinished
-            ? (
-              <button className={`${styles.button} ${commonStyles.button}`} onClick={handleRestart} type="button">
-                <FaArrowsRotate className={commonStyles.buttonIcon} role="presentation" />
-                Restart
-              </button>
-            )
-            : (
-              <button
-                className={`${styles.button} ${commonStyles.button}`}
-                onClick={() => setShowReviewDialog(true)}
-                type="button"
-              >
-                <FaBook className={commonStyles.buttonIcon} role="presentation" />
-                Review
-              </button>
-            )
-        }
-        {
-          canChangeLayout && (
-          <button className={`${styles.button} ${commonStyles.button}`} onClick={handleChangeLayoutClick} type="button">
-            {
-              isHorizontal
-                ? (
-                  <>
-                    <CiGrid2V className={commonStyles.buttonIcon} role="presentation" />
-                    Vertical Mode
-                  </>
-                )
-                : (
-                  <>
-                    <CiGrid2H className={commonStyles.buttonIcon} role="presentation" />
-                    Horizontal Mode
-                  </>
-                )
-            }
+        {isFinished ? (
+          <button
+            className={`${styles.button} ${commonStyles.button}`}
+            onClick={handleRestart}
+            type="button"
+          >
+            <FaArrowsRotate
+              className={commonStyles.buttonIcon}
+              role="presentation"
+            />
+            Restart
           </button>
-          )
-        }
+        ) : (
+          <button
+            className={`${styles.button} ${commonStyles.button}`}
+            onClick={() => setShowReviewDialog(true)}
+            type="button"
+          >
+            <FaBook className={commonStyles.buttonIcon} role="presentation" />
+            Review
+          </button>
+        )}
+        {canChangeLayout && (
+          <button
+            className={`${styles.button} ${commonStyles.button}`}
+            onClick={handleChangeLayoutClick}
+            type="button"
+          >
+            {isHorizontal ? (
+              <>
+                <CiGrid2V
+                  className={commonStyles.buttonIcon}
+                  role="presentation"
+                />
+                Vertical Mode
+              </>
+            ) : (
+              <>
+                <CiGrid2H
+                  className={commonStyles.buttonIcon}
+                  role="presentation"
+                />
+                Horizontal Mode
+              </>
+            )}
+          </button>
+        )}
       </div>
       <Timer
         key={`${startTime}`}
         isRunning={isTimerRunning}
-        onTick={(numSeconds) => { timeElapsed.current = numSeconds; }}
+        onTick={(numSeconds) => {
+          timeElapsed.current = numSeconds;
+        }}
       />
       <ReviewDialog
         isOpen={showReviewDialog}

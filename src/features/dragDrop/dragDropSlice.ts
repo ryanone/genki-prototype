@@ -8,7 +8,11 @@ import {
 } from '@/features/dragDrop/selectors';
 import { randomizeArray } from '@/utils/randomize';
 import type {
-  Choice, DragDropExercise, DragDropFlow, DragDropMeta, Question,
+  Choice,
+  DragDropExercise,
+  DragDropFlow,
+  DragDropMeta,
+  Question,
 } from '@/data/exercise';
 
 export type Answer = {
@@ -49,31 +53,40 @@ export const dragDropSlice = createSlice({
   reducers: {
     chooseChoice(state, action: PayloadAction<SelectChoicePayload>) {
       const { choiceId, questionId } = action.payload;
-      const answer = state.answers?.find((a) => a.question.content === questionId);
+      const answer = state.answers?.find(
+        (a) => a.question.content === questionId,
+      );
       if (answer) {
         // Mark the corresponding answer with the selected choice.
         // If all answers have been filled, create results
         answer.selectedChoiceId = choiceId;
-        answer.result = answer.selectedChoiceId === answer.question.choices.correctId
-          ? 'CORRECT' : 'INCORRECT';
+        answer.result =
+          answer.selectedChoiceId === answer.question.choices.correctId
+            ? 'CORRECT'
+            : 'INCORRECT';
         if (answer.result === 'INCORRECT') {
-          answer.numIncorrectGuesses = answer.numIncorrectGuesses === undefined ? 1 : answer.numIncorrectGuesses + 1;
+          answer.numIncorrectGuesses =
+            answer.numIncorrectGuesses === undefined
+              ? 1
+              : answer.numIncorrectGuesses + 1;
         }
       }
     },
     initialize(state, action: PayloadAction<InitializePayload>) {
       const { exercise } = action.payload;
       const randomizeQuestions = !!exercise.meta.DRAG_DROP?.randomizeQuestions;
-      const answers = (randomizeQuestions
-        ? randomizeArray(exercise.questions) as Question[]
-        : exercise.questions
+      const answers = (
+        randomizeQuestions
+          ? (randomizeArray(exercise.questions) as Question[])
+          : exercise.questions
       ).map((question) => ({ question }));
       state.answers = answers;
       state.choices = exercise.choices;
       state.doReview = false;
       state.startTime = Date.now();
       state.meta = exercise.meta.DRAG_DROP;
-      state.layout = exercise.meta.DRAG_DROP?.supportedLayouts[0] ?? 'HORIZONTAL';
+      state.layout =
+        exercise.meta.DRAG_DROP?.supportedLayouts[0] ?? 'HORIZONTAL';
     },
     fillRemainingAnswers(state) {
       // This is dispatched when user wants to see the answers without completing the exercise.
@@ -107,12 +120,8 @@ export const dragDropSlice = createSlice({
   },
 });
 
-export const {
-  chooseChoice,
-  initialize,
-  fillRemainingAnswers,
-  toggleLayout,
-} = dragDropSlice.actions;
+export const { chooseChoice, initialize, fillRemainingAnswers, toggleLayout } =
+  dragDropSlice.actions;
 export const {
   selectChoicesMap,
   selectIsFinished,

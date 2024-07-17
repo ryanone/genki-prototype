@@ -8,7 +8,11 @@ type ExerciseLinkProps = {
   lessonId: string;
 };
 
-export default function ExerciseLink({ bookId, lessonId, exercise }: ExerciseLinkProps) {
+export default function ExerciseLink({
+  bookId,
+  lessonId,
+  exercise,
+}: ExerciseLinkProps) {
   return (
     <Link
       className={styles.exerciseLink}

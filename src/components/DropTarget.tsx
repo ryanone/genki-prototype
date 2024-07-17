@@ -23,7 +23,13 @@ type DropTargetProps = {
 };
 
 export default function DropTarget({
-  layout, result, numIncorrectGuesses, style, val1, val2, onDrop,
+  layout,
+  result,
+  numIncorrectGuesses,
+  style,
+  val1,
+  val2,
+  onDrop,
 }: DropTargetProps) {
   const [isZoneEntered, setIsZoneEntered] = useState(false);
   const isDisabled = result === 'CORRECT';
@@ -57,14 +63,15 @@ export default function DropTarget({
 
   let numIncorrectContent;
   if (numIncorrectGuesses && numIncorrectGuesses > 0) {
-    numIncorrectContent = layout === 'HORIZONTAL'
-      ? (
+    numIncorrectContent =
+      layout === 'HORIZONTAL' ? (
         <span className={styles.numIncorrect}>
           <FaArrowLeft className={styles.incorrectArrow} role="presentation" />
           {`wrong ${numIncorrectGuesses}x`}
         </span>
-      )
-      : (<span className={styles.numIncorrect}>{`x${numIncorrectGuesses}`}</span>);
+      ) : (
+        <span className={styles.numIncorrect}>{`x${numIncorrectGuesses}`}</span>
+      );
     zoneClasses.push(styles.zoneHasIncorrect);
   }
 
@@ -84,8 +91,18 @@ export default function DropTarget({
         role="button"
       >
         {zoneContent}
-        {isIncorrect && <FaX aria-label="Incorrect" className={`${styles.icon} ${styles.iconIncorrect}`} />}
-        {isCorrect && <FaStar aria-label="Correct" className={`${styles.icon} ${styles.iconCorrect}`} />}
+        {isIncorrect && (
+          <FaX
+            aria-label="Incorrect"
+            className={`${styles.icon} ${styles.iconIncorrect}`}
+          />
+        )}
+        {isCorrect && (
+          <FaStar
+            aria-label="Correct"
+            className={`${styles.icon} ${styles.iconCorrect}`}
+          />
+        )}
       </div>
       {numIncorrectContent}
     </div>

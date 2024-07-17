@@ -7,10 +7,14 @@ type DraggableItemProps = {
   val: {
     content: string;
     id: string;
-  }
+  };
 };
 
-export default function DraggableItem({ val, onSelect, onUnselect }: DraggableItemProps) {
+export default function DraggableItem({
+  val,
+  onSelect,
+  onUnselect,
+}: DraggableItemProps) {
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       onSelect(val.id);

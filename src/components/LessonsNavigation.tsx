@@ -10,7 +10,10 @@ type LessonsNavigationProps = {
   lessons: Lesson[];
 };
 
-export default function LessonsNavigation({ bookId, lessons }: LessonsNavigationProps) {
+export default function LessonsNavigation({
+  bookId,
+  lessons,
+}: LessonsNavigationProps) {
   const [isVisible, setIsVisible] = useState(false);
   const navigationClasses = [styles.lessonsNavigation];
   if (isVisible) {
@@ -39,7 +42,11 @@ export default function LessonsNavigation({ bookId, lessons }: LessonsNavigation
             <FaX />
           </button>
         </div>
-        <LessonsAccordion bookId={bookId} lessons={lessons} viewMode="COMPACT" />
+        <LessonsAccordion
+          bookId={bookId}
+          lessons={lessons}
+          viewMode="COMPACT"
+        />
       </nav>
     </>
   );

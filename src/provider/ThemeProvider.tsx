@@ -1,5 +1,9 @@
 import {
-  useCallback, useEffect, useMemo, useState, type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
 } from 'react';
 import ThemeContext, { type Theme as ThemeType } from '@/context/ThemeContext';
 
@@ -24,9 +28,11 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
 
   useEffect(() => {
     const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
-    const darkMediaListener = (e: MediaQueryListEvent) => e.matches && setTheme(DARK);
+    const darkMediaListener = (e: MediaQueryListEvent) =>
+      e.matches && setTheme(DARK);
     const lightMedia = window.matchMedia('(prefers-color-scheme: light)');
-    const lightMediaListener = (e: MediaQueryListEvent) => e.matches && setTheme(LIGHT);
+    const lightMediaListener = (e: MediaQueryListEvent) =>
+      e.matches && setTheme(LIGHT);
 
     const initialTheme = localStorage.getItem(THEME_KEY) as ThemeType;
     if (initialTheme) {
@@ -60,7 +66,10 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     }
   }, [theme]);
 
-  const providerValue = useMemo(() => ({ theme, setTheme: handleSetTheme }), [handleSetTheme, theme]);
+  const providerValue = useMemo(
+    () => ({ theme, setTheme: handleSetTheme }),
+    [handleSetTheme, theme],
+  );
   return (
     <ThemeContext.Provider value={providerValue}>
       {children}

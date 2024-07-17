@@ -14,9 +14,7 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
     <div className={styles.progressBar}>
       <div className={styles.completion} style={completionStyles} />
       <div className={styles.status}>
-        {current}
-        /
-        {total}
+        {current}/{total}
       </div>
     </div>
   );

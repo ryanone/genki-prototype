@@ -9,7 +9,11 @@ export default function Index() {
     <div className={styles.indexRoute}>
       <p>{book.introduction}</p>
       <h2>Lessons</h2>
-      <LessonsAccordion bookId={book.id} lessons={book.lessons} viewMode="DETAILED" />
+      <LessonsAccordion
+        bookId={book.id}
+        lessons={book.lessons}
+        viewMode="DETAILED"
+      />
     </div>
   );
 }
