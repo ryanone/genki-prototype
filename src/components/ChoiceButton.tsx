@@ -1,8 +1,6 @@
 import type { ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
 import styles from './ChoiceButton.module.css';
 
-// export type ChoiceItem = ChoiceData;
-
 type ChoiceButtonProps = {
   data: ChoiceData;
   isDisabled?: boolean;

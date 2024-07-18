@@ -1,5 +1,5 @@
 import type { Exercise } from '@/data/exercise';
-import type { ChoiceItem } from '@/components/ChoiceButton';
+import type { ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
 
 export function randomizeArray<T>(input: T[]): T[] {
   const copy = [...input];
@@ -14,10 +14,10 @@ export function generateRandomChoices(
   data: Exercise,
   questionKey: string,
   numChoices: number,
-): ChoiceItem[] {
+): ChoiceData[] {
   const question = data.questions.find((q) => q.content === questionKey);
   let availableChoices = [...data.choices];
-  const randomChoices: ChoiceItem[] = [];
+  const randomChoices: ChoiceData[] = [];
   let numChoicesRemaining = numChoices;
   if (question) {
     const correctChoice = data.choices.find(
@@ -39,7 +39,7 @@ export function generateRandomChoices(
       });
       numChoicesRemaining -= 1;
     }
-    return randomizeArray(randomChoices) as ChoiceItem[];
+    return randomizeArray(randomChoices) as ChoiceData[];
   }
   return randomChoices;
 }
