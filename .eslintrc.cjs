@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2020: true
+    es2023: true
   },
   extends: [
     'airbnb',
@@ -23,7 +23,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
   },
   plugins: [
     'react-refresh'
