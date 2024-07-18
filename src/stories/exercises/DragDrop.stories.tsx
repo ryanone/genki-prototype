@@ -24,6 +24,7 @@ const meta: Meta<DragDropExercisePropsAndCustomArgs> = {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {},
+  decorators: [(story) => <MockRoot>{story()}</MockRoot>],
 };
 
 export default meta;
@@ -39,7 +40,6 @@ export const DefaultHorizontal: Story = {
   args: {
     data,
   },
-  decorators: [(story) => <MockRoot>{story()}</MockRoot>],
 };
 
 export const DefaultVertical: Story = {
@@ -54,5 +54,4 @@ export const DefaultVertical: Story = {
       },
     } as DragDropExerciseType,
   },
-  decorators: [(story) => <MockRoot>{story()}</MockRoot>],
 };
