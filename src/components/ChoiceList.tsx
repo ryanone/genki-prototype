@@ -1,9 +1,9 @@
 import ChoiceButton from '@/components/ChoiceButton';
-import { type ChoiceItem } from '@/components/ChoiceButton';
+import { type ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
 import styles from './ChoiceList.module.css';
 
 type ChoiceListProps = {
-  choices: ChoiceItem[];
+  choices: ChoiceData[];
   isDisabled?: boolean;
   onChoiceSelect?: (id: string) => void;
 };

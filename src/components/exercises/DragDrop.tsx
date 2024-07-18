@@ -1,7 +1,6 @@
 import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
 import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import {
   chooseChoice,
   initialize,
@@ -12,13 +11,14 @@ import {
   selectResults,
   toggleLayout,
 } from '@/features/dragDrop/dragDropSlice';
-import DraggableItem from '@/components/DraggableItem';
 import ExerciseResults from '@/components/ExerciseResults';
 import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
+import MemoizedDraggableItem from '@/components/MemoizedDraggableItem';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
 import VerticalDropTargetList from '@/components/VerticalDropTargetList';
 import useAppSelector from '@/hooks/useAppSelector';
+import useAppDispatch from '@/hooks/useAppDispatch';
 import type { DragDropExercise } from '@/data/exercise';
 import type { LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import styles from './DragDrop.module.css';
@@ -33,7 +33,7 @@ export default function DragDrop({ data }: DragDropProps) {
   const timeElapsed = useRef(0);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const layout = useAppSelector((state) => state.dragDrop.layout);
   const layoutConfig = useAppSelector(selectLayoutConfiguration);
   const results = useAppSelector(selectResults);
@@ -140,7 +140,7 @@ export default function DragDrop({ data }: DragDropProps) {
         )}
         <div className={styles.choices}>
           {remainingChoices.map((choice) => (
-            <DraggableItem
+            <MemoizedDraggableItem
               key={choice.id}
               val={choice}
               onSelect={handleChoiceSelect}

@@ -1,94 +1,66 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { FaCircleInfo } from 'react-icons/fa6';
-import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
-import AnswerList from '@/components/AnswerList';
+import {
+  chooseChoice,
+  goToNextQuestion,
+  initialize,
+  selectCurrentAnswer,
+  selectIsFinished,
+  selectResults,
+  type ChoiceData,
+} from '@/features/multipleChoice/multipleChoiceSlice';
+import AnswerList, { type FilledAnswer } from '@/components/AnswerList';
 import ExerciseResults from '@/components/ExerciseResults';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
-import type { MultipleChoiceExercise, Question } from '@/data/exercise';
-import type { ChoiceItem } from '@/components/ChoiceButton';
-import type { QuestionAnswer } from '@/components/AnswerList';
+import useAppSelector from '@/hooks/useAppSelector';
+import useAppDispatch from '@/hooks/useAppDispatch';
+import type { MultipleChoiceExercise } from '@/data/exercise';
 import styles from './MultipleChoice.module.css';
 
 type MultipleChoiceProps = {
   data: MultipleChoiceExercise;
 };
 
-const NUM_CHOICES_PER_QUESTION = 4;
-
 export default function MultipleChoice({ data }: MultipleChoiceProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isQuestionFinished, setIsQuestionFinished] = useState(false);
-  const questions = useRef(
-    data.meta?.MULTIPLE_CHOICE?.randomizeQuestions
-      ? (randomizeArray(data.questions) as Question[])
-      : data.questions,
-  );
-  const currentQuestion = questions.current[currentIndex];
-  const [currentChoices, setCurrentChoices] = useState<ChoiceItem[]>(
-    currentQuestion
-      ? generateRandomChoices(
-          data,
-          currentQuestion.content,
-          NUM_CHOICES_PER_QUESTION,
-        )
-      : [],
-  );
-  const [answers, setAnswers] = useState<ChoiceItem[][]>([]);
   const timeElapsed = useRef(0);
-  const isExerciseFinished = currentIndex === questions.current.length;
-  const instructions = data.meta?.MULTIPLE_CHOICE?.instructions;
+  const dispatch = useAppDispatch();
+  const currentIndex = useAppSelector((state) => state.multipleChoice.index);
+  const isQuestionFinished = useAppSelector(
+    (state) => state.multipleChoice.isQuestionFinished,
+  );
+  const answers = useAppSelector((state) => state.multipleChoice.answers);
+  const currentAnswer = useAppSelector(selectCurrentAnswer);
+  const instructions = useAppSelector(
+    (state) => state.multipleChoice.meta?.instructions,
+  );
+  const isFinished = useAppSelector(selectIsFinished);
+  const results = useAppSelector(selectResults);
+
+  useEffect(() => {
+    dispatch(
+      initialize({
+        exercise: data,
+      }),
+    );
+  }, [data, dispatch]);
+
   const handleChoiceSelect = (id: string) => {
-    const currentChoicesUpdated: ChoiceItem[] = currentChoices.map((c) => {
-      if (c.id === id) {
-        return {
-          ...c,
-          result:
-            c.id === currentQuestion.choices.correctId
-              ? 'SELECTED_CORRECT'
-              : 'INCORRECT',
-        };
-      }
-      if (c.id === currentQuestion.choices.correctId) {
-        return {
-          ...c,
-          result: 'UNSELECTED_CORRECT',
-        };
-      }
-      return c;
-    });
-    setCurrentChoices(currentChoicesUpdated);
-    setAnswers((a) => [...a, currentChoicesUpdated]);
-    setIsQuestionFinished(true);
+    dispatch(
+      chooseChoice({
+        choiceId: id,
+      }),
+    );
   };
   const handleNextClick = () => {
-    const nextIndex = currentIndex + 1;
-    setCurrentIndex(nextIndex);
-    if (nextIndex < questions.current.length) {
-      const nextQuestion = questions.current[nextIndex];
-      setCurrentChoices(
-        generateRandomChoices(
-          data,
-          nextQuestion.content,
-          NUM_CHOICES_PER_QUESTION,
-        ),
-      );
-      setIsQuestionFinished(false);
-    }
+    dispatch(goToNextQuestion());
   };
   const handleRestart = () => {
-    setCurrentIndex(0);
-    setIsQuestionFinished(false);
-    setAnswers([]);
-    questions.current = randomizeArray(data.questions) as Question[];
-    const nextQuestion = questions.current[0];
-    setCurrentChoices(
-      generateRandomChoices(
-        data,
-        nextQuestion.content,
-        NUM_CHOICES_PER_QUESTION,
-      ),
+    dispatch(
+      initialize({
+        exercise: data,
+      }),
     );
   };
   const nextButton = isQuestionFinished && (
@@ -100,60 +72,52 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
       NEXT
     </button>
   );
-  const questionsAnswers = isExerciseFinished
-    ? questions.current.map((q, i) => ({
-        question: q,
-        choices: answers[i],
-      }))
-    : [];
-  const numSolved = isExerciseFinished ? answers.length : 0;
-  const numWrong = isExerciseFinished
-    ? answers.filter((a) => !!a.find((c) => c.result === 'INCORRECT')).length
-    : 0;
 
+  const exerciseContent = !isFinished &&
+    currentAnswer?.choices &&
+    instructions && (
+      <>
+        {instructions && (
+          <div className={styles.instructions}>
+            <FaCircleInfo
+              className={styles.instructionsIcon}
+              role="presentation"
+            />
+            {instructions}
+          </div>
+        )}
+        <MultipleChoiceQuestion
+          key={currentIndex}
+          choices={currentAnswer.choices as ChoiceData[]}
+          index={currentIndex}
+          isDisabled={isQuestionFinished}
+          question={currentAnswer.question}
+          onChoiceSelect={handleChoiceSelect}
+        />
+        <div className={styles.actions}>{nextButton}</div>
+        <ProgressBar current={currentIndex} total={answers.length} />
+        <Timer
+          isRunning={!isFinished}
+          onTick={(numSeconds) => {
+            timeElapsed.current = numSeconds;
+          }}
+        />
+      </>
+    );
   return (
     <div className={styles.multipleChoice}>
-      {isExerciseFinished ? (
+      {isFinished && results ? (
         <>
           <ExerciseResults
-            numSolved={numSolved}
-            numWrong={numWrong}
+            numSolved={results.numSolved}
+            numWrong={results.numWrong}
             timeElapsed={timeElapsed.current}
             onRestart={handleRestart}
           />
-          <AnswerList data={questionsAnswers as QuestionAnswer[]} />
+          <AnswerList data={answers as FilledAnswer[]} />
         </>
       ) : (
-        <>
-          {instructions && (
-            <div className={styles.instructions}>
-              <FaCircleInfo
-                className={styles.instructionsIcon}
-                role="presentation"
-              />
-              {instructions}
-            </div>
-          )}
-          <MultipleChoiceQuestion
-            key={currentIndex}
-            choices={currentChoices}
-            index={currentIndex}
-            isDisabled={isQuestionFinished}
-            question={currentQuestion}
-            onChoiceSelect={handleChoiceSelect}
-          />
-          <div className={styles.actions}>{nextButton}</div>
-          <ProgressBar
-            current={currentIndex}
-            total={questions.current.length}
-          />
-          <Timer
-            isRunning={!isExerciseFinished}
-            onTick={(numSeconds) => {
-              timeElapsed.current = numSeconds;
-            }}
-          />
-        </>
+        exerciseContent
       )}
     </div>
   );

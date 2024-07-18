@@ -106,7 +106,8 @@
   ],
   "meta": {
     "MULTIPLE_CHOICE": {
-      "instructions": "Choose the correct definition for each Japanese expression."
+      "instructions": "Choose the correct definition for each Japanese expression.",
+      "randomizeQuestions": true
     }
   }
 }

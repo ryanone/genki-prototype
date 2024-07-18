@@ -1,10 +1,10 @@
 import ChoiceList from '@/components/ChoiceList';
-import { type ChoiceItem } from '@/components/ChoiceButton';
+import { type ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
 import { type Question } from '@/data/exercise';
 import styles from './MultipleChoiceQuestion.module.css';
 
 type MultipleChoiceQuestionProps = {
-  choices: ChoiceItem[];
+  choices: ChoiceData[];
   index: number;
   isDisabled?: boolean;
   onChoiceSelect?: (id: string) => void;

@@ -16,7 +16,7 @@ export default function ExerciseResults({
   timeElapsed,
   onRestart,
 }: ExerciseResultsProps) {
-  const score = Math.floor((numSolved - numWrong) / (numSolved * 100));
+  const score = Math.floor(((numSolved - numWrong) / numSolved) * 100);
   let message;
   if (score === 100) {
     message = <p className={styles.advice}>PERFECT! Great job!</p>;

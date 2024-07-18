@@ -2,7 +2,7 @@ import {
   selectChoicesMap,
   selectIsFinished,
 } from '@/features/dragDrop/dragDropSlice';
-import DropTarget from '@/components/DropTarget';
+import MemoizedDropTarget from '@/components/MemoizedDropTarget';
 import useAppSelector from '@/hooks/useAppSelector';
 import styles from './VerticalDropTargetList.module.css';
 
@@ -20,7 +20,7 @@ export default function VerticalDropTargetList({
   return (
     <div className={styles.verticalDropTargetList}>
       {answers?.map((a) => (
-        <DropTarget
+        <MemoizedDropTarget
           key={a.question.content}
           layout="HORIZONTAL"
           result={a.result}

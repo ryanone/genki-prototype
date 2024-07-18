@@ -2,7 +2,7 @@ import {
   selectChoicesMap,
   selectIsFinished,
 } from '@/features/dragDrop/dragDropSlice';
-import DropTarget from '@/components/DropTarget';
+import MemoizedDropTarget from '@/components/MemoizedDropTarget';
 import useAppSelector from '@/hooks/useAppSelector';
 import { type LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import styles from './HorizontalDropTargetList.module.css';
@@ -50,7 +50,7 @@ export default function HorizontalDropTargetList({
         }
 
         return (
-          <DropTarget
+          <MemoizedDropTarget
             key={a.question.content}
             layout={dropTargetLayout}
             result={a.result}

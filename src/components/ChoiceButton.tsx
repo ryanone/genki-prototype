@@ -1,12 +1,10 @@
-import { type Choice } from '@/data/exercise';
+import type { ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
 import styles from './ChoiceButton.module.css';
 
-export interface ChoiceItem extends Choice {
-  result?: 'SELECTED_CORRECT' | 'UNSELECTED_CORRECT' | 'INCORRECT' | undefined;
-}
+// export type ChoiceItem = ChoiceData;
 
 type ChoiceButtonProps = {
-  data: ChoiceItem;
+  data: ChoiceData;
   isDisabled?: boolean;
   onClick?: (id: string) => void;
 };

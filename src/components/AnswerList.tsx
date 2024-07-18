@@ -1,15 +1,18 @@
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
-import type { ChoiceItem } from '@/components/ChoiceButton';
+import type {
+  Answer,
+  ChoiceData,
+} from '@/features/multipleChoice/multipleChoiceSlice';
 import type { Question } from '@/data/exercise';
 import styles from './AnswerList.module.css';
 
-export type QuestionAnswer = {
-  choices: ChoiceItem[];
+export interface FilledAnswer extends Answer {
+  choices: ChoiceData[];
   question: Question;
-};
+}
 
 type AnswerListProps = {
-  data: QuestionAnswer[];
+  data: FilledAnswer[];
 };
 
 export default function AnswerList({ data }: AnswerListProps) {

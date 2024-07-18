@@ -24,7 +24,7 @@ export interface DragDropMeta extends BaseMeta {
   supportedLayouts: DragDropFlow[];
 }
 
-interface MultipleChoiceMeta extends BaseMeta {}
+export interface MultipleChoiceMeta extends BaseMeta {}
 
 export type Question = {
   choices: {
