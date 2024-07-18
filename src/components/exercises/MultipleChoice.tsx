@@ -17,6 +17,7 @@ import Timer from '@/components/Timer';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import type { MultipleChoiceExercise } from '@/data/exercise';
+import type { RootState } from '@/app/store';
 import styles from './MultipleChoice.module.css';
 
 type MultipleChoiceProps = {
@@ -26,14 +27,18 @@ type MultipleChoiceProps = {
 export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const timeElapsed = useRef(0);
   const dispatch = useAppDispatch();
-  const currentIndex = useAppSelector((state) => state.multipleChoice.index);
-  const isQuestionFinished = useAppSelector(
-    (state) => state.multipleChoice.isQuestionFinished,
+  const currentIndex = useAppSelector(
+    (state: RootState) => state.multipleChoice.index,
   );
-  const answers = useAppSelector((state) => state.multipleChoice.answers);
+  const isQuestionFinished = useAppSelector(
+    (state: RootState) => state.multipleChoice.isQuestionFinished,
+  );
+  const answers = useAppSelector(
+    (state: RootState) => state.multipleChoice.answers,
+  );
   const currentAnswer = useAppSelector(selectCurrentAnswer);
   const instructions = useAppSelector(
-    (state) => state.multipleChoice.meta?.instructions,
+    (state: RootState) => state.multipleChoice.meta?.instructions,
   );
   const isFinished = useAppSelector(selectIsFinished);
   const results = useAppSelector(selectResults);
