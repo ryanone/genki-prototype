@@ -72,6 +72,16 @@ module.exports = {
         ],
       },
     },
+    {
+      files: [
+        'vite.config.ts',
+        'src/tests/**/*.ts',
+        'src/tests/**/*.tsx',
+      ],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
   ],
   settings: {
     react: {

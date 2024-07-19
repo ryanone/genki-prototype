@@ -1,4 +1,3 @@
-/* eslint import/no-extraneous-dependencies: 0 */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -10,5 +9,10 @@ export default defineConfig({
     alias: {
       '@': '/src',
     },
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/tests/setup.ts',
   },
 });
