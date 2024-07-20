@@ -29,7 +29,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
     if (newOpenSections.has(id)) {
       newOpenSections.delete(id);
     } else {
-      if (options?.allowMultipleExpanded) {
+      if (!options?.allowMultipleExpanded) {
         newOpenSections.clear();
       }
       newOpenSections.add(id);
@@ -51,6 +51,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
               aria-controls={panelId}
               aria-expanded={isExpanded}
               type="button"
+              data-testid="accordion-button"
               onClick={() => handleTitleClick(id)}
             >
               <span className={styles.titleContent}>{title}</span>
@@ -66,6 +67,7 @@ export default function Accordion({ sections, options }: AccordionProps) {
               id={panelId}
               hidden={!isExpanded}
               aria-labelledby={buttonId}
+              data-testid="accordion-content"
               role="region"
             >
               {content}

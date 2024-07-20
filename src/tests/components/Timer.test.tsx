@@ -1,11 +1,11 @@
-import { afterEach, beforeEach, expect, describe, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import Timer from '@/components/Timer';
 import '@testing-library/jest-dom';
 
 const TICK_LENGTH = 1000;
 
-describe('Timer', () => {
+describe('components/Timer', () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
