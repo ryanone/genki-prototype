@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { FaCircleInfo } from 'react-icons/fa6';
 import {
   chooseChoice,
   goToNextQuestion,
-  initialize,
+  restart,
   selectCurrentAnswer,
   selectIsFinished,
   selectResults,
@@ -16,15 +16,10 @@ import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import type { MultipleChoiceExercise } from '@/data/exercise';
 import type { RootState } from '@/app/store';
 import styles from './MultipleChoice.module.css';
 
-type MultipleChoiceProps = {
-  data: MultipleChoiceExercise;
-};
-
-export default function MultipleChoice({ data }: MultipleChoiceProps) {
+export default function MultipleChoice() {
   const timeElapsed = useRef(0);
   const dispatch = useAppDispatch();
   const currentIndex = useAppSelector(
@@ -43,14 +38,6 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
   const isFinished = useAppSelector(selectIsFinished);
   const results = useAppSelector(selectResults);
 
-  useEffect(() => {
-    dispatch(
-      initialize({
-        exercise: data,
-      }),
-    );
-  }, [data, dispatch]);
-
   const handleChoiceSelect = (id: string) => {
     dispatch(
       chooseChoice({
@@ -62,11 +49,7 @@ export default function MultipleChoice({ data }: MultipleChoiceProps) {
     dispatch(goToNextQuestion());
   };
   const handleRestart = () => {
-    dispatch(
-      initialize({
-        exercise: data,
-      }),
-    );
+    dispatch(restart());
   };
   const nextButton = isQuestionFinished && (
     <button

@@ -1,14 +1,25 @@
-import { lazy, useState, Suspense } from 'react';
+import { lazy, useEffect, useState, Suspense } from 'react';
 import { FaArrowsRotate } from 'react-icons/fa6';
-import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
+import {
+  initialize as initializeDragDrop,
+  reset as resetDragDrop,
+} from '@/features/dragDrop/dragDropSlice';
+import {
+  initialize as initializeMultipleChoice,
+  reset as resetMultipleChoice,
+} from '@/features/multipleChoice/multipleChoiceSlice';
 import type {
   DragDropExercise,
   Exercise,
   MultipleChoiceExercise,
   RenderMode,
 } from '@/data/exercise';
+import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
+import useAppDispatch from '@/hooks/useAppDispatch';
 import styles from './ExerciseRenderer.module.css';
 import commonStyles from '@/styles/common.module.css';
+import useAppSelector from '@/hooks/useAppSelector';
+import type { RootState } from '@/app/store';
 
 type ExerciseRendererProps = {
   data: Exercise;
@@ -21,14 +32,32 @@ const MultipleChoice = lazy(
 
 export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
-  let exercise;
-  if (renderMode === 'DRAG_DROP') {
-    exercise = <DragDrop data={data as DragDropExercise} key={Date.now()} />;
-  } else if (renderMode === 'MULTIPLE_CHOICE') {
-    exercise = (
-      <MultipleChoice data={data as MultipleChoiceExercise} key={Date.now()} />
-    );
-  }
+  const dispatch = useAppDispatch();
+  const isDragDropInitialized = useAppSelector(
+    (state: RootState) => state.dragDrop.initialized,
+  );
+  const isMultipleChoiceInitialized = useAppSelector(
+    (state: RootState) => state.multipleChoice.initialized,
+  );
+
+  useEffect(() => {
+    if (renderMode === 'DRAG_DROP') {
+      dispatch(resetMultipleChoice());
+      dispatch(
+        initializeDragDrop({
+          exercise: data as DragDropExercise,
+        }),
+      );
+    } else if (renderMode === 'MULTIPLE_CHOICE') {
+      dispatch(resetDragDrop());
+      dispatch(
+        initializeMultipleChoice({
+          exercise: data as MultipleChoiceExercise,
+        }),
+      );
+    }
+  }, [data, dispatch, renderMode]);
+
   const canChangeRenderMode = data.supportedRenderModes.length > 1;
   const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] =
     useState(false);
@@ -36,6 +65,13 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
     setRenderMode(value);
     setShowChangeRenderModeDialog(false);
   };
+
+  let exercise;
+  if (isDragDropInitialized) {
+    exercise = <DragDrop key={Date.now()} />;
+  } else if (isMultipleChoiceInitialized) {
+    exercise = <MultipleChoice key={Date.now()} />;
+  }
 
   return (
     <div>

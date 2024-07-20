@@ -1,21 +1,41 @@
-import { ComponentProps, type ReactNode } from 'react';
+import { ComponentProps, useEffect, type ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Provider } from 'react-redux';
 import DragDropExercise from '@/components/exercises/DragDrop';
 import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
-import { store } from '@/app/store';
+import { initialize } from '@/features/dragDrop/dragDropSlice';
+import { store, type RootState } from '@/app/store';
+import useAppDispatch from '@/hooks/useAppDispatch';
+import useAppSelector from '@/hooks/useAppSelector';
 import type { DragDropExercise as DragDropExerciseType } from '@/data/exercise';
 
 type DragDropExercisePropsAndCustomArgs = ComponentProps<
   typeof DragDropExercise
 >;
 
-type MockRootProps = {
+type MockComponentProps = {
   children: ReactNode;
 };
 
-function MockRoot({ children }: MockRootProps) {
+const data = {
+  ...Genki3Exercise01,
+  title: 'Hiragana (p. 20-21)',
+} as DragDropExerciseType;
+
+function MockRoot({ children }: MockComponentProps) {
   return <Provider store={store}>{children}</Provider>;
+}
+
+function MockExerciseRenderer({ children }: MockComponentProps) {
+  const dispatch = useAppDispatch();
+  const isInitialized = useAppSelector(
+    (state: RootState) => state.dragDrop.initialized,
+  );
+  useEffect(() => {
+    dispatch(initialize({ exercise: data }));
+  }, [dispatch]);
+
+  return <div>{isInitialized ? children : null}</div>;
 }
 
 const meta: Meta<DragDropExercisePropsAndCustomArgs> = {
@@ -24,34 +44,23 @@ const meta: Meta<DragDropExercisePropsAndCustomArgs> = {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {},
-  decorators: [(story) => <MockRoot>{story()}</MockRoot>],
+  decorators: [
+    (Story) => (
+      <MockRoot>
+        <MockExerciseRenderer>
+          <Story />
+        </MockExerciseRenderer>
+      </MockRoot>
+    ),
+  ],
 };
 
 export default meta;
 
-const data = {
-  ...Genki3Exercise01,
-  title: 'Hiragana (p. 20-21)',
-} as DragDropExerciseType;
-
 type Story = StoryObj<typeof DragDropExercise>;
 
-export const DefaultHorizontal: Story = {
+export const Default: Story = {
   args: {
     data,
-  },
-};
-
-export const DefaultVertical: Story = {
-  args: {
-    data: {
-      ...data,
-      meta: {
-        DRAG_DROP: {
-          ...Genki3Exercise01.meta.DRAG_DROP,
-          supportedLayouts: ['VERTICAL'],
-        },
-      },
-    } as DragDropExerciseType,
   },
 };

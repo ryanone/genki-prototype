@@ -26,6 +26,7 @@ export type DragDropState = {
   answers: Answer[];
   choices: Choice[];
   doReview: boolean;
+  initialized: boolean;
   layout?: DragDropFlow;
   meta?: DragDropMeta;
   startTime: number;
@@ -44,6 +45,7 @@ const initialState: DragDropState = {
   answers: [],
   choices: [],
   doReview: false,
+  initialized: false,
   startTime: Date.now(),
 };
 
@@ -74,19 +76,20 @@ export const dragDropSlice = createSlice({
     },
     initialize(state, action: PayloadAction<InitializePayload>) {
       const { exercise } = action.payload;
-      const randomizeQuestions = !!exercise.meta.DRAG_DROP?.randomizeQuestions;
+      state.meta = exercise.meta.DRAG_DROP;
+      const randomizeQuestions = !!state.meta?.randomizeQuestions;
       const answers = (
         randomizeQuestions
           ? (randomizeArray(exercise.questions) as Question[])
           : exercise.questions
       ).map((question) => ({ question }));
       state.answers = answers;
-      state.choices = exercise.choices;
+      state.choices = randomizeArray(exercise.choices);
       state.doReview = false;
       state.startTime = Date.now();
-      state.meta = exercise.meta.DRAG_DROP;
       state.layout =
         exercise.meta.DRAG_DROP?.supportedLayouts[0] ?? 'HORIZONTAL';
+      state.initialized = true;
     },
     fillRemainingAnswers(state) {
       // This is dispatched when user wants to see the answers without completing the exercise.
@@ -107,6 +110,23 @@ export const dragDropSlice = createSlice({
       });
       state.doReview = true;
     },
+    reset() {
+      return { ...initialState };
+    },
+    restart(state) {
+      const randomizeQuestions = !!state.meta?.randomizeQuestions;
+      state.answers = (
+        randomizeQuestions ? randomizeArray(state.answers) : state.answers
+      ).map((a) => {
+        delete a.result;
+        delete a.selectedChoiceId;
+        return a;
+      });
+      state.choices = randomizeArray(state.choices);
+
+      state.doReview = false;
+      state.startTime = Date.now();
+    },
     toggleLayout(state) {
       state.layout = state.layout === 'VERTICAL' ? 'HORIZONTAL' : 'VERTICAL';
     },
@@ -120,8 +140,14 @@ export const dragDropSlice = createSlice({
   },
 });
 
-export const { chooseChoice, initialize, fillRemainingAnswers, toggleLayout } =
-  dragDropSlice.actions;
+export const {
+  chooseChoice,
+  initialize,
+  fillRemainingAnswers,
+  reset,
+  restart,
+  toggleLayout,
+} = dragDropSlice.actions;
 export const {
   selectChoicesMap,
   selectIsFinished,

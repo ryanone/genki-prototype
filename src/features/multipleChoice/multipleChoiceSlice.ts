@@ -23,8 +23,9 @@ export type Answer = {
 
 export type MultipleChoiceState = {
   answers: Answer[];
-  exercise?: MultipleChoiceExercise;
+  choices: Choice[];
   index: number;
+  initialized: boolean;
   isQuestionFinished: boolean;
   meta?: MultipleChoiceMeta;
   startTime: number;
@@ -40,7 +41,9 @@ type SelectChoicePayload = {
 
 const initialState: MultipleChoiceState = {
   answers: [],
+  choices: [],
   index: 0,
+  initialized: false,
   isQuestionFinished: false,
   startTime: Date.now(),
 };
@@ -67,10 +70,10 @@ export const multipleChoiceSlice = createSlice({
     },
     goToNextQuestion(state) {
       state.index += 1;
-      if (state.exercise && state.index < state.answers.length) {
+      if (state.answers.length && state.index < state.answers.length) {
         state.answers[state.index].choices = generateRandomChoices(
-          state.exercise,
-          state.answers[state.index].question.content,
+          state.answers[state.index].question,
+          state.choices,
           NUM_CHOICES_PER_QUESTION,
         );
         state.isQuestionFinished = false;
@@ -78,22 +81,43 @@ export const multipleChoiceSlice = createSlice({
     },
     initialize(state, action: PayloadAction<InitializePayload>) {
       const { exercise } = action.payload;
-      const randomizeQuestions =
-        !!exercise.meta.MULTIPLE_CHOICE.randomizeQuestions;
+      state.meta = exercise.meta.MULTIPLE_CHOICE;
+      const randomizeQuestions = !!state.meta?.randomizeQuestions;
       state.answers = (
         randomizeQuestions
           ? (randomizeArray(exercise.questions) as Question[])
           : exercise.questions
       ).map((question) => ({ question }));
-      state.exercise = exercise;
-      state.meta = exercise.meta.MULTIPLE_CHOICE;
+      state.choices = exercise.choices;
       state.isQuestionFinished = false;
 
       // Generate choices for first question
       state.index = 0;
       state.answers[state.index].choices = generateRandomChoices(
-        exercise,
-        state.answers[state.index].question.content,
+        state.answers[state.index].question,
+        state.choices,
+        NUM_CHOICES_PER_QUESTION,
+      );
+      state.initialized = true;
+    },
+    reset() {
+      return { ...initialState };
+    },
+    restart(state) {
+      const randomizeQuestions = !!state.meta?.randomizeQuestions;
+      state.isQuestionFinished = false;
+      state.answers = (
+        randomizeQuestions ? randomizeArray(state.answers) : state.answers
+      ).map((a) => {
+        delete a.choices;
+        return a;
+      });
+
+      // Generate choices for first question
+      state.index = 0;
+      state.answers[state.index].choices = generateRandomChoices(
+        state.answers[state.index].question,
+        state.choices,
         NUM_CHOICES_PER_QUESTION,
       );
     },
@@ -105,7 +129,7 @@ export const multipleChoiceSlice = createSlice({
   },
 });
 
-export const { chooseChoice, goToNextQuestion, initialize } =
+export const { chooseChoice, goToNextQuestion, initialize, reset, restart } =
   multipleChoiceSlice.actions;
 export const { selectCurrentAnswer, selectIsFinished, selectResults } =
   multipleChoiceSlice.selectors;

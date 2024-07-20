@@ -3,8 +3,8 @@ import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   chooseChoice,
-  initialize,
   fillRemainingAnswers,
+  restart,
   selectIsFinished,
   selectLayoutConfiguration,
   selectRemainingChoices,
@@ -19,17 +19,12 @@ import Timer from '@/components/Timer';
 import VerticalDropTargetList from '@/components/VerticalDropTargetList';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import type { DragDropExercise } from '@/data/exercise';
 import type { LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import type { RootState } from '@/app/store';
 import styles from './DragDrop.module.css';
 import commonStyles from '@/styles/common.module.css';
 
-type DragDropProps = {
-  data: DragDropExercise;
-};
-
-export default function DragDrop({ data }: DragDropProps) {
+export default function DragDrop() {
   const selectedChoiceId = useRef<string | undefined>(undefined);
   const timeElapsed = useRef(0);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
@@ -75,24 +70,12 @@ export default function DragDrop({ data }: DragDropProps) {
   };
   const handleRestart = () => {
     selectedChoiceId.current = undefined;
-    dispatch(
-      initialize({
-        exercise: data,
-      }),
-    );
+    dispatch(restart());
     setShowReviewDialog(false);
   };
   const canChangeLayout =
     !isFinished && layoutConfig?.canSupportMultipleLayouts;
   const isTimerRunning = !isFinished && !showReviewDialog;
-
-  useEffect(() => {
-    dispatch(
-      initialize({
-        exercise: data,
-      }),
-    );
-  }, [data, dispatch]);
 
   useEffect(() => {
     // If not clicking on another choice, or a drop zone, set the selected choice to undefined

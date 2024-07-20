@@ -1,4 +1,4 @@
-import type { Exercise } from '@/data/exercise';
+import type { Choice, Question } from '@/data/exercise';
 import type { ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
 
 export function randomizeArray<T>(input: T[]): T[] {
@@ -11,16 +11,15 @@ export function randomizeArray<T>(input: T[]): T[] {
 }
 
 export function generateRandomChoices(
-  data: Exercise,
-  questionKey: string,
+  question: Question,
+  choices: Choice[],
   numChoices: number,
 ): ChoiceData[] {
-  const question = data.questions.find((q) => q.content === questionKey);
-  let availableChoices = [...data.choices];
+  let availableChoices = [...choices];
   const randomChoices: ChoiceData[] = [];
   let numChoicesRemaining = numChoices;
   if (question) {
-    const correctChoice = data.choices.find(
+    const correctChoice = choices.find(
       (c) => c.id === question.choices.correctId,
     );
     if (correctChoice) {
