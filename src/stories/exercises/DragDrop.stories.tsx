@@ -1,13 +1,11 @@
-import { ComponentProps, useEffect, type ReactNode } from 'react';
+import { ComponentProps, type ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Provider } from 'react-redux';
 import DragDropExercise from '@/components/exercises/DragDrop';
 import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
-import { initialize } from '@/features/dragDrop/dragDropSlice';
-import { store, type RootState } from '@/app/store';
-import useAppDispatch from '@/hooks/useAppDispatch';
-import useAppSelector from '@/hooks/useAppSelector';
+import { setupStore } from '@/app/store';
 import type { DragDropExercise as DragDropExerciseType } from '@/data/exercise';
+import { initializeState } from '@/utils/dragDrop';
 
 type DragDropExercisePropsAndCustomArgs = ComponentProps<
   typeof DragDropExercise
@@ -23,19 +21,11 @@ const data = {
 } as DragDropExerciseType;
 
 function MockRoot({ children }: MockComponentProps) {
-  return <Provider store={store}>{children}</Provider>;
-}
-
-function MockExerciseRenderer({ children }: MockComponentProps) {
-  const dispatch = useAppDispatch();
-  const isInitialized = useAppSelector(
-    (state: RootState) => state.dragDrop.initialized,
+  return (
+    <Provider store={setupStore({ dragDrop: initializeState(data) })}>
+      {children}
+    </Provider>
   );
-  useEffect(() => {
-    dispatch(initialize({ exercise: data }));
-  }, [dispatch]);
-
-  return <div>{isInitialized ? children : null}</div>;
 }
 
 const meta: Meta<DragDropExercisePropsAndCustomArgs> = {
@@ -47,9 +37,7 @@ const meta: Meta<DragDropExercisePropsAndCustomArgs> = {
   decorators: [
     (Story) => (
       <MockRoot>
-        <MockExerciseRenderer>
-          <Story />
-        </MockExerciseRenderer>
+        <Story />
       </MockRoot>
     ),
   ],

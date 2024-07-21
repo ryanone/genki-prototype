@@ -1,13 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import dragDropReducer from '@/features/dragDrop/dragDropSlice';
 import multipleChoiceReducer from '@/features/multipleChoice/multipleChoiceSlice';
 
-export const store = configureStore({
-  reducer: {
-    dragDrop: dragDropReducer,
-    multipleChoice: multipleChoiceReducer,
-  },
+const rootReducer = combineReducers({
+  dragDrop: dragDropReducer,
+  multipleChoice: multipleChoiceReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export function setupStore(preloadedState?: Partial<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

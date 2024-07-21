@@ -1,16 +1,17 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
 import {
   selectCurrentAnswer as selectCurrentAnswerDraft,
   selectIsFinished as selectIsFinishedDraft,
   selectResults as selectResultsDraft,
 } from '@/features/multipleChoice/selectors';
+import initializeState from '@/utils/multipleChoice';
 import type {
   Choice,
   MultipleChoiceExercise,
   MultipleChoiceMeta,
   Question,
 } from '@/data/exercise';
-import { generateRandomChoices, randomizeArray } from '@/utils/randomize';
 
 export interface ChoiceData extends Choice {
   result?: 'SELECTED_CORRECT' | 'UNSELECTED_CORRECT' | 'INCORRECT' | undefined;
@@ -48,7 +49,7 @@ const initialState: MultipleChoiceState = {
   startTime: Date.now(),
 };
 
-const NUM_CHOICES_PER_QUESTION = 4;
+export const NUM_CHOICES_PER_QUESTION = 4;
 
 export const multipleChoiceSlice = createSlice({
   name: 'multipleChoice',
@@ -79,26 +80,8 @@ export const multipleChoiceSlice = createSlice({
         state.isQuestionFinished = false;
       }
     },
-    initialize(state, action: PayloadAction<InitializePayload>) {
-      const { exercise } = action.payload;
-      state.meta = exercise.meta.MULTIPLE_CHOICE;
-      const randomizeQuestions = !!state.meta?.randomizeQuestions;
-      state.answers = (
-        randomizeQuestions
-          ? (randomizeArray(exercise.questions) as Question[])
-          : exercise.questions
-      ).map((question) => ({ question }));
-      state.choices = exercise.choices;
-      state.isQuestionFinished = false;
-
-      // Generate choices for first question
-      state.index = 0;
-      state.answers[state.index].choices = generateRandomChoices(
-        state.answers[state.index].question,
-        state.choices,
-        NUM_CHOICES_PER_QUESTION,
-      );
-      state.initialized = true;
+    initialize(_, action: PayloadAction<InitializePayload>) {
+      return initializeState(action.payload.exercise);
     },
     reset() {
       return { ...initialState };

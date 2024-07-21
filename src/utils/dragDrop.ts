@@ -1,4 +1,11 @@
-import type { DragDropFlow, DragDropMeta } from '@/data/exercise';
+import type {
+  DragDropExercise,
+  DragDropFlow,
+  DragDropMeta,
+  Question,
+} from '@/data/exercise';
+import type { DragDropState } from '@/features/dragDrop/dragDropSlice';
+import { randomizeArray } from '@/utils/randomize';
 
 const HORIZONTAL = 'HORIZONTAL';
 
@@ -101,4 +108,21 @@ export function createLayoutConfiguration(
     ...BASE_VERTICAL_CONFIG,
     ...config,
   } as LayoutConfiguration;
+}
+
+export function initializeState(exercise: DragDropExercise): DragDropState {
+  const meta = exercise.meta.DRAG_DROP;
+  const randomizeQuestions = !!meta?.randomizeQuestions;
+  return {
+    meta,
+    answers: (randomizeQuestions
+      ? (randomizeArray(exercise.questions) as Question[])
+      : exercise.questions
+    ).map((question) => ({ question })),
+    choices: randomizeArray(exercise.choices),
+    doReview: false,
+    startTime: Date.now(),
+    layout: meta.supportedLayouts[0] ?? 'HORIZONTAL',
+    initialized: true,
+  };
 }

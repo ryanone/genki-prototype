@@ -1,13 +1,11 @@
-import { ComponentProps, useEffect, type ReactNode } from 'react';
+import { ComponentProps, type ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Provider } from 'react-redux';
 import MultipleChoiceExercise from '@/components/exercises/MultipleChoice';
 import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
-import { initialize } from '@/features/multipleChoice/multipleChoiceSlice';
-import { store, type RootState } from '@/app/store';
-import useAppDispatch from '@/hooks/useAppDispatch';
-import useAppSelector from '@/hooks/useAppSelector';
+import { setupStore } from '@/app/store';
 import type { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/data/exercise';
+import initializeState from '@/utils/multipleChoice';
 
 type MultipleChoiceExercisePropsAndCustomArgs = ComponentProps<
   typeof MultipleChoiceExercise
@@ -23,19 +21,11 @@ const data = {
 } as MultipleChoiceExerciseType;
 
 function MockRoot({ children }: MockComponentProps) {
-  return <Provider store={store}>{children}</Provider>;
-}
-
-function MockExerciseRenderer({ children }: MockComponentProps) {
-  const dispatch = useAppDispatch();
-  const isInitialized = useAppSelector(
-    (state: RootState) => state.multipleChoice.initialized,
+  return (
+    <Provider store={setupStore({ multipleChoice: initializeState(data) })}>
+      {children}
+    </Provider>
   );
-  useEffect(() => {
-    dispatch(initialize({ exercise: data }));
-  }, [dispatch]);
-
-  return <div style={{ width: '50vw' }}>{isInitialized ? children : null}</div>;
 }
 
 const meta: Meta<MultipleChoiceExercisePropsAndCustomArgs> = {
@@ -47,9 +37,7 @@ const meta: Meta<MultipleChoiceExercisePropsAndCustomArgs> = {
   decorators: [
     (Story) => (
       <MockRoot>
-        <MockExerciseRenderer>
-          <Story />
-        </MockExerciseRenderer>
+        <Story />
       </MockRoot>
     ),
   ],

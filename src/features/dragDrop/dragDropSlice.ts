@@ -6,6 +6,7 @@ import {
   selectRemainingChoices as selectRemainingChoicesDraft,
   selectResults as selectResultsDraft,
 } from '@/features/dragDrop/selectors';
+import { initializeState } from '@/utils/dragDrop';
 import { randomizeArray } from '@/utils/randomize';
 import type {
   Choice,
@@ -74,22 +75,8 @@ export const dragDropSlice = createSlice({
         }
       }
     },
-    initialize(state, action: PayloadAction<InitializePayload>) {
-      const { exercise } = action.payload;
-      state.meta = exercise.meta.DRAG_DROP;
-      const randomizeQuestions = !!state.meta?.randomizeQuestions;
-      const answers = (
-        randomizeQuestions
-          ? (randomizeArray(exercise.questions) as Question[])
-          : exercise.questions
-      ).map((question) => ({ question }));
-      state.answers = answers;
-      state.choices = randomizeArray(exercise.choices);
-      state.doReview = false;
-      state.startTime = Date.now();
-      state.layout =
-        exercise.meta.DRAG_DROP?.supportedLayouts[0] ?? 'HORIZONTAL';
-      state.initialized = true;
+    initialize(_, action: PayloadAction<InitializePayload>) {
+      return initializeState(action.payload.exercise);
     },
     fillRemainingAnswers(state) {
       // This is dispatched when user wants to see the answers without completing the exercise.
