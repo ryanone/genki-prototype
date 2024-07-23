@@ -20,9 +20,31 @@ const data = {
   title: 'Hiragana (p. 20-21)',
 } as MultipleChoiceExerciseType;
 
-function MockRoot({ children }: MockComponentProps) {
+function MockFeedbackAtEndRoot({ children }: MockComponentProps) {
   return (
-    <Provider store={setupStore({ multipleChoice: initializeState(data) })}>
+    <Provider
+      store={setupStore({
+        multipleChoice: {
+          ...initializeState(data),
+          questionFeedback: 'AT_END',
+        },
+      })}
+    >
+      {children}
+    </Provider>
+  );
+}
+
+function MockFeedbackInstantRoot({ children }: MockComponentProps) {
+  return (
+    <Provider
+      store={setupStore({
+        multipleChoice: {
+          ...initializeState(data),
+          questionFeedback: 'INSTANT',
+        },
+      })}
+    >
       {children}
     </Provider>
   );
@@ -34,19 +56,30 @@ const meta: Meta<MultipleChoiceExercisePropsAndCustomArgs> = {
   tags: ['autodocs'],
   excludeStories: /.*Data$/,
   args: {},
-  decorators: [
-    (Story) => (
-      <MockRoot>
-        <Story />
-      </MockRoot>
-    ),
-  ],
 };
 
 export default meta;
 
 type Story = StoryObj<typeof MultipleChoiceExercise>;
 
-export const Default: Story = {
+export const AtEndFeedback: Story = {
   args: {},
+  decorators: [
+    (Story) => (
+      <MockFeedbackAtEndRoot>
+        <Story />
+      </MockFeedbackAtEndRoot>
+    ),
+  ],
+};
+
+export const InstantFeedback: Story = {
+  args: {},
+  decorators: [
+    (Story) => (
+      <MockFeedbackInstantRoot>
+        <Story />
+      </MockFeedbackInstantRoot>
+    ),
+  ],
 };

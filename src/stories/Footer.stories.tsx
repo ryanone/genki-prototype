@@ -1,6 +1,7 @@
 import { ComponentProps } from 'react';
 import type { Meta } from '@storybook/react';
 import Footer from '@/components/Footer';
+import MultipleChoiceSettingsProvider from '@/provider/MultipleChoiceSettingsProvider';
 import ThemeProvider from '@/provider/ThemeProvider';
 
 type FooterPropsAndCustomArgs = ComponentProps<typeof Footer>;
@@ -10,7 +11,9 @@ const meta: Meta<FooterPropsAndCustomArgs> = {
   decorators: [
     (Story) => (
       <ThemeProvider>
-        <Story />
+        <MultipleChoiceSettingsProvider>
+          <Story />
+        </MultipleChoiceSettingsProvider>
       </ThemeProvider>
     ),
   ],
