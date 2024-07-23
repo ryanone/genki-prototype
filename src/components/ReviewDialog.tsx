@@ -1,4 +1,8 @@
-import { useEffect, useRef, type MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
+import Dialog from '@/components/Dialog';
+import DialogActions from '@/components/Dialog/Actions';
+import DialogContent from '@/components/Dialog/Content';
+import DialogHeader from '@/components/Dialog/Header';
 import commonStyles from '@/styles/common.module.css';
 
 type ReviewDialogProps = {
@@ -12,33 +16,27 @@ export default function ReviewDialog({
   onConfirm,
   onCancel,
 }: ReviewDialogProps) {
-  const ref = useRef<HTMLDialogElement>(null);
   const handleConfirmClick = (e: MouseEvent) => {
     e.preventDefault();
-    ref.current?.close();
     onConfirm();
   };
-  const handleCancel = () => {
-    ref.current?.close();
+
+  const handleClose = () => {
     if (onCancel) {
       onCancel();
     }
   };
 
-  useEffect(() => {
-    if (isOpen && ref.current) {
-      ref.current.showModal();
-    }
-  }, [isOpen]);
-
   return (
     isOpen && (
-      <dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
-        <div className={commonStyles.dialogHeader}>Activate Review Mode?</div>
-        <div className={commonStyles.dialogContent}>
-          Are you sure you want to review? Your current progress will be lost.
-        </div>
-        <form className={commonStyles.dialogActions}>
+      <Dialog isOpen={isOpen}>
+        <DialogHeader>Activate Review Mode?</DialogHeader>
+        <DialogContent>
+          <p>
+            Are you sure you want to review? Your current progress will be lost.
+          </p>
+        </DialogContent>
+        <DialogActions onClose={handleClose}>
           <button
             onClick={handleConfirmClick}
             className={commonStyles.button}
@@ -46,16 +44,8 @@ export default function ReviewDialog({
           >
             OK
           </button>
-          <button
-            onClick={handleCancel}
-            formMethod="dialog"
-            className={commonStyles.button}
-            type="button"
-          >
-            Close
-          </button>
-        </form>
-      </dialog>
+        </DialogActions>
+      </Dialog>
     )
   );
 }

@@ -32,3 +32,11 @@ export const DefaultOpen = {
     isOpen: true,
   },
 };
+
+export const DefaultOpenWithCancel = {
+  args: {
+    exercise,
+    isOpen: true,
+    onCancel: fn(),
+  },
+};

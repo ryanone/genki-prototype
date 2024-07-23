@@ -1,0 +1,6 @@
+.header {
+  background: var(--highlight-color-1);
+  color: var(--highlight-foreground-color);
+  font-size: 1.5rem;
+  padding: var(--content-padding);
+}

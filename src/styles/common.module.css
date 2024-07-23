@@ -25,37 +25,6 @@
   padding: 8px;
 }
 
-.dialog {
-  --content-padding: 12px;
-  background-color: var(--background-color-3);
-  border: 1px solid var(--highlight-color-1);
-  color: var(--foreground-color-1);
-  display: flex;
-  flex-direction: column;
-  height: 50vh;
-  width: 50vw;
-  padding: 0;
-}
-
-.dialogActions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  padding: var(--content-padding);
-}
-
-.dialogContent {
-  flex-grow: 1;
-  padding: var(--content-padding);
-}
-
-.dialogHeader {
-  background: var(--highlight-color-1);
-  color: var(--highlight-foreground-color);
-  font-size: 1.5rem;
-  padding: var(--content-padding);
-}
-
 .select {
   background: var(--background-color-2);
   border: 1px solid var(--outline-color-1);

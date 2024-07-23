@@ -1,10 +1,8 @@
-import {
-  type ChangeEvent,
-  useEffect,
-  useRef,
-  useState,
-  type MouseEvent,
-} from 'react';
+import { useState, type ChangeEvent, type MouseEvent } from 'react';
+import Dialog from '@/components/Dialog';
+import DialogActions from '@/components/Dialog/Actions';
+import DialogContent from '@/components/Dialog/Content';
+import DialogHeader from '@/components/Dialog/Header';
 import type { Exercise, RenderMode } from '@/data/exercise';
 import styles from './ChangeExerciseTypeDialog.module.css';
 import commonStyles from '@/styles/common.module.css';
@@ -15,17 +13,6 @@ type ChangeExerciseTypeDialogProps = {
   onCancel?: () => void;
   onRenderModeChoose: (renderMode: RenderMode) => void;
 };
-
-/*
-Flow
-
-- Ask user if they're sure (I'm sure/Cancel)
-- Show current exercise name and dropdown of supported render modes
-
-props
-  exercise
-  onRenderModeChoose
-*/
 
 const RenderModeDescription: Record<RenderMode, string> = {
   DRAG_DROP: 'Drag and Drop',
@@ -38,17 +25,14 @@ export default function ChangeExerciseTypeDialog({
   onRenderModeChoose,
   onCancel,
 }: ChangeExerciseTypeDialogProps) {
-  const ref = useRef<HTMLDialogElement>(null);
   const [renderMode, setRenderMode] = useState<RenderMode | ''>('');
   const handleConfirmClick = (e: MouseEvent) => {
     e.preventDefault();
-    ref.current?.close();
     if (renderMode !== '') {
       onRenderModeChoose(renderMode);
     }
   };
   const handleCancel = () => {
-    ref.current?.close();
     if (onCancel) {
       onCancel();
     }
@@ -61,62 +45,46 @@ export default function ChangeExerciseTypeDialog({
     }
   };
 
-  useEffect(() => {
-    if (isOpen && ref.current) {
-      ref.current.showModal();
-    }
-  }, [isOpen]);
-
   return (
     isOpen && (
-      <dialog className={commonStyles.dialog} ref={ref} onCancel={handleCancel}>
-        <div className={commonStyles.dialogHeader}>Change Exercise Type</div>
-        <form className={styles.form}>
-          <div className={commonStyles.dialogContent}>
-            <p>
-              Please select the type of exercise you would like to do, then
-              click &apos;Begin&apos; to start studying.
-            </p>
-            <div className={styles.heading}>Current Exercise</div>
-            <div className={styles.title}>{exercise.title}</div>
-            <label htmlFor="select-exercise-type" className={styles.label}>
-              Exercise Type
-              <select
-                className={commonStyles.select}
-                id="select-exercise-type"
-                onChange={handleSelectChange}
-                value={renderMode}
-              >
-                <option value="">Choose a type</option>
-                {(Object.keys(RenderModeDescription) as RenderMode[]).map(
-                  (key) => (
-                    <option key={key} value={key}>
-                      {RenderModeDescription[key]}
-                    </option>
-                  ),
-                )}
-              </select>
-            </label>
-          </div>
-          <div className={commonStyles.dialogActions}>
-            <button
-              onClick={handleConfirmClick}
-              className={commonStyles.button}
-              type="button"
+      <Dialog isOpen={isOpen}>
+        <DialogHeader>Change Exercise Type</DialogHeader>
+        <DialogContent>
+          <p>
+            Please select the type of exercise you would like to do, then select
+            &apos;Begin&apos; to start studying.
+          </p>
+          <div className={styles.heading}>Current Exercise</div>
+          <div className={styles.title}>{exercise.title}</div>
+          <label htmlFor="select-exercise-type" className={styles.label}>
+            Exercise Type
+            <select
+              className={commonStyles.select}
+              id="select-exercise-type"
+              onChange={handleSelectChange}
+              value={renderMode}
             >
-              Begin
-            </button>
-            <button
-              onClick={handleCancel}
-              formMethod="dialog"
-              className={commonStyles.button}
-              type="button"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </dialog>
+              <option value="">Choose a type</option>
+              {(Object.keys(RenderModeDescription) as RenderMode[]).map(
+                (key) => (
+                  <option key={key} value={key}>
+                    {RenderModeDescription[key]}
+                  </option>
+                ),
+              )}
+            </select>
+          </label>
+        </DialogContent>
+        <DialogActions onClose={handleCancel}>
+          <button
+            onClick={handleConfirmClick}
+            className={commonStyles.button}
+            type="button"
+          >
+            Begin
+          </button>
+        </DialogActions>
+      </Dialog>
     )
   );
 }
