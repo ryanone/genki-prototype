@@ -11,8 +11,17 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
   };
 
   return (
-    <div className={styles.progressBar}>
-      <div className={styles.completion} style={completionStyles} />
+    <div
+      className={styles.progressBar}
+      role="progressbar"
+      aria-valuenow={current}
+      aria-valuemax={total}
+    >
+      <div
+        className={styles.completion}
+        style={completionStyles}
+        role="presentation"
+      />
       <div className={styles.status}>
         {current}/{total}
       </div>
