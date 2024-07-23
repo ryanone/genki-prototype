@@ -1,10 +1,11 @@
-import { lazy, useEffect, useState, Suspense } from 'react';
+import { lazy, useContext, useEffect, useState, Suspense } from 'react';
 import { FaArrowsRotate } from 'react-icons/fa6';
 import {
   initialize as initializeDragDrop,
   reset as resetDragDrop,
 } from '@/features/dragDrop/dragDropSlice';
 import {
+  changeQuestionFeedback,
   initialize as initializeMultipleChoice,
   reset as resetMultipleChoice,
 } from '@/features/multipleChoice/multipleChoiceSlice';
@@ -15,6 +16,7 @@ import type {
   RenderMode,
 } from '@/data/exercise';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
+import MultipleChoiceSettingsContext from '@/context/MultipleChoiceSettingsContext';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import styles from './ExerciseRenderer.module.css';
 import commonStyles from '@/styles/common.module.css';
@@ -39,6 +41,9 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const isMultipleChoiceInitialized = useAppSelector(
     (state: RootState) => state.multipleChoice.initialized,
   );
+  const { settings: multipleChoiceSettings } = useContext(
+    MultipleChoiceSettingsContext,
+  );
 
   useEffect(() => {
     if (renderMode === 'DRAG_DROP') {
@@ -55,8 +60,13 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
           exercise: data as MultipleChoiceExercise,
         }),
       );
+      dispatch(
+        changeQuestionFeedback({
+          questionFeedback: multipleChoiceSettings.feedback,
+        }),
+      );
     }
-  }, [data, dispatch, renderMode]);
+  }, [data, dispatch, multipleChoiceSettings.feedback, renderMode]);
 
   const canChangeRenderMode = data.supportedRenderModes.length > 1;
   const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] =

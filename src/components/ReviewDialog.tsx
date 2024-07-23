@@ -29,7 +29,7 @@ export default function ReviewDialog({
 
   return (
     isOpen && (
-      <Dialog isOpen={isOpen}>
+      <Dialog isOpen={isOpen} onClose={handleClose}>
         <DialogHeader>Activate Review Mode?</DialogHeader>
         <DialogContent>
           <p>

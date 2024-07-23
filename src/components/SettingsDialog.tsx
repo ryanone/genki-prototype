@@ -1,9 +1,13 @@
-import { useContext } from 'react';
+import { useContext, type ChangeEvent } from 'react';
 import Dialog from '@/components/Dialog';
 import DialogActions from '@/components/Dialog/Actions';
 import DialogContent from '@/components/Dialog/Content';
 import DialogHeader from '@/components/Dialog/Header';
+import MultipleChoiceSettingsContext, {
+  type MultipleChoiceQuestionFeedback,
+} from '@/context/MultipleChoiceSettingsContext';
 import ThemeContext, { type Theme } from '@/context/ThemeContext';
+import commonStyles from '@/styles/common.module.css';
 import styles from './SettingsDialog.module.css';
 
 type SettingsDialogProps = {
@@ -16,6 +20,10 @@ export default function SettingsDialog({
   onClose,
 }: SettingsDialogProps) {
   const { theme, setTheme } = useContext(ThemeContext);
+  const {
+    settings: multipleChoiceSettings,
+    setSettings: setMultipleChoiceSettings,
+  } = useContext(MultipleChoiceSettingsContext);
 
   const handleDarkModeChange = (value: Theme) => {
     setTheme(value);
@@ -25,14 +33,22 @@ export default function SettingsDialog({
     onClose();
   };
 
+  const handleMultipleChoiceFeedbackChange = (
+    e: ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setMultipleChoiceSettings({
+      feedback: e.target.value as MultipleChoiceQuestionFeedback,
+    });
+  };
+
   return (
     isOpen && (
-      <Dialog isOpen={isOpen}>
+      <Dialog isOpen={isOpen} onClose={handleClose}>
         <DialogHeader>Settings</DialogHeader>
         <DialogContent>
           <div className={styles.heading}>Display</div>
           <dl className={styles.settings}>
-            <dt className={styles.settingName}>Dark mode</dt>
+            <dt className={styles.darkModeSettingName}>Dark mode</dt>
             <dd className={styles.settingContent}>
               <ul className={styles.darkModeList}>
                 <li>
@@ -78,6 +94,20 @@ export default function SettingsDialog({
                   </label>
                 </li>
               </ul>
+            </dd>
+          </dl>
+          <div className={styles.heading}>Exercises</div>
+          <dl className={styles.settings}>
+            <dt className={styles.settingName}>Multiple Choice Feedback</dt>
+            <dd className={styles.settingContent}>
+              <select
+                className={commonStyles.select}
+                onChange={handleMultipleChoiceFeedbackChange}
+                value={multipleChoiceSettings.feedback}
+              >
+                <option value="INSTANT">Instant</option>
+                <option value="AT_END">At end of exercise</option>
+              </select>
             </dd>
           </dl>
         </DialogContent>

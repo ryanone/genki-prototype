@@ -12,6 +12,7 @@ import type {
   MultipleChoiceMeta,
   Question,
 } from '@/data/exercise';
+import type { MultipleChoiceQuestionFeedback } from '@/context/MultipleChoiceSettingsContext';
 
 export interface ChoiceData extends Choice {
   result?: 'SELECTED_CORRECT' | 'UNSELECTED_CORRECT' | 'INCORRECT' | undefined;
@@ -29,11 +30,17 @@ export type MultipleChoiceState = {
   initialized: boolean;
   isQuestionFinished: boolean;
   meta?: MultipleChoiceMeta;
+  questionFeedback: MultipleChoiceQuestionFeedback;
   startTime: number;
+};
+
+type ChangeQuestionFeedbackPayload = {
+  questionFeedback: MultipleChoiceQuestionFeedback;
 };
 
 type InitializePayload = {
   exercise: MultipleChoiceExercise;
+  questionFeedback?: MultipleChoiceQuestionFeedback;
 };
 
 type SelectChoicePayload = {
@@ -46,15 +53,34 @@ const initialState: MultipleChoiceState = {
   index: 0,
   initialized: false,
   isQuestionFinished: false,
+  questionFeedback: 'INSTANT',
   startTime: Date.now(),
 };
 
 export const NUM_CHOICES_PER_QUESTION = 4;
 
+function updateStateToNextQuestion(state: MultipleChoiceState) {
+  state.index += 1;
+  if (state.answers.length && state.index < state.answers.length) {
+    state.answers[state.index].choices = generateRandomChoices(
+      state.answers[state.index].question,
+      state.choices,
+      NUM_CHOICES_PER_QUESTION,
+    );
+    state.isQuestionFinished = false;
+  }
+}
+
 export const multipleChoiceSlice = createSlice({
   name: 'multipleChoice',
   initialState,
   reducers: {
+    changeQuestionFeedback(
+      state,
+      action: PayloadAction<ChangeQuestionFeedbackPayload>,
+    ) {
+      state.questionFeedback = action.payload.questionFeedback;
+    },
     chooseChoice(state, action: PayloadAction<SelectChoicePayload>) {
       const currentItem = state.answers[state.index];
       currentItem.choices?.forEach((choice) => {
@@ -67,18 +93,15 @@ export const multipleChoiceSlice = createSlice({
           choice.result = 'UNSELECTED_CORRECT';
         }
       });
-      state.isQuestionFinished = true;
+      if (state.questionFeedback === 'AT_END') {
+        updateStateToNextQuestion(state);
+      } else {
+        // if state.questionFeedback === 'INSTANT'
+        state.isQuestionFinished = true;
+      }
     },
     goToNextQuestion(state) {
-      state.index += 1;
-      if (state.answers.length && state.index < state.answers.length) {
-        state.answers[state.index].choices = generateRandomChoices(
-          state.answers[state.index].question,
-          state.choices,
-          NUM_CHOICES_PER_QUESTION,
-        );
-        state.isQuestionFinished = false;
-      }
+      updateStateToNextQuestion(state);
     },
     initialize(_, action: PayloadAction<InitializePayload>) {
       return initializeState(action.payload.exercise);
@@ -112,8 +135,14 @@ export const multipleChoiceSlice = createSlice({
   },
 });
 
-export const { chooseChoice, goToNextQuestion, initialize, reset, restart } =
-  multipleChoiceSlice.actions;
+export const {
+  changeQuestionFeedback,
+  chooseChoice,
+  goToNextQuestion,
+  initialize,
+  reset,
+  restart,
+} = multipleChoiceSlice.actions;
 export const { selectCurrentAnswer, selectIsFinished, selectResults } =
   multipleChoiceSlice.selectors;
 

@@ -10,8 +10,14 @@
 }
 
 .settingName {
+  align-items: center;
   display: flex;
   justify-content: flex-end;
+}
+
+.darkModeSettingName {
+  composes: settingName;
+  align-items: flex-start;
 }
 
 .settingContent {
