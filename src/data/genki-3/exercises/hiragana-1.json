@@ -1,0 +1,281 @@
+{
+  "supportedRenderModes": [
+    "DRAG_DROP",
+    "MULTIPLE_CHOICE"
+  ],
+  "questions": [
+    {
+      "content": "pa",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "pi",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "pu",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "pe",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "po",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "ba",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "bi",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "bu",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "be",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "bo",
+      "choices": {
+        "correctId": "10"
+      }
+    },
+    {
+      "content": "da",
+      "choices": {
+        "correctId": "11"
+      }
+    },
+    {
+      "content": "di",
+      "choices": {
+        "correctId": "12"
+      }
+    },
+    {
+      "content": "du",
+      "choices": {
+        "correctId": "13"
+      }
+    },
+    {
+      "content": "de",
+      "choices": {
+        "correctId": "14"
+      }
+    },
+    {
+      "content": "do",
+      "choices": {
+        "correctId": "15"
+      }
+    },
+    {
+      "content": "za",
+      "choices": {
+        "correctId": "16"
+      }
+    },
+    {
+      "content": "ji",
+      "choices": {
+        "correctId": "17"
+      }
+    },
+    {
+      "content": "zu",
+      "choices": {
+        "correctId": "18"
+      }
+    },
+    {
+      "content": "ze",
+      "choices": {
+        "correctId": "19"
+      }
+    },
+    {
+      "content": "zo",
+      "choices": {
+        "correctId": "20"
+      }
+    },
+    {
+      "content": "ga",
+      "choices": {
+        "correctId": "21"
+      }
+    },
+    {
+      "content": "gi",
+      "choices": {
+        "correctId": "22"
+      }
+    },
+    {
+      "content": "gu",
+      "choices": {
+        "correctId": "23"
+      }
+    },
+    {
+      "content": "ge",
+      "choices": {
+        "correctId": "24"
+      }
+    },
+    {
+      "content": "go",
+      "choices": {
+        "correctId": "25"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "ぱ",
+      "id": "1"
+    },
+    {
+      "content": "ぴ",
+      "id": "2"
+    },
+    {
+      "content": "ぷ",
+      "id": "3"
+    },
+    {
+      "content": "ぺ",
+      "id": "4"
+    },
+    {
+      "content": "ぽ",
+      "id": "5"
+    },
+    {
+      "content": "ば",
+      "id": "6"
+    },
+    {
+      "content": "び",
+      "id": "7"
+    },
+    {
+      "content": "ぶ",
+      "id": "8"
+    },
+    {
+      "content": "べ",
+      "id": "9"
+    },
+    {
+      "content": "ぼ",
+      "id": "10"
+    },
+    {
+      "content": "だ",
+      "id": "11"
+    },
+    {
+      "content": "ぢ",
+      "id": "12"
+    },
+    {
+      "content": "づ",
+      "id": "13"
+    },
+    {
+      "content": "で",
+      "id": "14"
+    },
+    {
+      "content": "ど",
+      "id": "15"
+    },
+    {
+      "content": "ざ",
+      "id": "16"
+    },
+    {
+      "content": "じ",
+      "id": "17"
+    },
+    {
+      "content": "ず",
+      "id": "18"
+    },
+    {
+      "content": "ぜ",
+      "id": "19"
+    },
+    {
+      "content": "ぞ",
+      "id": "20"
+    },
+    {
+      "content": "が",
+      "id": "21"
+    },
+    {
+      "content": "ぎ",
+      "id": "22"
+    },
+    {
+      "content": "ぐ",
+      "id": "23"
+    },
+    {
+      "content": "げ",
+      "id": "24"
+    },
+    {
+      "content": "ご",
+      "id": "25"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct Hiragana for the Romaji.",
+      "randomizeQuestions": true
+    },
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"],
+      "instructions": "Drag the Kana to the matching Romaji. TIP: Click the kana to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionLayout": "HORIZONTAL",
+        "questionsFlow": "VERTICAL",
+        "configuration": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    }
+  }
+}
