@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import MultipleChoiceExercise from '@/components/exercises/MultipleChoice';
 import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
 import { setupStore } from '@/app/store';
+import type { MultipleChoiceQuestionFeedback } from '@/context/MultipleChoiceSettingsContext';
 import type { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/data/exercise';
 import initializeState from '@/utils/multipleChoice';
 
@@ -13,6 +14,7 @@ type MultipleChoiceExercisePropsAndCustomArgs = ComponentProps<
 
 type MockComponentProps = {
   children: ReactNode;
+  questionFeedback: MultipleChoiceQuestionFeedback;
 };
 
 const data = {
@@ -20,28 +22,13 @@ const data = {
   title: 'Hiragana (p. 20-21)',
 } as MultipleChoiceExerciseType;
 
-function MockFeedbackAtEndRoot({ children }: MockComponentProps) {
+function MockRoot({ children, questionFeedback }: MockComponentProps) {
   return (
     <Provider
       store={setupStore({
         multipleChoice: {
           ...initializeState(data),
-          questionFeedback: 'AT_END',
-        },
-      })}
-    >
-      {children}
-    </Provider>
-  );
-}
-
-function MockFeedbackInstantRoot({ children }: MockComponentProps) {
-  return (
-    <Provider
-      store={setupStore({
-        multipleChoice: {
-          ...initializeState(data),
-          questionFeedback: 'INSTANT',
+          questionFeedback,
         },
       })}
     >
@@ -66,9 +53,9 @@ export const AtEndFeedback: Story = {
   args: {},
   decorators: [
     (Story) => (
-      <MockFeedbackAtEndRoot>
+      <MockRoot questionFeedback="AT_END">
         <Story />
-      </MockFeedbackAtEndRoot>
+      </MockRoot>
     ),
   ],
 };
@@ -77,9 +64,9 @@ export const InstantFeedback: Story = {
   args: {},
   decorators: [
     (Story) => (
-      <MockFeedbackInstantRoot>
+      <MockRoot questionFeedback="INSTANT">
         <Story />
-      </MockFeedbackInstantRoot>
+      </MockRoot>
     ),
   ],
 };
