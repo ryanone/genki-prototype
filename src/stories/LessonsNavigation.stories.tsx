@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import type { Meta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-remix-react-router';
 import Genki3 from '@/data/genki-3/index.json';

@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import type { Meta } from '@storybook/react';
 import Footer from '@/components/Footer';
 import MultipleChoiceSettingsProvider from '@/provider/MultipleChoiceSettingsProvider';
