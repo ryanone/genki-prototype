@@ -103,8 +103,11 @@ export const multipleChoiceSlice = createSlice({
     goToNextQuestion(state) {
       updateStateToNextQuestion(state);
     },
-    initialize(_, action: PayloadAction<InitializePayload>) {
-      return initializeState(action.payload.exercise);
+    initialize(state, action: PayloadAction<InitializePayload>) {
+      initializeState(action.payload.exercise);
+      if (action.payload.questionFeedback) {
+        state.questionFeedback = action.payload.questionFeedback;
+      }
     },
     reset() {
       return { ...initialState };

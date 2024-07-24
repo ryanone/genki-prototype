@@ -29,6 +29,7 @@ export default function initializeState(
     index,
     initialized: true,
     meta,
+    questionFeedback: 'INSTANT',
     startTime: Date.now(),
   };
 }

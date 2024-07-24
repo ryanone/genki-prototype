@@ -5,7 +5,6 @@ import {
   reset as resetDragDrop,
 } from '@/features/dragDrop/dragDropSlice';
 import {
-  changeQuestionFeedback,
   initialize as initializeMultipleChoice,
   reset as resetMultipleChoice,
 } from '@/features/multipleChoice/multipleChoiceSlice';
@@ -58,10 +57,6 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
       dispatch(
         initializeMultipleChoice({
           exercise: data as MultipleChoiceExercise,
-        }),
-      );
-      dispatch(
-        changeQuestionFeedback({
           questionFeedback: multipleChoiceSettings.feedback,
         }),
       );
