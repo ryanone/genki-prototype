@@ -37,7 +37,8 @@ body {
   --background-aside-color: #333;
   --outline-color-1: #333;
   --outline-color-2: #444;
-  --outline-color-3: #999;
+  --outline-color-3: #555;
+  --outline-color-4: #999;
   --link-color-1: #69a;
   --link-color-2: #ccc;
   --link-color-3: #ff0;
@@ -52,7 +53,8 @@ body {
   --background-aside-color: #333;
   --outline-color-1: #ccc;
   --outline-color-2: #999;
-  --outline-color-3: #444;
+  --outline-color-3: #999;
+  --outline-color-4: #444;
   --link-color-1: #039;
   --link-color-2: #ccc;
   --link-color-3: #ff0;

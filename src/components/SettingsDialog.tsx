@@ -52,7 +52,6 @@ export default function SettingsDialog({
             <dd className={styles.settingContent}>
               <ul className={styles.darkModeList}>
                 <li>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                   <label className={styles.darkModeLabel}>
                     <input
                       className={styles.darkModeRadio}
@@ -66,7 +65,6 @@ export default function SettingsDialog({
                   </label>
                 </li>
                 <li>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                   <label className={styles.darkModeLabel}>
                     <input
                       className={styles.darkModeRadio}
@@ -80,7 +78,6 @@ export default function SettingsDialog({
                   </label>
                 </li>
                 <li>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                   <label className={styles.darkModeLabel}>
                     <input
                       className={styles.darkModeRadio}

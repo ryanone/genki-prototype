@@ -1,0 +1,10 @@
+.writingExample {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--outline-color-1);
+}
+
+.content {
+  color: var(--foreground-color-1);
+  text-align: center;
+}

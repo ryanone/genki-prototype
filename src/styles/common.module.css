@@ -33,3 +33,9 @@
   margin: auto;
   padding: 8px;
 }
+
+.hidden {
+  left: -9999px;
+  position: absolute;
+  top: -9999px;
+}

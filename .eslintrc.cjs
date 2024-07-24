@@ -38,6 +38,12 @@ module.exports = {
         json: 'always',
       }
     ],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        assert: 'either',
+      },
+    ],
     'max-len': [
       'error',
       { code: 120 }

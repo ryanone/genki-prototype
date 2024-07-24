@@ -1,0 +1,39 @@
+.writingInput {
+  position: relative;
+  width: max-content;
+}
+
+.input {
+  border: 1px solid var(--outline-color-1);
+  background-color: var(--background-color-2);
+  color: var(--foreground-color-1);
+  padding: 4px 2px;
+  text-align: center;
+  outline: none;
+}
+
+.incorrect {
+  border-color: var(--incorrect-color);
+}
+
+.input:focus {
+  border-color: var(--highlight-color-1);
+}
+
+.input:hover:enabled {
+  border-color: var(--outline-color-3);
+}
+
+.input::placeholder {
+  color: var(--outline-color-3);
+}
+
+.icon {
+  --icon-size: .75rem;
+  --icon-position: calc(-.5 * var(--icon-size));
+  color: var(--highlight-color-1);
+  font-size: var(--icon-size);
+  position: absolute;
+  right: var(--icon-position);
+  top: var(--icon-position);
+}

@@ -56,7 +56,6 @@ export default function ChangeExerciseTypeDialog({
           </p>
           <div className={styles.heading}>Current Exercise</div>
           <div className={styles.title}>{exercise.title}</div>
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label className={styles.label}>
             Exercise Type
             <select
