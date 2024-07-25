@@ -11,7 +11,7 @@ export default function initializeState(
     meta,
     rows: exercise.choices.map((choice) => ({
       choice,
-      answers: Array.from({ length: meta.numRepetitions }),
+      answers: Array.from({ length: meta.numRepetitions }).map(() => ({})),
     })),
     startTime: Date.now(),
   };

@@ -8,3 +8,16 @@
   display: grid;
   gap: 8px;
 }
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.checkAnswersButton {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-block-start: 20px;
+  margin-inline: auto;
+}

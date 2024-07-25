@@ -5,6 +5,7 @@ import commonStyles from '@/styles/common.module.css';
 import styles from './WritingInput.module.css';
 
 type WritingInputProps = {
+  defaultValue?: string | undefined;
   index: number;
   isDisabled?: boolean;
   onChange: (value: string, index: number) => void;
@@ -15,12 +16,19 @@ type WritingInputProps = {
 export type Ref = HTMLInputElement;
 
 const WritingInput = forwardRef<Ref, WritingInputProps>(function WritingInput(
-  { index, isDisabled, onChange, placeholder, result }: WritingInputProps,
+  {
+    defaultValue,
+    index,
+    isDisabled,
+    onChange,
+    placeholder,
+    result,
+  }: WritingInputProps,
   ref,
 ) {
   const inputId = useId();
   const describedById = useId();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue ?? '');
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
     onChange(e.currentTarget.value, index);

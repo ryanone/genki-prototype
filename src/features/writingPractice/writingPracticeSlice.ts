@@ -38,7 +38,7 @@ type InitializePayload = {
 };
 
 type SetAnswerPayload = {
-  choiceContent: string;
+  choiceId: string;
   column: number;
   value: string;
 };
@@ -71,8 +71,8 @@ export const writingPracticeSlice = createSlice({
       state.isFinished = true;
     },
     setAnswer(state, action: PayloadAction<SetAnswerPayload>) {
-      const { column, choiceContent, value } = action.payload;
-      const row = state.rows.find((r) => r.choice.content === choiceContent);
+      const { choiceId, column, value } = action.payload;
+      const row = state.rows.find((r) => r.choice.id === choiceId);
       if (row) {
         row.answers[column].content = value;
       }
