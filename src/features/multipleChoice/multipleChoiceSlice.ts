@@ -104,7 +104,15 @@ export const multipleChoiceSlice = createSlice({
       updateStateToNextQuestion(state);
     },
     initialize(state, action: PayloadAction<InitializePayload>) {
-      initializeState(action.payload.exercise);
+      const initial = initializeState(action.payload.exercise);
+      state.answers = initial.answers;
+      state.choices = initial.choices;
+      state.isQuestionFinished = initial.isQuestionFinished;
+      state.index = initial.index;
+      state.initialized = initial.initialized;
+      state.meta = initial.meta;
+      state.questionFeedback = initial.questionFeedback;
+      state.startTime = initial.startTime;
       if (action.payload.questionFeedback) {
         state.questionFeedback = action.payload.questionFeedback;
       }
