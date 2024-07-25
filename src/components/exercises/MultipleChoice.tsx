@@ -16,24 +16,19 @@ import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import type { RootState } from '@/app/store';
 import styles from './MultipleChoice.module.css';
 
 export default function MultipleChoice() {
   const timeElapsed = useRef(0);
   const dispatch = useAppDispatch();
-  const currentIndex = useAppSelector(
-    (state: RootState) => state.multipleChoice.index,
-  );
+  const currentIndex = useAppSelector((state) => state.multipleChoice.index);
   const isQuestionFinished = useAppSelector(
-    (state: RootState) => state.multipleChoice.isQuestionFinished,
+    (state) => state.multipleChoice.isQuestionFinished,
   );
-  const answers = useAppSelector(
-    (state: RootState) => state.multipleChoice.answers,
-  );
+  const answers = useAppSelector((state) => state.multipleChoice.answers);
   const currentAnswer = useAppSelector(selectCurrentAnswer);
   const instructions = useAppSelector(
-    (state: RootState) => state.multipleChoice.meta?.instructions,
+    (state) => state.multipleChoice.meta?.instructions,
   );
   const isFinished = useAppSelector(selectIsFinished);
   const results = useAppSelector(selectResults);

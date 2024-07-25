@@ -21,7 +21,6 @@ import VerticalDropTargetList from '@/components/VerticalDropTargetList';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import type { LayoutConfigurationHorizontal } from '@/utils/dragDrop';
-import type { RootState } from '@/app/store';
 import styles from './DragDrop.module.css';
 import commonStyles from '@/styles/common.module.css';
 
@@ -31,12 +30,10 @@ export default function DragDrop() {
   const [showReviewDialog, setShowReviewDialog] = useState(false);
 
   const dispatch = useAppDispatch();
-  const layout = useAppSelector((state: RootState) => state.dragDrop.layout);
+  const layout = useAppSelector((state) => state.dragDrop.layout);
   const layoutConfig = useAppSelector(selectLayoutConfiguration);
   const results = useAppSelector(selectResults);
-  const startTime = useAppSelector(
-    (state: RootState) => state.dragDrop.startTime,
-  );
+  const startTime = useAppSelector((state) => state.dragDrop.startTime);
   const remainingChoices = useAppSelector(selectRemainingChoices);
   const isFinished = useAppSelector(selectIsFinished);
 
