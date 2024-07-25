@@ -17,6 +17,7 @@ type ChangeExerciseTypeDialogProps = {
 const RenderModeDescription: Record<RenderMode, string> = {
   DRAG_DROP: 'Drag and Drop',
   MULTIPLE_CHOICE: 'Multiple Choice',
+  WRITING_PRACTICE: 'Writing Practice',
 };
 
 export default function ChangeExerciseTypeDialog({
@@ -64,13 +65,11 @@ export default function ChangeExerciseTypeDialog({
               value={renderMode}
             >
               <option value="">Choose a type</option>
-              {(Object.keys(RenderModeDescription) as RenderMode[]).map(
-                (key) => (
-                  <option key={key} value={key}>
-                    {RenderModeDescription[key]}
-                  </option>
-                ),
-              )}
+              {exercise.supportedRenderModes.map((key) => (
+                <option key={key} value={key}>
+                  {RenderModeDescription[key]}
+                </option>
+              ))}
             </select>
           </label>
         </DialogContent>

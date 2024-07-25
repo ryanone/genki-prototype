@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import dragDropReducer from '@/features/dragDrop/dragDropSlice';
 import multipleChoiceReducer from '@/features/multipleChoice/multipleChoiceSlice';
+import writingPracticeReducer from '@/features/writingPractice/writingPracticeSlice';
 
 const rootReducer = combineReducers({
   dragDrop: dragDropReducer,
   multipleChoice: multipleChoiceReducer,
+  writingPractice: writingPracticeReducer,
 });
 
 export function setupStore(preloadedState?: Partial<RootState>) {

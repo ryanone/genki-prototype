@@ -6,6 +6,7 @@ export type Choice = {
 type Meta = {
   DRAG_DROP?: DragDropMeta;
   MULTIPLE_CHOICE?: MultipleChoiceMeta;
+  WRITING_PRACTICE?: WritingPracticeMeta;
 };
 
 export type DragDropFlow = 'HORIZONTAL' | 'VERTICAL';
@@ -26,6 +27,11 @@ export interface DragDropMeta extends BaseMeta {
 
 export interface MultipleChoiceMeta extends BaseMeta {}
 
+export interface WritingPracticeMeta extends BaseMeta {
+  numExamples: number;
+  numRepetitions: number;
+}
+
 export type Question = {
   choices: {
     correctId: string;
@@ -33,7 +39,7 @@ export type Question = {
   content: string;
 };
 
-export type RenderMode = 'DRAG_DROP' | 'MULTIPLE_CHOICE';
+export type RenderMode = 'DRAG_DROP' | 'MULTIPLE_CHOICE' | 'WRITING_PRACTICE';
 
 export type BaseExercise = {
   choices: Choice[];
@@ -55,7 +61,16 @@ export interface MultipleChoiceExercise extends BaseExercise {
   };
 }
 
-export type Exercise = DragDropExercise | MultipleChoiceExercise;
+export interface WritingPracticeExercise extends BaseExercise {
+  meta: {
+    WRITING_PRACTICE: WritingPracticeMeta;
+  };
+}
+
+export type Exercise =
+  | DragDropExercise
+  | MultipleChoiceExercise
+  | WritingPracticeExercise;
 
 export type Results = {
   numSolved: number;

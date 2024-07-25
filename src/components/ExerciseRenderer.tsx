@@ -2,17 +2,22 @@ import { lazy, useContext, useEffect, useState, Suspense } from 'react';
 import { FaArrowsRotate } from 'react-icons/fa6';
 import {
   initialize as initializeDragDrop,
-  reset as resetDragDrop,
+  // reset as resetDragDrop,
 } from '@/features/dragDrop/dragDropSlice';
 import {
   initialize as initializeMultipleChoice,
-  reset as resetMultipleChoice,
+  // reset as resetMultipleChoice,
 } from '@/features/multipleChoice/multipleChoiceSlice';
+import {
+  initialize as initializeWritingPractice,
+  // reset as resetWritingPractice,
+} from '@/features/writingPractice/writingPracticeSlice';
 import type {
   DragDropExercise,
   Exercise,
   MultipleChoiceExercise,
   RenderMode,
+  WritingPracticeExercise,
 } from '@/data/exercise';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import MultipleChoiceSettingsContext from '@/context/MultipleChoiceSettingsContext';
@@ -20,7 +25,6 @@ import useAppDispatch from '@/hooks/useAppDispatch';
 import styles from './ExerciseRenderer.module.css';
 import commonStyles from '@/styles/common.module.css';
 import useAppSelector from '@/hooks/useAppSelector';
-import type { RootState } from '@/app/store';
 
 type ExerciseRendererProps = {
   data: Exercise;
@@ -30,15 +34,21 @@ const DragDrop = lazy(() => import('@/components/exercises/DragDrop'));
 const MultipleChoice = lazy(
   () => import('@/components/exercises/MultipleChoice'),
 );
+const WritingPractice = lazy(
+  () => import('@/components/exercises/WritingPractice'),
+);
 
 export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
   const dispatch = useAppDispatch();
   const isDragDropInitialized = useAppSelector(
-    (state: RootState) => state.dragDrop.initialized,
+    (state) => state.dragDrop.initialized,
   );
   const isMultipleChoiceInitialized = useAppSelector(
-    (state: RootState) => state.multipleChoice.initialized,
+    (state) => state.multipleChoice.initialized,
+  );
+  const isWritingPracticeInitialized = useAppSelector(
+    (state) => state.writingPractice.initialized,
   );
   const { settings: multipleChoiceSettings } = useContext(
     MultipleChoiceSettingsContext,
@@ -46,18 +56,22 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
 
   useEffect(() => {
     if (renderMode === 'DRAG_DROP') {
-      dispatch(resetMultipleChoice());
       dispatch(
         initializeDragDrop({
           exercise: data as DragDropExercise,
         }),
       );
     } else if (renderMode === 'MULTIPLE_CHOICE') {
-      dispatch(resetDragDrop());
       dispatch(
         initializeMultipleChoice({
           exercise: data as MultipleChoiceExercise,
           questionFeedback: multipleChoiceSettings.feedback,
+        }),
+      );
+    } else if (renderMode === 'WRITING_PRACTICE') {
+      dispatch(
+        initializeWritingPractice({
+          exercise: data as WritingPracticeExercise,
         }),
       );
     }
@@ -72,10 +86,15 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   };
 
   let exercise;
-  if (isDragDropInitialized) {
+  if (renderMode === 'DRAG_DROP' && isDragDropInitialized) {
     exercise = <DragDrop key={Date.now()} />;
-  } else if (isMultipleChoiceInitialized) {
+  } else if (renderMode === 'MULTIPLE_CHOICE' && isMultipleChoiceInitialized) {
     exercise = <MultipleChoice key={Date.now()} />;
+  } else if (
+    renderMode === 'WRITING_PRACTICE' &&
+    isWritingPracticeInitialized
+  ) {
+    exercise = <WritingPractice key={Date.now()} />;
   }
 
   return (

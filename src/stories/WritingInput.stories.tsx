@@ -17,10 +17,19 @@ const meta: Meta<WritingInputPropsAndCustomArgs> = {
   args: {
     ...WritingInputActionsData,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '25vw' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
 
 export const Default = {
-  args: {},
+  args: {
+    index: 0,
+  },
 };

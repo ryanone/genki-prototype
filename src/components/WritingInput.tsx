@@ -1,27 +1,29 @@
-import { useId, useState, type FormEvent } from 'react';
+import { forwardRef, useId, useState, type FormEvent } from 'react';
 import { FaStar } from 'react-icons/fa6';
+import type { WritingInputResult } from '@/features/writingPractice/writingPracticeSlice';
 import commonStyles from '@/styles/common.module.css';
 import styles from './WritingInput.module.css';
 
 type WritingInputProps = {
+  index: number;
   isDisabled?: boolean;
-  onChange: (value: string) => void;
+  onChange: (value: string, index: number) => void;
   placeholder?: string;
-  result?: 'CORRECT' | 'INCORRECT';
+  result?: WritingInputResult;
 };
 
-export default function WritingInput({
-  isDisabled,
-  onChange,
-  placeholder,
-  result,
-}: WritingInputProps) {
+export type Ref = HTMLInputElement;
+
+const WritingInput = forwardRef<Ref, WritingInputProps>(function WritingInput(
+  { index, isDisabled, onChange, placeholder, result }: WritingInputProps,
+  ref,
+) {
   const inputId = useId();
   const describedById = useId();
   const [value, setValue] = useState('');
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
-    onChange(e.currentTarget.value);
+    onChange(e.currentTarget.value, index);
   };
 
   const inputClasses = [styles.input];
@@ -50,6 +52,7 @@ export default function WritingInput({
         type="text"
         placeholder={placeholder}
         onChange={handleInputChange}
+        ref={ref}
         value={value}
         disabled={!!isDisabled}
         aria-describedby={describedById}
@@ -57,4 +60,6 @@ export default function WritingInput({
       {isCorrect && <FaStar role="presentation" className={styles.icon} />}
     </div>
   );
-}
+});
+
+export default WritingInput;

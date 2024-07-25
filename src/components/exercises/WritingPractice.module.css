@@ -1,0 +1,10 @@
+.writingPractice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rows {
+  display: grid;
+  gap: 8px;
+}
