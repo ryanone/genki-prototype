@@ -22,16 +22,3 @@
 .nextButton:hover {
   border-color: var(--highlight-color-1);
 }
-
-.instructions {
-  background: var(--highlight-color-1);
-  color: white;
-  padding: 16px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.instructionsIcon {
-  font-size: 1.5rem;
-}

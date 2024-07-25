@@ -1,5 +1,5 @@
 import { CiGrid2H, CiGrid2V } from 'react-icons/ci';
-import { FaArrowsRotate, FaBook, FaCircleInfo } from 'react-icons/fa6';
+import { FaArrowsRotate, FaBook } from 'react-icons/fa6';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   chooseChoice,
@@ -13,6 +13,7 @@ import {
 } from '@/features/dragDrop/dragDropSlice';
 import ExerciseResults from '@/components/ExerciseResults';
 import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
+import Instructions from '@/components/Instructions';
 import MemoizedDraggableItem from '@/components/MemoizedDraggableItem';
 import ReviewDialog from '@/components/ReviewDialog';
 import Timer from '@/components/Timer';
@@ -106,15 +107,9 @@ export default function DragDrop() {
           onRestart={handleRestart}
         />
       ) : null}
-      {layoutConfig?.instructions && (
-        <div className={styles.instructions}>
-          <FaCircleInfo
-            className={styles.instructionsIcon}
-            role="presentation"
-          />
-          {layoutConfig.instructions}
-        </div>
-      )}
+      {layoutConfig?.instructions ? (
+        <Instructions>{layoutConfig.instructions}</Instructions>
+      ) : null}
       <div className={styles.main}>
         {isHorizontal && layoutConfig ? (
           <HorizontalDropTargetList

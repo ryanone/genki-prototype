@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { FaCircleInfo } from 'react-icons/fa6';
 import {
   chooseChoice,
   goToNextQuestion,
@@ -11,6 +10,7 @@ import {
 } from '@/features/multipleChoice/multipleChoiceSlice';
 import AnswerList, { type FilledAnswer } from '@/components/AnswerList';
 import ExerciseResults from '@/components/ExerciseResults';
+import Instructions from '@/components/Instructions';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
 import Timer from '@/components/Timer';
@@ -65,15 +65,7 @@ export default function MultipleChoice() {
     currentAnswer?.choices &&
     instructions && (
       <>
-        {instructions && (
-          <div className={styles.instructions}>
-            <FaCircleInfo
-              className={styles.instructionsIcon}
-              role="presentation"
-            />
-            {instructions}
-          </div>
-        )}
+        {instructions ? <Instructions>{instructions}</Instructions> : null}
         <MultipleChoiceQuestion
           key={currentIndex}
           choices={currentAnswer.choices as ChoiceData[]}

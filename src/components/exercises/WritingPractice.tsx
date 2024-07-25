@@ -36,7 +36,7 @@ export default function WritingPractice() {
 
   return (
     <div className={styles.writingPractice}>
-      {instructions && <Instructions>{instructions}</Instructions>}
+      {instructions ? <Instructions>{instructions}</Instructions> : null}
       <div className={styles.rows} style={rowsStyles}>
         {rows.length
           ? rows.map((row, i) => {
