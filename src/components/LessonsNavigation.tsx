@@ -1,5 +1,6 @@
 import { FaBars, FaX } from 'react-icons/fa6';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import LessonsAccordion from '@/components/LessonsAccordion';
 import { type Lesson } from '@/data/lesson';
 import styles from './LessonsNavigation.module.css';
@@ -19,6 +20,11 @@ export default function LessonsNavigation({
   if (isVisible) {
     navigationClasses.push(styles.expanded);
   }
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsVisible(false);
+  }, [location]);
 
   return (
     <>
