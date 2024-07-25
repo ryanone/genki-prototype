@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import initializeState from '@/utils/writingPractice';
+import selectResultsDraft from '@/features/writingPractice/selectors';
 import type {
   Choice,
   WritingPracticeExercise,
@@ -56,7 +57,7 @@ export const writingPracticeSlice = createSlice({
     restart(state) {
       state.isFinished = false;
       state.rows.forEach((row) => {
-        row.answers.map(() => ({}));
+        row.answers = row.answers.map(() => ({}));
       });
       state.startTime = Date.now();
     },
@@ -78,9 +79,14 @@ export const writingPracticeSlice = createSlice({
       }
     },
   },
+  selectors: {
+    selectResults: selectResultsDraft,
+  },
 });
 
 export const { initialize, reset, restart, review, setAnswer } =
   writingPracticeSlice.actions;
+
+export const { selectResults } = writingPracticeSlice.selectors;
 
 export default writingPracticeSlice.reducer;

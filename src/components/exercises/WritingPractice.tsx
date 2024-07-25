@@ -1,11 +1,14 @@
 import { useRef, useState, type ReactNode } from 'react';
 import { FaCheck } from 'react-icons/fa6';
+import ExerciseResults from '@/components/ExerciseResults';
 import Instructions from '@/components/Instructions';
 import CheckAnswersDialog from '@/components/CheckAnswersDialog';
 import Timer from '@/components/Timer';
 import WritingPracticeRow from '@/components/WritingPracticeRow';
 import {
+  restart,
   review,
+  selectResults,
   setAnswer,
 } from '@/features/writingPractice/writingPracticeSlice';
 import useAppSelector from '@/hooks/useAppSelector';
@@ -34,6 +37,7 @@ export default function WritingPractice() {
   const isFinished = useAppSelector(
     (state) => state.writingPractice.isFinished,
   );
+  const results = useAppSelector(selectResults);
 
   const rowsStyles: Record<string, string> = {
     gridTemplateColumns: `repeat(${(numRepetitions ?? 0) + 1}, minmax(0, 1fr))`,
@@ -60,6 +64,10 @@ export default function WritingPractice() {
     );
   };
 
+  const handleRestart = () => {
+    dispatch(restart());
+  };
+
   const handleReviewConfirm = () => {
     dispatch(review());
     setCheckAnswersDialogContent(undefined);
@@ -84,6 +92,14 @@ export default function WritingPractice() {
 
   return (
     <div className={styles.writingPractice}>
+      {isFinished && results ? (
+        <ExerciseResults
+          numSolved={results.numSolved}
+          numWrong={results.numWrong}
+          timeElapsed={timeElapsed.current}
+          onRestart={handleRestart}
+        />
+      ) : null}
       {instructions ? <Instructions>{instructions}</Instructions> : null}
       <div className={styles.rows} style={rowsStyles}>
         {rows.length
