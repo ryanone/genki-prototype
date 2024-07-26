@@ -15,9 +15,9 @@ export default function ExercisesSection({
 }: ExercisesSectionProps) {
   return (
     <div className={styles.exercisesSection}>
-      {section.content ? (
-        <div className={styles.heading}>{section.content}</div>
-      ) : null}
+      <div className={styles.heading} data-testid="exercises-section-heading">
+        {section.content}
+      </div>
       <ExercisesList
         bookId={bookId}
         lessonId={lessonId}

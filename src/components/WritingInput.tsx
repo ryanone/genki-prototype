@@ -47,7 +47,11 @@ const WritingInput = forwardRef<Ref, WritingInputProps>(function WritingInput(
   return (
     <div className={styles.writingInput}>
       {description && (
-        <span id={describedById} className={commonStyles.hidden}>
+        <span
+          id={describedById}
+          className={commonStyles.hidden}
+          data-testid="writing-input-result"
+        >
           {description}
         </span>
       )}
