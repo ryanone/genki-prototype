@@ -19,11 +19,23 @@ export default function ExerciseResults({
   const score = Math.floor(((numSolved - numWrong) / numSolved) * 100);
   let message;
   if (score === 100) {
-    message = <p className={styles.advice}>PERFECT! Great job!</p>;
+    message = (
+      <p className={styles.advice} data-testid="exercise-results-advice">
+        PERFECT! Great job!
+      </p>
+    );
   } else if (score > 70) {
-    message = <p className={styles.advice}>Nice work!</p>;
+    message = (
+      <p className={styles.advice} data-testid="exercise-results-advice">
+        Nice work!
+      </p>
+    );
   } else {
-    message = <p className={styles.advice}>Keep studying!</p>;
+    message = (
+      <p className={styles.advice} data-testid="exercise-results-advice">
+        Keep studying!
+      </p>
+    );
   }
 
   return (
@@ -35,25 +47,42 @@ export default function ExerciseResults({
             <th className={styles.term} scope="row">
               Problems Solved:
             </th>
-            <td className={styles.value}>{numSolved}</td>
+            <td
+              className={styles.value}
+              data-testid="exercise-results-num-solved"
+            >
+              {numSolved}
+            </td>
           </tr>
           <tr>
             <th className={styles.term} scope="row">
               Answers Wrong:
             </th>
-            <td className={styles.value}>{numWrong}</td>
+            <td
+              className={styles.value}
+              data-testid="exercise-results-num-wrong"
+            >
+              {numWrong}
+            </td>
           </tr>
           <tr>
             <th className={styles.term} scope="row">
               Score:
             </th>
-            <td className={styles.value}>{score}%</td>
+            <td className={styles.value} data-testid="exercise-results-score">
+              {score}%
+            </td>
           </tr>
           <tr>
             <th className={styles.term} scope="row">
               Completion Time:
             </th>
-            <td className={styles.value}>{formatTimer(timeElapsed)}</td>
+            <td
+              className={styles.value}
+              data-testid="exercise-results-time-elapsed"
+            >
+              {formatTimer(timeElapsed)}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -64,10 +93,7 @@ export default function ExerciseResults({
           onClick={onRestart}
           type="button"
         >
-          <FaArrowsRotate
-            className="dragdrop__review-icon"
-            role="presentation"
-          />
+          <FaArrowsRotate role="presentation" />
           Try Again
         </button>
       </div>
