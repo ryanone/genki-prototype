@@ -14,20 +14,20 @@ describe('components/Timer', () => {
     vi.useRealTimers();
   });
 
-  it('should render the Timer component', async () => {
+  it('renders the component', async () => {
     render(<Timer isRunning={false} />);
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');
   });
 
-  it('should render the Timer component and run', async () => {
+  it('renders the component with a running timer', async () => {
     render(<Timer isRunning />);
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');
     act(() => vi.advanceTimersByTime(TICK_LENGTH));
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:01');
   });
 
-  it('should call onTick() after each second', async () => {
-    const spy = vi.fn(() => {});
+  it('calls onTick() after each second', async () => {
+    const spy = vi.fn();
 
     const { rerender } = render(<Timer isRunning onTick={spy} />);
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');

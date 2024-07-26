@@ -5,7 +5,7 @@ import formatTimer from '@/utils/time';
 import ExerciseResults from '@/components/ExerciseResults';
 
 describe('component/ExerciseResults', () => {
-  it('renders the ExerciseResults component and triggers onStart() when appropriate', async () => {
+  it('renders the component and triggers onStart() when appropriate', async () => {
     const user = userEvent.setup();
     const numSolved = 100;
     const numWrong = 0;
@@ -42,7 +42,7 @@ describe('component/ExerciseResults', () => {
     expect(onRestart).toHaveBeenCalledOnce();
   });
 
-  it('renders the ExerciseResults component and shows advice when score > 70 and < 100', async () => {
+  it('renders the component and shows advice when score > 70 and < 100', async () => {
     const numSolved = 100;
     const numWrong = 25;
     const timeElapsed = 50;
@@ -62,7 +62,7 @@ describe('component/ExerciseResults', () => {
     );
   });
 
-  it('renders the ExerciseResults component and shows advice when score <= 70', async () => {
+  it('renders the component and shows advice when score <= 70', async () => {
     const numSolved = 100;
     const numWrong = 30;
     const timeElapsed = 50;

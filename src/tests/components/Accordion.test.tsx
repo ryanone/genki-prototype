@@ -17,7 +17,7 @@ const sections = [
 ];
 
 describe('components/Accordion', () => {
-  it('should render the Accordion component', async () => {
+  it('renders the component', async () => {
     render(<Accordion sections={sections} />);
     const buttons = screen.getAllByRole('button', { expanded: false });
     expect(buttons.length).toBe(sections.length);
@@ -27,7 +27,7 @@ describe('components/Accordion', () => {
     expect(regions.length).toBe(sections.length);
   });
 
-  it('should render a section as expanded if defaultExpanded is true', async () => {
+  it('renders a section as expanded if defaultExpanded is true', async () => {
     const newSections = sections.map((s, i) => {
       if (i === 1) {
         return {
@@ -49,7 +49,7 @@ describe('components/Accordion', () => {
     expect(visibleRegions[0]).toHaveTextContent(newSections[1].content);
   });
 
-  it('should expand/collapse a section as expanded', async () => {
+  it('expands/collapses a section as expanded', async () => {
     const user = userEvent.setup();
     render(<Accordion sections={sections} />);
     const buttons = screen.getAllByRole('button', { expanded: false });
@@ -88,7 +88,7 @@ describe('components/Accordion', () => {
     expect(expandedButtons[0]).toHaveTextContent(sections[1].title);
   });
 
-  it('should allow multiple sections to be expanded simultaneously, if allowMultipleExpanded is true', async () => {
+  it('allows multiple sections to be expanded simultaneously, if allowMultipleExpanded is true', async () => {
     const user = userEvent.setup();
     render(
       <Accordion

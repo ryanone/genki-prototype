@@ -5,7 +5,7 @@ import ExerciseLink from '@/components/ExerciseLink';
 import type { ExerciseInfo } from '@/data/lesson';
 
 describe('component/ExerciseLink', () => {
-  it('renders the ExerciseLink', () => {
+  it('renders the component', () => {
     const bookId = 'xyz';
     const lessonId = 'abc';
     const exercise: ExerciseInfo = {

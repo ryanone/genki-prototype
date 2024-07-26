@@ -4,14 +4,14 @@ import userEvent from '@testing-library/user-event';
 import DraggableItem from '@/components/DraggableItem';
 
 describe('component/DraggableItem', () => {
-  it('renders the DraggableItem component and calls events when appropriate', async () => {
+  it('renders the component and calls events when appropriate', async () => {
     const user = userEvent.setup();
     const val = {
       content: 'Lorem ipsum',
       id: '1',
     };
-    const onSelect = vi.fn(() => {});
-    const onUnselect = vi.fn(() => {});
+    const onSelect = vi.fn();
+    const onUnselect = vi.fn();
     render(
       <DraggableItem val={val} onSelect={onSelect} onUnselect={onUnselect} />,
     );

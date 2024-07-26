@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ProgressBar from '@/components/ProgressBar';
 
 describe('component/ProgressBar', () => {
-  it('renders the ProgressBar component', () => {
+  it('renders the component', () => {
     let current = 0;
     const total = 10;
     const { rerender } = render(

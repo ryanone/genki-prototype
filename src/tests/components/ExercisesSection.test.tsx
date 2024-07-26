@@ -5,7 +5,7 @@ import ExercisesSection from '@/components/ExercisesSection';
 import Genki3Lesson0 from '@/data/genki-3/lessons/lesson-0.json';
 
 describe('component/ExercisesSection', () => {
-  it('renders the ExercisesSection component', () => {
+  it('renders the component', () => {
     const bookId = 'genki-3';
     const lessonId = '0';
     const section = Genki3Lesson0.sections[0];

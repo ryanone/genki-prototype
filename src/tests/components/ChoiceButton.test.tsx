@@ -10,7 +10,7 @@ const DATA: ChoiceData = {
 };
 
 describe('components/ChoiceButton', () => {
-  it('renders the ChoiceButton with no value for `result`', () => {
+  it('renders the component with no value for `result`', () => {
     const data = {
       ...DATA,
     };
@@ -21,7 +21,7 @@ describe('components/ChoiceButton', () => {
     expect(button.getAttribute('aria-label')).toBeFalsy();
   });
 
-  it('renders the ChoiceButton with `result` as SELECTED_CORRECT', () => {
+  it('renders the component with `result` as SELECTED_CORRECT', () => {
     const data: ChoiceData = {
       ...DATA,
       result: 'SELECTED_CORRECT',
@@ -33,7 +33,7 @@ describe('components/ChoiceButton', () => {
     expect(button.getAttribute('aria-label')).toBe('Correct answer chosen');
   });
 
-  it('renders the ChoiceButton with `result` as UNSELECTED_CORRECT', () => {
+  it('renders the component with `result` as UNSELECTED_CORRECT', () => {
     const data: ChoiceData = {
       ...DATA,
       result: 'UNSELECTED_CORRECT',
@@ -47,7 +47,7 @@ describe('components/ChoiceButton', () => {
     );
   });
 
-  it('renders the ChoiceButton with `result` as INCORRECT', () => {
+  it('renders the component with `result` as INCORRECT', () => {
     const data: ChoiceData = {
       ...DATA,
       result: 'INCORRECT',
@@ -59,9 +59,9 @@ describe('components/ChoiceButton', () => {
     expect(button.getAttribute('aria-label')).toBe('Incorrect answer chosen');
   });
 
-  it('ChoiceButton does not call onClick() if disabled', async () => {
+  it('does not call onClick() if disabled', async () => {
     const user = userEvent.setup();
-    const spy = vi.fn(() => {});
+    const spy = vi.fn();
     const data = {
       ...DATA,
     };
@@ -72,9 +72,9 @@ describe('components/ChoiceButton', () => {
     expect(spy).toHaveBeenCalledTimes(0);
   });
 
-  it('ChoiceButton calls onClick if enabled and clicked', async () => {
+  it('calls onClick() if enabled and clicked', async () => {
     const user = userEvent.setup();
-    const spy = vi.fn(() => {});
+    const spy = vi.fn();
     const data = {
       ...DATA,
     };
