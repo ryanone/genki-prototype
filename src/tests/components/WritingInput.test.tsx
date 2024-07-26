@@ -80,7 +80,7 @@ describe('component/WritingInput', () => {
     await user.click(input);
     const inputValue = 'foo';
     await user.keyboard(inputValue);
-    expect(onChangeSpy).toHaveBeenCalledTimes(3);
+    expect(onChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onChangeSpy).toHaveBeenNthCalledWith(
       1,
       inputValue.substring(0, 1), // 'f'
