@@ -38,6 +38,7 @@ export default function WritingPractice() {
     (state) => state.writingPractice.isFinished,
   );
   const results = useAppSelector(selectResults);
+  const startTime = useAppSelector((state) => state.writingPractice.startTime);
 
   const rowsStyles: Record<string, string> = {
     gridTemplateColumns: `repeat(${(numRepetitions ?? 0) + 1}, minmax(0, 1fr))`,
@@ -107,7 +108,7 @@ export default function WritingPractice() {
               return (
                 <WritingPracticeRow
                   choice={row.choice}
-                  key={row.choice.content}
+                  key={`${row.choice.content}-${startTime}`}
                   numExamples={numExamples ?? 0}
                   numRepetitions={numRepetitions ?? 0}
                   onInputChange={handleRowInputChange}
@@ -124,20 +125,23 @@ export default function WritingPractice() {
           : null}
       </div>
       <Timer
+        key={`${startTime}`}
         isRunning={!isFinished}
         onTick={(numSeconds) => {
           timeElapsed.current = numSeconds;
         }}
       />
       <div className={styles.actions}>
-        <button
-          onClick={handleCheckAnswersClick}
-          className={`${commonStyles.button} ${styles.checkAnswersButton}`}
-          type="button"
-        >
-          <FaCheck role="presentation" />
-          Check Answers
-        </button>
+        {!isFinished && (
+          <button
+            onClick={handleCheckAnswersClick}
+            className={`${commonStyles.button} ${styles.checkAnswersButton}`}
+            type="button"
+          >
+            <FaCheck role="presentation" />
+            Check Answers
+          </button>
+        )}
       </div>
       <CheckAnswersDialog
         content={checkAnswersDialogContent}
