@@ -5,6 +5,10 @@ import {
   // reset as resetDragDrop,
 } from '@/features/dragDrop/dragDropSlice';
 import {
+  initialize as initializeFillChart,
+  // reset as resetFillChart,
+} from '@/features/fillChart/fillChartSlice';
+import {
   initialize as initializeMultipleChoice,
   // reset as resetMultipleChoice,
 } from '@/features/multipleChoice/multipleChoiceSlice';
@@ -15,6 +19,7 @@ import {
 import type {
   DragDropExercise,
   Exercise,
+  FillChartExercise,
   MultipleChoiceExercise,
   RenderMode,
   WritingPracticeExercise,
@@ -31,6 +36,7 @@ type ExerciseRendererProps = {
 };
 
 const DragDrop = lazy(() => import('@/components/exercises/DragDrop'));
+const FillChart = lazy(() => import('@/components/exercises/FillChart'));
 const MultipleChoice = lazy(
   () => import('@/components/exercises/MultipleChoice'),
 );
@@ -43,6 +49,9 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const dispatch = useAppDispatch();
   const isDragDropInitialized = useAppSelector(
     (state) => state.dragDrop.initialized,
+  );
+  const isFillChartInitialized = useAppSelector(
+    (state) => state.fillChart.initialized,
   );
   const isMultipleChoiceInitialized = useAppSelector(
     (state) => state.multipleChoice.initialized,
@@ -59,6 +68,12 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
       dispatch(
         initializeDragDrop({
           exercise: data as DragDropExercise,
+        }),
+      );
+    } else if (renderMode === 'FILL_CHART') {
+      dispatch(
+        initializeFillChart({
+          exercise: data as FillChartExercise,
         }),
       );
     } else if (renderMode === 'MULTIPLE_CHOICE') {
@@ -88,6 +103,8 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   let exercise;
   if (renderMode === 'DRAG_DROP' && isDragDropInitialized) {
     exercise = <DragDrop key={Date.now()} />;
+  } else if (renderMode === 'FILL_CHART' && isFillChartInitialized) {
+    exercise = <FillChart key={Date.now()} />;
   } else if (renderMode === 'MULTIPLE_CHOICE' && isMultipleChoiceInitialized) {
     exercise = <MultipleChoice key={Date.now()} />;
   } else if (

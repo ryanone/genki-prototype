@@ -1,8 +1,8 @@
 import type {
   DragDropExercise,
-  DragDropFlow,
   DragDropMeta,
   Question,
+  TwoDirectionalFlow,
 } from '@/data/exercise';
 import type { DragDropState } from '@/features/dragDrop/dragDropSlice';
 import { randomizeArray } from '@/utils/randomize';
@@ -16,10 +16,10 @@ type LayoutConfigurationBase = {
 };
 
 export interface LayoutConfigurationHorizontal extends LayoutConfigurationBase {
-  dropTargetLayout: DragDropFlow;
+  dropTargetLayout: TwoDirectionalFlow;
   layout: 'HORIZONTAL';
   maxTrackLen: number;
-  questionsFlow: DragDropFlow;
+  questionsFlow: TwoDirectionalFlow;
   questionsStyles: Record<string, string>;
   questionsTrackConfig?: number[];
 }
@@ -54,7 +54,7 @@ const BASE_VERTICAL_CONFIG = {
 
 export function createLayoutConfiguration(
   meta: DragDropMeta,
-  layout?: DragDropFlow,
+  layout?: TwoDirectionalFlow,
 ): LayoutConfiguration {
   const config: LayoutConfigurationBase = {
     canSupportMultipleLayouts: (meta?.supportedLayouts?.length ?? 1) > 1,

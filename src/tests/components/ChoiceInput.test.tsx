@@ -33,18 +33,20 @@ describe('component/ChoiceInput', () => {
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
     await user.click(input);
-    const inputValue = 'foo';
+    const inputValue = 'bar';
     await user.keyboard(inputValue);
     expect(onChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onChangeSpy).toHaveBeenNthCalledWith(
       1,
-      inputValue.substring(0, 1), // 'f'
+      questionContent,
+      inputValue.substring(0, 1), // 'b'
     );
     expect(onChangeSpy).toHaveBeenNthCalledWith(
       2,
-      inputValue.substring(0, 2), // 'fo'
+      questionContent,
+      inputValue.substring(0, 2), // 'ba'
     );
-    expect(onChangeSpy).toHaveBeenNthCalledWith(3, inputValue);
+    expect(onChangeSpy).toHaveBeenNthCalledWith(3, questionContent, inputValue);
   });
 
   it('renders the component when the result is INCORRECT', () => {

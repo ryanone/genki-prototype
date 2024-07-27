@@ -16,6 +16,7 @@ type ChangeExerciseTypeDialogProps = {
 
 const RenderModeDescription: Record<RenderMode, string> = {
   DRAG_DROP: 'Drag and Drop',
+  FILL_CHART: 'Fill in the Chart',
   MULTIPLE_CHOICE: 'Multiple Choice',
   WRITING_PRACTICE: 'Writing Practice',
 };

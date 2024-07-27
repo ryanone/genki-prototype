@@ -1,5 +1,6 @@
 import { FaArrowLeft, FaStar, FaX } from 'react-icons/fa6';
 import { useState, type KeyboardEvent } from 'react';
+import { type TwoDirectionalFlow } from '@/data/exercise';
 import styles from './DropTarget.module.css';
 
 type DropTargetValue = {
@@ -13,7 +14,7 @@ type DropTargetValue2 = {
 };
 
 type DropTargetProps = {
-  layout: 'HORIZONTAL' | 'VERTICAL';
+  layout: TwoDirectionalFlow;
   numIncorrectGuesses?: number;
   onDrop: (value: string) => void;
   result: 'CORRECT' | 'INCORRECT' | undefined;

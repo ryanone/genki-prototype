@@ -5,11 +5,12 @@ export type Choice = {
 
 type Meta = {
   DRAG_DROP?: DragDropMeta;
+  FILL_CHART?: FillChartMeta;
   MULTIPLE_CHOICE?: MultipleChoiceMeta;
   WRITING_PRACTICE?: WritingPracticeMeta;
 };
 
-export type DragDropFlow = 'HORIZONTAL' | 'VERTICAL';
+export type TwoDirectionalFlow = 'HORIZONTAL' | 'VERTICAL';
 
 interface BaseMeta {
   instructions: string;
@@ -19,10 +20,15 @@ interface BaseMeta {
 export interface DragDropMeta extends BaseMeta {
   HORIZONTAL?: {
     configuration?: number | number[];
-    questionLayout: DragDropFlow;
-    questionsFlow: DragDropFlow;
+    questionLayout: TwoDirectionalFlow;
+    questionsFlow: TwoDirectionalFlow;
   };
-  supportedLayouts: DragDropFlow[];
+  supportedLayouts: TwoDirectionalFlow[];
+}
+
+export interface FillChartMeta extends BaseMeta {
+  configuration: string[][];
+  flow: TwoDirectionalFlow;
 }
 
 export interface MultipleChoiceMeta extends BaseMeta {}
@@ -39,7 +45,11 @@ export type Question = {
   content: string;
 };
 
-export type RenderMode = 'DRAG_DROP' | 'MULTIPLE_CHOICE' | 'WRITING_PRACTICE';
+export type RenderMode =
+  | 'DRAG_DROP'
+  | 'FILL_CHART'
+  | 'MULTIPLE_CHOICE'
+  | 'WRITING_PRACTICE';
 
 export type BaseExercise = {
   choices: Choice[];
@@ -52,6 +62,12 @@ export type BaseExercise = {
 export interface DragDropExercise extends BaseExercise {
   meta: {
     DRAG_DROP: DragDropMeta;
+  };
+}
+
+export interface FillChartExercise extends BaseExercise {
+  meta: {
+    FILL_CHART: FillChartMeta;
   };
 }
 
@@ -69,6 +85,7 @@ export interface WritingPracticeExercise extends BaseExercise {
 
 export type Exercise =
   | DragDropExercise
+  | FillChartExercise
   | MultipleChoiceExercise
   | WritingPracticeExercise;
 

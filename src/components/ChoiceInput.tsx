@@ -6,7 +6,7 @@ type ChoiceInputProps = {
   correctValue?: string | undefined;
   defaultValue?: string | undefined;
   isDisabled?: boolean;
-  onChange: (value: string) => void;
+  onChange: (questionContent: string, value: string) => void;
   questionContent: string;
   result?: 'CORRECT' | 'INCORRECT' | undefined;
 };
@@ -24,7 +24,7 @@ export default function ChoiceInput({
   const [value, setValue] = useState(defaultValue ?? '');
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
-    onChange(e.currentTarget.value);
+    onChange(questionContent, e.currentTarget.value);
   };
 
   const inputClasses = [styles.input];
@@ -60,9 +60,11 @@ export default function ChoiceInput({
         value={value}
         aria-describedby={describedById}
       />
-      {correctValue ? (
-        <div className={styles.correctAnswer}>{correctValue}</div>
-      ) : null}
+      {result && (
+        <div className={styles.correctAnswer}>
+          {result === 'INCORRECT' ? correctValue : ''}
+        </div>
+      )}
     </div>
   );
 }

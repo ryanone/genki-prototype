@@ -1,5 +1,5 @@
 {
-  "supportedRenderModes": ["DRAG_DROP", "MULTIPLE_CHOICE"],
+  "supportedRenderModes": ["DRAG_DROP", "FILL_CHART", "MULTIPLE_CHOICE"],
   "questions": [
     {
       "content": "wa",
@@ -488,6 +488,23 @@
           5
         ]
       }
+    },
+    "FILL_CHART": {
+      "instructions": "Complete the chart by filling in the Romaji.",
+      "flow": "HORIZONTAL",
+      "configuration": [
+        ["42", "43", "44", "45", "46"],
+        ["37", "38", "39", "40", "41"],
+        ["32", "33", "34", "35", "36"],
+        ["27", "28", "29", "30", "31"],
+        ["22", "23", "24", "25", "26"],
+        ["17", "18", "19", "20", "21"],
+        ["12", "13", "14", "15", "16"],
+        ["9", "-", "10", "-", "11"],
+        ["4", "5", "6", "7", "8"],
+        ["1", "-", "-", "-", "2"],
+        ["3", "-", "-", "-", "-"]
+      ]
     }
   }
 }

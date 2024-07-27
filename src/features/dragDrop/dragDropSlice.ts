@@ -11,9 +11,9 @@ import { randomizeArray } from '@/utils/randomize';
 import type {
   Choice,
   DragDropExercise,
-  DragDropFlow,
   DragDropMeta,
   Question,
+  TwoDirectionalFlow,
 } from '@/data/exercise';
 
 export type Answer = {
@@ -28,7 +28,7 @@ export type DragDropState = {
   choices: Choice[];
   doReview: boolean;
   initialized: boolean;
-  layout?: DragDropFlow;
+  layout?: TwoDirectionalFlow;
   meta?: DragDropMeta;
   startTime: number;
 };

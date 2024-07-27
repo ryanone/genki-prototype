@@ -1,13 +1,17 @@
 .choiceInput {
+  background: var(--background-color-1);
+  border: 1px solid var(--outline-color-1);
   display: flex;
   color: var(--foreground-color-1);
   flex-direction: column;
   gap: 2px;
+  padding: 8px 24px;
 }
 
 .correctAnswer {
   color: var(--selected-correct-color);
   text-align: center;
+  min-height: 1rem;
 }
 
 .input {
