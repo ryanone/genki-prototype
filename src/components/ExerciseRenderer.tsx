@@ -46,6 +46,8 @@ const WritingPractice = lazy(
 
 export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
+  const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] =
+    useState(false);
   const dispatch = useAppDispatch();
   const isDragDropInitialized = useAppSelector(
     (state) => state.dragDrop.initialized,
@@ -93,8 +95,6 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   }, [data, dispatch, multipleChoiceSettings.feedback, renderMode]);
 
   const canChangeRenderMode = data.supportedRenderModes.length > 1;
-  const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] =
-    useState(false);
   const handleRenderModeChoose = (value: RenderMode) => {
     setRenderMode(value);
     setShowChangeRenderModeDialog(false);

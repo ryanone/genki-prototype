@@ -30,20 +30,18 @@ export default function CheckAnswersDialog({
   };
 
   return (
-    isOpen && (
-      <Dialog isOpen={isOpen} onClose={handleClose}>
-        <DialogHeader>Check Answers?</DialogHeader>
-        <DialogContent>{content}</DialogContent>
-        <DialogActions onClose={handleClose}>
-          <button
-            onClick={handleConfirmClick}
-            className={commonStyles.button}
-            type="button"
-          >
-            Yes, check my answers!
-          </button>
-        </DialogActions>
-      </Dialog>
-    )
+    <Dialog isOpen={isOpen} onClose={handleClose}>
+      <DialogHeader>Check Answers?</DialogHeader>
+      <DialogContent>{content}</DialogContent>
+      <DialogActions onClose={handleClose}>
+        <button
+          onClick={handleConfirmClick}
+          className={commonStyles.button}
+          type="button"
+        >
+          Yes, check my answers!
+        </button>
+      </DialogActions>
+    </Dialog>
   );
 }

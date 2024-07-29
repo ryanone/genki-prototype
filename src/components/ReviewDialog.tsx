@@ -28,24 +28,22 @@ export default function ReviewDialog({
   };
 
   return (
-    isOpen && (
-      <Dialog isOpen={isOpen} onClose={handleClose}>
-        <DialogHeader>Activate Review Mode?</DialogHeader>
-        <DialogContent>
-          <p>
-            Are you sure you want to review? Your current progress will be lost.
-          </p>
-        </DialogContent>
-        <DialogActions onClose={handleClose}>
-          <button
-            onClick={handleConfirmClick}
-            className={commonStyles.button}
-            type="button"
-          >
-            OK
-          </button>
-        </DialogActions>
-      </Dialog>
-    )
+    <Dialog isOpen={isOpen} onClose={handleClose}>
+      <DialogHeader>Activate Review Mode?</DialogHeader>
+      <DialogContent>
+        <p>
+          Are you sure you want to review? Your current progress will be lost.
+        </p>
+      </DialogContent>
+      <DialogActions onClose={handleClose}>
+        <button
+          onClick={handleConfirmClick}
+          className={commonStyles.button}
+          type="button"
+        >
+          OK
+        </button>
+      </DialogActions>
+    </Dialog>
   );
 }

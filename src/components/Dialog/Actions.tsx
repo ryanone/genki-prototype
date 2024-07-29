@@ -23,6 +23,7 @@ export default function DialogActions({
         onClick={handleCloseClick}
         className={commonStyles.button}
         type="button"
+        formMethod="dialog"
       >
         Close
       </button>

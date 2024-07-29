@@ -5,9 +5,15 @@ type DialogProps = {
   children: ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  role?: string | undefined;
 };
 
-export default function Dialog({ children, isOpen, onClose }: DialogProps) {
+export default function Dialog({
+  children,
+  isOpen,
+  onClose,
+  role,
+}: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -39,10 +45,17 @@ export default function Dialog({ children, isOpen, onClose }: DialogProps) {
   }, [isOpen, onClose]);
 
   return (
-    <dialog className={styles.dialog} ref={ref}>
-      <form className={styles.form} method="dialog">
-        {children}
-      </form>
-    </dialog>
+    isOpen && (
+      <dialog
+        className={styles.dialog}
+        ref={ref}
+        role={role ?? 'dialog'}
+        data-testid="dialog"
+      >
+        <form className={styles.form} method="dialog">
+          {children}
+        </form>
+      </dialog>
+    )
   );
 }

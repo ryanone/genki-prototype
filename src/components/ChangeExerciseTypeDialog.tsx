@@ -48,42 +48,40 @@ export default function ChangeExerciseTypeDialog({
   };
 
   return (
-    isOpen && (
-      <Dialog isOpen={isOpen} onClose={handleCancel}>
-        <DialogHeader>Change Exercise Type</DialogHeader>
-        <DialogContent>
-          <p>
-            Please select the type of exercise you would like to do, then select
-            &apos;Begin&apos; to start studying.
-          </p>
-          <div className={styles.heading}>Current Exercise</div>
-          <div className={styles.title}>{exercise.title}</div>
-          <label className={styles.label}>
-            Exercise Type
-            <select
-              className={commonStyles.select}
-              onChange={handleSelectChange}
-              value={renderMode}
-            >
-              <option value="">Choose a type</option>
-              {exercise.supportedRenderModes.map((key) => (
-                <option key={key} value={key}>
-                  {RenderModeDescription[key]}
-                </option>
-              ))}
-            </select>
-          </label>
-        </DialogContent>
-        <DialogActions onClose={handleCancel}>
-          <button
-            onClick={handleConfirmClick}
-            className={commonStyles.button}
-            type="button"
+    <Dialog isOpen={isOpen} onClose={handleCancel} role="alertdialog">
+      <DialogHeader>Change Exercise Type</DialogHeader>
+      <DialogContent>
+        <p>
+          Please select the type of exercise you would like to do, then select
+          &apos;Begin&apos; to start studying.
+        </p>
+        <div className={styles.heading}>Current Exercise</div>
+        <div className={styles.title}>{exercise.title}</div>
+        <label className={styles.label}>
+          Exercise Type
+          <select
+            className={commonStyles.select}
+            onChange={handleSelectChange}
+            value={renderMode}
           >
-            Begin
-          </button>
-        </DialogActions>
-      </Dialog>
-    )
+            <option value="">Choose a type</option>
+            {exercise.supportedRenderModes.map((key) => (
+              <option key={key} value={key}>
+                {RenderModeDescription[key]}
+              </option>
+            ))}
+          </select>
+        </label>
+      </DialogContent>
+      <DialogActions onClose={handleCancel}>
+        <button
+          onClick={handleConfirmClick}
+          className={commonStyles.button}
+          type="button"
+        >
+          Begin
+        </button>
+      </DialogActions>
+    </Dialog>
   );
 }

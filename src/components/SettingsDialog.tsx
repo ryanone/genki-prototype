@@ -42,74 +42,72 @@ export default function SettingsDialog({
   };
 
   return (
-    isOpen && (
-      <Dialog isOpen={isOpen} onClose={handleClose}>
-        <DialogHeader>Settings</DialogHeader>
-        <DialogContent>
-          <div className={styles.heading}>Display</div>
-          <dl className={styles.settings}>
-            <dt className={styles.darkModeSettingName}>Dark mode</dt>
-            <dd className={styles.settingContent}>
-              <ul className={styles.darkModeList}>
-                <li>
-                  <label className={styles.darkModeLabel}>
-                    <input
-                      className={styles.darkModeRadio}
-                      type="radio"
-                      name="darkMode"
-                      value=""
-                      defaultChecked={!theme}
-                      onClick={() => handleDarkModeChange(null)}
-                    />
-                    Device settings
-                  </label>
-                </li>
-                <li>
-                  <label className={styles.darkModeLabel}>
-                    <input
-                      className={styles.darkModeRadio}
-                      type="radio"
-                      name="darkMode"
-                      value="light"
-                      defaultChecked={theme === 'light'}
-                      onClick={() => handleDarkModeChange('light')}
-                    />
-                    Off
-                  </label>
-                </li>
-                <li>
-                  <label className={styles.darkModeLabel}>
-                    <input
-                      className={styles.darkModeRadio}
-                      type="radio"
-                      name="darkMode"
-                      value="dark"
-                      defaultChecked={theme === 'dark'}
-                      onClick={() => handleDarkModeChange('dark')}
-                    />
-                    Dark
-                  </label>
-                </li>
-              </ul>
-            </dd>
-          </dl>
-          <div className={styles.heading}>Exercises</div>
-          <dl className={styles.settings}>
-            <dt className={styles.settingName}>Multiple Choice Feedback</dt>
-            <dd className={styles.settingContent}>
-              <select
-                className={commonStyles.select}
-                onChange={handleMultipleChoiceFeedbackChange}
-                value={multipleChoiceSettings.feedback}
-              >
-                <option value="INSTANT">Instant</option>
-                <option value="AT_END">At end of exercise</option>
-              </select>
-            </dd>
-          </dl>
-        </DialogContent>
-        <DialogActions onClose={handleClose} />
-      </Dialog>
-    )
+    <Dialog isOpen={isOpen} onClose={handleClose}>
+      <DialogHeader>Settings</DialogHeader>
+      <DialogContent>
+        <div className={styles.heading}>Display</div>
+        <dl className={styles.settings}>
+          <dt className={styles.darkModeSettingName}>Dark mode</dt>
+          <dd className={styles.settingContent}>
+            <ul className={styles.darkModeList}>
+              <li>
+                <label className={styles.darkModeLabel}>
+                  <input
+                    className={styles.darkModeRadio}
+                    type="radio"
+                    name="darkMode"
+                    value=""
+                    defaultChecked={!theme}
+                    onClick={() => handleDarkModeChange(null)}
+                  />
+                  Device settings
+                </label>
+              </li>
+              <li>
+                <label className={styles.darkModeLabel}>
+                  <input
+                    className={styles.darkModeRadio}
+                    type="radio"
+                    name="darkMode"
+                    value="light"
+                    defaultChecked={theme === 'light'}
+                    onClick={() => handleDarkModeChange('light')}
+                  />
+                  Off
+                </label>
+              </li>
+              <li>
+                <label className={styles.darkModeLabel}>
+                  <input
+                    className={styles.darkModeRadio}
+                    type="radio"
+                    name="darkMode"
+                    value="dark"
+                    defaultChecked={theme === 'dark'}
+                    onClick={() => handleDarkModeChange('dark')}
+                  />
+                  Dark
+                </label>
+              </li>
+            </ul>
+          </dd>
+        </dl>
+        <div className={styles.heading}>Exercises</div>
+        <dl className={styles.settings}>
+          <dt className={styles.settingName}>Multiple Choice Feedback</dt>
+          <dd className={styles.settingContent}>
+            <select
+              className={commonStyles.select}
+              onChange={handleMultipleChoiceFeedbackChange}
+              value={multipleChoiceSettings.feedback}
+            >
+              <option value="INSTANT">Instant</option>
+              <option value="AT_END">At end of exercise</option>
+            </select>
+          </dd>
+        </dl>
+      </DialogContent>
+      <DialogActions onClose={handleClose} />
+    </Dialog>
   );
 }
