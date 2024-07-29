@@ -2,223 +2,223 @@
   "supportedRenderModes": ["DRAG_DROP", "FILL_CHART", "MULTIPLE_CHOICE"],
   "questions": [
     {
-      "content": "wa",
+      "content": "わ",
       "choices": {
         "correctId": "1"
       }
     },
     {
-      "content": "wo",
+      "content": "を",
       "choices": {
         "correctId": "2"
       }
     },
     {
-      "content": "n",
+      "content": "ん",
       "choices": {
         "correctId": "3"
       }
     },
     {
-      "content": "ra",
+      "content": "ら",
       "choices": {
         "correctId": "4"
       }
     },
     {
-      "content": "ri",
+      "content": "り",
       "choices": {
         "correctId": "5"
       }
     },
     {
-      "content": "ru",
+      "content": "る",
       "choices": {
         "correctId": "6"
       }
     },
     {
-      "content": "re",
+      "content": "れ",
       "choices": {
         "correctId": "7"
       }
     },
     {
-      "content": "ro",
+      "content": "ろ",
       "choices": {
         "correctId": "8"
       }
     },
     {
-      "content": "ya",
+      "content": "や",
       "choices": {
         "correctId": "9"
       }
     },
     {
-      "content": "yu",
+      "content": "ゆ",
       "choices": {
         "correctId": "10"
       }
     },
     {
-      "content": "yo",
+      "content": "よ",
       "choices": {
         "correctId": "11"
       }
     },
     {
-      "content": "ma",
+      "content": "ま",
       "choices": {
         "correctId": "12"
       }
     },
     {
-      "content": "mi",
+      "content": "み",
       "choices": {
         "correctId": "13"
       }
     },
     {
-      "content": "mu",
+      "content": "む",
       "choices": {
         "correctId": "14"
       }
     },
     {
-      "content": "me",
+      "content": "め",
       "choices": {
         "correctId": "15"
       }
     },
     {
-      "content": "mo",
+      "content": "も",
       "choices": {
         "correctId": "16"
       }
     },
     {
-      "content": "ha",
+      "content": "は",
       "choices": {
         "correctId": "17"
       }
     },
     {
-      "content": "hi",
+      "content": "ひ",
       "choices": {
         "correctId": "18"
       }
     },
     {
-      "content": "fu",
+      "content": "ふ",
       "choices": {
         "correctId": "19"
       }
     },
     {
-      "content": "he",
+      "content": "へ",
       "choices": {
         "correctId": "20"
       }
     },
     {
-      "content": "ho",
+      "content": "ほ",
       "choices": {
         "correctId": "21"
       }
     },
     {
-      "content": "na",
+      "content": "な",
       "choices": {
         "correctId": "22"
       }
     },
     {
-      "content": "ni",
+      "content": "に",
       "choices": {
         "correctId": "23"
       }
     },
     {
-      "content": "nu",
+      "content": "ぬ",
       "choices": {
         "correctId": "24"
       }
     },
     {
-      "content": "ne",
+      "content": "ね",
       "choices": {
         "correctId": "25"
       }
     },
     {
-      "content": "no",
+      "content": "の",
       "choices": {
         "correctId": "26"
       }
     },
     {
-      "content": "ta",
+      "content": "た",
       "choices": {
         "correctId": "27"
       }
     },
     {
-      "content": "chi",
+      "content": "ち",
       "choices": {
         "correctId": "28"
       }
     },
     {
-      "content": "tsu",
+      "content": "つ",
       "choices": {
         "correctId": "29"
       }
     },
     {
-      "content": "te",
+      "content": "て",
       "choices": {
         "correctId": "30"
       }
     },
     {
-      "content": "to",
+      "content": "と",
       "choices": {
         "correctId": "31"
       }
     },
     {
-      "content": "sa",
+      "content": "さ",
       "choices": {
         "correctId": "32"
       }
     },
     {
-      "content": "shi",
+      "content": "し",
       "choices": {
         "correctId": "33"
       }
     },
     {
-      "content": "su",
+      "content": "す",
       "choices": {
         "correctId": "34"
       }
     },
     {
-      "content": "se",
+      "content": "せ",
       "choices": {
         "correctId": "35"
       }
     },
     {
-      "content": "so",
+      "content": "そ",
       "choices": {
         "correctId": "36"
       }
     },
     {
-      "content": "ka",
+      "content": "か",
       "choices": {
         "correctId": "37"
       }
@@ -230,49 +230,49 @@
       }
     },
     {
-      "content": "ku",
+      "content": "く",
       "choices": {
         "correctId": "39"
       }
     },
     {
-      "content": "ke",
+      "content": "け",
       "choices": {
         "correctId": "40"
       }
     },
     {
-      "content": "ko",
+      "content": "こ",
       "choices": {
         "correctId": "41"
       }
     },
     {
-      "content": "a",
+      "content": "あ",
       "choices": {
         "correctId": "42"
       }
     },
     {
-      "content": "i",
+      "content": "い",
       "choices": {
         "correctId": "43"
       }
     },
     {
-      "content": "u",
+      "content": "う",
       "choices": {
         "correctId": "44"
       }
     },
     {
-      "content": "e",
+      "content": "え",
       "choices": {
         "correctId": "45"
       }
     },
     {
-      "content": "o",
+      "content": "お",
       "choices": {
         "correctId": "46"
       }
@@ -280,198 +280,198 @@
   ],
   "choices": [
     {
-      "content": "わ",
+      "content": "wa",
       "id": "1"
     },
     {
-      "content": "を",
+      "content": "wo",
       "id": "2"
     },
     {
-      "content": "ん",
+      "content": "n",
       "id": "3"
     },
     {
-      "content": "ら",
+      "content": "ra",
       "id": "4"
     },
     {
-      "content": "り",
+      "content": "ri",
       "id": "5"
     },
     {
-      "content": "る",
+      "content": "ru",
       "id": "6"
     },
     {
-      "content": "れ",
+      "content": "re",
       "id": "7"
     },
     {
-      "content": "ろ",
+      "content": "ro",
       "id": "8"
     },
     {
-      "content": "や",
+      "content": "ya",
       "id": "9"
     },
     {
-      "content": "ゆ",
+      "content": "yu",
       "id": "10"
     },
     {
-      "content": "よ",
+      "content": "yo",
       "id": "11"
     },
     {
-      "content": "ま",
+      "content": "ma",
       "id": "12"
     },
     {
-      "content": "み",
+      "content": "mi",
       "id": "13"
     },
     {
-      "content": "む",
+      "content": "mu",
       "id": "14"
     },
     {
-      "content": "め",
+      "content": "me",
       "id": "15"
     },
     {
-      "content": "も",
+      "content": "mo",
       "id": "16"
     },
     {
-      "content": "は",
+      "content": "ha",
       "id": "17"
     },
     {
-      "content": "ひ",
+      "content": "hi",
       "id": "18"
     },
     {
-      "content": "ふ",
+      "content": "fu",
       "id": "19"
     },
     {
-      "content": "へ",
+      "content": "he",
       "id": "20"
     },
     {
-      "content": "ほ",
+      "content": "ho",
       "id": "21"
     },
     {
-      "content": "な",
+      "content": "na",
       "id": "22"
     },
     {
-      "content": "に",
+      "content": "ni",
       "id": "23"
     },
     {
-      "content": "ぬ",
+      "content": "nu",
       "id": "24"
     },
     {
-      "content": "ね",
+      "content": "ne",
       "id": "25"
     },
     {
-      "content": "の",
+      "content": "no",
       "id": "26"
     },
     {
-      "content": "た",
+      "content": "ta",
       "id": "27"
     },
     {
-      "content": "ち",
+      "content": "chi",
       "id": "28"
     },
     {
-      "content": "つ",
+      "content": "tsu",
       "id": "29"
     },
     {
-      "content": "て",
+      "content": "te",
       "id": "30"
     },
     {
-      "content": "と",
+      "content": "to",
       "id": "31"
     },
     {
-      "content": "さ",
+      "content": "sa",
       "id": "32"
     },
     {
-      "content": "し",
+      "content": "shi",
       "id": "33"
     },
     {
-      "content": "す",
+      "content": "su",
       "id": "34"
     },
     {
-      "content": "せ",
+      "content": "se",
       "id": "35"
     },
     {
-      "content": "そ",
+      "content": "so",
       "id": "36"
     },
     {
-      "content": "か",
+      "content": "ka",
       "id": "37"
     },
     {
-      "content": "き",
+      "content": "ki",
       "id": "38"
     },
     {
-      "content": "く",
+      "content": "ku",
       "id": "39"
     },
     {
-      "content": "け",
+      "content": "ke",
       "id": "40"
     },
     {
-      "content": "こ",
+      "content": "ko",
       "id": "41"
     },
     {
-      "content": "あ",
+      "content": "a",
       "id": "42"
     },
     {
-      "content": "い",
+      "content": "i",
       "id": "43"
     },
     {
-      "content": "う",
+      "content": "u",
       "id": "44"
     },
     {
-      "content": "え",
+      "content": "e",
       "id": "45"
     },
     {
-      "content": "お",
+      "content": "o",
       "id": "46"
     }
   ],
   "meta": {
     "MULTIPLE_CHOICE": {
-      "instructions": "Choose the correct Hiragana for the Romaji.",
+      "instructions": "Choose the correct Romaji for the Hiragana.",
       "randomizeQuestions": true
     },
     "DRAG_DROP": {
       "supportedLayouts": ["HORIZONTAL"],
-      "instructions": "Drag the Kana to the matching Romaji. TIP: Click the kana to mark it, then click an empty field to drop the answer there.",
+      "instructions": "Drag the Romaji to the matching Kana. TIP: Click the Romaji to mark it, then click an empty field to drop the answer there.",
       "HORIZONTAL": {
         "questionLayout": "HORIZONTAL",
         "questionsFlow": "VERTICAL",

@@ -1,0 +1,100 @@
+{
+  "supportedRenderModes": [
+    "DRAG_DROP",
+    "MULTIPLE_CHOICE",
+    "WRITING_PRACTICE"
+  ],
+  "questions": [
+    {
+      "content": "デート",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "テニス",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "音楽",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "映画",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "スポーツ",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "テレビ",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "雑誌",
+      "choices": {
+        "correctId": "7"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "date (romantic, not calendar)",
+      "id": "1"
+    },
+    {
+      "content": "movie",
+      "id": "2"
+    },
+    {
+      "content": "music",
+      "id": "3"
+    },
+    {
+      "content": "sports",
+      "id": "4"
+    },
+    {
+      "content": "tennis",
+      "id": "5"
+    },
+    {
+      "content": "TV",
+      "id": "6"
+    },
+    {
+      "content": "magazine",
+      "id": "7"
+    }
+  ],
+  "meta": {
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
+      "instructions": "Drag the English expression to the Japanese expression that has the same meaning. TIP: Click an expression to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionLayout": "VERTICAL",
+        "questionsFlow": "HORIZONTAL",
+        "configuration": 5
+      }
+    },
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct definition for each Japanese expression."
+    },
+    "WRITING_PRACTICE": {
+      "instructions": "Practice spelling the following words/definitions",
+      "numExamples": 3,
+      "numRepetitions": 6
+    }
+  }
+}
