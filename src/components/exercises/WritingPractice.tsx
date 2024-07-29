@@ -52,13 +52,13 @@ export default function WritingPractice() {
   };
 
   const handleRowInputChange = (
-    choiceId: string,
+    questionContent: string,
     column: number,
     value: string,
   ) => {
     dispatch(
       setAnswer({
-        choiceId,
+        questionContent,
         column,
         value,
       }),
@@ -107,12 +107,12 @@ export default function WritingPractice() {
           ? rows.map((row, i) => {
               return (
                 <WritingPracticeRow
-                  choice={row.choice}
-                  key={`${row.choice.content}-${startTime}`}
+                  key={`${row.question.content}-${startTime}`}
                   numExamples={numExamples ?? 0}
                   numRepetitions={numRepetitions ?? 0}
                   onInputChange={handleRowInputChange}
                   onRowComplete={handleRowComplete}
+                  question={row.question}
                   ref={(el) => {
                     if (el) {
                       rowRefs.current[i] = el;

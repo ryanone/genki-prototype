@@ -9,8 +9,8 @@ export default function initializeState(
     initialized: true,
     isFinished: false,
     meta,
-    rows: exercise.choices.map((choice) => ({
-      choice,
+    rows: exercise.questions.map((question) => ({
+      question,
       answers: Array.from({ length: meta.numRepetitions }).map(() => ({})),
     })),
     startTime: Date.now(),

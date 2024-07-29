@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import initializeState from '@/utils/writingPractice';
 import selectResultsDraft from '@/features/writingPractice/selectors';
 import type {
-  Choice,
+  Question,
   WritingPracticeExercise,
   WritingPracticeMeta,
 } from '@/data/exercise';
@@ -16,7 +16,8 @@ type Answer = {
 
 type Row = {
   answers: Answer[];
-  choice: Choice;
+  // choice: Choice;
+  question: Question;
 };
 
 export type WritingPracticeState = {
@@ -39,8 +40,9 @@ type InitializePayload = {
 };
 
 type SetAnswerPayload = {
-  choiceId: string;
   column: number;
+  // choiceId: string;
+  questionContent: string;
   value: string;
 };
 
@@ -63,20 +65,20 @@ export const writingPracticeSlice = createSlice({
     },
     review(state) {
       state.rows.forEach((row) => {
-        const choiceContent = row.choice.content;
+        const questionContent = row.question.content;
         row.answers.forEach((answer) => {
           answer.result =
-            answer.content === choiceContent ? 'CORRECT' : 'INCORRECT';
+            answer.content === questionContent ? 'CORRECT' : 'INCORRECT';
         });
       });
       state.isFinished = true;
     },
     setAnswer(state, action: PayloadAction<SetAnswerPayload>) {
-      const { choiceId, column, value } = action.payload;
-      const row = state.rows.find((r) => r.choice.id === choiceId);
-      if (row) {
-        row.answers[column].content = value;
-      }
+      const { questionContent, column, value } = action.payload;
+      const row = state.rows.find(
+        (r) => r.question.content === questionContent,
+      )!;
+      row.answers[column].content = value;
     },
   },
   selectors: {

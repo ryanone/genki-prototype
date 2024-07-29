@@ -3,14 +3,14 @@ import WritingExample from '@/components/WritingExample';
 import WritingInput from '@/components/WritingInput';
 import useAppSelector from '@/hooks/useAppSelector';
 import type { Ref as WritingInputRefType } from '@/components/WritingInput';
-import type { Choice } from '@/data/exercise';
+import type { Question } from '@/data/exercise';
 
 type WritingPracticeRowProps = {
-  choice: Choice;
   numExamples: number;
   numRepetitions: number;
   onInputChange: (choiceId: string, column: number, value: string) => void;
   onRowComplete: (rowNumber: number) => void;
+  question: Question;
   rowNumber: number;
 };
 
@@ -19,11 +19,11 @@ const WritingPracticeRow = forwardRef<
   WritingPracticeRowProps
 >(function WritingPracticeRow(
   {
-    choice,
     numExamples,
     numRepetitions,
     onInputChange,
     onRowComplete,
+    question,
     rowNumber,
   }: WritingPracticeRowProps,
   ref,
@@ -35,19 +35,19 @@ const WritingPracticeRow = forwardRef<
   );
 
   const handleInputChange = (value: string, index: number) => {
-    if (value === choice.content) {
+    if (value === question.content) {
       if (index < numRepetitions - 1) {
         inputRefs.current[index + 1].focus();
       } else {
         onRowComplete(rowNumber);
       }
     }
-    onInputChange(choice.id, index, value);
+    onInputChange(question.content, index, value);
   };
 
   return (
     <>
-      <WritingExample content={choice.content} />
+      <WritingExample content={question.content} />
       {Array.from({ length: numRepetitions }).map((_, i) =>
         i === 0 ? (
           <WritingInput
@@ -55,8 +55,8 @@ const WritingPracticeRow = forwardRef<
             index={i}
             isDisabled={isFinished}
             // eslint-disable-next-line react/no-array-index-key
-            key={`${choice.id}-${i}`}
-            placeholder={i < numExamples ? choice.content : ''}
+            key={`${question.content}-${i}`}
+            placeholder={i < numExamples ? question.content : ''}
             ref={ref}
             result={row.answers[i].result}
             onChange={handleInputChange}
@@ -67,8 +67,8 @@ const WritingPracticeRow = forwardRef<
             index={i}
             isDisabled={isFinished}
             // eslint-disable-next-line react/no-array-index-key
-            key={`${choice.id}-${i}`}
-            placeholder={i < numExamples ? choice.content : ''}
+            key={`${question.content}-${i}`}
+            placeholder={i < numExamples ? question.content : ''}
             ref={(el) => {
               if (el) {
                 inputRefs.current[i] = el;
