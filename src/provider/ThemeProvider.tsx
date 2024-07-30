@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import ThemeContext, { type Theme as ThemeType } from '@/context/ThemeContext';
 
 const THEME_KEY = 'theme';
@@ -17,14 +11,6 @@ type ThemeProviderProps = {
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<ThemeType>();
-  const handleSetTheme = useCallback((t: ThemeType) => {
-    if (t) {
-      localStorage.setItem(THEME_KEY, t);
-    } else {
-      localStorage.removeItem(THEME_KEY);
-    }
-    setTheme(t);
-  }, []);
 
   useEffect(() => {
     const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
@@ -67,8 +53,18 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
   }, [theme]);
 
   const providerValue = useMemo(
-    () => ({ theme, setTheme: handleSetTheme }),
-    [handleSetTheme, theme],
+    () => ({
+      theme,
+      setTheme: (t: ThemeType) => {
+        if (t) {
+          localStorage.setItem(THEME_KEY, t);
+        } else {
+          localStorage.removeItem(THEME_KEY);
+        }
+        setTheme(t);
+      },
+    }),
+    [theme],
   );
   return (
     <ThemeContext.Provider value={providerValue}>
