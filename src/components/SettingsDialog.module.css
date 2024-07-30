@@ -7,6 +7,7 @@
 .settings {
   display: grid;
   grid-template-columns: 30% 1fr;
+  row-gap: 16px;
 }
 
 .settingName {
@@ -15,7 +16,8 @@
   justify-content: flex-end;
 }
 
-.darkModeSettingName {
+.darkModeSettingName,
+.furiganaSettingName {
   composes: settingName;
   align-items: flex-start;
 }
@@ -25,16 +27,16 @@
   padding-inline-start: 20px;
 }
 
-.darkModeLabel {
+.label {
   cursor: pointer;
 }
 
-.darkModeList {
+.list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.darkModeRadio {
+.radio {
   margin-inline-end: 8px;
 }

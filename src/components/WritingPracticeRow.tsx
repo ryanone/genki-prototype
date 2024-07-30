@@ -1,4 +1,5 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useContext, useRef } from 'react';
+import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import WritingExample from '@/components/WritingExample';
 import WritingInput from '@/components/WritingInput';
 import useAppSelector from '@/hooks/useAppSelector';
@@ -29,6 +30,7 @@ const WritingPracticeRow = forwardRef<
   ref,
 ) {
   const inputRefs = useRef<WritingInputRefType[]>([]);
+  const { showFurigana } = useContext(ShowFuriganaContext);
   const row = useAppSelector((state) => state.writingPractice.rows[rowNumber]);
   const isFinished = useAppSelector(
     (state) => state.writingPractice.isFinished,
@@ -47,7 +49,11 @@ const WritingPracticeRow = forwardRef<
 
   return (
     <>
-      <WritingExample content={question.content} />
+      <WritingExample
+        alt={question.alt}
+        content={question.content}
+        showAlt={showFurigana}
+      />
       {Array.from({ length: numRepetitions }).map((_, i) =>
         i === 0 ? (
           <WritingInput

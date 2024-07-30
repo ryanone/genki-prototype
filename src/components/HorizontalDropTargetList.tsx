@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import {
   selectChoicesMap,
   selectIsFinished,
 } from '@/features/dragDrop/dragDropSlice';
 import MemoizedDropTarget from '@/components/MemoizedDropTarget';
+import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import useAppSelector from '@/hooks/useAppSelector';
 import { type LayoutConfigurationHorizontal } from '@/utils/dragDrop';
 import styles from './HorizontalDropTargetList.module.css';
@@ -18,6 +20,7 @@ export default function HorizontalDropTargetList({
 }: HorizontalDropTargetListProps) {
   const { dropTargetLayout, maxTrackLen, questionsFlow, questionsTrackConfig } =
     layoutConfig;
+  const { showFurigana } = useContext(ShowFuriganaContext);
   const answers = useAppSelector((state) => state.dragDrop.answers);
   const choicesMap = useAppSelector(selectChoicesMap);
   const isFinished = useAppSelector(selectIsFinished);
@@ -55,6 +58,7 @@ export default function HorizontalDropTargetList({
             layout={dropTargetLayout}
             result={a.result}
             numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
+            showAlt={showFurigana}
             style={style}
             val1={{
               alt: a.question.alt,

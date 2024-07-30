@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import {
   selectChoicesMap,
   selectIsFinished,
 } from '@/features/dragDrop/dragDropSlice';
 import MemoizedDropTarget from '@/components/MemoizedDropTarget';
+import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import useAppSelector from '@/hooks/useAppSelector';
 import styles from './VerticalDropTargetList.module.css';
 
@@ -13,6 +15,7 @@ type VerticalDropTargetListProps = {
 export default function VerticalDropTargetList({
   onDropTargetDrop,
 }: VerticalDropTargetListProps) {
+  const { showFurigana } = useContext(ShowFuriganaContext);
   const answers = useAppSelector((state) => state.dragDrop.answers);
   const choicesMap = useAppSelector(selectChoicesMap);
   const isFinished = useAppSelector(selectIsFinished);
@@ -25,7 +28,7 @@ export default function VerticalDropTargetList({
           layout="HORIZONTAL"
           result={a.result}
           numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
-          showAlt
+          showAlt={showFurigana}
           val1={{
             alt: a.question.alt,
             id: a.question.content,

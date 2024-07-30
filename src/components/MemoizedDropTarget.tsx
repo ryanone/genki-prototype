@@ -5,6 +5,7 @@ import DropTarget from '@/components/DropTarget';
 const MemoizedDropTarget = memo(DropTarget, (prev, next) => {
   return (
     prev.layout === next.layout &&
+    prev.showAlt === next.showAlt &&
     prev.numIncorrectGuesses === next.numIncorrectGuesses &&
     prev.result === next.result &&
     deepEqual(prev.val1, next.val1) &&

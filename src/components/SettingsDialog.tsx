@@ -1,4 +1,4 @@
-import { useContext, type ChangeEvent } from 'react';
+import { useContext, useId, type ChangeEvent } from 'react';
 import Dialog from '@/components/Dialog';
 import DialogActions from '@/components/Dialog/Actions';
 import DialogContent from '@/components/Dialog/Content';
@@ -6,6 +6,7 @@ import DialogHeader from '@/components/Dialog/Header';
 import MultipleChoiceSettingsContext, {
   type MultipleChoiceQuestionFeedback,
 } from '@/context/MultipleChoiceSettingsContext';
+import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import ThemeContext, { type Theme } from '@/context/ThemeContext';
 import commonStyles from '@/styles/common.module.css';
 import styles from './SettingsDialog.module.css';
@@ -20,10 +21,12 @@ export default function SettingsDialog({
   onClose,
 }: SettingsDialogProps) {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { showFurigana, setShowFurigana } = useContext(ShowFuriganaContext);
   const {
     settings: multipleChoiceSettings,
     setSettings: setMultipleChoiceSettings,
   } = useContext(MultipleChoiceSettingsContext);
+  const multipleChoiceSelectId = useId();
 
   const handleDarkModeChange = (value: Theme) => {
     setTheme(value);
@@ -49,11 +52,11 @@ export default function SettingsDialog({
         <dl className={styles.settings}>
           <dt className={styles.darkModeSettingName}>Dark mode</dt>
           <dd className={styles.settingContent}>
-            <ul className={styles.darkModeList}>
+            <ul className={styles.list}>
               <li>
-                <label className={styles.darkModeLabel}>
+                <label className={styles.label}>
                   <input
-                    className={styles.darkModeRadio}
+                    className={styles.radio}
                     type="radio"
                     name="darkMode"
                     value=""
@@ -64,9 +67,9 @@ export default function SettingsDialog({
                 </label>
               </li>
               <li>
-                <label className={styles.darkModeLabel}>
+                <label className={styles.label}>
                   <input
-                    className={styles.darkModeRadio}
+                    className={styles.radio}
                     type="radio"
                     name="darkMode"
                     value="light"
@@ -77,9 +80,9 @@ export default function SettingsDialog({
                 </label>
               </li>
               <li>
-                <label className={styles.darkModeLabel}>
+                <label className={styles.label}>
                   <input
-                    className={styles.darkModeRadio}
+                    className={styles.radio}
                     type="radio"
                     name="darkMode"
                     value="dark"
@@ -94,16 +97,52 @@ export default function SettingsDialog({
         </dl>
         <div className={styles.heading}>Exercises</div>
         <dl className={styles.settings}>
-          <dt className={styles.settingName}>Multiple Choice Feedback</dt>
+          <dt className={styles.settingName}>
+            <label htmlFor={multipleChoiceSelectId}>
+              Multiple Choice Feedback
+            </label>
+          </dt>
           <dd className={styles.settingContent}>
             <select
               className={commonStyles.select}
               onChange={handleMultipleChoiceFeedbackChange}
               value={multipleChoiceSettings.feedback}
+              id={multipleChoiceSelectId}
             >
               <option value="INSTANT">Instant</option>
               <option value="AT_END">At end of exercise</option>
             </select>
+          </dd>
+          <dt className={styles.furiganaSettingName}>Furigana</dt>
+          <dd className={styles.settingContent}>
+            <ul className={styles.list}>
+              <li>
+                <label className={styles.label}>
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="furigana"
+                    value="true"
+                    defaultChecked={showFurigana}
+                    onClick={() => setShowFurigana(true)}
+                  />
+                  On
+                </label>
+              </li>
+              <li>
+                <label className={styles.label}>
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="furigana"
+                    value="false"
+                    defaultChecked={!showFurigana}
+                    onClick={() => setShowFurigana(false)}
+                  />
+                  Off
+                </label>
+              </li>
+            </ul>
           </dd>
         </dl>
       </DialogContent>

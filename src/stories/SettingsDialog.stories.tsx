@@ -2,6 +2,7 @@ import type { ComponentProps } from 'react';
 import type { Meta } from '@storybook/react';
 import { fn } from '@storybook/test';
 import SettingsDialog from '@/components/SettingsDialog';
+import ShowFuriganaProvider from '@/provider/ShowFuriganaProvider';
 import ThemeProvider from '@/provider/ThemeProvider';
 
 type SettingsDialogPropsAndCustomArgs = ComponentProps<typeof SettingsDialog>;
@@ -21,9 +22,11 @@ const meta: Meta<SettingsDialogPropsAndCustomArgs> = {
   },
   decorators: [
     (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
+      <ShowFuriganaProvider>
+        <ThemeProvider>
+          <Story />
+        </ThemeProvider>
+      </ShowFuriganaProvider>
     ),
   ],
 };

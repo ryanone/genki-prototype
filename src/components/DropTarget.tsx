@@ -29,7 +29,7 @@ export default function DropTarget({
   layout,
   result,
   numIncorrectGuesses,
-  showAlt,
+  showAlt = false,
   style,
   val1,
   val2,
