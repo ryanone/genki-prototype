@@ -15,6 +15,12 @@
       "description": "New Friends (p. 36-55)",
       "id": "1",
       "exercisesId": "lesson-1"
+    },
+    {
+      "title": "Lesson 3",
+      "description": "Making a Date (Genki I: p.82-101)",
+      "id": "3",
+      "exercisesId": "lesson-3"
     }
   ]
 }

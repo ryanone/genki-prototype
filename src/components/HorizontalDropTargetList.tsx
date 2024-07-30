@@ -56,7 +56,11 @@ export default function HorizontalDropTargetList({
             result={a.result}
             numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
             style={style}
-            val1={{ id: a.question.content, content: a.question.content }}
+            val1={{
+              alt: a.question.alt,
+              id: a.question.content,
+              content: a.question.content,
+            }}
             val2={
               a.selectedChoiceId
                 ? choicesMap.get(a.selectedChoiceId)

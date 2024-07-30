@@ -15,49 +15,31 @@ export default {
   },
 };
 
-export const DefaultHorizontal = {
+export const Default = {
   args: {
     layout: 'HORIZONTAL',
     val1: {
-      content: 'wa',
+      content: 'わ',
       id: '0',
     },
   },
 };
 
-export const DefaultVertical = {
+export const AltVal1 = {
   args: {
-    ...DefaultHorizontal.args,
-    layout: 'VERTICAL',
-  },
-};
-
-export const CorrectHorizontal = {
-  args: {
-    ...DefaultHorizontal.args,
-    result: 'CORRECT',
-    val2: {
-      content: 'わ',
-      id: DefaultHorizontal.args.val1.id,
+    layout: 'HORIZONTAL',
+    showAlt: true,
+    val1: {
+      alt: 'えいが',
+      content: '映画',
+      id: '0',
     },
   },
 };
 
-export const CorrectVertical = {
+export const Filled = {
   args: {
-    ...DefaultHorizontal.args,
-    layout: 'VERTICAL',
-    result: 'CORRECT',
-    val2: {
-      content: 'わ',
-      id: DefaultHorizontal.args.val1.id,
-    },
-  },
-};
-
-export const FilledHorizontal = {
-  args: {
-    ...DefaultHorizontal.args,
+    ...Default.args,
     layout: 'HORIZONTAL',
     val2: {
       content: 'わ',
@@ -65,57 +47,10 @@ export const FilledHorizontal = {
   },
 };
 
-export const FilledVertical = {
+export const NumIncorrectGuesses = {
   args: {
-    ...DefaultHorizontal.args,
-    layout: 'VERTICAL',
-    val2: {
-      content: 'わ',
-    },
-  },
-};
-
-export const IncorrectHorizontal = {
-  args: {
-    ...DefaultHorizontal.args,
+    ...Default.args,
     result: 'INCORRECT',
-    val2: {
-      content: 'ほ',
-      id: '50',
-    },
-  },
-};
-
-export const IncorrectVertical = {
-  args: {
-    ...DefaultHorizontal.args,
-    layout: 'VERTICAL',
-    result: 'INCORRECT',
-    val2: {
-      content: 'ほ',
-      id: '50',
-    },
-  },
-};
-
-export const NumIncorrectGuessesHorizontal = {
-  args: {
-    ...DefaultHorizontal.args,
-    layout: 'HORIZONTAL',
-    result: 'CORRECT',
-    numIncorrectGuesses: 5,
-    val2: {
-      content: 'ほ',
-      id: '50',
-    },
-  },
-};
-
-export const NumIncorrectGuessesVertical = {
-  args: {
-    ...DefaultHorizontal.args,
-    layout: 'VERTICAL',
-    result: 'CORRECT',
     numIncorrectGuesses: 5,
     val2: {
       content: 'ほ',

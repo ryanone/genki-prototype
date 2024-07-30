@@ -25,7 +25,12 @@ export default function VerticalDropTargetList({
           layout="HORIZONTAL"
           result={a.result}
           numIncorrectGuesses={isFinished ? a.numIncorrectGuesses : undefined}
-          val1={{ id: a.question.content, content: a.question.content }}
+          showAlt
+          val1={{
+            alt: a.question.alt,
+            id: a.question.content,
+            content: a.question.content,
+          }}
           val2={
             a.selectedChoiceId ? choicesMap.get(a.selectedChoiceId) : undefined
           }

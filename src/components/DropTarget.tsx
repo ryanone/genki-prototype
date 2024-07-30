@@ -4,6 +4,7 @@ import { type TwoDirectionalFlow } from '@/data/exercise';
 import styles from './DropTarget.module.css';
 
 type DropTargetValue = {
+  alt?: string | undefined;
   content: string;
   id: string;
 };
@@ -18,6 +19,7 @@ type DropTargetProps = {
   numIncorrectGuesses?: number;
   onDrop: (value: string) => void;
   result: 'CORRECT' | 'INCORRECT' | undefined;
+  showAlt?: boolean | undefined;
   style?: Record<string, string>;
   val1: DropTargetValue;
   val2?: DropTargetValue2;
@@ -27,6 +29,7 @@ export default function DropTarget({
   layout,
   result,
   numIncorrectGuesses,
+  showAlt,
   style,
   val1,
   val2,
@@ -47,7 +50,7 @@ export default function DropTarget({
     }
   };
 
-  const classes = [];
+  const classes = [styles.dropTarget];
   if (layout === 'VERTICAL') {
     classes.push(styles.vertical);
   } else {
@@ -76,9 +79,17 @@ export default function DropTarget({
     zoneClasses.push(styles.zoneHasIncorrect);
   }
 
+  const contentClasses = [styles.content];
+  if (showAlt && !val1.alt && layout === 'VERTICAL') {
+    contentClasses.push(styles.emptyContent);
+  }
+
   return (
     <div className={classes.join(' ')} style={style}>
-      <div className={styles.content}>{val1.content}</div>
+      <div className={contentClasses.join(' ')}>
+        <div className={styles.primary}>{val1.content}</div>
+        {showAlt && val1.alt && <div className={styles.alt}>{val1.alt}</div>}
+      </div>
       <div
         className={zoneClasses.join(' ')}
         data-drop-target-zone="true"

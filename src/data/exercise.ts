@@ -39,6 +39,7 @@ export interface WritingPracticeMeta extends BaseMeta {
 }
 
 export type Question = {
+  alt?: string | undefined;
   choices: {
     correctId: string;
   };

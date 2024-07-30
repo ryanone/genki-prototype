@@ -1,3 +1,9 @@
+.dropTarget {
+  --alt-font-size: .75rem;
+  --alt-padding-inline: 8px;
+  --border-width: 1px;
+}
+
 .vertical {
   display: inline-flex;
   gap: 4px;
@@ -8,18 +14,34 @@
 .horizontal {
   display: inline-flex;
   gap: 4px;
-  height: 1.75rem;
+  height: clamp(min-content, 1.75rem, max-content);
   position: relative;
   width: max-content;
 }
 
+.alt {
+  background: var(--outline-color-1);
+  font-size: var(--alt-font-size);
+  height: fit-content;
+  padding-inline: var(--alt-padding-inline);
+  text-align: center;
+}
+
 .content {
   background-color: var(--background-color-3);
-  color: var(--foreground-color-1);
   min-width: 30px;
-  padding-inline: 8px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.emptyContent {
+  margin-block-end: calc(var(--alt-font-size) + (var(--alt-padding-inline) - (2 * var(--border-width))));
+}
+
+.primary {
+  text-align: center;
+  padding-inline: 8px;
 }
 
 .horizontal .content {
@@ -45,7 +67,7 @@
 
 .content,
 .zone {
-  border: 1px solid var(--outline-color-1);
+  border: var(--border-width) solid var(--outline-color-1);
 }
 
 .zoneEntered {

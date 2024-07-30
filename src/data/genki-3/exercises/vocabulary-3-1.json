@@ -19,12 +19,14 @@
     },
     {
       "content": "音楽",
+      "alt": "おんがく",
       "choices": {
         "correctId": "3"
       }
     },
     {
       "content": "映画",
+      "alt": "えいが",
       "choices": {
         "correctId": "2"
       }
@@ -43,6 +45,7 @@
     },
     {
       "content": "雑誌",
+      "alt": "ざっし",
       "choices": {
         "correctId": "7"
       }
