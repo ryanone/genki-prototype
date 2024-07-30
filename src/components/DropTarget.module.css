@@ -14,7 +14,7 @@
 .horizontal {
   display: inline-flex;
   gap: 4px;
-  height: clamp(min-content, 1.75rem, max-content);
+  height: max-content;
   position: relative;
   width: max-content;
 }
