@@ -11,7 +11,6 @@ type DropTargetValue = {
 
 type DropTargetValue2 = {
   content: string;
-  id?: string;
 };
 
 type DropTargetProps = {
@@ -69,12 +68,18 @@ export default function DropTarget({
   if (numIncorrectGuesses && numIncorrectGuesses > 0) {
     numIncorrectContent =
       layout === 'HORIZONTAL' ? (
-        <span className={styles.numIncorrect}>
+        <span
+          className={styles.numIncorrect}
+          data-testid="drop-target-num-incorrect"
+        >
           <FaArrowLeft className={styles.incorrectArrow} role="presentation" />
           {`wrong ${numIncorrectGuesses}x`}
         </span>
       ) : (
-        <span className={styles.numIncorrect}>{`x${numIncorrectGuesses}`}</span>
+        <span
+          className={styles.numIncorrect}
+          data-testid="drop-target-num-incorrect"
+        >{`x${numIncorrectGuesses}`}</span>
       );
     zoneClasses.push(styles.zoneHasIncorrect);
   }
@@ -87,8 +92,14 @@ export default function DropTarget({
   return (
     <div className={classes.join(' ')} style={style}>
       <div className={contentClasses.join(' ')}>
-        <div className={styles.primary}>{val1.content}</div>
-        {showAlt && val1.alt && <div className={styles.alt}>{val1.alt}</div>}
+        <div className={styles.primary} data-testid="drop-target-val1-content">
+          {val1.content}
+        </div>
+        {showAlt && val1.alt && (
+          <div className={styles.alt} data-testid="drop-target-val1-alt">
+            {val1.alt}
+          </div>
+        )}
       </div>
       <div
         className={zoneClasses.join(' ')}
