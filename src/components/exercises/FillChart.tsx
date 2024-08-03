@@ -76,6 +76,7 @@ export default function FillChart() {
     <div className={styles.fillChart}>
       {isFinished && results ? (
         <ExerciseResults
+          exerciseType="FILL_CHART"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
           timeElapsed={timeElapsed.current}

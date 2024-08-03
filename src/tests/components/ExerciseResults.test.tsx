@@ -3,6 +3,11 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import formatTimer from '@/utils/time';
 import ExerciseResults from '@/components/ExerciseResults';
+import type { ExerciseType } from '@/data/exercise';
+
+const exerciseType: ExerciseType = 'DRAG_DROP';
+const timeElapsed = 50;
+const onRestart = () => {};
 
 describe('component/ExerciseResults', () => {
   it('renders the component and triggers onStart() when appropriate', async () => {
@@ -10,15 +15,15 @@ describe('component/ExerciseResults', () => {
     const numSolved = 100;
     const numWrong = 0;
     const score = Math.floor(((numSolved - numWrong) / numSolved) * 100);
-    const timeElapsed = 50;
-    const onRestart = vi.fn();
+    const onRestartSpy = vi.fn();
 
     render(
       <ExerciseResults
+        exerciseType={exerciseType}
         numSolved={numSolved}
         numWrong={numWrong}
         timeElapsed={timeElapsed}
-        onRestart={onRestart}
+        onRestart={onRestartSpy}
       />,
     );
 
@@ -39,17 +44,16 @@ describe('component/ExerciseResults', () => {
     );
 
     await user.click(screen.getByRole('button'));
-    expect(onRestart).toHaveBeenCalledOnce();
+    expect(onRestartSpy).toHaveBeenCalledOnce();
   });
 
   it('renders the component and shows advice when score > 70 and < 100', async () => {
     const numSolved = 100;
     const numWrong = 25;
-    const timeElapsed = 50;
-    const onRestart = vi.fn();
 
     render(
       <ExerciseResults
+        exerciseType={exerciseType}
         numSolved={numSolved}
         numWrong={numWrong}
         timeElapsed={timeElapsed}
@@ -65,11 +69,10 @@ describe('component/ExerciseResults', () => {
   it('renders the component and shows advice when score <= 70', async () => {
     const numSolved = 100;
     const numWrong = 30;
-    const timeElapsed = 50;
-    const onRestart = vi.fn();
 
     render(
       <ExerciseResults
+        exerciseType={exerciseType}
         numSolved={numSolved}
         numWrong={numWrong}
         timeElapsed={timeElapsed}
@@ -79,6 +82,39 @@ describe('component/ExerciseResults', () => {
 
     expect(screen.getByTestId('exercise-results-advice')).toHaveTextContent(
       'Keep studying!',
+    );
+  });
+
+  it('renders the component and shows type-specific advice when score < 100', () => {
+    const numSolved = 100;
+    const numWrong = 1;
+
+    const { rerender } = render(
+      <ExerciseResults
+        exerciseType="MULTIPLE_CHOICE"
+        numSolved={numSolved}
+        numWrong={numWrong}
+        timeElapsed={timeElapsed}
+        onRestart={onRestart}
+      />,
+    );
+    expect(screen.getByTestId('exercise-results-advice')).toHaveTextContent(
+      // eslint-disable-next-line max-len
+      'Nice work! The answers you selected that were wrong are outlined in red. The correct answers are outlined in blue. Review these problems before trying again.',
+    );
+
+    rerender(
+      <ExerciseResults
+        exerciseType="WRITING_PRACTICE"
+        numSolved={numSolved}
+        numWrong={numWrong}
+        timeElapsed={timeElapsed}
+        onRestart={onRestart}
+      />,
+    );
+    expect(screen.getByTestId('exercise-results-advice')).toHaveTextContent(
+      // eslint-disable-next-line max-len
+      'Nice work! The items outlined in red were answered wrong before finding the correct answer. Review these problems before trying again.',
     );
   });
 });

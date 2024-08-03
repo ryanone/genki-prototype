@@ -1,42 +1,63 @@
 import { FaArrowsRotate } from 'react-icons/fa6';
+import { ReactNode } from 'react';
 import formatTimer from '@/utils/time';
+import type { ExerciseType } from '@/data/exercise';
 import styles from './ExerciseResults.module.css';
 import commonStyles from '@/styles/common.module.css';
 
 type ExerciseResultsProps = {
+  exerciseType: ExerciseType;
   numSolved: number;
   numWrong: number;
   onRestart: () => void;
   timeElapsed: number;
 };
 
+function getAdvice(exerciseType: ExerciseType, score: number): ReactNode {
+  if (score === 100) {
+    return <>PERFECT! Great job!</>;
+  }
+  const generic = score > 70 ? <>Nice work!</> : <>Keep studying!</>;
+  let typeSpecific: ReactNode | null = null;
+  if (exerciseType === 'MULTIPLE_CHOICE') {
+    typeSpecific = (
+      <>
+        The answers you selected that were wrong are outlined in{' '}
+        <span className={styles.incorrect}>red</span>. The correct answers are
+        outlined in <span className={styles.unselectedCorrect}>blue</span>.
+        Review these problems before trying again.
+      </>
+    );
+  } else if (exerciseType === 'WRITING_PRACTICE') {
+    typeSpecific = (
+      <>
+        The items outlined in <span className={styles.incorrect}>red</span> were
+        answered wrong before finding the correct answer. Review these problems
+        before trying again.
+      </>
+    );
+  }
+
+  return (
+    <>
+      {generic} {typeSpecific}
+    </>
+  );
+}
+
 export default function ExerciseResults({
+  exerciseType,
   numSolved,
   numWrong,
   timeElapsed,
   onRestart,
 }: ExerciseResultsProps) {
   const score = Math.floor(((numSolved - numWrong) / numSolved) * 100);
-  let message;
-  if (score === 100) {
-    message = (
-      <p className={styles.advice} data-testid="exercise-results-advice">
-        PERFECT! Great job!
-      </p>
-    );
-  } else if (score > 70) {
-    message = (
-      <p className={styles.advice} data-testid="exercise-results-advice">
-        Nice work!
-      </p>
-    );
-  } else {
-    message = (
-      <p className={styles.advice} data-testid="exercise-results-advice">
-        Keep studying!
-      </p>
-    );
-  }
+  const message = (
+    <p className={styles.advice} data-testid="exercise-results-advice">
+      {getAdvice(exerciseType, score)}
+    </p>
+  );
 
   return (
     <div className={styles.exerciseResults}>

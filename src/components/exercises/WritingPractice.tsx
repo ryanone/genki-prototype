@@ -95,6 +95,7 @@ export default function WritingPractice() {
     <div className={styles.writingPractice}>
       {isFinished && results ? (
         <ExerciseResults
+          exerciseType="WRITING_PRACTICE"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
           timeElapsed={timeElapsed.current}

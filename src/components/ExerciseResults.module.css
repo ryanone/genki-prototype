@@ -45,3 +45,13 @@
 .advice {
   margin-block: 0 12px;
 }
+
+.incorrect {
+  color: var(--incorrect-color);
+  font-weight: bold;
+}
+
+.unselectedCorrect {
+  color: var(--unselected-correct-color);
+  font-weight: bold;
+}

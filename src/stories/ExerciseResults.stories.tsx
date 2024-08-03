@@ -30,6 +30,7 @@ export default meta;
 
 export const Default = {
   args: {
+    exerciseType: 'DRAG_DROP',
     numSolved: 20,
     numWrong: 2,
     timeElapsed: 60,

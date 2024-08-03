@@ -84,6 +84,7 @@ export default function MultipleChoice() {
       {isFinished && results ? (
         <>
           <ExerciseResults
+            exerciseType="MULTIPLE_CHOICE"
             numSolved={results.numSolved}
             numWrong={results.numWrong}
             timeElapsed={timeElapsed.current}

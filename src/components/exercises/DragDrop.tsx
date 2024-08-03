@@ -98,6 +98,7 @@ export default function DragDrop() {
     <div className={rootClasses.join(' ')}>
       {isFinished && results ? (
         <ExerciseResults
+          exerciseType="DRAG_DROP"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
           timeElapsed={timeElapsed.current}
