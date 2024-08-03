@@ -1,5 +1,5 @@
 {
-  "supportedRenderModes": ["DRAG_DROP", "MULTIPLE_CHOICE"],
+  "types": ["DRAG_DROP", "MULTIPLE_CHOICE"],
   "questions": [
     {
       "content": "だいがくせい",

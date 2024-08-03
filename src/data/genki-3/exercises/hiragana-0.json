@@ -1,5 +1,5 @@
 {
-  "supportedRenderModes": ["DRAG_DROP", "FILL_CHART", "MULTIPLE_CHOICE"],
+  "types": ["DRAG_DROP", "FILL_CHART", "MULTIPLE_CHOICE"],
   "questions": [
     {
       "content": "わ",

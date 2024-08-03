@@ -1,5 +1,5 @@
 {
-  "supportedRenderModes": [
+  "types": [
     "DRAG_DROP",
     "MULTIPLE_CHOICE",
     "WRITING_PRACTICE"

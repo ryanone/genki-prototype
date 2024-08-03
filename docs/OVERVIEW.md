@@ -26,7 +26,7 @@ In this application, there are 3 routes defined:
 * `/` - This is the root route and simply shows a link to the root page for the Genki 3rd edition book. The current we applications do not have an equivalent route to this.
 * `/genki-3` - This is the root route for the Genki 3rd edition book. On this route, there are links to exercises for this book, similar to [this link](https://sethclydesdale.github.io/genki-study-resources/lessons-3rd/).
   * This arrangement can be expanded to support other books. For example, `/genki-2` can be used for the Genki 2nd edition book, and `/tobira` can be used for the Tobira book.
-* `/genki-3/lesson/0/exercise/greetings-1` - This is the page for the `Greetings (p. 32)` exercise. This route renders the exercise based on supported render modes (ex. Drag and Drop, Multiple Choice, etc.).
+* `/genki-3/lesson/0/exercise/greetings-1` - This is the page for the `Greetings (p. 32)` exercise. This route renders the exercise based on supported exercise types (ex. Drag and Drop, Multiple Choice, etc.).
   * There's another exercise implemented, available at `/hiragana-0`
 
 Generally speaking, the route URLs are actually defined as follows:
@@ -87,7 +87,7 @@ The list of exercises for Lesson 0 are defined here.
 
 This file defines the questions and answer choices for a given exercise. It also defines the supported exercise types (ex. DRAG_DROP, MULTIPLE_CHOICE). Currently only Drag & Drop and Multiple Choice are supported. The following are the properties of the exercise object:
 
-* `supportedRenderModes` - List of enums of rendering modes
+* `types` - List of enums of exercise types
 * `choices` - List of objects corresponding to possible answers. Each object contains a `content` property (human-readable answer) and an `id`, which is the unique identifier of the answer within the exercise.
 * `questions` - List of objects corresponding to possible questions. Each object contains a `content `property (human-readable question) and a `choices` property, whose value is an object with a `correctId` property. The value of this property corresponds to the choice which is the correct answer for the question.
 
@@ -115,7 +115,7 @@ The following is a snippet from `/src/data/genki-3/exercises/hiragana
 ```
 ### Meta
 
-The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given render mode. The `meta` object allows for this definition. In this object, for a given render mode, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-0.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on render mode.
+The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given exercise type. The `meta` object allows for this definition. In this object, for a given exercise type, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-0.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on exercise type.
 
 The following is a snippet from `/src/data/genki-3/exercises/hiragana
 1.json`:

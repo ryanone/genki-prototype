@@ -4,7 +4,7 @@ import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
 import Genki3Lesson0 from '@/data/genki-3/lessons/lesson-0.json';
 
 export const ChangeExerciseTypeDialogActionsData = {
-  onRenderModeChoose: fn(),
+  onExerciseTypeChoose: fn(),
 };
 
 const exercise = {

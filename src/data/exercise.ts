@@ -46,7 +46,7 @@ export type Question = {
   content: string;
 };
 
-export type RenderMode =
+export type ExerciseType =
   | 'DRAG_DROP'
   | 'FILL_CHART'
   | 'MULTIPLE_CHOICE'
@@ -56,8 +56,8 @@ export type BaseExercise = {
   choices: Choice[];
   meta: Meta;
   questions: Question[];
-  supportedRenderModes: RenderMode[];
   title: string;
+  types: ExerciseType[];
 };
 
 export interface DragDropExercise extends BaseExercise {

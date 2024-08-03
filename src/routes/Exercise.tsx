@@ -13,7 +13,7 @@ export default function Exercise() {
     <div className={styles.exerciseRoute}>
       <LessonsNavigation bookId={book.id} lessons={book.lessons} />
       <div className={styles.heading}>{exercise.title}</div>
-      <ExerciseRenderer data={exercise} />
+      <ExerciseRenderer data={exercise} key={exercise.title} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import Genki3Hiragana0 from '@/data/genki-3/exercises/hiragana-0.json';
 import type { DragDropExercise } from '@/data/exercise';
 
-const onRenderModeChoose = () => {};
+const onExerciseTypeChoose = () => {};
 const exercise: DragDropExercise = {
   ...Genki3Hiragana0,
   title: 'Writing System, Greetings and Numbers (p. 20-35)',
@@ -17,7 +17,7 @@ describe('component/ChangeExerciseTypeDialog', () => {
       <ChangeExerciseTypeDialog
         isOpen
         exercise={exercise}
-        onRenderModeChoose={onRenderModeChoose}
+        onExerciseTypeChoose={onExerciseTypeChoose}
       />,
     );
     const dialog = screen.getByTestId('dialog');
@@ -26,17 +26,11 @@ describe('component/ChangeExerciseTypeDialog', () => {
     const select = screen.getByRole('combobox');
     expect(select).toBeInTheDocument();
     const options = screen.getAllByRole('option');
-    expect(options.length).toBe(exercise.supportedRenderModes.length + 1);
+    expect(options.length).toBe(exercise.types.length + 1);
     expect(options[0].getAttribute('value')).toBe('');
-    expect(options[1].getAttribute('value')).toBe(
-      exercise.supportedRenderModes[0],
-    );
-    expect(options[2].getAttribute('value')).toBe(
-      exercise.supportedRenderModes[1],
-    );
-    expect(options[3].getAttribute('value')).toBe(
-      exercise.supportedRenderModes[2],
-    );
+    expect(options[1].getAttribute('value')).toBe(exercise.types[0]);
+    expect(options[2].getAttribute('value')).toBe(exercise.types[1]);
+    expect(options[3].getAttribute('value')).toBe(exercise.types[2]);
   });
 
   it('renders the component with the dialog closed', () => {
@@ -44,7 +38,7 @@ describe('component/ChangeExerciseTypeDialog', () => {
       <ChangeExerciseTypeDialog
         isOpen={false}
         exercise={exercise}
-        onRenderModeChoose={onRenderModeChoose}
+        onExerciseTypeChoose={onExerciseTypeChoose}
       />,
     );
     expect(screen.queryByRole('dialog')).toBeNull();
@@ -58,7 +52,7 @@ describe('component/ChangeExerciseTypeDialog', () => {
         isOpen
         exercise={exercise}
         onCancel={onCancelSpy}
-        onRenderModeChoose={onRenderModeChoose}
+        onExerciseTypeChoose={onExerciseTypeChoose}
       />,
     );
     const dialog = screen.getByTestId('dialog');
@@ -68,14 +62,14 @@ describe('component/ChangeExerciseTypeDialog', () => {
     expect(onCancelSpy).toHaveBeenCalledOnce();
   });
 
-  it('does not invoke onRenderModeChoose() if no exercise type is chosen', async () => {
+  it('does not invoke onExerciseTypeChoose() if no exercise type is chosen', async () => {
     const user = userEvent.setup();
-    const onRenderModeChooseSpy = vi.fn();
+    const onExerciseTypeChooseSpy = vi.fn();
     render(
       <ChangeExerciseTypeDialog
         isOpen
         exercise={exercise}
-        onRenderModeChoose={onRenderModeChooseSpy}
+        onExerciseTypeChoose={onExerciseTypeChooseSpy}
       />,
     );
     const dialog = screen.getByTestId('dialog');
@@ -85,17 +79,17 @@ describe('component/ChangeExerciseTypeDialog', () => {
     expect(select).toBeInTheDocument();
     user.selectOptions(select, ['']);
     await user.click(screen.getByRole('button', { name: 'Begin' }));
-    expect(onRenderModeChooseSpy).toHaveBeenCalledTimes(0);
+    expect(onExerciseTypeChooseSpy).toHaveBeenCalledTimes(0);
   });
 
-  it('invokes onRenderModeChoose() when selecting an exercise type', async () => {
+  it('invokes onExerciseTypeChoose() when selecting an exercise type', async () => {
     const user = userEvent.setup();
-    const onRenderModeChooseSpy = vi.fn();
+    const onExerciseTypeChooseSpy = vi.fn();
     render(
       <ChangeExerciseTypeDialog
         isOpen
         exercise={exercise}
-        onRenderModeChoose={onRenderModeChooseSpy}
+        onExerciseTypeChoose={onExerciseTypeChooseSpy}
       />,
     );
     const dialog = screen.getByTestId('dialog');
@@ -103,11 +97,9 @@ describe('component/ChangeExerciseTypeDialog', () => {
     expect(dialog.hasAttribute('open')).toBeTruthy();
     const select = screen.getByRole('combobox');
     expect(select).toBeInTheDocument();
-    user.selectOptions(select, [exercise.supportedRenderModes[2]]);
+    user.selectOptions(select, [exercise.types[2]]);
     await user.click(screen.getByRole('button', { name: 'Begin' }));
-    expect(onRenderModeChooseSpy).toHaveBeenCalledOnce();
-    expect(onRenderModeChooseSpy).toBeCalledWith(
-      exercise.supportedRenderModes[2],
-    );
+    expect(onExerciseTypeChooseSpy).toHaveBeenCalledOnce();
+    expect(onExerciseTypeChooseSpy).toBeCalledWith(exercise.types[2]);
   });
 });

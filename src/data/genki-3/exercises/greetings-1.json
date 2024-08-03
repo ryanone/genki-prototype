@@ -1,5 +1,5 @@
 {
-  "supportedRenderModes": ["MULTIPLE_CHOICE"],
+  "types": ["MULTIPLE_CHOICE"],
   "questions": [
     {
       "content": "おはよう",

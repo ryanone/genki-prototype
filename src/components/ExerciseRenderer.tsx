@@ -19,9 +19,9 @@ import {
 import type {
   DragDropExercise,
   Exercise,
+  ExerciseType,
   FillChartExercise,
   MultipleChoiceExercise,
-  RenderMode,
   WritingPracticeExercise,
 } from '@/data/exercise';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
@@ -45,8 +45,8 @@ const WritingPractice = lazy(
 );
 
 export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
-  const [renderMode, setRenderMode] = useState(data.supportedRenderModes[0]);
-  const [showChangeRenderModeDialog, setShowChangeRenderModeDialog] =
+  const [exerciseType, setExerciseType] = useState(data.types[0]);
+  const [showChangeExerciseTypeDialog, setShowChangeExerciseTypeDialog] =
     useState(false);
   const dispatch = useAppDispatch();
   const isDragDropInitialized = useAppSelector(
@@ -66,49 +66,52 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   );
 
   useEffect(() => {
-    if (renderMode === 'DRAG_DROP') {
+    if (exerciseType === 'DRAG_DROP') {
       dispatch(
         initializeDragDrop({
           exercise: data as DragDropExercise,
         }),
       );
-    } else if (renderMode === 'FILL_CHART') {
+    } else if (exerciseType === 'FILL_CHART') {
       dispatch(
         initializeFillChart({
           exercise: data as FillChartExercise,
         }),
       );
-    } else if (renderMode === 'MULTIPLE_CHOICE') {
+    } else if (exerciseType === 'MULTIPLE_CHOICE') {
       dispatch(
         initializeMultipleChoice({
           exercise: data as MultipleChoiceExercise,
           questionFeedback: multipleChoiceSettings.feedback,
         }),
       );
-    } else if (renderMode === 'WRITING_PRACTICE') {
+    } else if (exerciseType === 'WRITING_PRACTICE') {
       dispatch(
         initializeWritingPractice({
           exercise: data as WritingPracticeExercise,
         }),
       );
     }
-  }, [data, dispatch, multipleChoiceSettings.feedback, renderMode]);
+  }, [data, dispatch, multipleChoiceSettings.feedback, exerciseType]);
 
-  const canChangeRenderMode = data.supportedRenderModes.length > 1;
-  const handleRenderModeChoose = (value: RenderMode) => {
-    setRenderMode(value);
-    setShowChangeRenderModeDialog(false);
+  const canChangeExerciseType = data.types.length > 1;
+  const handleExerciseTypeChoose = (value: ExerciseType) => {
+    setExerciseType(value);
+    setShowChangeExerciseTypeDialog(false);
   };
 
   let exercise;
-  if (renderMode === 'DRAG_DROP' && isDragDropInitialized) {
+  if (exerciseType === 'DRAG_DROP' && isDragDropInitialized) {
     exercise = <DragDrop key={Date.now()} />;
-  } else if (renderMode === 'FILL_CHART' && isFillChartInitialized) {
+  } else if (exerciseType === 'FILL_CHART' && isFillChartInitialized) {
     exercise = <FillChart key={Date.now()} />;
-  } else if (renderMode === 'MULTIPLE_CHOICE' && isMultipleChoiceInitialized) {
+  } else if (
+    exerciseType === 'MULTIPLE_CHOICE' &&
+    isMultipleChoiceInitialized
+  ) {
     exercise = <MultipleChoice key={Date.now()} />;
   } else if (
-    renderMode === 'WRITING_PRACTICE' &&
+    exerciseType === 'WRITING_PRACTICE' &&
     isWritingPracticeInitialized
   ) {
     exercise = <WritingPractice key={Date.now()} />;
@@ -125,21 +128,21 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
       >
         {exercise}
       </Suspense>
-      {canChangeRenderMode && (
+      {canChangeExerciseType && (
         <>
           <button
-            className={`${styles.renderModeButton} ${commonStyles.button}`}
-            onClick={() => setShowChangeRenderModeDialog(true)}
+            className={`${styles.exerciseTypeButton} ${commonStyles.button}`}
+            onClick={() => setShowChangeExerciseTypeDialog(true)}
             type="button"
           >
             <FaArrowsRotate role="presentation" />
             Change Exercise Type
           </button>
           <ChangeExerciseTypeDialog
-            isOpen={showChangeRenderModeDialog}
+            isOpen={showChangeExerciseTypeDialog}
             exercise={data}
-            onCancel={() => setShowChangeRenderModeDialog(false)}
-            onRenderModeChoose={handleRenderModeChoose}
+            onCancel={() => setShowChangeExerciseTypeDialog(false)}
+            onExerciseTypeChoose={handleExerciseTypeChoose}
           />
         </>
       )}
