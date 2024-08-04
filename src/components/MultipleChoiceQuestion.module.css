@@ -1,8 +1,9 @@
 .multipleChoiceQuestion {
+  --container-padding: 12px;
   background: var(--background-color-3);
   display: flex;
   flex-direction: column;
-  --container-padding: 12px;
+  position: relative;
 }
 
 .content {
@@ -17,4 +18,12 @@
 .choicesContainer {
   border: 1px solid var(--outline-color-1);
   padding: var(--container-padding);
+}
+
+.index {
+  --offset: 4px;
+  font-size: .75rem;
+  position: absolute;
+  left: var(--offset);
+  top: var(--offset);
 }

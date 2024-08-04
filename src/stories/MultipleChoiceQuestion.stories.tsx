@@ -31,13 +31,7 @@ const meta: Meta<MultipleChoiceQuestionPropsAndCustomArgs> = {
 export default meta;
 
 const data = {
-  question: {
-    content: 'wa',
-    choices: {
-      correctId: '0',
-      suggestions: ['1', '2', '3'],
-    },
-  },
+  questionContent: 'wa',
   choices: [
     {
       id: '0',

@@ -1,6 +1,6 @@
+import { type ReactNode } from 'react';
 import ChoiceList from '@/components/ChoiceList';
 import { type ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
-import { type Question } from '@/data/exercise';
 import styles from './MultipleChoiceQuestion.module.css';
 
 type MultipleChoiceQuestionProps = {
@@ -8,21 +8,20 @@ type MultipleChoiceQuestionProps = {
   index: number;
   isDisabled?: boolean;
   onChoiceSelect?: (id: string) => void;
-  question: Question;
+  questionContent: ReactNode;
 };
 
 export default function MultipleChoiceQuestion({
   choices,
   index,
   isDisabled,
-  question,
+  questionContent,
   onChoiceSelect,
 }: MultipleChoiceQuestionProps) {
   return (
     <div className={styles.multipleChoiceQuestion}>
-      <div className={styles.content}>
-        {`${index + 1}. ${question.content}`}
-      </div>
+      <div className={styles.index}>{index + 1})</div>
+      <div className={styles.content}>{questionContent}</div>
       <div className={styles.choicesContainer}>
         <ChoiceList
           choices={choices}

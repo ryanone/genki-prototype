@@ -66,7 +66,7 @@ export default function MultipleChoice() {
           choices={currentAnswer.choices as ChoiceData[]}
           index={currentIndex}
           isDisabled={isQuestionFinished}
-          question={currentAnswer.question}
+          questionContent={currentAnswer.question.content}
           onChoiceSelect={handleChoiceSelect}
         />
         <div className={styles.actions}>{nextButton}</div>
