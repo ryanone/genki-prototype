@@ -1,4 +1,7 @@
+import { useContext } from 'react';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
+import Ruby from '@/components/Ruby';
+import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import type {
   Answer,
   ChoiceData,
@@ -16,13 +19,21 @@ type AnswerListProps = {
 };
 
 export default function AnswerList({ data }: AnswerListProps) {
+  const { showFurigana } = useContext(ShowFuriganaContext);
+
   return (
     <div className={styles.answerList}>
       {data.map((item, i) => (
         <MultipleChoiceQuestion
           key={item.question.content}
           index={i}
-          question={item.question}
+          questionContent={
+            <Ruby
+              showAlt={showFurigana}
+              content={item.question.content}
+              alt={item.question.alt}
+            />
+          }
           choices={item.choices}
           isDisabled
         />

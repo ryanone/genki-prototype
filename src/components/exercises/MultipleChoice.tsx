@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import {
   chooseChoice,
   goToNextQuestion,
@@ -13,6 +13,8 @@ import ExerciseResults from '@/components/ExerciseResults';
 import Instructions from '@/components/Instructions';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import ProgressBar from '@/components/ProgressBar';
+import Ruby from '@/components/Ruby';
+import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import Timer from '@/components/Timer';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
@@ -20,6 +22,7 @@ import styles from './MultipleChoice.module.css';
 
 export default function MultipleChoice() {
   const timeElapsed = useRef(0);
+  const { showFurigana } = useContext(ShowFuriganaContext);
   const dispatch = useAppDispatch();
   const currentIndex = useAppSelector((state) => state.multipleChoice.index);
   const isQuestionFinished = useAppSelector(
@@ -66,7 +69,13 @@ export default function MultipleChoice() {
           choices={currentAnswer.choices as ChoiceData[]}
           index={currentIndex}
           isDisabled={isQuestionFinished}
-          questionContent={currentAnswer.question.content}
+          questionContent={
+            <Ruby
+              showAlt={showFurigana}
+              content={currentAnswer.question.content}
+              alt={currentAnswer.question.alt}
+            />
+          }
           onChoiceSelect={handleChoiceSelect}
         />
         <div className={styles.actions}>{nextButton}</div>
