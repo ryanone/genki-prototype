@@ -283,6 +283,17 @@
       "instructions": "Practice writring the following Hiragana. NOTE: ぢ is pronounced like じ and づ is pronounced like ず. The romanizations used are how you type these characters with a keyboard. If you don't know how to type in Japanese on your computer, please visit our help page.",
       "numExamples": 3,
       "numRepetitions": 6
+    },
+    "FILL_CHART": {
+      "instructions": "Complete the chart by filling in the Romaji. NOTE: ヂ is pronounced like ジ and ヅ is pronounced like ズ. The romanizations used are how you type these characters with a keyboard. If you don't know how to type in Japanese on your computer, please visit our help page.",
+      "flow": "HORIZONTAL",
+      "configuration": [
+        ["21", "22", "23", "24", "25"],
+        ["16", "17", "18", "19", "20"],
+        ["11", "12", "13", "14", "15"],
+        ["6", "7", "8", "9", "10"],
+        ["1", "2", "3", "4", "5"]
+      ]
     }
   }
 }

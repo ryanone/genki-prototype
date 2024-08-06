@@ -1,62 +1,62 @@
 {
-  "types": ["MULTIPLE_CHOICE"],
+  "types": ["DRAG_DROP", "MULTIPLE_CHOICE", "WRITING_PRACTICE"],
   "questions": [
     {
-      "content": "おはよう",
+      "content": "おはよう。",
       "choices": {
         "correctId": "1"
       }
     },
     {
-      "content": "ごちそうさま（でした）",
+      "content": "ごちそうさま（でした）。",
       "choices": {
         "correctId": "2"
       }
     },
     {
-      "content": "よろしくおねがいします",
+      "content": "よろしくおねがいします。",
       "choices": {
         "correctId": "3"
       }
     },
     {
-      "content": "いいえ",
+      "content": "いいえ。",
       "choices": {
         "correctId": "4"
       }
     },
     {
-      "content": "いってきます",
+      "content": "いってきます。",
       "choices": {
         "correctId": "5"
       }
     },
     {
-      "content": "おかえり（なさい）",
+      "content": "おかえり（なさい）。",
       "choices": {
         "correctId": "6"
       }
     },
     {
-      "content": "〜です",
+      "content": "〜です。",
       "choices": {
         "correctId": "7"
       }
     },
     {
-      "content": "ただいま",
+      "content": "ただいま。",
       "choices": {
         "correctId": "8"
       }
     },
     {
-      "content": "はじめまして",
+      "content": "はじめまして。",
       "choices": {
         "correctId": "9"
       }
     },
     {
-      "content": "いただきます",
+      "content": "いただきます。",
       "choices": {
         "correctId": "10"
       }

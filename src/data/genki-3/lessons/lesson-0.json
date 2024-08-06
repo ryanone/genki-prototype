@@ -41,8 +41,16 @@
       "content": "Greetings (Genki I: p.30-34)",
       "exercises": [
         {
+          "title": "Greetings 1 (p. 32)",
+          "id": "greetings-0-0"
+        },
+        {
           "title": "Greetings 2 (p. 32)",
-          "id": "greetings-1-1"
+          "id": "greetings-0-1"
+        },
+        {
+          "title": "Culture Note: Greetings and Bowing (p. 32)",
+          "id": "greetings-0-2"
         }
       ]
     }

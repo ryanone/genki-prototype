@@ -1,0 +1,104 @@
+{
+  "types": ["DRAG_DROP", "MULTIPLE_CHOICE", "WRITING_PRACTICE"],
+  "questions": [
+    {
+      "content": "おはよう。",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "おはようございます。",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "こんにちは。",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "こんばんは。",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "さようなら。",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "おやすみ（なさい）。",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "ありがとう",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "ありがとうございます。",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "すみません。",
+      "choices": {
+        "correctId": "9"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "Good morning.",
+      "id": "1"
+    },
+    {
+      "content": "Good morning. (polite)",
+      "id": "2"
+    },
+    {
+      "content": "Good afternoon.",
+      "id": "3"
+    },
+    {
+      "content": "Good evening.",
+      "id": "4"
+    },
+    {
+      "content": "Good-bye.",
+      "id": "5"
+    },
+    {
+      "content": "Good night.",
+      "id": "6"
+    },
+    {
+      "content": "Thank you.",
+      "id": "7"
+    },
+    {
+      "content": "Thank you. (polite)",
+      "id": "8"
+    },
+    {
+      "content": "Excuse me.; I'm sorry.",
+      "id": "9"
+    }
+  ],
+  "meta": {
+
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct definition for each Japanese expression.",
+      "randomizeQuestions": true
+    }
+  }
+}

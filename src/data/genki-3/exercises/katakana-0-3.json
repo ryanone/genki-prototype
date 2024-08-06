@@ -7,201 +7,87 @@
   ],
   "questions": [
     {
-      "content": "リャ",
+      "content": "ティ",
       "choices": {
         "correctId": "1"
       }
     },
     {
-      "content": "リュ",
+      "content": "ディ",
       "choices": {
         "correctId": "2"
       }
     },
     {
-      "content": "リョ",
+      "content": "デュ",
       "choices": {
         "correctId": "3"
       }
     },
     {
-      "content": "ミャ",
+      "content": "ファ",
       "choices": {
         "correctId": "4"
       }
     },
     {
-      "content": "ミュ",
+      "content": "フィ",
       "choices": {
         "correctId": "5"
       }
     },
     {
-      "content": "ミョ",
+      "content": "フェ",
       "choices": {
         "correctId": "6"
       }
     },
     {
-      "content": "ヒャ",
+      "content": "フォ",
       "choices": {
         "correctId": "7"
       }
     },
     {
-      "content": "ヒュ",
+      "content": "チェ",
       "choices": {
         "correctId": "8"
       }
     },
     {
-      "content": "ヒョ",
+      "content": "シェ",
       "choices": {
         "correctId": "9"
       }
     },
     {
-      "content": "ビャ",
+      "content": "ジェ",
       "choices": {
         "correctId": "10"
       }
     },
     {
-      "content": "ビュ",
+      "content": "ヴェ",
       "choices": {
         "correctId": "11"
       }
     },
     {
-      "content": "ビョ",
+      "content": "ウィ",
       "choices": {
         "correctId": "12"
       }
     },
     {
-      "content": "ピャ",
+      "content": "ウェ",
       "choices": {
         "correctId": "13"
       }
     },
     {
-      "content": "ピュ",
+      "content": "ウォ",
       "choices": {
         "correctId": "14"
-      }
-    },
-    {
-      "content": "ピョ",
-      "choices": {
-        "correctId": "15"
-      }
-    },
-    {
-      "content": "ニャ",
-      "choices": {
-        "correctId": "16"
-      }
-    },
-    {
-      "content": "ニュ",
-      "choices": {
-        "correctId": "17"
-      }
-    },
-    {
-      "content": "ニョ",
-      "choices": {
-        "correctId": "18"
-      }
-    },
-    {
-      "content": "チャ",
-      "choices": {
-        "correctId": "19"
-      }
-    },
-    {
-      "content": "チュ",
-      "choices": {
-        "correctId": "20"
-      }
-    },
-    {
-      "content": "チョ",
-      "choices": {
-        "correctId": "21"
-      }
-    },
-    {
-      "content": "シャ",
-      "choices": {
-        "correctId": "22"
-      }
-    },
-    {
-      "content": "シュ",
-      "choices": {
-        "correctId": "23"
-      }
-    },
-    {
-      "content": "ショ",
-      "choices": {
-        "correctId": "24"
-      }
-    },
-    {
-      "content": "ジャ",
-      "choices": {
-        "correctId": "25"
-      }
-    },
-    {
-      "content": "ジュ",
-      "choices": {
-        "correctId": "26"
-      }
-    },
-    {
-      "content": "ジョ",
-      "choices": {
-        "correctId": "27"
-      }
-    },
-    {
-      "content": "キャ",
-      "choices": {
-        "correctId": "28"
-      }
-    },
-    {
-      "content": "キュ",
-      "choices": {
-        "correctId": "29"
-      }
-    },
-    {
-      "content": "キョ",
-      "choices": {
-        "correctId": "30"
-      }
-    },
-    {
-      "content": "ギャ",
-      "choices": {
-        "correctId": "31"
-      }
-    },
-    {
-      "content": "ギュ",
-      "choices": {
-        "correctId": "32"
-      }
-    },
-    {
-      "content": "ギョ",
-      "choices": {
-        "correctId": "33"
       }
     }
   ],
