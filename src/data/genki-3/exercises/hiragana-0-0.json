@@ -1,5 +1,10 @@
 {
-  "types": ["DRAG_DROP", "FILL_CHART", "MULTIPLE_CHOICE"],
+  "types": [
+    "DRAG_DROP",
+    "FILL_CHART",
+    "MULTIPLE_CHOICE",
+    "WRITING_PRACTICE"
+  ],
   "questions": [
     {
       "content": "わ",
@@ -224,7 +229,7 @@
       }
     },
     {
-      "content": "ki",
+      "content": "き",
       "choices": {
         "correctId": "38"
       }

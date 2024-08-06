@@ -1,6 +1,7 @@
 {
   "types": [
     "DRAG_DROP",
+    "FILL_CHART",
     "MULTIPLE_CHOICE",
     "WRITING_PRACTICE"
   ],

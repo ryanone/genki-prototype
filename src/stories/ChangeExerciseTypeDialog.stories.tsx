@@ -1,6 +1,6 @@
 import { fn } from '@storybook/test';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
-import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
+import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0-0.json';
 import Genki3Lesson0 from '@/data/genki-3/lessons/lesson-0.json';
 
 export const ChangeExerciseTypeDialogActionsData = {

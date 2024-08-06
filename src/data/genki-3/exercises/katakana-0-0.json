@@ -1,0 +1,515 @@
+{
+  "types": [
+    "DRAG_DROP",
+    "FILL_CHART",
+    "MULTIPLE_CHOICE",
+    "WRITING_PRACTICE"
+  ],
+  "questions": [
+    {
+      "content": "ワ",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "ワ",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "ン",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "ラ",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "リ",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "ル",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "レ",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "ロ",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "ヤ",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "ユ",
+      "choices": {
+        "correctId": "10"
+      }
+    },
+    {
+      "content": "ヨ",
+      "choices": {
+        "correctId": "11"
+      }
+    },
+    {
+      "content": "マ",
+      "choices": {
+        "correctId": "12"
+      }
+    },
+    {
+      "content": "ミ",
+      "choices": {
+        "correctId": "13"
+      }
+    },
+    {
+      "content": "ム",
+      "choices": {
+        "correctId": "14"
+      }
+    },
+    {
+      "content": "メ",
+      "choices": {
+        "correctId": "15"
+      }
+    },
+    {
+      "content": "モ",
+      "choices": {
+        "correctId": "16"
+      }
+    },
+    {
+      "content": "ハ",
+      "choices": {
+        "correctId": "17"
+      }
+    },
+    {
+      "content": "ヒ",
+      "choices": {
+        "correctId": "18"
+      }
+    },
+    {
+      "content": "フ",
+      "choices": {
+        "correctId": "19"
+      }
+    },
+    {
+      "content": "ヘ",
+      "choices": {
+        "correctId": "20"
+      }
+    },
+    {
+      "content": "ホ",
+      "choices": {
+        "correctId": "21"
+      }
+    },
+    {
+      "content": "ナ",
+      "choices": {
+        "correctId": "22"
+      }
+    },
+    {
+      "content": "ニ",
+      "choices": {
+        "correctId": "23"
+      }
+    },
+    {
+      "content": "ヌ",
+      "choices": {
+        "correctId": "24"
+      }
+    },
+    {
+      "content": "ネ",
+      "choices": {
+        "correctId": "25"
+      }
+    },
+    {
+      "content": "ノ",
+      "choices": {
+        "correctId": "26"
+      }
+    },
+    {
+      "content": "タ",
+      "choices": {
+        "correctId": "27"
+      }
+    },
+    {
+      "content": "チ",
+      "choices": {
+        "correctId": "28"
+      }
+    },
+    {
+      "content": "ツ",
+      "choices": {
+        "correctId": "29"
+      }
+    },
+    {
+      "content": "テ",
+      "choices": {
+        "correctId": "30"
+      }
+    },
+    {
+      "content": "ト",
+      "choices": {
+        "correctId": "31"
+      }
+    },
+    {
+      "content": "サ",
+      "choices": {
+        "correctId": "32"
+      }
+    },
+    {
+      "content": "シ",
+      "choices": {
+        "correctId": "33"
+      }
+    },
+    {
+      "content": "ス",
+      "choices": {
+        "correctId": "34"
+      }
+    },
+    {
+      "content": "セ",
+      "choices": {
+        "correctId": "35"
+      }
+    },
+    {
+      "content": "ソ",
+      "choices": {
+        "correctId": "36"
+      }
+    },
+    {
+      "content": "カ",
+      "choices": {
+        "correctId": "37"
+      }
+    },
+    {
+      "content": "キ",
+      "choices": {
+        "correctId": "38"
+      }
+    },
+    {
+      "content": "ク",
+      "choices": {
+        "correctId": "39"
+      }
+    },
+    {
+      "content": "ケ",
+      "choices": {
+        "correctId": "40"
+      }
+    },
+    {
+      "content": "コ",
+      "choices": {
+        "correctId": "41"
+      }
+    },
+    {
+      "content": "ア",
+      "choices": {
+        "correctId": "42"
+      }
+    },
+    {
+      "content": "イ",
+      "choices": {
+        "correctId": "43"
+      }
+    },
+    {
+      "content": "ウ",
+      "choices": {
+        "correctId": "44"
+      }
+    },
+    {
+      "content": "エ",
+      "choices": {
+        "correctId": "45"
+      }
+    },
+    {
+      "content": "オ",
+      "choices": {
+        "correctId": "46"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "wa",
+      "id": "1"
+    },
+    {
+      "content": "wo",
+      "id": "2"
+    },
+    {
+      "content": "n",
+      "id": "3"
+    },
+    {
+      "content": "ra",
+      "id": "4"
+    },
+    {
+      "content": "ri",
+      "id": "5"
+    },
+    {
+      "content": "ru",
+      "id": "6"
+    },
+    {
+      "content": "re",
+      "id": "7"
+    },
+    {
+      "content": "ro",
+      "id": "8"
+    },
+    {
+      "content": "ya",
+      "id": "9"
+    },
+    {
+      "content": "yu",
+      "id": "10"
+    },
+    {
+      "content": "yo",
+      "id": "11"
+    },
+    {
+      "content": "ma",
+      "id": "12"
+    },
+    {
+      "content": "mi",
+      "id": "13"
+    },
+    {
+      "content": "mu",
+      "id": "14"
+    },
+    {
+      "content": "me",
+      "id": "15"
+    },
+    {
+      "content": "mo",
+      "id": "16"
+    },
+    {
+      "content": "ha",
+      "id": "17"
+    },
+    {
+      "content": "hi",
+      "id": "18"
+    },
+    {
+      "content": "fu",
+      "id": "19"
+    },
+    {
+      "content": "he",
+      "id": "20"
+    },
+    {
+      "content": "ho",
+      "id": "21"
+    },
+    {
+      "content": "na",
+      "id": "22"
+    },
+    {
+      "content": "ni",
+      "id": "23"
+    },
+    {
+      "content": "nu",
+      "id": "24"
+    },
+    {
+      "content": "ne",
+      "id": "25"
+    },
+    {
+      "content": "no",
+      "id": "26"
+    },
+    {
+      "content": "ta",
+      "id": "27"
+    },
+    {
+      "content": "chi",
+      "id": "28"
+    },
+    {
+      "content": "tsu",
+      "id": "29"
+    },
+    {
+      "content": "te",
+      "id": "30"
+    },
+    {
+      "content": "to",
+      "id": "31"
+    },
+    {
+      "content": "sa",
+      "id": "32"
+    },
+    {
+      "content": "shi",
+      "id": "33"
+    },
+    {
+      "content": "su",
+      "id": "34"
+    },
+    {
+      "content": "se",
+      "id": "35"
+    },
+    {
+      "content": "so",
+      "id": "36"
+    },
+    {
+      "content": "ka",
+      "id": "37"
+    },
+    {
+      "content": "ki",
+      "id": "38"
+    },
+    {
+      "content": "ku",
+      "id": "39"
+    },
+    {
+      "content": "ke",
+      "id": "40"
+    },
+    {
+      "content": "ko",
+      "id": "41"
+    },
+    {
+      "content": "a",
+      "id": "42"
+    },
+    {
+      "content": "i",
+      "id": "43"
+    },
+    {
+      "content": "u",
+      "id": "44"
+    },
+    {
+      "content": "e",
+      "id": "45"
+    },
+    {
+      "content": "o",
+      "id": "46"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct Romaji for the Hiragana.",
+      "randomizeQuestions": true
+    },
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"],
+      "instructions": "Drag the Romaji to the matching Kana. TIP: Click the Romaji to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionLayout": "HORIZONTAL",
+        "questionsFlow": "VERTICAL",
+        "configuration": [
+          3,
+          5,
+          3,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    "FILL_CHART": {
+      "instructions": "Complete the chart by filling in the Romaji.",
+      "flow": "HORIZONTAL",
+      "configuration": [
+        ["42", "43", "44", "45", "46"],
+        ["37", "38", "39", "40", "41"],
+        ["32", "33", "34", "35", "36"],
+        ["27", "28", "29", "30", "31"],
+        ["22", "23", "24", "25", "26"],
+        ["17", "18", "19", "20", "21"],
+        ["12", "13", "14", "15", "16"],
+        ["9", "-", "10", "-", "11"],
+        ["4", "5", "6", "7", "8"],
+        ["1", "-", "-", "-", "2"],
+        ["3", "-", "-", "-", "-"]
+      ]
+    }
+  }
+}

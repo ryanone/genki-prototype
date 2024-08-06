@@ -1,0 +1,288 @@
+{
+  "types": [
+    "DRAG_DROP",
+    "FILL_CHART",
+    "MULTIPLE_CHOICE",
+    "WRITING_PRACTICE"
+  ],
+  "questions": [
+    {
+      "content": "ぱ",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "ぴ",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "ぷ",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "ぺ",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "ぽ",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "ば",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "び",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "ぶ",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "べ",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "ぼ",
+      "choices": {
+        "correctId": "10"
+      }
+    },
+    {
+      "content": "だ",
+      "choices": {
+        "correctId": "11"
+      }
+    },
+    {
+      "content": "ぢ",
+      "choices": {
+        "correctId": "12"
+      }
+    },
+    {
+      "content": "づ",
+      "choices": {
+        "correctId": "13"
+      }
+    },
+    {
+      "content": "で",
+      "choices": {
+        "correctId": "14"
+      }
+    },
+    {
+      "content": "ど",
+      "choices": {
+        "correctId": "15"
+      }
+    },
+    {
+      "content": "ざ",
+      "choices": {
+        "correctId": "16"
+      }
+    },
+    {
+      "content": "じ",
+      "choices": {
+        "correctId": "17"
+      }
+    },
+    {
+      "content": "ず",
+      "choices": {
+        "correctId": "18"
+      }
+    },
+    {
+      "content": "ぜ",
+      "choices": {
+        "correctId": "19"
+      }
+    },
+    {
+      "content": "ぞ",
+      "choices": {
+        "correctId": "20"
+      }
+    },
+    {
+      "content": "が",
+      "choices": {
+        "correctId": "21"
+      }
+    },
+    {
+      "content": "ぎ",
+      "choices": {
+        "correctId": "22"
+      }
+    },
+    {
+      "content": "ぐ",
+      "choices": {
+        "correctId": "23"
+      }
+    },
+    {
+      "content": "げ",
+      "choices": {
+        "correctId": "24"
+      }
+    },
+    {
+      "content": "ご",
+      "choices": {
+        "correctId": "25"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "pa",
+      "id": "1"
+    },
+    {
+      "content": "pi",
+      "id": "2"
+    },
+    {
+      "content": "pu",
+      "id": "3"
+    },
+    {
+      "content": "pe",
+      "id": "4"
+    },
+    {
+      "content": "po",
+      "id": "5"
+    },
+    {
+      "content": "ba",
+      "id": "6"
+    },
+    {
+      "content": "bi",
+      "id": "7"
+    },
+    {
+      "content": "bu",
+      "id": "8"
+    },
+    {
+      "content": "be",
+      "id": "9"
+    },
+    {
+      "content": "bo",
+      "id": "10"
+    },
+    {
+      "content": "da",
+      "id": "11"
+    },
+    {
+      "content": "di",
+      "id": "12"
+    },
+    {
+      "content": "du",
+      "id": "13"
+    },
+    {
+      "content": "de",
+      "id": "14"
+    },
+    {
+      "content": "do",
+      "id": "15"
+    },
+    {
+      "content": "za",
+      "id": "16"
+    },
+    {
+      "content": "ji",
+      "id": "17"
+    },
+    {
+      "content": "zu",
+      "id": "18"
+    },
+    {
+      "content": "ze",
+      "id": "19"
+    },
+    {
+      "content": "zo",
+      "id": "20"
+    },
+    {
+      "content": "ga",
+      "id": "21"
+    },
+    {
+      "content": "gi",
+      "id": "22"
+    },
+    {
+      "content": "gu",
+      "id": "23"
+    },
+    {
+      "content": "ge",
+      "id": "24"
+    },
+    {
+      "content": "go",
+      "id": "25"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct Romaji for the Hiragana.",
+      "randomizeQuestions": true
+    },
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"],
+      "instructions": "Drag the Romaji to the matching Hiragana. TIP: Click the Romaji to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionLayout": "HORIZONTAL",
+        "questionsFlow": "VERTICAL",
+        "configuration": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    "WRITING_PRACTICE": {
+      "instructions": "Practice writring the following Hiragana. NOTE: ぢ is pronounced like じ and づ is pronounced like ず. The romanizations used are how you type these characters with a keyboard. If you don't know how to type in Japanese on your computer, please visit our help page.",
+      "numExamples": 3,
+      "numRepetitions": 6
+    }
+  }
+}

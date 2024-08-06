@@ -5,15 +5,35 @@
       "exercises": [
         {
           "title": "Hiragana (p. 20-21)",
-          "id": "hiragana-0"
+          "id": "hiragana-0-0"
         },
         {
           "title": "Hiragana: Diacritical Marks (p. 21)",
-          "id": "hiragana-1"
+          "id": "hiragana-0-1"
         },
         {
           "title": "Hiragana: Combos (p. 21-22)",
-          "id": "hiragana-2"
+          "id": "hiragana-0-2"
+        },
+        {
+          "title": "Katakana (p. 24)",
+          "id": "katakana-0-0"
+        },
+        {
+          "title": "Katakana: Diacritical Marks (p. 25)",
+          "id": "katakana-0-1"
+        },
+        {
+          "title": "Katakana: Combos (p. 25)",
+          "id": "katakana-0-2"
+        },
+        {
+          "title": "Katakana: Additional Combos (p. 26)",
+          "id": "katakana-0-3"
+        },
+        {
+          "title": "Bonus: Match Hiragana and Katakana (p. 20-21, 24)",
+          "id": "hiragana-katakana-0-0"
         }
       ]
     },
@@ -22,7 +42,7 @@
       "exercises": [
         {
           "title": "Greetings 2 (p. 32)",
-          "id": "greetings-1"
+          "id": "greetings-1-1"
         }
       ]
     }

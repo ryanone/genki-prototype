@@ -2,7 +2,7 @@ import { ComponentProps, type ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Provider } from 'react-redux';
 import MultipleChoiceExercise from '@/components/exercises/MultipleChoice';
-import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0.json';
+import Genki3Exercise01 from '@/data/genki-3/exercises/hiragana-0-0.json';
 import { setupStore } from '@/app/store';
 import type { MultipleChoiceQuestionFeedback } from '@/context/MultipleChoiceSettingsContext';
 import type { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/data/exercise';

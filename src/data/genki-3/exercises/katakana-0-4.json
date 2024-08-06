@@ -1,0 +1,256 @@
+{
+  "types": [
+    "DRAG_DROP",
+    "FILL_CHART",
+    "MULTIPLE_CHOICE",
+    "WRITING_PRACTICE"
+  ],
+  "questions": [
+    {
+      "content": "ティ",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "ディ",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "デュ",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "ファ",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "フィ",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "フェ",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "フォ",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "チェ",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "シェ",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "ジェ",
+      "choices": {
+        "correctId": "10"
+      }
+    },
+    {
+      "content": "ヴェ",
+      "choices": {
+        "correctId": "11"
+      }
+    },
+    {
+      "content": "ウィ",
+      "choices": {
+        "correctId": "12"
+      }
+    },
+    {
+      "content": "ウェ",
+      "choices": {
+        "correctId": "13"
+      }
+    },
+    {
+      "content": "ウォ",
+      "choices": {
+        "correctId": "14"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "rya",
+      "id": "1"
+    },
+    {
+      "content": "ryu",
+      "id": "2"
+    },
+    {
+      "content": "ryo",
+      "id": "3"
+    },
+    {
+      "content": "mya",
+      "id": "4"
+    },
+    {
+      "content": "myu",
+      "id": "5"
+    },
+    {
+      "content": "myo",
+      "id": "6"
+    },
+    {
+      "content": "hya",
+      "id": "7"
+    },
+    {
+      "content": "hyu",
+      "id": "8"
+    },
+    {
+      "content": "hyo",
+      "id": "9"
+    },
+    {
+      "content": "bya",
+      "id": "10"
+    },
+    {
+      "content": "byu",
+      "id": "11"
+    },
+    {
+      "content": "byo",
+      "id": "12"
+    },
+    {
+      "content": "pya",
+      "id": "13"
+    },
+    {
+      "content": "pyu",
+      "id": "14"
+    },
+    {
+      "content": "pyo",
+      "id": "15"
+    },
+    {
+      "content": "nya",
+      "id": "16"
+    },
+    {
+      "content": "nyu",
+      "id": "17"
+    },
+    {
+      "content": "nyo",
+      "id": "18"
+    },
+    {
+      "content": "cha",
+      "id": "19"
+    },
+    {
+      "content": "chu",
+      "id": "20"
+    },
+    {
+      "content": "cho",
+      "id": "21"
+    },
+    {
+      "content": "sha",
+      "id": "22"
+    },
+    {
+      "content": "shu",
+      "id": "23"
+    },
+    {
+      "content": "sho",
+      "id": "24"
+    },
+    {
+      "content": "ja",
+      "id": "25"
+    },
+    {
+      "content": "ju",
+      "id": "26"
+    },
+    {
+      "content": "jo",
+      "id": "27"
+    },
+    {
+      "content": "kya",
+      "id": "28"
+    },
+    {
+      "content": "kyu",
+      "id": "29"
+    },
+    {
+      "content": "kyo",
+      "id": "30"
+    },
+    {
+      "content": "gya",
+      "id": "31"
+    },
+    {
+      "content": "gyu",
+      "id": "32"
+    },
+    {
+      "content": "gyo",
+      "id": "33"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct Romaji for the Hiragana.",
+      "randomizeQuestions": true
+    },
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL"],
+      "instructions": "Drag the Romaji to the matching Kana. TIP: Click the Romaji to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionLayout": "HORIZONTAL",
+        "questionsFlow": "VERTICAL",
+        "configuration": [
+          3,
+          3,
+          9,
+          3,
+          3,
+          6,
+          6
+        ]
+      }
+    },
+    "WRITING_PRACTICE": {
+      "instructions": "Practice writring the following Hiragana. NOTE: ぢ is pronounced like じ and づ is pronounced like ず. The romanizations used are how you type these characters with a keyboard. If you don't know how to type in Japanese on your computer, please visit our help page.",
+      "numExamples": 3,
+      "numRepetitions": 6
+    }
+  }
+}

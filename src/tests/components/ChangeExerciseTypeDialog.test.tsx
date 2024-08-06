@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
-import Genki3Hiragana0 from '@/data/genki-3/exercises/hiragana-0.json';
+import Genki3Hiragana0 from '@/data/genki-3/exercises/hiragana-0-0.json';
 import type { DragDropExercise } from '@/data/exercise';
 
 const onExerciseTypeChoose = () => {};

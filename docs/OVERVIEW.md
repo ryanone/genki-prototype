@@ -81,7 +81,7 @@ For Lesson 0, the `exerciseId` is `"lesson-0"`. This means there should be a JSO
 
 The list of exercises for Lesson 0 are defined here.
 
-* `/[bookId]/lesson/[lessonId]/exercise/[exerciseId]` - This route's data comes from a JSON file in `/src/data/genki-3/exercises`. For example, with the "Hiragana (p. 20-21)" exercise, whose ID is `"hiragana-0"`, its data is defined in `/src/data/genki-3/exercises/hiragana-0.json`.
+* `/[bookId]/lesson/[lessonId]/exercise/[exerciseId]` - This route's data comes from a JSON file in `/src/data/genki-3/exercises`. For example, with the "Hiragana (p. 20-21)" exercise, whose ID is `"hiragana-0-0"`, its data is defined in `/src/data/genki-3/exercises/hiragana-0-0.json`.
 
 ## Exercise JSON Format
 
@@ -115,7 +115,7 @@ The following is a snippet from `/src/data/genki-3/exercises/hiragana
 ```
 ### Meta
 
-The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given exercise type. The `meta` object allows for this definition. In this object, for a given exercise type, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-0.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on exercise type.
+The `questions` and `choices` objects are structured independently of how they will be displayed. This is intentional, as an exercise can be displayed in any number of ways. However, there may be a need to explicitly define how an exercise should be rendered for a given exercise type. The `meta` object allows for this definition. In this object, for a given exercise type, we can define the instructions to render. For Drag and Drop, if you look at the `hiragana-0-0.json` file, we define how individual questions are rendered (`questionFlow`) and how the questions are arranged as a group (`questionsFlow`). We also define how many questions to render in each column (`configuration`). There will likely be a different options to specify based on exercise type.
 
 The following is a snippet from `/src/data/genki-3/exercises/hiragana
 1.json`:

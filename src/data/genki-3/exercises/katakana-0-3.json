@@ -1,261 +1,342 @@
 {
   "types": [
     "DRAG_DROP",
+    "FILL_CHART",
     "MULTIPLE_CHOICE",
     "WRITING_PRACTICE"
   ],
   "questions": [
     {
-      "content": "ぱ",
+      "content": "リャ",
       "choices": {
         "correctId": "1"
       }
     },
     {
-      "content": "ぴ",
+      "content": "リュ",
       "choices": {
         "correctId": "2"
       }
     },
     {
-      "content": "ぷ",
+      "content": "リョ",
       "choices": {
         "correctId": "3"
       }
     },
     {
-      "content": "ぺ",
+      "content": "ミャ",
       "choices": {
         "correctId": "4"
       }
     },
     {
-      "content": "ぽ",
+      "content": "ミュ",
       "choices": {
         "correctId": "5"
       }
     },
     {
-      "content": "ば",
+      "content": "ミョ",
       "choices": {
         "correctId": "6"
       }
     },
     {
-      "content": "び",
+      "content": "ヒャ",
       "choices": {
         "correctId": "7"
       }
     },
     {
-      "content": "ぶ",
+      "content": "ヒュ",
       "choices": {
         "correctId": "8"
       }
     },
     {
-      "content": "べ",
+      "content": "ヒョ",
       "choices": {
         "correctId": "9"
       }
     },
     {
-      "content": "ぼ",
+      "content": "ビャ",
       "choices": {
         "correctId": "10"
       }
     },
     {
-      "content": "だ",
+      "content": "ビュ",
       "choices": {
         "correctId": "11"
       }
     },
     {
-      "content": "ぢ",
+      "content": "ビョ",
       "choices": {
         "correctId": "12"
       }
     },
     {
-      "content": "づ",
+      "content": "ピャ",
       "choices": {
         "correctId": "13"
       }
     },
     {
-      "content": "で",
+      "content": "ピュ",
       "choices": {
         "correctId": "14"
       }
     },
     {
-      "content": "ど",
+      "content": "ピョ",
       "choices": {
         "correctId": "15"
       }
     },
     {
-      "content": "ざ",
+      "content": "ニャ",
       "choices": {
         "correctId": "16"
       }
     },
     {
-      "content": "じ",
+      "content": "ニュ",
       "choices": {
         "correctId": "17"
       }
     },
     {
-      "content": "ず",
+      "content": "ニョ",
       "choices": {
         "correctId": "18"
       }
     },
     {
-      "content": "ぜ",
+      "content": "チャ",
       "choices": {
         "correctId": "19"
       }
     },
     {
-      "content": "ぞ",
+      "content": "チュ",
       "choices": {
         "correctId": "20"
       }
     },
     {
-      "content": "が",
+      "content": "チョ",
       "choices": {
         "correctId": "21"
       }
     },
     {
-      "content": "ぎ",
+      "content": "シャ",
       "choices": {
         "correctId": "22"
       }
     },
     {
-      "content": "ぐ",
+      "content": "シュ",
       "choices": {
         "correctId": "23"
       }
     },
     {
-      "content": "げ",
+      "content": "ショ",
       "choices": {
         "correctId": "24"
       }
     },
     {
-      "content": "ご",
+      "content": "ジャ",
       "choices": {
         "correctId": "25"
+      }
+    },
+    {
+      "content": "ジュ",
+      "choices": {
+        "correctId": "26"
+      }
+    },
+    {
+      "content": "ジョ",
+      "choices": {
+        "correctId": "27"
+      }
+    },
+    {
+      "content": "キャ",
+      "choices": {
+        "correctId": "28"
+      }
+    },
+    {
+      "content": "キュ",
+      "choices": {
+        "correctId": "29"
+      }
+    },
+    {
+      "content": "キョ",
+      "choices": {
+        "correctId": "30"
+      }
+    },
+    {
+      "content": "ギャ",
+      "choices": {
+        "correctId": "31"
+      }
+    },
+    {
+      "content": "ギュ",
+      "choices": {
+        "correctId": "32"
+      }
+    },
+    {
+      "content": "ギョ",
+      "choices": {
+        "correctId": "33"
       }
     }
   ],
   "choices": [
     {
-      "content": "pa",
+      "content": "rya",
       "id": "1"
     },
     {
-      "content": "pi",
+      "content": "ryu",
       "id": "2"
     },
     {
-      "content": "pu",
+      "content": "ryo",
       "id": "3"
     },
     {
-      "content": "pe",
+      "content": "mya",
       "id": "4"
     },
     {
-      "content": "po",
+      "content": "myu",
       "id": "5"
     },
     {
-      "content": "ba",
+      "content": "myo",
       "id": "6"
     },
     {
-      "content": "bi",
+      "content": "hya",
       "id": "7"
     },
     {
-      "content": "bu",
+      "content": "hyu",
       "id": "8"
     },
     {
-      "content": "be",
+      "content": "hyo",
       "id": "9"
     },
     {
-      "content": "bo",
+      "content": "bya",
       "id": "10"
     },
     {
-      "content": "da",
+      "content": "byu",
       "id": "11"
     },
     {
-      "content": "di",
+      "content": "byo",
       "id": "12"
     },
     {
-      "content": "du",
+      "content": "pya",
       "id": "13"
     },
     {
-      "content": "de",
+      "content": "pyu",
       "id": "14"
     },
     {
-      "content": "do",
+      "content": "pyo",
       "id": "15"
     },
     {
-      "content": "za",
+      "content": "nya",
       "id": "16"
     },
     {
-      "content": "ji",
+      "content": "nyu",
       "id": "17"
     },
     {
-      "content": "zu",
+      "content": "nyo",
       "id": "18"
     },
     {
-      "content": "ze",
+      "content": "cha",
       "id": "19"
     },
     {
-      "content": "zo",
+      "content": "chu",
       "id": "20"
     },
     {
-      "content": "ga",
+      "content": "cho",
       "id": "21"
     },
     {
-      "content": "gi",
+      "content": "sha",
       "id": "22"
     },
     {
-      "content": "gu",
+      "content": "shu",
       "id": "23"
     },
     {
-      "content": "ge",
+      "content": "sho",
       "id": "24"
     },
     {
-      "content": "go",
+      "content": "ja",
       "id": "25"
+    },
+    {
+      "content": "ju",
+      "id": "26"
+    },
+    {
+      "content": "jo",
+      "id": "27"
+    },
+    {
+      "content": "kya",
+      "id": "28"
+    },
+    {
+      "content": "kyu",
+      "id": "29"
+    },
+    {
+      "content": "kyo",
+      "id": "30"
+    },
+    {
+      "content": "gya",
+      "id": "31"
+    },
+    {
+      "content": "gyu",
+      "id": "32"
+    },
+    {
+      "content": "gyo",
+      "id": "33"
     }
   ],
   "meta": {
@@ -265,16 +346,18 @@
     },
     "DRAG_DROP": {
       "supportedLayouts": ["HORIZONTAL"],
-      "instructions": "Drag the Romaji to the matching Hiragana. TIP: Click the Romaji to mark it, then click an empty field to drop the answer there.",
+      "instructions": "Drag the Romaji to the matching Kana. TIP: Click the Romaji to mark it, then click an empty field to drop the answer there.",
       "HORIZONTAL": {
         "questionLayout": "HORIZONTAL",
         "questionsFlow": "VERTICAL",
         "configuration": [
-          5,
-          5,
-          5,
-          5,
-          5
+          3,
+          3,
+          9,
+          3,
+          3,
+          6,
+          6
         ]
       }
     },
