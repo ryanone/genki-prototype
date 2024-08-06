@@ -17,18 +17,19 @@ export function generateRandomChoices(
 ): ChoiceData[] {
   let availableChoices = [...choices];
   const randomChoices: ChoiceData[] = [];
-  let numChoicesRemaining = numChoices;
-  if (question) {
-    const correctChoice = choices.find(
-      (c) => c.id === question.choices.correctId,
-    );
-    if (correctChoice) {
-      availableChoices = availableChoices.filter(
-        (c) => c.id !== correctChoice.id,
-      );
-      randomChoices.push({ ...correctChoice });
-      numChoicesRemaining -= 1;
-    }
+  const correctChoice = choices.find(
+    (c) => c.id === question.choices.correctId,
+  )!;
+  availableChoices = availableChoices.filter((c) => c.id !== correctChoice.id);
+  randomChoices.push({ ...correctChoice });
+
+  if (question.choices.suggestions) {
+    question.choices.suggestions.forEach((choiceId) => {
+      const choice = availableChoices.find((c) => c.id === choiceId)!;
+      randomChoices.push({ ...choice });
+    });
+  } else {
+    let numChoicesRemaining = numChoices - 1;
     while (numChoicesRemaining) {
       randomChoices.push({
         ...availableChoices.splice(
@@ -38,7 +39,6 @@ export function generateRandomChoices(
       });
       numChoicesRemaining -= 1;
     }
-    return randomizeArray(randomChoices) as ChoiceData[];
   }
-  return randomChoices;
+  return randomizeArray(randomChoices) as ChoiceData[];
 }

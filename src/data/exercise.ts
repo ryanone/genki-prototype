@@ -42,6 +42,7 @@ export type Question = {
   alt?: string | undefined;
   choices: {
     correctId: string;
+    suggestions?: string[];
   };
   content: string;
 };

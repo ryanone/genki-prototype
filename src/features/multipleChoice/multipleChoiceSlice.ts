@@ -131,12 +131,8 @@ export const multipleChoiceSlice = createSlice({
       });
 
       // Generate choices for first question
-      state.index = 0;
-      state.answers[state.index].choices = generateRandomChoices(
-        state.answers[state.index].question,
-        state.choices,
-        NUM_CHOICES_PER_QUESTION,
-      );
+      state.index = -1;
+      updateStateToNextQuestion(state);
     },
   },
   selectors: {

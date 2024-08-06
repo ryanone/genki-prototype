@@ -1,0 +1,191 @@
+{
+  "types": [
+    "MULTIPLE_CHOICE"
+  ],
+  "questions": [
+    {
+      "content": "Japanese people greet each other by ______.",
+      "choices": {
+        "correctId": "1",
+        "suggestions": [
+          "1001",
+          "1002"
+        ]
+      }
+    },
+    {
+      "content": "Bowing has many other functions, such as...",
+      "choices": {
+        "correctId": "2",
+        "suggestions": [
+          "2001",
+          "2002"
+        ]
+      }
+    },
+    {
+      "content": "There are many different ways of bowing, ranging from...",
+      "choices": {
+        "correctId": "3",
+        "suggestions": [
+          "3001",
+          "3002"
+        ]
+      }
+    },
+    {
+      "content": "The longer and deeper you bow, the more _____ it appears to others.",
+      "choices": {
+        "correctId": "4",
+        "suggestions": [
+          "4001",
+          "4002"
+        ]
+      }
+    },
+    {
+      "content": "Many Japanese tend to feel uncomfortable with _____.",
+      "choices": {
+        "correctId": "5",
+        "suggestions": [
+          "5001",
+          "5002"
+        ]
+      }
+    },
+    {
+      "content": "Handshaking is becoming quite common in business situations, especially those involving _____.",
+      "choices": {
+        "correctId": "6",
+        "suggestions": [
+          "6001",
+          "6002"
+        ]
+      }
+    },
+    {
+      "content": "When meeting someone in a business situation for the first time, it is customary to exchange _____ with a small bow.",
+      "choices": {
+        "correctId": "7",
+        "suggestions": [
+          "7001",
+          "7002"
+        ]
+      }
+    },
+    {
+      "content": "It is important to clearly show your _____ when exchanging meeshi (business cards).",
+      "choices": {
+        "correctId": "8",
+        "suggestions": [
+          "8001",
+          "8002"
+        ]
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "bowing",
+      "id": "1"
+    },
+    {
+      "content": "kissing",
+      "id": "1001"
+    },
+    {
+      "content": "shaking hands",
+      "id": "1002"
+    },
+    {
+      "content": "expressing respect, gratitude, or apologies",
+      "id": "2"
+    },
+    {
+      "content": "expressing love and peace",
+      "id": "2001"
+    },
+    {
+      "content": "expressing your displeasure",
+      "id": "2002"
+    },
+    {
+      "content": "a small nod of the head to a 45-degree bend at the waist",
+      "id": "3"
+    },
+    {
+      "content": "a small nod of the head to a playful headbutt",
+      "id": "3001"
+    },
+    {
+      "content": "a small nod of the head to groveling on your hands and knees",
+      "id": "3002"
+    },
+    {
+      "content": "formal and respectful",
+      "id": "4"
+    },
+    {
+      "content": "authoritative and confident",
+      "id": "4001"
+    },
+    {
+      "content": "friendly and professional",
+      "id": "4002"
+    },
+    {
+      "content": "physical contact",
+      "id": "5"
+    },
+    {
+      "content": "foreigners",
+      "id": "5001"
+    },
+    {
+      "content": "the opposite sex",
+      "id": "5002"
+    },
+    {
+      "content": "foreigners",
+      "id": "6"
+    },
+    {
+      "content": "friends",
+      "id": "6001"
+    },
+    {
+      "content": "rivals",
+      "id": "6002"
+    },
+    {
+      "content": "business cards",
+      "id": "7"
+    },
+    {
+      "content": "handshakes",
+      "id": "7001"
+    },
+    {
+      "content": "hugs",
+      "id": "7002"
+    },
+    {
+      "content": "respect",
+      "id": "8"
+    },
+    {
+      "content": "intentions",
+      "id": "8001"
+    },
+    {
+      "content": "hands",
+      "id": "8002"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Answer the questions about Japanese culture as best as you can. You may want to read the Culture Note about Greetings and Bowing (Genki I: p.32) if you haven't yet.",
+      "randomizeQuestions": true
+    }
+  }
+}
