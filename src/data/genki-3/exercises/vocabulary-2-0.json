@@ -1,0 +1,162 @@
+{
+  "types": [
+    "DRAG_DROP",
+    "FILL_CHART",
+    "MULTIPLE_CHOICE",
+    "WRITING_PRACTICE"
+  ],
+  "questions": [
+    {
+      "content": "これ",
+      "choices": {
+        "correctId": "1"
+      }
+    },
+    {
+      "content": "それ",
+      "choices": {
+        "correctId": "2"
+      }
+    },
+    {
+      "content": "あれ",
+      "choices": {
+        "correctId": "3"
+      }
+    },
+    {
+      "content": "どれ",
+      "choices": {
+        "correctId": "4"
+      }
+    },
+    {
+      "content": "この",
+      "choices": {
+        "correctId": "5"
+      }
+    },
+    {
+      "content": "その",
+      "choices": {
+        "correctId": "6"
+      }
+    },
+    {
+      "content": "あの",
+      "choices": {
+        "correctId": "7"
+      }
+    },
+    {
+      "content": "どの",
+      "choices": {
+        "correctId": "8"
+      }
+    },
+    {
+      "content": "ここ",
+      "choices": {
+        "correctId": "9"
+      }
+    },
+    {
+      "content": "そこ",
+      "choices": {
+        "correctId": "10"
+      }
+    },
+    {
+      "content": "あそこ",
+      "choices": {
+        "correctId": "11"
+      }
+    },
+    {
+      "content": "どこ",
+      "choices": {
+        "correctId": "12"
+      }
+    },
+    {
+      "content": "だれ",
+      "choices": {
+        "correctId": "13"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "this one",
+      "id": "1"
+    },
+    {
+      "content": "that one",
+      "id": "2"
+    },
+    {
+      "content": "that one (over there)",
+      "id": "3"
+    },
+    {
+      "content": "which one",
+      "id": "4"
+    },
+    {
+      "content": "this...",
+      "id": "5"
+    },
+    {
+      "content": "that...",
+      "id": "6"
+    },
+    {
+      "content": "that... (over there)",
+      "id": "7"
+    },
+    {
+      "content": "which...",
+      "id": "8"
+    },
+    {
+      "content": "here",
+      "id": "9"
+    },
+    {
+      "content": "there",
+      "id": "10"
+    },
+    {
+      "content": "over there",
+      "id": "11"
+    },
+    {
+      "content": "where",
+      "id": "12"
+    },
+    {
+      "content": "who",
+      "id": "13"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the correct definition for each Japanese expression.",
+      "randomizeQuestions": true
+    },
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
+      "instructions": "Drag the English expression to the Japanese expression that has the same meaning. TIP: Click an expression to mark it, then click an empty field to drop the answer there.",
+      "HORIZONTAL": {
+        "questionLayout": "VERTICAL",
+        "questionsFlow": "HORIZONTAL",
+        "configuration": 5
+      }
+    },
+    "WRITING_PRACTICE": {
+      "instructions": "Practice spelling the following words/definitions.",
+      "numExamples": 3,
+      "numRepetitions": 6
+    }
+  }
+}

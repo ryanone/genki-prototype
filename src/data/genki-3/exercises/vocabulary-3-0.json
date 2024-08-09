@@ -97,7 +97,7 @@
       "randomizeQuestions": true
     },
     "WRITING_PRACTICE": {
-      "instructions": "Practice spelling the following words/definitions",
+      "instructions": "Practice spelling the following words/definitions.",
       "numExamples": 3,
       "numRepetitions": 6
     }
