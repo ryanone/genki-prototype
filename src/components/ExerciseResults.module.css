@@ -44,6 +44,12 @@
 
 .advice {
   margin-block: 0 12px;
+  padding-inline: 12px;
+}
+
+.correct {
+  color: var(--selected-correct-color);
+  font-weight: bold;
 }
 
 .incorrect {

@@ -36,6 +36,15 @@ function getAdvice(exerciseType: ExerciseType, score: number): ReactNode {
         before trying again.
       </>
     );
+  } else if (exerciseType === 'SHORT_ANSWER') {
+    typeSpecific = (
+      <>
+        The items underlined in <span className={styles.incorrect}>red</span>{' '}
+        were answered wrong, and the correct answers are underlined in{' '}
+        <span className={styles.correct}>green</span>. Review these problems
+        before trying again.
+      </>
+    );
   }
 
   return (

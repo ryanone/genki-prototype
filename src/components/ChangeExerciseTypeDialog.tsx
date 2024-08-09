@@ -18,6 +18,7 @@ const ExerciseTypeDescription: Record<ExerciseType, string> = {
   DRAG_DROP: 'Drag and Drop',
   FILL_CHART: 'Fill in the Chart',
   MULTIPLE_CHOICE: 'Multiple Choice',
+  SHORT_ANSWER: 'Short Answer',
   WRITING_PRACTICE: 'Writing Practice',
 };
 

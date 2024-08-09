@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import dragDropReducer from '@/features/dragDrop/dragDropSlice';
 import fillChartReducer from '@/features/fillChart/fillChartSlice';
 import multipleChoiceReducer from '@/features/multipleChoice/multipleChoiceSlice';
+import shortAnswerReducer from '@/features/shortAnswer/shortAnswerSlice';
 import writingPracticeReducer from '@/features/writingPractice/writingPracticeSlice';
 
 const rootReducer = combineReducers({
   dragDrop: dragDropReducer,
   fillChart: fillChartReducer,
   multipleChoice: multipleChoiceReducer,
+  shortAnswer: shortAnswerReducer,
   writingPractice: writingPracticeReducer,
 });
 

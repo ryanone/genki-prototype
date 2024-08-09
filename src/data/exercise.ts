@@ -3,26 +3,22 @@ export type Choice = {
   id: string;
 };
 
-type Meta = {
-  DRAG_DROP?: DragDropMeta;
-  FILL_CHART?: FillChartMeta;
-  MULTIPLE_CHOICE?: MultipleChoiceMeta;
-  WRITING_PRACTICE?: WritingPracticeMeta;
-};
-
 export type TwoDirectionalFlow = 'HORIZONTAL' | 'VERTICAL';
 
 interface BaseMeta {
   instructions: string;
-  randomizeQuestions?: boolean;
 }
 
+interface ShortAnswerConfigurationValue {
+  width: number;
+}
 export interface DragDropMeta extends BaseMeta {
   HORIZONTAL?: {
     configuration?: number | number[];
     questionLayout: TwoDirectionalFlow;
     questionsFlow: TwoDirectionalFlow;
   };
+  randomizeQuestions?: boolean;
   supportedLayouts: TwoDirectionalFlow[];
 }
 
@@ -31,12 +27,26 @@ export interface FillChartMeta extends BaseMeta {
   flow: TwoDirectionalFlow;
 }
 
-export interface MultipleChoiceMeta extends BaseMeta {}
+export interface MultipleChoiceMeta extends BaseMeta {
+  randomizeQuestions?: boolean;
+}
+
+export interface ShortAnswerMeta extends BaseMeta {
+  configuration?: Record<string, ShortAnswerConfigurationValue>;
+}
 
 export interface WritingPracticeMeta extends BaseMeta {
   numExamples: number;
   numRepetitions: number;
 }
+
+type Meta = {
+  DRAG_DROP?: DragDropMeta;
+  FILL_CHART?: FillChartMeta;
+  MULTIPLE_CHOICE?: MultipleChoiceMeta;
+  SHORT_ANSWER?: ShortAnswerMeta;
+  WRITING_PRACTICE?: WritingPracticeMeta;
+};
 
 export type Question = {
   alt?: string | undefined;
@@ -45,12 +55,14 @@ export type Question = {
     suggestions?: string[];
   };
   content: string;
+  id?: string;
 };
 
 export type ExerciseType =
   | 'DRAG_DROP'
   | 'FILL_CHART'
   | 'MULTIPLE_CHOICE'
+  | 'SHORT_ANSWER'
   | 'WRITING_PRACTICE';
 
 export type BaseExercise = {
@@ -79,6 +91,12 @@ export interface MultipleChoiceExercise extends BaseExercise {
   };
 }
 
+export interface ShortAnswerExercise extends BaseExercise {
+  meta: {
+    SHORT_ANSWER: ShortAnswerMeta;
+  };
+}
+
 export interface WritingPracticeExercise extends BaseExercise {
   meta: {
     WRITING_PRACTICE: WritingPracticeMeta;
@@ -89,6 +107,7 @@ export type Exercise =
   | DragDropExercise
   | FillChartExercise
   | MultipleChoiceExercise
+  | ShortAnswerExercise
   | WritingPracticeExercise;
 
 export type Results = {

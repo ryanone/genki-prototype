@@ -1,0 +1,35 @@
+.shortAnswerInput {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.answerContent {
+  color: var(--selected-correct-color);
+}
+
+.input {
+  background: transparent;
+  border: 0 solid var(--outline-color-2);
+  border-bottom-width: 2px;
+  box-sizing: border-box;
+  color: var(--foreground-color-1);
+  font-size: 1rem;
+  outline: none;
+  padding: 4px 2px;
+  width: var(--width, auto);
+}
+
+.input:focus,
+.input:focus:hover {
+  border-color: var(--highlight-color-1);
+}
+
+.correct {
+  border-color: var(--selected-correct-color);
+}
+
+.incorrect {
+  border-color: var(--incorrect-color);
+}

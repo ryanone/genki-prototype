@@ -1,0 +1,218 @@
+{
+  "types": ["SHORT_ANSWER", "MULTIPLE_CHOICE"],
+  "questions": [
+    {
+      "content": "It is one o'clock in the afternoon. You see your neighbor Mr. Yamada.",
+      "id": "1",
+      "choices": {
+        "correctId": "1",
+        "suggestions": [
+          "1001",
+          "1002"
+        ]
+      }
+    },
+    {
+      "content": "You come to class in the morning. Greet your teacher. Greet your friends.",
+      "id": "2",
+      "choices": {
+        "correctId": "2",
+        "suggestions": [
+          "2001",
+          "2002"
+        ]
+      }
+    },
+    {
+      "content": "On a crowded train, you stepped on someone's foot.",
+      "id": "3",
+      "choices": {
+        "correctId": "3",
+        "suggestions": [
+          "3001",
+          "3002"
+        ]
+      }
+    },
+    {
+      "content": "You dropped your book. Someone picked it up for you.",
+      "id": "4",
+      "choices": {
+        "correctId": "4",
+        "suggestions": [
+          "3",
+          "4002"
+        ]
+      }
+    },
+    {
+      "content": "It's eight o'clock at night. You happen to meet your teacher at the convenience store.",
+      "id": "5",
+      "choices": {
+        "correctId": "1002",
+        "suggestions": [
+          "1",
+          "5002"
+        ]
+      }
+    },
+    {
+      "content": "You are watching TV with your host family. It is time to go to sleep.",
+      "id": "6",
+      "choices": {
+        "correctId": "6",
+        "suggestions": [
+          "6001",
+          "7"
+        ]
+      }
+    },
+    {
+      "content": "You are leaving home.",
+      "id": "7",
+      "choices": {
+        "correctId": "7",
+        "suggestions": [
+          "6001",
+          "7002"
+        ]
+      }
+    },
+    {
+      "content": "You have come back home.",
+      "id": "8",
+      "choices": {
+        "correctId": "8",
+        "suggestions": [
+          "8001",
+          "1"
+        ]
+      }
+    },
+    {
+      "content": "You are going to start eating.",
+      "id": "9",
+      "choices": {
+        "correctId": "9",
+        "suggestions": [
+          "9001",
+          "4002"
+        ]
+      }
+    },
+    {
+      "content": "You have finished eating.",
+      "id": "10",
+      "choices": {
+        "correctId": "10",
+        "suggestions": [
+          "4",
+          "6"
+        ]
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "こんにちは。",
+      "id": "1"
+    },
+    {
+      "content": "おはよう。",
+      "id": "1001"
+    },
+    {
+      "content": "こんばんは。",
+      "id": "1002"
+    },
+    {
+      "content": "おはようございます。おはよう。",
+      "id": "2"
+    },
+    {
+      "content": "はじめまして。こんにちは。",
+      "id": "2001"
+    },
+    {
+      "content": "おはよう。おはようございます。",
+      "id": "2002"
+    },
+    {
+      "content": "すみません。",
+      "id": "3"
+    },
+    {
+      "content": "ごちそうさま。",
+      "id": "3001"
+    },
+    {
+      "content": "はじめまして。",
+      "id": "3002"
+    },
+    {
+      "content": "ありがとうございます。",
+      "id": "4"
+    },
+    {
+      "content": "ありがとう。",
+      "id": "4002"
+    },
+    {
+      "content": "おはようございます。",
+      "id": "5002"
+    },
+    {
+      "content": "おやすみ（なさい）。",
+      "id": "6"
+    },
+    {
+      "content": "さようなら。",
+      "id": "6001"
+    },
+    {
+      "content": "いってきます。",
+      "id": "7"
+    },
+    {
+      "content": "いったらっしゃい。",
+      "id": "7002"
+    },
+    {
+      "content": "ただいま。",
+      "id": "8"
+    },
+    {
+      "content": "おかえりなさい。",
+      "id": "8001"
+    },
+    {
+      "content": "いただきます。",
+      "id": "9"
+    },
+    {
+      "content": "ごちそうさま。",
+      "id": "9001"
+    },
+    {
+      "content": "ごちそうさま（でした）。",
+      "id": "10"
+    }
+  ],
+  "meta": {
+    "MULTIPLE_CHOICE": {
+      "instructions": "Choose the appropriate expression for the each situation.",
+      "randomizeQuestions": true
+    },
+    "SHORT_ANSWER": {
+      "instructions": "Write in Japanese (Hiragana) the appropriate expression for each situation.",
+      "configuration": {
+        "2": {
+          "width": 250
+        },
+        "4": {
+          "width": 200
+        }
+      }
+    }
+  }
+}

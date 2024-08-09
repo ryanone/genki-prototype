@@ -13,6 +13,10 @@ import {
   // reset as resetMultipleChoice,
 } from '@/features/multipleChoice/multipleChoiceSlice';
 import {
+  initialize as initializeShortAnswer,
+  // reset as resetShortAnswer
+} from '@/features/shortAnswer/shortAnswerSlice';
+import {
   initialize as initializeWritingPractice,
   // reset as resetWritingPractice,
 } from '@/features/writingPractice/writingPracticeSlice';
@@ -22,6 +26,7 @@ import type {
   ExerciseType,
   FillChartExercise,
   MultipleChoiceExercise,
+  ShortAnswerExercise,
   WritingPracticeExercise,
 } from '@/data/exercise';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
@@ -40,6 +45,7 @@ const FillChart = lazy(() => import('@/components/exercises/FillChart'));
 const MultipleChoice = lazy(
   () => import('@/components/exercises/MultipleChoice'),
 );
+const ShortAnswer = lazy(() => import('@/components/exercises/ShortAnswer'));
 const WritingPractice = lazy(
   () => import('@/components/exercises/WritingPractice'),
 );
@@ -57,6 +63,9 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   );
   const isMultipleChoiceInitialized = useAppSelector(
     (state) => state.multipleChoice.initialized,
+  );
+  const isShortAnswerInitialized = useAppSelector(
+    (state) => state.shortAnswer.initialized,
   );
   const isWritingPracticeInitialized = useAppSelector(
     (state) => state.writingPractice.initialized,
@@ -85,6 +94,12 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
           questionFeedback: multipleChoiceSettings.feedback,
         }),
       );
+    } else if (exerciseType === 'SHORT_ANSWER') {
+      dispatch(
+        initializeShortAnswer({
+          exercise: data as ShortAnswerExercise,
+        }),
+      );
     } else if (exerciseType === 'WRITING_PRACTICE') {
       dispatch(
         initializeWritingPractice({
@@ -110,6 +125,8 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
     isMultipleChoiceInitialized
   ) {
     exercise = <MultipleChoice key={Date.now()} />;
+  } else if (exerciseType === 'SHORT_ANSWER' && isShortAnswerInitialized) {
+    exercise = <ShortAnswer key={Date.now()} />;
   } else if (
     exerciseType === 'WRITING_PRACTICE' &&
     isWritingPracticeInitialized
@@ -118,7 +135,7 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   }
 
   return (
-    <div>
+    <div className={styles.exerciseRenderer}>
       <Suspense
         fallback={
           <p className={styles.loading} role="alert">
