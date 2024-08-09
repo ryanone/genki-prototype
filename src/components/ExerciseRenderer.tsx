@@ -1,5 +1,6 @@
 import { lazy, useContext, useEffect, useState, Suspense } from 'react';
-import { FaArrowsRotate } from 'react-icons/fa6';
+import { FaArrowLeft, FaArrowRight, FaArrowsRotate } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 import {
   initialize as initializeDragDrop,
   // reset as resetDragDrop,
@@ -35,9 +36,12 @@ import useAppDispatch from '@/hooks/useAppDispatch';
 import styles from './ExerciseRenderer.module.css';
 import commonStyles from '@/styles/common.module.css';
 import useAppSelector from '@/hooks/useAppSelector';
+import { type AdjacentExerciseInfo } from '@/routes/loaders/exercise';
 
 type ExerciseRendererProps = {
   data: Exercise;
+  next: AdjacentExerciseInfo | undefined;
+  previous: AdjacentExerciseInfo | undefined;
 };
 
 const DragDrop = lazy(() => import('@/components/exercises/DragDrop'));
@@ -50,7 +54,11 @@ const WritingPractice = lazy(
   () => import('@/components/exercises/WritingPractice'),
 );
 
-export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
+export default function ExerciseRenderer({
+  data,
+  next,
+  previous,
+}: ExerciseRendererProps) {
   const [exerciseType, setExerciseType] = useState(data.types[0]);
   const [showChangeExerciseTypeDialog, setShowChangeExerciseTypeDialog] =
     useState(false);
@@ -135,7 +143,7 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
   }
 
   return (
-    <div className={styles.exerciseRenderer}>
+    <div>
       <Suspense
         fallback={
           <p className={styles.loading} role="alert">
@@ -163,6 +171,26 @@ export default function ExerciseRenderer({ data }: ExerciseRendererProps) {
           />
         </>
       )}
+      <div className={styles.actions}>
+        {previous && (
+          <Link
+            to={`/${previous.bookId}/lesson/${previous.lessonId}/exercise/${previous.id}`}
+            className={`${styles.previousExercise} ${commonStyles.button}`}
+          >
+            <FaArrowLeft role="presentation" />
+            {previous.title}
+          </Link>
+        )}
+        {next && (
+          <Link
+            to={`/${next.bookId}/lesson/${next.lessonId}/exercise/${next.id}`}
+            className={`${styles.nextExercise} ${commonStyles.button}`}
+          >
+            {next.title}
+            <FaArrowRight role="presentation" />
+          </Link>
+        )}
+      </div>
     </div>
   );
 }

@@ -105,6 +105,16 @@
     }
   ],
   "meta": {
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
+      "instructions": "Drag the English expression to the Japanese expression that has the same meaning.",
+      "randomizeQuestions": true,
+      "HORIZONTAL": {
+        "questionLayout": "VERTICAL",
+        "questionsFlow": "HORIZONTAL",
+        "configuration": 5
+      }
+    },
     "MULTIPLE_CHOICE": {
       "instructions": "Choose the correct definition for each Japanese expression.",
       "randomizeQuestions": true

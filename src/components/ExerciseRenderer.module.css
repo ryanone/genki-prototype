@@ -11,5 +11,26 @@
   justify-content: center;
 }
 
-.exerciseRenderer {
+.actions {
+  margin-block-start: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.adjacent {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nextExercise {
+  composes: adjacent;
+  align-self: flex-end;
+  margin-inline-start: auto;
+}
+
+.previousExercise {
+  composes: adjacent;
+  align-self: flex-start;
+  margin-inline-end: auto;
 }
