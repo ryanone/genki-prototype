@@ -9,10 +9,11 @@ type TimerProps = {
 
 export default function Timer({ isRunning, onTick }: TimerProps) {
   const [seconds, setSeconds] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     let intervalId: number | undefined;
-    if (isRunning) {
+    if (isRunning && isVisible) {
       intervalId = window.setInterval(() => {
         setSeconds((s) => {
           const nextTick = s + 1;
@@ -27,7 +28,18 @@ export default function Timer({ isRunning, onTick }: TimerProps) {
     }
 
     return () => clearInterval(intervalId);
-  }, [isRunning, onTick]);
+  }, [isRunning, isVisible, onTick]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsVisible(document.visibilityState !== 'hidden');
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    setIsVisible(document.visibilityState !== 'hidden');
+
+    return () =>
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
   return (
     <div className={styles.timer}>
