@@ -21,6 +21,6 @@ export default async function loader({
     return { ...response };
   } catch (e) {
     console.error('Book loader error: %o', e);
-    throw e;
+    throw new Error('Book loader error', { cause: e });
   }
 }

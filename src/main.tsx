@@ -6,6 +6,7 @@ import BookIndexRoute from '@/routes/Book/Index';
 import BookRoute from '@/routes/Book';
 import ExerciseRoute from '@/routes/Exercise';
 import IndexRoute from '@/routes/Index';
+import RootBoundary from '@/routes/RootBoundary';
 import Paths from '@/routes/loaders';
 import RootRoute from '@/routes/Root';
 import bookLoader from '@/routes/loaders/book';
@@ -16,6 +17,7 @@ import './index.css';
 const router = createBrowserRouter([
   {
     path: '/',
+    errorElement: <RootBoundary />,
     element: <RootRoute />,
     children: [
       {
