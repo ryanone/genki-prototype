@@ -17,10 +17,12 @@ export default function initializeState(
       : exercise.questions
   ).map((question) => ({ question }));
   const index = 0;
+  const numChoicesPerQuestion =
+    meta.numChoicesPerQuestion ?? NUM_CHOICES_PER_QUESTION;
   answers[index].choices = generateRandomChoices(
     answers[index].question,
     exercise.choices,
-    NUM_CHOICES_PER_QUESTION,
+    numChoicesPerQuestion,
   );
   return {
     answers,
@@ -29,6 +31,7 @@ export default function initializeState(
     index,
     initialized: true,
     meta,
+    numChoicesPerQuestion,
     questionFeedback: 'INSTANT',
     startTime: Date.now(),
   };

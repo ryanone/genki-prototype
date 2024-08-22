@@ -28,6 +28,7 @@ export interface FillChartMeta extends BaseMeta {
 }
 
 export interface MultipleChoiceMeta extends BaseMeta {
+  numChoicesPerQuestion?: number;
   randomizeQuestions?: boolean;
 }
 

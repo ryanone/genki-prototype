@@ -1,0 +1,133 @@
+{
+  "types": ["DRAG_DROP", "MULTIPLE_CHOICE"],
+  "questions": [
+    {
+      "content": "みと",
+      "id": "1",
+      "choices": {
+        "correctId": "h"
+      }
+    },
+    {
+      "content": "たかはし",
+      "id": "2",
+      "choices": {
+        "correctId": "d"
+      }
+    },
+    {
+      "content": "やまもと",
+      "id": "3",
+      "choices": {
+        "correctId": "e"
+      }
+    },
+    {
+      "content": "よこはま",
+      "id": "4",
+      "choices": {
+        "correctId": "g"
+      }
+    },
+    {
+      "content": "もりおか",
+      "id": "5",
+      "choices": {
+        "correctId": "f"
+      }
+    },
+    {
+      "content": "くまもと",
+      "id": "6",
+      "choices": {
+        "correctId": "j"
+      }
+    },
+    {
+      "content": "もりかわ",
+      "id": "7",
+      "choices": {
+        "correctId": "c"
+      }
+    },
+    {
+      "content": "さくま",
+      "id": "8",
+      "choices": {
+        "correctId": "a"
+      }
+    },
+    {
+      "content": "おかやま",
+      "id": "9",
+      "choices": {
+        "correctId": "i"
+      }
+    },
+    {
+      "content": "たなか",
+      "id": "10",
+      "choices": {
+        "correctId": "b"
+      }
+    }
+  ],
+  "choices": [
+    {
+      "content": "Sakuma",
+      "id": "a"
+    },
+    {
+      "content": "Tanaka",
+      "id": "b"
+    },
+    {
+      "content": "Morikawa",
+      "id": "c"
+    },
+    {
+      "content": "Takahashi",
+      "id": "d"
+    },
+    {
+      "content": "Yamamoto",
+      "id": "e"
+    },
+    {
+      "content": "Morioka",
+      "id": "f"
+    },
+    {
+      "content": "Yokohama",
+      "id": "g"
+    },
+    {
+      "content": "Mito",
+      "id": "h"
+    },
+    {
+      "content": "Okayama",
+      "id": "i"
+    },
+    {
+      "content": "Kumamoto",
+      "id": "j"
+    }
+  ],
+  "meta": {
+    "DRAG_DROP": {
+      "instructions": "Match the person and place names to their Hiragana counterparts.",
+      "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
+      "randomizeQuestions": true,
+      "HORIZONTAL": {
+        "questionLayout": "VERTICAL",
+        "questionsFlow": "HORIZONTAL",
+        "configuration": 5
+      }
+    },
+    "MULTIPLE_CHOICE": {
+      "instructions": "Read the Japanese and choose the answer that matches it.",
+      "numChoicesPerQuestion": 5
+    }
+  }
+}

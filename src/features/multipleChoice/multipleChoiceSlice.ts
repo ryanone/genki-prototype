@@ -14,6 +14,8 @@ import type {
 } from '@/data/exercise';
 import type { MultipleChoiceQuestionFeedback } from '@/context/MultipleChoiceSettingsContext';
 
+export const NUM_CHOICES_PER_QUESTION = 4;
+
 export interface ChoiceData extends Choice {
   result?: 'SELECTED_CORRECT' | 'UNSELECTED_CORRECT' | 'INCORRECT' | undefined;
 }
@@ -30,6 +32,7 @@ export type MultipleChoiceState = {
   initialized: boolean;
   isQuestionFinished: boolean;
   meta?: MultipleChoiceMeta;
+  numChoicesPerQuestion: number;
   questionFeedback: MultipleChoiceQuestionFeedback;
   startTime: number;
 };
@@ -53,11 +56,10 @@ const initialState: MultipleChoiceState = {
   index: 0,
   initialized: false,
   isQuestionFinished: false,
+  numChoicesPerQuestion: NUM_CHOICES_PER_QUESTION,
   questionFeedback: 'INSTANT',
   startTime: Date.now(),
 };
-
-export const NUM_CHOICES_PER_QUESTION = 4;
 
 function updateStateToNextQuestion(state: MultipleChoiceState) {
   state.index += 1;
@@ -65,7 +67,7 @@ function updateStateToNextQuestion(state: MultipleChoiceState) {
     state.answers[state.index].choices = generateRandomChoices(
       state.answers[state.index].question,
       state.choices,
-      NUM_CHOICES_PER_QUESTION,
+      state.numChoicesPerQuestion,
     );
     state.isQuestionFinished = false;
   }
@@ -111,6 +113,7 @@ export const multipleChoiceSlice = createSlice({
       state.index = initial.index;
       state.initialized = initial.initialized;
       state.meta = initial.meta;
+      state.numChoicesPerQuestion = initial.numChoicesPerQuestion;
       state.questionFeedback = initial.questionFeedback;
       state.startTime = initial.startTime;
       if (action.payload.questionFeedback) {
