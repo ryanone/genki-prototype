@@ -206,10 +206,31 @@
     "SHORT_ANSWER": {
       "instructions": "Write in Japanese (Hiragana) the appropriate expression for each situation.",
       "configuration": {
+        "1": {
+          "width": 100
+        },
         "2": {
           "width": 250
         },
+        "3": {
+          "width": 100
+        },
         "4": {
+          "width": 200
+        },
+        "5": {
+          "width": 100
+        },
+        "7": {
+          "width": 125
+        },
+        "8": {
+          "width": 100
+        },
+        "9": {
+          "width": 125
+        },
+        "10": {
           "width": 200
         }
       }

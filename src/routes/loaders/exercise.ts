@@ -23,7 +23,7 @@ async function getAdjacentLessonSummaries(
   const lessonId = `lesson-${adjacentIndex}`;
   const response = (await loadData({
     bookId,
-    lessonId: `${adjacentIndex}`,
+    lessonId: `lesson-${adjacentIndex}`,
   })) as LessonExercises;
 
   return {

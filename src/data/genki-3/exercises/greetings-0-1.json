@@ -118,6 +118,11 @@
     "MULTIPLE_CHOICE": {
       "instructions": "Choose the correct definition for each Japanese expression.",
       "randomizeQuestions": true
+    },
+    "WRITING_PRACTICE": {
+      "instructions": "Practice spelling the following words/expressions. If you don't know how to type in Japanese on your computer, please visit our help page.",
+      "numExamples": 3,
+      "numRepetitions": 6
     }
   }
 }
