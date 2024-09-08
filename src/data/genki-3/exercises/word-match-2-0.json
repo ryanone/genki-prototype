@@ -1,0 +1,58 @@
+{
+  "types": [
+    "DRAG_DROP",
+    "MULTIPLE_CHOICE",
+    "WRITING_CHOICE"
+  ],
+  "questions": [],
+  "choices": [
+    {
+      "content": "coffee",
+      "id": "a"
+    },
+    {
+      "content": "iced tea",
+      "id": "b"
+    },
+    {
+      "content": "orange juice",
+      "id": "c"
+    },
+    {
+      "content": "french fries",
+      "id": "d"
+    },
+    {
+      "content": "toast",
+      "id": "e"
+    },
+    {
+      "content": "salad",
+      "id": "f"
+    },
+    {
+      "content": "curry",
+      "id": "g"
+    },
+    {
+      "content": "chocolate parfait",
+      "id": "h"
+    },
+    {
+      "content": "cake",
+      "id": "i"
+    },
+    {
+      "content": "steak",
+      "id": "j"
+    },
+    {
+      "content": "sandwich",
+      "id": "k"
+    },
+    {
+      "content": "pizza",
+      "id": "l"
+    }
+  ]
+}
