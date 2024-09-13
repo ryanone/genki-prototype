@@ -36,6 +36,11 @@ export interface ShortAnswerMeta extends BaseMeta {
   configuration?: Record<string, ShortAnswerConfigurationValue>;
 }
 
+export interface WritingChoiceMeta extends BaseMeta {
+  numColumns?: number;
+  questionsFlow: TwoDirectionalFlow;
+}
+
 export interface WritingPracticeMeta extends BaseMeta {
   numExamples: number;
   numRepetitions: number;
@@ -46,6 +51,7 @@ type Meta = {
   FILL_CHART?: FillChartMeta;
   MULTIPLE_CHOICE?: MultipleChoiceMeta;
   SHORT_ANSWER?: ShortAnswerMeta;
+  WRITING_CHOICE?: WritingChoiceMeta;
   WRITING_PRACTICE?: WritingPracticeMeta;
 };
 
@@ -64,6 +70,7 @@ export type ExerciseType =
   | 'FILL_CHART'
   | 'MULTIPLE_CHOICE'
   | 'SHORT_ANSWER'
+  | 'WRITING_CHOICE'
   | 'WRITING_PRACTICE';
 
 export type BaseExercise = {
@@ -98,6 +105,12 @@ export interface ShortAnswerExercise extends BaseExercise {
   };
 }
 
+export interface WritingChoiceExercise extends BaseExercise {
+  meta: {
+    WRITING_CHOICE: WritingChoiceMeta;
+  };
+}
+
 export interface WritingPracticeExercise extends BaseExercise {
   meta: {
     WRITING_PRACTICE: WritingPracticeMeta;
@@ -109,6 +122,7 @@ export type Exercise =
   | FillChartExercise
   | MultipleChoiceExercise
   | ShortAnswerExercise
+  | WritingChoiceExercise
   | WritingPracticeExercise;
 
 export type Results = {

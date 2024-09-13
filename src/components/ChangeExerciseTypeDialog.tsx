@@ -19,6 +19,7 @@ const ExerciseTypeDescription: Record<ExerciseType, string> = {
   FILL_CHART: 'Fill in the Chart',
   MULTIPLE_CHOICE: 'Multiple Choice',
   SHORT_ANSWER: 'Short Answer',
+  WRITING_CHOICE: 'Writing',
   WRITING_PRACTICE: 'Writing Practice',
 };
 

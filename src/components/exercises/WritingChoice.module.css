@@ -1,0 +1,33 @@
+.writingChoice {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.answers {
+  display: grid;
+  grid-auto-flow: var(--questions-flow);
+  grid-template-columns: repeat(var(--num-columns), 1fr);
+  grid-template-rows: repeat(var(--num-rows), 1fr);
+  gap: 16px;
+  margin-block-end: 28px;
+}
+
+.checkAnswersButton {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-block-start: 20px;
+  margin-inline: auto;
+}
+
+.content {
+  background-color: var(--background-color-3);
+  padding: 16px;
+}

@@ -24,14 +24,12 @@ export default function ShortAnswerInput({
     onChange(e.currentTarget.value);
   };
   const inputClasses = [styles.input];
-  let showAnswer = false;
-  let showCorrectAnswerConfirmation = false;
   const isDisabled = !!result;
-  if (result === 'CORRECT') {
+  const isCorrect = result === 'CORRECT';
+  const isIncorrect = result === 'INCORRECT';
+  if (isCorrect) {
     inputClasses.push(styles.correct);
-    showCorrectAnswerConfirmation = true;
   } else if (result === 'INCORRECT') {
-    showAnswer = true;
     inputClasses.push(styles.incorrect);
   }
 
@@ -51,19 +49,17 @@ export default function ShortAnswerInput({
         onChange={handleInputChange}
         style={style}
       />
-      {showAnswer && (
+      {isIncorrect && answerContent && (
         <>
           <div className={styles.answerContent} aria-hidden="true">
             {answerContent ?? ''}
           </div>
-          {answerContent && (
-            <div className={commonStyles.hidden}>
-              The correct answer is {answerContent}
-            </div>
-          )}
+          <div className={commonStyles.hidden}>
+            The correct answer is {answerContent}
+          </div>
         </>
       )}
-      {showCorrectAnswerConfirmation && (
+      {isCorrect && (
         <div className={commonStyles.hidden}>This answer is correct.</div>
       )}
     </span>

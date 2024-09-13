@@ -1,10 +1,83 @@
 {
   "types": [
+    "WRITING_CHOICE",
     "DRAG_DROP",
-    "MULTIPLE_CHOICE",
-    "WRITING_CHOICE"
+    "MULTIPLE_CHOICE"
   ],
-  "questions": [],
+  "questions": [
+    {
+      "content": "オレンジジュース",
+      "choices": {
+        "correctId": "c"
+      }
+    },
+    {
+      "content": "フライドポテト",
+      "choices": {
+        "correctId": "d"
+      }
+    },
+    {
+      "content": "ケーキ",
+      "choices": {
+        "correctId": "i"
+      }
+    },
+    {
+      "content": "サラダ",
+      "choices": {
+        "correctId": "f"
+      }
+    },
+    {
+      "content": "チョコレートパフェ",
+      "choices": {
+        "correctId": "h"
+      }
+    },
+    {
+      "content": "コーヒー",
+      "choices": {
+        "correctId": "a"
+      }
+    },
+    {
+      "content": "サンドイッチ",
+      "choices": {
+        "correctId": "k"
+      }
+    },
+    {
+      "content": "ステーキ",
+      "choices": {
+        "correctId": "j"
+      }
+    },
+    {
+      "content": "カレー",
+      "choices": {
+        "correctId": "g"
+      }
+    },
+    {
+      "content": "ピザ",
+      "choices": {
+        "correctId": "l"
+      }
+    },
+    {
+      "content": "トースト",
+      "choices": {
+        "correctId": "e"
+      }
+    },
+    {
+      "content": "アイスティー",
+      "choices": {
+        "correctId": "b"
+      }
+    }
+  ],
   "choices": [
     {
       "content": "coffee",
@@ -54,5 +127,26 @@
       "content": "pizza",
       "id": "l"
     }
-  ]
+  ],
+  "meta": {
+    "DRAG_DROP": {
+      "supportedLayouts": ["HORIZONTAL", "VERTICAL"],
+      "instructions": "Match the food names to their Katakana counterparts.",
+      "randomizeQuestions": true,
+      "HORIZONTAL": {
+        "questionLayout": "VERTICAL",
+        "questionsFlow": "HORIZONTAL",
+        "configuration": 5
+      }
+    },
+    "MULTIPLE_CHOICE": {
+      "instructions": "Read the Japanese and choose the answer that matches it.",
+      "randomizeQuestions": true
+    },
+    "WRITING_CHOICE": {
+      "instructions": "Read the Katakana and the English food names, then write the letter for each match.",
+      "numColumns": 2,
+      "questionsFlow": "VERTICAL"
+    }
+  }
 }

@@ -1,0 +1,34 @@
+.writingChoiceItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.input {
+  border-width: 0 0 2px 0;
+  background: transparent;
+  width: 1.5rem;
+}
+
+.correct {
+  border-color: var(--selected-correct-color);
+}
+
+.incorrect {
+  border-color: var(--incorrect-color);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputLine {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.answerContent {
+  color: var(--selected-correct-color);
+  text-align: center;
+}

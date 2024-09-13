@@ -18,6 +18,10 @@ import {
   // reset as resetShortAnswer
 } from '@/features/shortAnswer/shortAnswerSlice';
 import {
+  initialize as initializeWritingChoice,
+  // reset as resetWritingChoice,
+} from '@/features/writingChoice/writingChoiceSlice';
+import {
   initialize as initializeWritingPractice,
   // reset as resetWritingPractice,
 } from '@/features/writingPractice/writingPracticeSlice';
@@ -28,6 +32,7 @@ import type {
   FillChartExercise,
   MultipleChoiceExercise,
   ShortAnswerExercise,
+  WritingChoiceExercise,
   WritingPracticeExercise,
 } from '@/data/exercise';
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
@@ -50,6 +55,9 @@ const MultipleChoice = lazy(
   () => import('@/components/exercises/MultipleChoice'),
 );
 const ShortAnswer = lazy(() => import('@/components/exercises/ShortAnswer'));
+const WritingChoice = lazy(
+  () => import('@/components/exercises/WritingChoice'),
+);
 const WritingPractice = lazy(
   () => import('@/components/exercises/WritingPractice'),
 );
@@ -74,6 +82,9 @@ export default function ExerciseRenderer({
   );
   const isShortAnswerInitialized = useAppSelector(
     (state) => state.shortAnswer.initialized,
+  );
+  const isWritingChoiceInitialized = useAppSelector(
+    (state) => state.writingChoice.initialized,
   );
   const isWritingPracticeInitialized = useAppSelector(
     (state) => state.writingPractice.initialized,
@@ -108,6 +119,12 @@ export default function ExerciseRenderer({
           exercise: data as ShortAnswerExercise,
         }),
       );
+    } else if (exerciseType === 'WRITING_CHOICE') {
+      dispatch(
+        initializeWritingChoice({
+          exercise: data as WritingChoiceExercise,
+        }),
+      );
     } else if (exerciseType === 'WRITING_PRACTICE') {
       dispatch(
         initializeWritingPractice({
@@ -135,6 +152,8 @@ export default function ExerciseRenderer({
     exercise = <MultipleChoice key={Date.now()} />;
   } else if (exerciseType === 'SHORT_ANSWER' && isShortAnswerInitialized) {
     exercise = <ShortAnswer key={Date.now()} />;
+  } else if (exerciseType === 'WRITING_CHOICE' && isWritingChoiceInitialized) {
+    exercise = <WritingChoice key={Date.now()} />;
   } else if (
     exerciseType === 'WRITING_PRACTICE' &&
     isWritingPracticeInitialized

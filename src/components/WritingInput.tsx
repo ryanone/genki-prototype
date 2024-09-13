@@ -34,7 +34,7 @@ const WritingInput = forwardRef<Ref, WritingInputProps>(function WritingInput(
     onChange(e.currentTarget.value, index);
   };
 
-  const inputClasses = [styles.input];
+  const inputClasses = [commonStyles.input, styles.input];
   let description;
   const isCorrect = result === 'CORRECT';
   if (result === 'INCORRECT') {

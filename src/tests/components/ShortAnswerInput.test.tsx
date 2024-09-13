@@ -27,8 +27,7 @@ describe('component/ShortAnswerInput', () => {
   });
 
   it('renders the component and shows the answer when result is INCORRECT', () => {
-    const incorrectAnswerConfirmation =
-      'The correct answer is 日本に行きたいです。';
+    const incorrectAnswerConfirmation = `The correct answer is ${answerContent}`;
     render(
       <ShortAnswerInput
         answerContent={answerContent}
@@ -39,11 +38,12 @@ describe('component/ShortAnswerInput', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
+    expect(screen.queryByText(correctAnswerConfirmation)).toBeNull();
     expect(screen.getByText(incorrectAnswerConfirmation)).toBeInTheDocument();
   });
 
   it('renders the component and confirmation when result is CORRECT', () => {
-    const incorrectAnswerConfirmation = 'The correct answer is';
+    const incorrectAnswerConfirmation = `The correct answer is ${answerContent}`;
     render(
       <ShortAnswerInput
         answerContent={answerContent}
