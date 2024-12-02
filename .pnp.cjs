@@ -61,7 +61,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-react-refresh", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:0.4.14"],\
           ["eslint-plugin-storybook", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:0.8.0"],\
           ["eslint-plugin-typescript-sort-keys", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:3.3.0"],\
-          ["happy-dom", "npm:14.12.3"],\
+          ["happy-dom", "npm:15.11.7"],\
           ["husky", "npm:9.1.7"],\
           ["lint-staged", "npm:15.2.10"],\
           ["prettier", "npm:3.4.1"],\
@@ -5077,7 +5077,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-react-refresh", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:0.4.14"],\
           ["eslint-plugin-storybook", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:0.8.0"],\
           ["eslint-plugin-typescript-sort-keys", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:3.3.0"],\
-          ["happy-dom", "npm:14.12.3"],\
+          ["happy-dom", "npm:15.11.7"],\
           ["husky", "npm:9.1.7"],\
           ["lint-staged", "npm:15.2.10"],\
           ["prettier", "npm:3.4.1"],\
@@ -5276,10 +5276,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["happy-dom", [\
-      ["npm:14.12.3", {\
-        "packageLocation": "../../.yarn/berry/cache/happy-dom-npm-14.12.3-c0b2f020fb-10c0.zip/node_modules/happy-dom/",\
+      ["npm:15.11.7", {\
+        "packageLocation": "../../.yarn/berry/cache/happy-dom-npm-15.11.7-1c6c2fda11-10c0.zip/node_modules/happy-dom/",\
         "packageDependencies": [\
-          ["happy-dom", "npm:14.12.3"],\
+          ["happy-dom", "npm:15.11.7"],\
           ["entities", "npm:4.5.0"],\
           ["webidl-conversions", "npm:7.0.0"],\
           ["whatwg-mimetype", "npm:3.0.0"]\
@@ -8641,7 +8641,7 @@ const RAW_RUNTIME_STATE =
           ["chai", "npm:5.1.2"],\
           ["debug", "virtual:1ff4b5f90832ba0a9c93ba1223af226e44ba70c1126a3740d93562b97bc36544e896a5e95908196f7458713e6a6089a34bfc67362fc6df7fa093bd06c878be47#npm:4.3.7"],\
           ["expect-type", "npm:1.1.0"],\
-          ["happy-dom", "npm:14.12.3"],\
+          ["happy-dom", "npm:15.11.7"],\
           ["jsdom", null],\
           ["magic-string", "npm:0.30.14"],\
           ["pathe", "npm:1.1.2"],\
