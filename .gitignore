@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 *storybook.log
+
+# Ignore Yarn transient files
+.yarn/*
+!.yarn/releases/
+!.yarn/plugins/
+!.yarn/cache/
+!.yarnrc.yml

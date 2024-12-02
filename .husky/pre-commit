@@ -1,2 +1,2 @@
 #!/bin/sh
-npm run test:pre-commit
+yarn run test:pre-commit
