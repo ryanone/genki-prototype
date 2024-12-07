@@ -3765,7 +3765,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.6"
     eslint-plugin-storybook: "npm:^0.8.0"
     eslint-plugin-typescript-sort-keys: "npm:^3.2.0"
-    happy-dom: "npm:^15.10.2"
+    happy-dom: "npm:^15.11.7"
     husky: "npm:^9.1.1"
     lint-staged: "npm:^15.2.7"
     prettier: "npm:^3.3.3"
@@ -3946,7 +3946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^15.10.2":
+"happy-dom@npm:^15.11.7":
   version: 15.11.7
   resolution: "happy-dom@npm:15.11.7"
   dependencies:
