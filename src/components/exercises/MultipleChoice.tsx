@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useContext, useState } from 'react';
 import {
   chooseChoice,
   goToNextQuestion,
@@ -21,7 +21,7 @@ import useAppDispatch from '@/hooks/useAppDispatch';
 import styles from './MultipleChoice.module.css';
 
 export default function MultipleChoice() {
-  const timeElapsed = useRef(0);
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const { showFurigana } = useContext(ShowFuriganaContext);
   const dispatch = useAppDispatch();
   const currentIndex = useAppSelector((state) => state.multipleChoice.index);
@@ -80,12 +80,7 @@ export default function MultipleChoice() {
         />
         <div className={styles.actions}>{nextButton}</div>
         <ProgressBar current={currentIndex} total={answers.length} />
-        <Timer
-          isRunning={!isFinished}
-          onTick={(numSeconds) => {
-            timeElapsed.current = numSeconds;
-          }}
-        />
+        <Timer isRunning={!isFinished} onTick={setTimeElapsed} />
       </>
     );
   return (
@@ -96,7 +91,7 @@ export default function MultipleChoice() {
             exerciseType="MULTIPLE_CHOICE"
             numSolved={results.numSolved}
             numWrong={results.numWrong}
-            timeElapsed={timeElapsed.current}
+            timeElapsed={timeElapsed}
             onRestart={handleRestart}
           />
           <AnswerList data={answers as FilledAnswer[]} />

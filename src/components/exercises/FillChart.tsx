@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useState, type ReactNode } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import CheckAnswersDialog from '@/components/CheckAnswersDialog';
 import ChoiceInput from '@/components/ChoiceInput';
@@ -18,7 +18,7 @@ import commonStyles from '@/styles/common.module.css';
 import styles from './FillChart.module.css';
 
 export default function FillChart() {
-  const timeElapsed = useRef(0);
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const dispatch = useAppDispatch();
   const [checkAnswersDialogContent, setCheckAnswersDialogContent] = useState<
     ReactNode | undefined
@@ -79,7 +79,7 @@ export default function FillChart() {
           exerciseType="FILL_CHART"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
-          timeElapsed={timeElapsed.current}
+          timeElapsed={timeElapsed}
           onRestart={handleRestart}
         />
       ) : null}
@@ -113,9 +113,7 @@ export default function FillChart() {
       <Timer
         key={`${startTime}`}
         isRunning={!isFinished}
-        onTick={(numSeconds) => {
-          timeElapsed.current = numSeconds;
-        }}
+        onTick={setTimeElapsed}
       />
       <div className={styles.actions}>
         {!isFinished && (

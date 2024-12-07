@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2023: true
+    es2023: true,
   },
   extends: [
     'airbnb',
@@ -17,17 +17,12 @@ module.exports = {
     'plugin:typescript-sort-keys/recommended',
     'prettier',
   ],
-  ignorePatterns: [
-    'dist',
-    '.eslintrc.cjs'
-  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['./tsconfig.json', './tsconfig.node.json'],
   },
-  plugins: [
-    'react-refresh'
-  ],
+  plugins: ['react-refresh', 'eslint-plugin-react-compiler'],
   rules: {
     'import/extensions': [
       'error',
@@ -36,7 +31,7 @@ module.exports = {
         css: 'always',
         png: 'always',
         json: 'always',
-      }
+      },
     ],
     'jsx-a11y/label-has-associated-control': [
       'error',
@@ -44,20 +39,15 @@ module.exports = {
         assert: 'either',
       },
     ],
-    'max-len': [
-      'error',
-      { code: 120 }
-    ],
-    'no-console': [
-      'error',
-      { allow: ['error'] },
-    ],
+    'max-len': ['error', { code: 120 }],
+    'no-console': ['error', { allow: ['error'] }],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
     'react/jsx-no-target-blank': 'off',
     'react/prop-types': 'off',
+    'react-compiler/react-compiler': 'error',
     'react/require-default-props': 'off',
   },
   overrides: [
@@ -79,11 +69,7 @@ module.exports = {
       },
     },
     {
-      files: [
-        'vite.config.ts',
-        'src/tests/**/*.ts',
-        'src/tests/**/*.tsx',
-      ],
+      files: ['vite.config.ts', 'src/tests/**/*.ts', 'src/tests/**/*.tsx'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },
@@ -94,4 +80,4 @@ module.exports = {
       version: 'detect',
     },
   },
-}
+};

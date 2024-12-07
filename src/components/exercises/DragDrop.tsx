@@ -26,7 +26,7 @@ import commonStyles from '@/styles/common.module.css';
 
 export default function DragDrop() {
   const selectedChoiceId = useRef<string | undefined>(undefined);
-  const timeElapsed = useRef(0);
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -101,7 +101,7 @@ export default function DragDrop() {
           exerciseType="DRAG_DROP"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
-          timeElapsed={timeElapsed.current}
+          timeElapsed={timeElapsed}
           onRestart={handleRestart}
         />
       ) : null}
@@ -180,9 +180,7 @@ export default function DragDrop() {
       <Timer
         key={`${startTime}`}
         isRunning={isTimerRunning}
-        onTick={(numSeconds) => {
-          timeElapsed.current = numSeconds;
-        }}
+        onTick={setTimeElapsed}
       />
       <ReviewDialog
         isOpen={showReviewDialog}

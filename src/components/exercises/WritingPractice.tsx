@@ -19,7 +19,7 @@ import styles from './WritingPractice.module.css';
 
 export default function WritingPractice() {
   const rowRefs = useRef<WritingInputRefType[]>([]);
-  const timeElapsed = useRef(0);
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [checkAnswersDialogContent, setCheckAnswersDialogContent] = useState<
     ReactNode | undefined
   >();
@@ -98,7 +98,7 @@ export default function WritingPractice() {
           exerciseType="WRITING_PRACTICE"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
-          timeElapsed={timeElapsed.current}
+          timeElapsed={timeElapsed}
           onRestart={handleRestart}
         />
       ) : null}
@@ -128,9 +128,7 @@ export default function WritingPractice() {
       <Timer
         key={`${startTime}`}
         isRunning={!isFinished}
-        onTick={(numSeconds) => {
-          timeElapsed.current = numSeconds;
-        }}
+        onTick={setTimeElapsed}
       />
       <div className={styles.actions}>
         {!isFinished && (

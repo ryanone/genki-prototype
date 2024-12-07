@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import {
   restart,
@@ -20,7 +20,7 @@ import commonStyles from '@/styles/common.module.css';
 import styles from './WritingChoice.module.css';
 
 export default function WritingChoice() {
-  const timeElapsed = useRef(0);
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [checkAnswersDialogContent, setCheckAnswersDialogContent] = useState<
     ReactNode | undefined
   >();
@@ -68,7 +68,7 @@ export default function WritingChoice() {
           exerciseType="WRITING_CHOICE"
           numSolved={results.numSolved}
           numWrong={results.numWrong}
-          timeElapsed={timeElapsed.current}
+          timeElapsed={timeElapsed}
           onRestart={handleRestart}
         />
       )}
@@ -100,12 +100,7 @@ export default function WritingChoice() {
           </button>
         )}
       </div>
-      <Timer
-        isRunning={!isFinished}
-        onTick={(numSeconds) => {
-          timeElapsed.current = numSeconds;
-        }}
-      />
+      <Timer isRunning={!isFinished} onTick={setTimeElapsed} />
       <CheckAnswersDialog
         content={checkAnswersDialogContent}
         isOpen={!!checkAnswersDialogContent}
