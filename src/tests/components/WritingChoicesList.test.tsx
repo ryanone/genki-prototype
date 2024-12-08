@@ -7,10 +7,13 @@ const { choices } = Genki3WordMatch20;
 
 describe('component/WritingChoicesList', () => {
   it('renders the component', () => {
+    // eslint-disable-next-line @vitest/prefer-expect-assertions
     expect.assertions(choices.length);
+
     render(<WritingChoicesList choices={choices} />);
     choices.forEach((c) => {
       const content = `(${c.id}) ${c.content}`;
+
       expect(screen.getByText(content)).toBeInTheDocument();
     });
   });

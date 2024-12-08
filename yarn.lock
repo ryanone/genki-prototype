@@ -1900,7 +1900,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.17.0":
+"@typescript-eslint/utils@npm:8.17.0, @typescript-eslint/utils@npm:^8.17.0":
   version: 8.17.0
   resolution: "@typescript-eslint/utils@npm:8.17.0"
   dependencies:
@@ -1956,6 +1956,23 @@ __metadata:
   peerDependencies:
     vite: ^4.2.0 || ^5.0.0 || ^6.0.0
   checksum: 10c0/38a47a1dbafae0b97142943d83ee3674cb3331153a60b1a3fd29d230c12c9dfe63b7c345b231a3450168ed8a9375a9a1a253c3d85e9efdc19478c0d56b98496c
+  languageName: node
+  linkType: hard
+
+"@vitest/eslint-plugin@npm:^1.1.14":
+  version: 1.1.14
+  resolution: "@vitest/eslint-plugin@npm:1.1.14"
+  peerDependencies:
+    "@typescript-eslint/utils": ">= 8.0"
+    eslint: ">= 8.57.0"
+    typescript: ">= 5.0.0"
+    vitest: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+    vitest:
+      optional: true
+  checksum: 10c0/83fe9dfa2b5d22f576cbd89c7f039c79f81c172552972aa4688d098dac712a0d35e10f54e9626928598da8615f768a88d637aa873c2bb8fe409684b8349dae67
   languageName: node
   linkType: hard
 
@@ -3862,7 +3879,9 @@ __metadata:
     "@types/react-router-dom": "npm:^5.3.3"
     "@typescript-eslint/eslint-plugin": "npm:^8.17.0"
     "@typescript-eslint/parser": "npm:^8.17.0"
+    "@typescript-eslint/utils": "npm:^8.17.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
+    "@vitest/eslint-plugin": "npm:^1.1.14"
     eslint: "npm:^8.57.0"
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-config-prettier: "npm:^9.1.0"

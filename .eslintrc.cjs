@@ -7,6 +7,7 @@ module.exports = {
     'airbnb',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@vitest/legacy-all',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
@@ -21,7 +22,7 @@ module.exports = {
     ecmaVersion: 2024,
     project: ['./tsconfig.json', './tsconfig.node.json'],
   },
-  plugins: ['react-refresh', 'eslint-plugin-react-compiler'],
+  plugins: ['@vitest', 'react-refresh', 'eslint-plugin-react-compiler'],
   rules: {
     'import/extensions': [
       'error',
@@ -72,6 +73,8 @@ module.exports = {
     {
       files: ['vite.config.ts', 'src/tests/**/*.ts', 'src/tests/**/*.tsx'],
       rules: {
+        '@vitest/max-expects': 'off',
+        '@vitest/no-hooks': 'off',
         'import/no-extraneous-dependencies': 'off',
       },
     },

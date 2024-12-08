@@ -6,6 +6,8 @@ import type { ExerciseInfo } from '@/data/lesson';
 
 describe('component/ExerciseLink', () => {
   it('renders the component', () => {
+    expect.assertions(2);
+
     const bookId = 'xyz';
     const lessonId = 'abc';
     const exercise: ExerciseInfo = {
@@ -20,8 +22,11 @@ describe('component/ExerciseLink', () => {
     );
 
     const link: HTMLAnchorElement = screen.getByRole('link');
+
     expect(link).toBeInTheDocument();
+
     const url = new URL(link.href);
+
     expect(url.pathname).toBe(
       `/${bookId}/lesson/${lessonId}/exercise/${exercise.id}`,
     );

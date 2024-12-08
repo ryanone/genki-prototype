@@ -8,14 +8,21 @@ const onChange = () => {};
 
 describe('component/WritingInput', () => {
   it('renders the component', () => {
+    expect.assertions(3);
+
     render(<WritingInput index={index} onChange={onChange} />);
+
     expect(screen.getByLabelText('Enter value')).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
   });
 
   it('renders the component with placeholder and defaultValue', () => {
+    expect.assertions(3);
+
     const defaultValue = 'foo';
     const placeholder = 'bar';
     render(
@@ -26,13 +33,18 @@ describe('component/WritingInput', () => {
         placeholder={placeholder}
       />,
     );
+
     expect(screen.getByLabelText(`Enter ${placeholder}`)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
   });
 
   it('renders the component when result is CORRECT', () => {
+    expect.assertions(4);
+
     const result = 'CORRECT';
     const isDisabled = true;
     render(
@@ -43,8 +55,11 @@ describe('component/WritingInput', () => {
         result={result}
       />,
     );
+
     expect(screen.getByLabelText('Enter value')).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.getByTestId('writing-input-result')).toHaveTextContent(
@@ -53,6 +68,8 @@ describe('component/WritingInput', () => {
   });
 
   it('renders the component when result is INCORRECT', () => {
+    expect.assertions(4);
+
     const result = 'INCORRECT';
     const isDisabled = true;
     render(
@@ -63,8 +80,11 @@ describe('component/WritingInput', () => {
         result={result}
       />,
     );
+
     expect(screen.getByLabelText('Enter value')).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.getByTestId('writing-input-result')).toHaveTextContent(
@@ -73,6 +93,8 @@ describe('component/WritingInput', () => {
   });
 
   it('renders the component and triggers onChange() when appropriate', async () => {
+    expect.assertions(4);
+
     const user = userEvent.setup();
     const onChangeSpy = vi.fn();
     render(<WritingInput index={index} onChange={onChangeSpy} />);
@@ -80,6 +102,7 @@ describe('component/WritingInput', () => {
     await user.click(input);
     const inputValue = 'foo';
     await user.keyboard(inputValue);
+
     expect(onChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onChangeSpy).toHaveBeenNthCalledWith(
       1,

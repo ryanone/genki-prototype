@@ -18,6 +18,8 @@ const onChoiceChange = () => {};
 
 describe('component/WritingChoiceItem', () => {
   it('renders the component', () => {
+    expect.assertions(3);
+
     render(
       <WritingChoiceItem
         index={index}
@@ -25,13 +27,18 @@ describe('component/WritingChoiceItem', () => {
         question={question}
       />,
     );
+
     expect(screen.getByLabelText(question.content)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
   });
 
   it('renders the component when result is CORRECT', () => {
+    expect.assertions(5);
+
     const incorrectAnswerConfirmation = `The correct answer is ${answerContent}`;
     const result = 'CORRECT';
     render(
@@ -42,8 +49,11 @@ describe('component/WritingChoiceItem', () => {
         result={result}
       />,
     );
+
     expect(screen.getByLabelText(question.content)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.getByText(correctAnswerConfirmation)).toBeInTheDocument();
@@ -51,6 +61,8 @@ describe('component/WritingChoiceItem', () => {
   });
 
   it('renders the component when result is INCORRECT', () => {
+    expect.assertions(5);
+
     const result = 'INCORRECT';
     const incorrectAnswerConfirmation = `The correct answer is ${answerContent}`;
     render(
@@ -62,8 +74,11 @@ describe('component/WritingChoiceItem', () => {
         result={result}
       />,
     );
+
     expect(screen.getByLabelText(question.content)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.queryByText(correctAnswerConfirmation)).toBeNull();
@@ -71,6 +86,8 @@ describe('component/WritingChoiceItem', () => {
   });
 
   it('renders the component and triggers onChange() when appropriate', async () => {
+    expect.assertions(2);
+
     const user = userEvent.setup();
     const onChoiceChangeSpy = vi.fn();
     render(
@@ -84,6 +101,7 @@ describe('component/WritingChoiceItem', () => {
     await user.click(input);
     const inputValue = 'a';
     await user.keyboard(inputValue);
+
     expect(onChoiceChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onChoiceChangeSpy).toHaveBeenNthCalledWith(1, question, inputValue);
   });

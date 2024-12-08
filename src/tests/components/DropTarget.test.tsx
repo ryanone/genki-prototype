@@ -13,6 +13,8 @@ const val1 = {
 
 describe('components/DropTarget', () => {
   it('renders the component', () => {
+    expect.assertions(3);
+
     render(
       <DropTarget
         layout={layout}
@@ -21,6 +23,7 @@ describe('components/DropTarget', () => {
         val1={val1}
       />,
     );
+
     expect(screen.getByTestId('drop-target-val1-content')).toHaveTextContent(
       val1.content,
     );
@@ -29,6 +32,8 @@ describe('components/DropTarget', () => {
   });
 
   it('renders the component with val1 alt content depending on showAlt', () => {
+    expect.assertions(3);
+
     const val1Alt = {
       ...val1,
       alt: 'ipsum',
@@ -42,6 +47,7 @@ describe('components/DropTarget', () => {
         val1={val1Alt}
       />,
     );
+
     expect(screen.getByTestId('drop-target-val1-content')).toHaveTextContent(
       val1.content,
     );
@@ -58,10 +64,13 @@ describe('components/DropTarget', () => {
         val1={val1Alt}
       />,
     );
+
     expect(screen.queryByTestId('drop-target-val1-alt')).toBeNull();
   });
 
   it('renders the component when val2 is specified', () => {
+    expect.assertions(1);
+
     const val2 = { content: 'dolor' };
     render(
       <DropTarget
@@ -72,10 +81,13 @@ describe('components/DropTarget', () => {
         val2={val2}
       />,
     );
+
     expect(screen.getByRole('button')).toHaveTextContent(val2.content);
   });
 
   it('renders the component when result is CORRECT', () => {
+    expect.assertions(1);
+
     render(
       <DropTarget
         layout={layout}
@@ -84,10 +96,13 @@ describe('components/DropTarget', () => {
         val1={val1}
       />,
     );
+
     expect(screen.getByLabelText('Correct')).toBeInTheDocument();
   });
 
   it('renders the component when result is INCORRECT', () => {
+    expect.assertions(1);
+
     render(
       <DropTarget
         layout={layout}
@@ -96,10 +111,13 @@ describe('components/DropTarget', () => {
         val1={val1}
       />,
     );
+
     expect(screen.getByLabelText('Incorrect')).toBeInTheDocument();
   });
 
   it('renders the component when result is INCORRECT and numIncorrectGuesses is specified', () => {
+    expect.assertions(3);
+
     const numIncorrectGuesses = 5;
     const { rerender } = render(
       <DropTarget
@@ -110,6 +128,7 @@ describe('components/DropTarget', () => {
         val1={val1}
       />,
     );
+
     expect(screen.getByLabelText('Incorrect')).toBeInTheDocument();
     expect(screen.getByTestId('drop-target-num-incorrect')).toHaveTextContent(
       `wrong ${numIncorrectGuesses}x`,
@@ -124,12 +143,15 @@ describe('components/DropTarget', () => {
         val1={val1}
       />,
     );
+
     expect(screen.getByTestId('drop-target-num-incorrect')).toHaveTextContent(
       `x${numIncorrectGuesses}`,
     );
   });
 
   it('calls onDrop() when the drop target has been clicked/dropped on', async () => {
+    expect.assertions(4);
+
     const user = userEvent.setup();
     const onDropSpy = vi.fn();
     render(
@@ -142,14 +164,19 @@ describe('components/DropTarget', () => {
     );
     const button = screen.getByRole('button');
     await user.click(button);
+
     expect(onDropSpy).toHaveBeenCalledTimes(1);
     expect(onDropSpy).toHaveBeenNthCalledWith(1, val1.id);
+
     fireEvent.drop(button);
+
     expect(onDropSpy).toHaveBeenCalledTimes(2);
     expect(onDropSpy).toHaveBeenNthCalledWith(2, val1.id);
   });
 
   it('calls onDrop() when the drop target has been clicked/dropped on and result is CORRECT', async () => {
+    expect.assertions(2);
+
     const user = userEvent.setup();
     const onDropSpy = vi.fn();
     render(
@@ -162,8 +189,11 @@ describe('components/DropTarget', () => {
     );
     const button = screen.getByRole('button');
     await user.click(button);
+
     expect(onDropSpy).toHaveBeenCalledTimes(0);
+
     fireEvent.drop(button);
+
     expect(onDropSpy).toHaveBeenCalledTimes(0);
   });
 });

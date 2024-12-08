@@ -17,6 +17,8 @@ const onAnswerChange = () => {};
 
 describe('components/WritingAnswerItem', () => {
   it('renders the component', () => {
+    expect.assertions(1);
+
     render(
       <WritingAnswerItem
         data={item}
@@ -25,10 +27,13 @@ describe('components/WritingAnswerItem', () => {
       />,
     );
     const questionContent = `${index}. ${item.question.content}`;
+
     expect(screen.getByText(questionContent)).toBeInTheDocument();
   });
 
   it('renders the component and calls onAnswerChange() when appropriate', async () => {
+    expect.assertions(3);
+
     const user = userEvent.setup();
     const onAnswerChangeSpy = vi.fn();
     render(
@@ -42,6 +47,7 @@ describe('components/WritingAnswerItem', () => {
     await user.click(input);
     const inputValue = 'はい';
     await user.keyboard(inputValue);
+
     expect(onAnswerChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onAnswerChangeSpy).toHaveBeenNthCalledWith(
       1,

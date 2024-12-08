@@ -14,27 +14,39 @@ describe('component/ChoiceInput', () => {
   });
 
   it('renders the component', async () => {
+    expect.assertions(3);
+
     render(
       <ChoiceInput onChange={onChange} questionContent={questionContent} />,
     );
+
     expect(screen.getByLabelText(questionContent)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
   });
 
   it('renders the component and triggers onChange() when appropriate', async () => {
+    expect.assertions(7);
+
     const onChangeSpy = vi.fn();
     render(
       <ChoiceInput onChange={onChangeSpy} questionContent={questionContent} />,
     );
+
     expect(screen.getByLabelText(questionContent)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
+
     await user.click(input);
     const inputValue = 'bar';
     await user.keyboard(inputValue);
+
     expect(onChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onChangeSpy).toHaveBeenNthCalledWith(
       1,
@@ -50,6 +62,8 @@ describe('component/ChoiceInput', () => {
   });
 
   it('renders the component when the result is INCORRECT', () => {
+    expect.assertions(4);
+
     const result = 'INCORRECT';
     const isDisabled = true;
     render(
@@ -60,8 +74,11 @@ describe('component/ChoiceInput', () => {
         result={result}
       />,
     );
+
     expect(screen.getByLabelText(questionContent)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.getByTestId('choice-input-result')).toHaveTextContent(
@@ -70,6 +87,8 @@ describe('component/ChoiceInput', () => {
   });
 
   it('renders the component when the result is CORRECT', () => {
+    expect.assertions(4);
+
     const result = 'CORRECT';
     const isDisabled = true;
     render(
@@ -80,8 +99,11 @@ describe('component/ChoiceInput', () => {
         result={result}
       />,
     );
+
     expect(screen.getByLabelText(questionContent)).toBeInTheDocument();
+
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.getByTestId('choice-input-result')).toHaveTextContent(

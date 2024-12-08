@@ -9,24 +9,32 @@ const onChange = () => {};
 
 describe('component/ShortAnswerInput', () => {
   it('renders the component', () => {
+    expect.assertions(2);
+
     render(<ShortAnswerInput onChange={onChange} />);
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
   });
 
   it('renders the component with defaultValue', () => {
+    expect.assertions(3);
+
     const defaultValue = 'ありがとうござます。';
     render(
       <ShortAnswerInput defaultValue={defaultValue} onChange={onChange} />,
     );
     const input: HTMLInputElement = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
     expect(input.value).toBe(defaultValue);
   });
 
   it('renders the component and shows the answer when result is INCORRECT', () => {
+    expect.assertions(4);
+
     const incorrectAnswerConfirmation = `The correct answer is ${answerContent}`;
     render(
       <ShortAnswerInput
@@ -36,6 +44,7 @@ describe('component/ShortAnswerInput', () => {
       />,
     );
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.queryByText(correctAnswerConfirmation)).toBeNull();
@@ -43,6 +52,8 @@ describe('component/ShortAnswerInput', () => {
   });
 
   it('renders the component and confirmation when result is CORRECT', () => {
+    expect.assertions(4);
+
     const incorrectAnswerConfirmation = `The correct answer is ${answerContent}`;
     render(
       <ShortAnswerInput
@@ -52,6 +63,7 @@ describe('component/ShortAnswerInput', () => {
       />,
     );
     const input = screen.getByRole('textbox');
+
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
     expect(screen.getByText(correctAnswerConfirmation)).toBeInTheDocument();
@@ -59,6 +71,8 @@ describe('component/ShortAnswerInput', () => {
   });
 
   it('renders the component and triggers onChange() when appropriate', async () => {
+    expect.assertions(3);
+
     const user = userEvent.setup();
     const onChangeSpy = vi.fn();
     render(<ShortAnswerInput onChange={onChangeSpy} />);
@@ -66,6 +80,7 @@ describe('component/ShortAnswerInput', () => {
     await user.click(input);
     const inputValue = 'はい';
     await user.keyboard(inputValue);
+
     expect(onChangeSpy).toHaveBeenCalledTimes(inputValue.length);
     expect(onChangeSpy).toHaveBeenNthCalledWith(
       1,

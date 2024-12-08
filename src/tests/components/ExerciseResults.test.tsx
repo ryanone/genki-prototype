@@ -11,6 +11,8 @@ const onRestart = () => {};
 
 describe('component/ExerciseResults', () => {
   it('renders the component and triggers onStart() when appropriate', async () => {
+    expect.assertions(6);
+
     const user = userEvent.setup();
     const numSolved = 100;
     const numWrong = 0;
@@ -44,10 +46,13 @@ describe('component/ExerciseResults', () => {
     );
 
     await user.click(screen.getByRole('button'));
+
     expect(onRestartSpy).toHaveBeenCalledOnce();
   });
 
   it('renders the component and shows advice when score > 70 and < 100', async () => {
+    expect.assertions(1);
+
     const numSolved = 100;
     const numWrong = 25;
 
@@ -67,6 +72,8 @@ describe('component/ExerciseResults', () => {
   });
 
   it('renders the component and shows advice when score <= 70', async () => {
+    expect.assertions(1);
+
     const numSolved = 100;
     const numWrong = 30;
 
@@ -86,6 +93,8 @@ describe('component/ExerciseResults', () => {
   });
 
   it('renders the component and shows type-specific advice when score < 100', () => {
+    expect.assertions(2);
+
     const numSolved = 100;
     const numWrong = 1;
 
@@ -98,6 +107,7 @@ describe('component/ExerciseResults', () => {
         onRestart={onRestart}
       />,
     );
+
     expect(screen.getByTestId('exercise-results-advice')).toHaveTextContent(
       // eslint-disable-next-line max-len
       'Nice work! The answers you selected that were wrong are outlined in red. The correct answers are outlined in blue. Review these problems before trying again.',
@@ -112,6 +122,7 @@ describe('component/ExerciseResults', () => {
         onRestart={onRestart}
       />,
     );
+
     expect(screen.getByTestId('exercise-results-advice')).toHaveTextContent(
       // eslint-disable-next-line max-len
       'Nice work! The items outlined in red were answered wrong before finding the correct answer. Review these problems before trying again.',
