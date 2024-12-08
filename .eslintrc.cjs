@@ -4,10 +4,8 @@ module.exports = {
     browser: true,
   },
   extends: [
-    'airbnb',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@vitest/legacy-all',
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
@@ -24,15 +22,6 @@ module.exports = {
   },
   plugins: ['@vitest', 'react-refresh', 'eslint-plugin-react-compiler'],
   rules: {
-    'import/extensions': [
-      'error',
-      'never',
-      {
-        css: 'always',
-        png: 'always',
-        json: 'always',
-      },
-    ],
     'import/no-unresolved': 'off',
     'jsx-a11y/label-has-associated-control': [
       'error',
@@ -48,9 +37,10 @@ module.exports = {
     ],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
     'react/jsx-no-target-blank': 'off',
+    'react/no-array-index-key': 'error',
     'react/prop-types': 'off',
-    'react-compiler/react-compiler': 'error',
     'react/require-default-props': 'off',
+    'react-compiler/react-compiler': 'error',
   },
   overrides: [
     {
@@ -60,22 +50,17 @@ module.exports = {
       rules: { 'no-param-reassign': ['error', { props: false }] },
     },
     {
-      files: ['src/stories/**/*.tsx'],
-      rules: {
-        'import/no-extraneous-dependencies': [
-          'error',
-          {
-            devDependencies: true,
-          },
-        ],
-      },
-    },
-    {
       files: ['vite.config.ts', 'src/tests/**/*.ts', 'src/tests/**/*.tsx'],
+      extends: ['plugin:@vitest/legacy-all'],
       rules: {
         '@vitest/max-expects': 'off',
         '@vitest/no-hooks': 'off',
-        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
+      files: ['src/tests/setup.ts'],
+      rules: {
+        '@vitest/require-top-level-describe': 'off',
       },
     },
   ],
