@@ -47,9 +47,9 @@ const meta: Meta<MultipleChoiceExercisePropsAndCustomArgs> = {
 
 export default meta;
 
-type Story = StoryObj<typeof MultipleChoiceExercise>;
+type MultipleChoiceExerciseStory = StoryObj<typeof MultipleChoiceExercise>;
 
-export const AtEndFeedback: Story = {
+export const AtEndFeedback: MultipleChoiceExerciseStory = {
   args: {},
   decorators: [
     (Story) => (
@@ -60,7 +60,7 @@ export const AtEndFeedback: Story = {
   ],
 };
 
-export const InstantFeedback: Story = {
+export const InstantFeedback: MultipleChoiceExerciseStory = {
   args: {},
   decorators: [
     (Story) => (

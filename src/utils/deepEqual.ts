@@ -35,7 +35,7 @@ function areArraysEqual<T>(a1: T[], a2: T[]): boolean {
         } else if (Array.isArray(v1) && Array.isArray(v2)) {
           isEqual = areArraysEqual(v1, v2);
         } else {
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          // eslint-disable-next-line no-use-before-define
           isEqual = areObjectsEqual(
             v1 as Record<string, unknown>,
             v2 as Record<string, unknown>,

@@ -2,11 +2,9 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2023: true,
   },
   extends: [
     'airbnb',
-    'airbnb-typescript',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
@@ -20,6 +18,7 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaVersion: 2024,
     project: ['./tsconfig.json', './tsconfig.node.json'],
   },
   plugins: ['react-refresh', 'eslint-plugin-react-compiler'],
@@ -33,6 +32,7 @@ module.exports = {
         json: 'always',
       },
     ],
+    'import/no-unresolved': 'off',
     'jsx-a11y/label-has-associated-control': [
       'error',
       {
@@ -45,6 +45,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
     'react/jsx-no-target-blank': 'off',
     'react/prop-types': 'off',
     'react-compiler/react-compiler': 'error',

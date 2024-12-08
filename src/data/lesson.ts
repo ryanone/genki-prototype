@@ -10,11 +10,11 @@ export type ExerciseInfo = {
   title: string;
 };
 
-export type LessonExercises = {
-  sections: LessonSection[];
-};
-
 export type LessonSection = {
   content: string;
   exercises: ExerciseInfo[];
+};
+
+export type LessonExercises = {
+  sections: LessonSection[];
 };
