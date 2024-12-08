@@ -27,7 +27,6 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
-          ["@chromatic-com/storybook", "npm:1.9.0"],\
           ["@reduxjs/toolkit", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:2.4.0"],\
           ["@storybook/addon-essentials", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:8.4.6"],\
           ["@storybook/addon-interactions", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:8.4.6"],\
@@ -494,20 +493,6 @@ const RAW_RUNTIME_STATE =
           ["@babel/types", "npm:7.26.3"],\
           ["@babel/helper-string-parser", "npm:7.25.9"],\
           ["@babel/helper-validator-identifier", "npm:7.25.9"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@chromatic-com/storybook", [\
-      ["npm:1.9.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@chromatic-com-storybook-npm-1.9.0-19be38f947-10c0.zip/node_modules/@chromatic-com/storybook/",\
-        "packageDependencies": [\
-          ["@chromatic-com/storybook", "npm:1.9.0"],\
-          ["chromatic", "virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:11.19.0"],\
-          ["filesize", "npm:10.1.6"],\
-          ["jsonfile", "npm:6.1.0"],\
-          ["react-confetti", "virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:6.1.0"],\
-          ["strip-ansi", "npm:7.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1656,7 +1641,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@storybook/addon-onboarding", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:8.4.6"],\
           ["@types/storybook", null],\
-          ["react-confetti", "virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:6.1.0"],\
+          ["react-confetti", "virtual:aa10f97340c8925e49013b43454efa9b235f6a6acc7a427764e8fbbf60244f26d2950fc00df8a5480b453b170c763660834760e4b3f78cff148db1cc3af350b3#npm:6.1.0"],\
           ["storybook", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:8.4.6"]\
         ],\
         "packagePeers": [\
@@ -3623,32 +3608,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["chromatic", [\
-      ["npm:11.19.0", {\
-        "packageLocation": "../../.yarn/berry/cache/chromatic-npm-11.19.0-36dd202bf8-10c0.zip/node_modules/chromatic/",\
-        "packageDependencies": [\
-          ["chromatic", "npm:11.19.0"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:11.19.0", {\
-        "packageLocation": "./.yarn/__virtual__/chromatic-virtual-f84c39692c/3/.yarn/berry/cache/chromatic-npm-11.19.0-36dd202bf8-10c0.zip/node_modules/chromatic/",\
-        "packageDependencies": [\
-          ["chromatic", "virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:11.19.0"],\
-          ["@chromatic-com/cypress", null],\
-          ["@chromatic-com/playwright", null],\
-          ["@types/chromatic-com__cypress", null],\
-          ["@types/chromatic-com__playwright", null]\
-        ],\
-        "packagePeers": [\
-          "@chromatic-com/cypress",\
-          "@chromatic-com/playwright",\
-          "@types/chromatic-com__cypress",\
-          "@types/chromatic-com__playwright"\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["clean-stack", [\
       ["npm:2.2.0", {\
         "packageLocation": "../../.yarn/berry/cache/clean-stack-npm-2.2.0-a8ce435a5c-10c0.zip/node_modules/clean-stack/",\
@@ -5036,15 +4995,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["filesize", [\
-      ["npm:10.1.6", {\
-        "packageLocation": "../../.yarn/berry/cache/filesize-npm-10.1.6-d3358104ae-10c0.zip/node_modules/filesize/",\
-        "packageDependencies": [\
-          ["filesize", "npm:10.1.6"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["fill-range", [\
       ["npm:7.1.1", {\
         "packageLocation": "../../.yarn/berry/cache/fill-range-npm-7.1.1-bf491486db-10c0.zip/node_modules/fill-range/",\
@@ -5181,7 +5131,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["genki-prototype", "workspace:."],\
-          ["@chromatic-com/storybook", "npm:1.9.0"],\
           ["@reduxjs/toolkit", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:2.4.0"],\
           ["@storybook/addon-essentials", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:8.4.6"],\
           ["@storybook/addon-interactions", "virtual:b700fde80e0f77d7d6e17dd75524ec592257e9f1f52c5ecef1f5545bc85f7fb18513df1260786d29b109384c0e2769c3e0c8a50705f1c8ef4ccb09e69176b884#npm:8.4.6"],\
@@ -6147,17 +6096,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/json5-npm-2.2.3-9962c55073-10c0.zip/node_modules/json5/",\
         "packageDependencies": [\
           ["json5", "npm:2.2.3"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["jsonfile", [\
-      ["npm:6.1.0", {\
-        "packageLocation": "../../.yarn/berry/cache/jsonfile-npm-6.1.0-20a4796cee-10c0.zip/node_modules/jsonfile/",\
-        "packageDependencies": [\
-          ["jsonfile", "npm:6.1.0"],\
-          ["graceful-fs", "npm:4.2.11"],\
-          ["universalify", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7139,10 +7077,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:6.1.0", {\
-        "packageLocation": "./.yarn/__virtual__/react-confetti-virtual-edb38d1800/3/.yarn/berry/cache/react-confetti-npm-6.1.0-9b9e19a3c8-10c0.zip/node_modules/react-confetti/",\
+      ["virtual:aa10f97340c8925e49013b43454efa9b235f6a6acc7a427764e8fbbf60244f26d2950fc00df8a5480b453b170c763660834760e4b3f78cff148db1cc3af350b3#npm:6.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-confetti-virtual-c5fcda4d7f/3/.yarn/berry/cache/react-confetti-npm-6.1.0-9b9e19a3c8-10c0.zip/node_modules/react-confetti/",\
         "packageDependencies": [\
-          ["react-confetti", "virtual:19be38f94729b1fb087a300b9a7c63ec2c57d2df64741cda7314db07da574572d703c2d1b2894836316a2c36c5fc8eab47d060f6780041cfcc4aa93039081bca#npm:6.1.0"],\
+          ["react-confetti", "virtual:aa10f97340c8925e49013b43454efa9b235f6a6acc7a427764e8fbbf60244f26d2950fc00df8a5480b453b170c763660834760e4b3f78cff148db1cc3af350b3#npm:6.1.0"],\
           ["@types/react", null],\
           ["react", null],\
           ["tween-functions", "npm:1.2.0"]\
@@ -8542,15 +8480,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["unique-slug", "npm:4.0.0"],\
           ["imurmurhash", "npm:0.1.4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["universalify", [\
-      ["npm:2.0.1", {\
-        "packageLocation": "../../.yarn/berry/cache/universalify-npm-2.0.1-040ba5a21e-10c0.zip/node_modules/universalify/",\
-        "packageDependencies": [\
-          ["universalify", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
