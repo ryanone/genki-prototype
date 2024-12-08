@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router';
 import Header from '@/components/Header';
 import type { Book } from '@/data/book';
 

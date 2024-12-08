@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 import Footer from '@/components/Footer';
 import MultipleChoiceSettingsProvider from '@/provider/MultipleChoiceSettingsProvider';
 import ShowFuriganaProvider from '@/provider/ShowFuriganaProvider';

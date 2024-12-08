@@ -1,6 +1,6 @@
 import { lazy, useContext, useEffect, useState, Suspense } from 'react';
 import { FaArrowLeft, FaArrowRight, FaArrowsRotate } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import {
   initialize as initializeDragDrop,
   // reset as resetDragDrop,

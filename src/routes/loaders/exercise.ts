@@ -1,8 +1,4 @@
-import type {
-  ActionFunctionArgs,
-  Params,
-  ParamParseKey,
-} from 'react-router-dom';
+import type { ActionFunctionArgs, Params, ParamParseKey } from 'react-router';
 import Paths from '@/routes/loaders';
 import loadData from '@/api/dataLoader';
 import type { Exercise } from '@/data/exercise';

@@ -1,4 +1,4 @@
-import { useLoaderData, useOutletContext } from 'react-router-dom';
+import { useLoaderData, useOutletContext } from 'react-router';
 import ExerciseRenderer from '@/components/ExerciseRenderer';
 import LessonsNavigation from '@/components/LessonsNavigation';
 import { type Book } from '@/data/book';

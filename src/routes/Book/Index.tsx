@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router';
 import { Book } from '@/data/book';
 import LessonsAccordion from '@/components/LessonsAccordion';
 import styles from './Index.module.css';

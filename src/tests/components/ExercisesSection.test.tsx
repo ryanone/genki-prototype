@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import ExercisesSection from '@/components/ExercisesSection';
 import Genki3Lesson0 from '@/data/genki-3/lessons/lesson-0.json';
 

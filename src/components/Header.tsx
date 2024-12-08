@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import GenkiImg from '@/assets/genki.png';
 import styles from './Header.module.css';
 

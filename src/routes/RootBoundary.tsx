@@ -1,4 +1,4 @@
-import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { Link, isRouteErrorResponse, useRouteError } from 'react-router';
 import commonStyles from '@/styles/common.module.css';
 import styles from './RootBoundary.module.css';
 
