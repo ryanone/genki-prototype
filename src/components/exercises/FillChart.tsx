@@ -113,7 +113,7 @@ export default function FillChart() {
       <Timer
         key={`${startTime}`}
         isRunning={!isFinished}
-        onTick={setTimeElapsed}
+        onStop={setTimeElapsed}
       />
       <div className={styles.actions}>
         {!isFinished && (

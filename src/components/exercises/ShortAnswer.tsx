@@ -88,7 +88,7 @@ export default function ShortAnswer() {
           </button>
         )}
       </div>
-      <Timer isRunning={!isFinished} onTick={setTimeElapsed} />
+      <Timer isRunning={!isFinished} onStop={setTimeElapsed} />
       <CheckAnswersDialog
         content={checkAnswersDialogContent}
         isOpen={!!checkAnswersDialogContent}

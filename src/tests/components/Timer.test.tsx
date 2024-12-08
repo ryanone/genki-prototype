@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import Timer from '@/components/Timer';
-import '@testing-library/jest-dom';
 
 const TICK_LENGTH = 1000;
 
@@ -26,24 +25,26 @@ describe('components/Timer', () => {
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:01');
   });
 
-  it('calls onTick() after each second', async () => {
+  it('calls onStop() when isRunning is initially false', async () => {
     const spy = vi.fn();
+    render(<Timer isRunning={false} onStop={spy} />);
+    expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toBeCalledWith(0);
+  });
 
-    const { rerender } = render(<Timer isRunning onTick={spy} />);
+  it('calls onStop() when changing isRunning from true to false', () => {
+    const spy = vi.fn();
+    const { rerender } = render(<Timer isRunning onStop={spy} />);
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');
     act(() => vi.advanceTimersByTime(TICK_LENGTH));
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:01');
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(1);
     act(() => vi.advanceTimersByTime(TICK_LENGTH));
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:02');
-    expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toHaveBeenCalledWith(2);
+    expect(spy).toHaveBeenCalledTimes(0);
 
-    rerender(<Timer isRunning={false} onTick={spy} />);
-    expect(screen.getByRole('timer')).toHaveTextContent('00:00:02');
-    act(() => vi.advanceTimersByTime(TICK_LENGTH));
-    expect(screen.getByRole('timer')).toHaveTextContent('00:00:02');
-    expect(spy).toHaveBeenCalledTimes(2);
+    rerender(<Timer isRunning={false} onStop={spy} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toBeCalledWith(2);
   });
 });

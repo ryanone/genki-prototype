@@ -128,7 +128,7 @@ export default function WritingPractice() {
       <Timer
         key={`${startTime}`}
         isRunning={!isFinished}
-        onTick={setTimeElapsed}
+        onStop={setTimeElapsed}
       />
       <div className={styles.actions}>
         {!isFinished && (

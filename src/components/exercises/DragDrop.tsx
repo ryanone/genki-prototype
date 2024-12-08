@@ -180,7 +180,7 @@ export default function DragDrop() {
       <Timer
         key={`${startTime}`}
         isRunning={isTimerRunning}
-        onTick={setTimeElapsed}
+        onStop={setTimeElapsed}
       />
       <ReviewDialog
         isOpen={showReviewDialog}

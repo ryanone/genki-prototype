@@ -80,7 +80,7 @@ export default function MultipleChoice() {
         />
         <div className={styles.actions}>{nextButton}</div>
         <ProgressBar current={currentIndex} total={answers.length} />
-        <Timer isRunning={!isFinished} onTick={setTimeElapsed} />
+        <Timer isRunning={!isFinished} onStop={setTimeElapsed} />
       </>
     );
   return (
