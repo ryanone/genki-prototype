@@ -126,7 +126,7 @@ export default tseslint.config(
       },
     },
     {
-      files: ['src/features/**/*Slice.ts'],
+      files: ['src/features/**/slice.ts'],
 
       rules: {
         'no-param-reassign': [

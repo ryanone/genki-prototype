@@ -1,6 +1,6 @@
 import ShortAnswerInput from '@/components/ShortAnswerInput';
 import styles from './WritingAnswerItem.module.css';
-import type { Item as ShortAnswerItem } from '@/features/shortAnswer/shortAnswerSlice';
+import type { Item as ShortAnswerItem } from '@/features/shortAnswer/slice';
 
 type WritingAnswerItemProps = {
   data: ShortAnswerItem;

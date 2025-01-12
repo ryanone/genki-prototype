@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import WritingAnswerItem from '@/components/WritingAnswerItem';
-import { type Item as ShortAnswerItem } from '@/features/shortAnswer/shortAnswerSlice';
+import { type Item as ShortAnswerItem } from '@/features/shortAnswer/slice';
 
 const index = 10;
 const item: ShortAnswerItem = {

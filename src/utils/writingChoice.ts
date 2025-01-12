@@ -1,5 +1,5 @@
 import type { WritingChoiceExercise } from '@/data/exercise';
-import type { WritingChoiceState } from '@/features/writingChoice/writingChoiceSlice';
+import type { WritingChoiceState } from '@/features/writingChoice/slice';
 
 export default function initializeState(
   exercise: WritingChoiceExercise,

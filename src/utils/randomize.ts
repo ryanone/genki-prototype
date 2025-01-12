@@ -1,5 +1,5 @@
 import type { Choice, Question } from '@/data/exercise';
-import type { ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
+import type { ChoiceData } from '@/features/multipleChoice/slice';
 
 export function randomizeArray<T>(input: T[]): T[] {
   const copy = [...input];

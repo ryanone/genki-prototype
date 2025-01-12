@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { type WritingPracticeState } from '@/features/writingPractice/writingPracticeSlice';
+import { type WritingPracticeState } from '@/features/writingPractice/slice';
 
 const selectRows = (state: WritingPracticeState) => state.rows;
 const selectIsFinished = (state: WritingPracticeState) => state.isFinished;

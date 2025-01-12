@@ -1,8 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import {
-  type FillChartState,
-  type Item,
-} from '@/features/fillChart/fillChartSlice';
+import { type FillChartState, type Item } from '@/features/fillChart/slice';
 
 const selectIsFinished = (state: FillChartState) => state.isFinished;
 const selectItems = (state: FillChartState) => state.items;

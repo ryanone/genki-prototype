@@ -1,8 +1,5 @@
 import type { Choice, ShortAnswerExercise } from '@/data/exercise';
-import type {
-  Item,
-  ShortAnswerState,
-} from '@/features/shortAnswer/shortAnswerSlice';
+import type { Item, ShortAnswerState } from '@/features/shortAnswer/slice';
 
 export default function initializeState(
   exercise: ShortAnswerExercise,

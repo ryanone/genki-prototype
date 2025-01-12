@@ -1,6 +1,6 @@
 import { forwardRef, useId, useState, type FormEvent } from 'react';
 import { FaStar } from 'react-icons/fa6';
-import type { WritingInputResult } from '@/features/writingPractice/writingPracticeSlice';
+import type { WritingInputResult } from '@/features/writingPractice/slice';
 import commonStyles from '@/styles/common.module.css';
 import styles from './WritingInput.module.css';
 

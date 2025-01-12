@@ -10,7 +10,7 @@ import {
   review,
   selectResults,
   setAnswer,
-} from '@/features/writingPractice/writingPracticeSlice';
+} from '@/features/writingPractice/slice';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import type { Ref as WritingInputRefType } from '@/components/WritingInput';

@@ -1,8 +1,5 @@
 import { useContext } from 'react';
-import {
-  selectChoicesMap,
-  selectIsFinished,
-} from '@/features/dragDrop/dragDropSlice';
+import { selectChoicesMap, selectIsFinished } from '@/features/dragDrop/slice';
 import MemoizedDropTarget from '@/components/MemoizedDropTarget';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import useAppSelector from '@/hooks/useAppSelector';

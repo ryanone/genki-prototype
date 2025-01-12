@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import ChoiceList from '@/components/ChoiceList';
-import { type ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
+import { type ChoiceData } from '@/features/multipleChoice/slice';
 import styles from './MultipleChoiceQuestion.module.css';
 
 type MultipleChoiceQuestionProps = {

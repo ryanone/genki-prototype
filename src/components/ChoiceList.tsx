@@ -1,5 +1,5 @@
 import ChoiceButton from '@/components/ChoiceButton';
-import { type ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
+import { type ChoiceData } from '@/features/multipleChoice/slice';
 import styles from './ChoiceList.module.css';
 
 type ChoiceListProps = {

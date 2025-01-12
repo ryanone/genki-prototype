@@ -4,7 +4,7 @@ import type {
   Question,
   TwoDirectionalFlow,
 } from '@/data/exercise';
-import type { DragDropState } from '@/features/dragDrop/dragDropSlice';
+import type { DragDropState } from '@/features/dragDrop/slice';
 import { randomizeArray } from '@/utils/randomize';
 
 const HORIZONTAL = 'HORIZONTAL';

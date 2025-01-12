@@ -2,10 +2,7 @@ import { useContext } from 'react';
 import MultipleChoiceQuestion from '@/components/MultipleChoiceQuestion';
 import Ruby from '@/components/Ruby';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
-import type {
-  Answer,
-  ChoiceData,
-} from '@/features/multipleChoice/multipleChoiceSlice';
+import type { Answer, ChoiceData } from '@/features/multipleChoice/slice';
 import type { Question } from '@/data/exercise';
 import styles from './AnswerList.module.css';
 

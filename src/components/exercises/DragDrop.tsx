@@ -10,7 +10,7 @@ import {
   selectRemainingChoices,
   selectResults,
   toggleLayout,
-} from '@/features/dragDrop/dragDropSlice';
+} from '@/features/dragDrop/slice';
 import ExerciseResults from '@/components/ExerciseResults';
 import HorizontalDropTargetList from '@/components/HorizontalDropTargetList';
 import Instructions from '@/components/Instructions';

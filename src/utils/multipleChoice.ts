@@ -4,7 +4,7 @@ import {
   NUM_CHOICES_PER_QUESTION,
   type Answer,
   type MultipleChoiceState,
-} from '@/features/multipleChoice/multipleChoiceSlice';
+} from '@/features/multipleChoice/slice';
 
 export default function initializeState(
   exercise: MultipleChoiceExercise,

@@ -4,27 +4,27 @@ import { Link } from 'react-router';
 import {
   initialize as initializeDragDrop,
   // reset as resetDragDrop,
-} from '@/features/dragDrop/dragDropSlice';
+} from '@/features/dragDrop/slice';
 import {
   initialize as initializeFillChart,
   // reset as resetFillChart,
-} from '@/features/fillChart/fillChartSlice';
+} from '@/features/fillChart/slice';
 import {
   initialize as initializeMultipleChoice,
   // reset as resetMultipleChoice,
-} from '@/features/multipleChoice/multipleChoiceSlice';
+} from '@/features/multipleChoice/slice';
 import {
   initialize as initializeShortAnswer,
   // reset as resetShortAnswer
-} from '@/features/shortAnswer/shortAnswerSlice';
+} from '@/features/shortAnswer/slice';
 import {
   initialize as initializeWritingChoice,
   // reset as resetWritingChoice,
-} from '@/features/writingChoice/writingChoiceSlice';
+} from '@/features/writingChoice/slice';
 import {
   initialize as initializeWritingPractice,
   // reset as resetWritingPractice,
-} from '@/features/writingPractice/writingPracticeSlice';
+} from '@/features/writingPractice/slice';
 import type {
   DragDropExercise,
   Exercise,

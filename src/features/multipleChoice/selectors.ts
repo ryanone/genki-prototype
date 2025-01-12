@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import type { MultipleChoiceState } from '@/features/multipleChoice/multipleChoiceSlice';
+import type { MultipleChoiceState } from '@/features/multipleChoice/slice';
 
 const selectAnswers = (state: MultipleChoiceState) => state.answers;
 

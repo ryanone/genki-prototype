@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { type ShortAnswerState } from '@/features/shortAnswer/shortAnswerSlice';
+import { type ShortAnswerState } from '@/features/shortAnswer/slice';
 
 export const selectItems = (state: ShortAnswerState) => state.items;
 

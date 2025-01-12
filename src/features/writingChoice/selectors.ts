@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { type WritingChoiceState } from '@/features/writingChoice/writingChoiceSlice';
+import { type WritingChoiceState } from '@/features/writingChoice/slice';
 
 export const selectAnswers = (state: WritingChoiceState) => state.answers;
 

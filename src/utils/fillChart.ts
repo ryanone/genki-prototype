@@ -1,5 +1,5 @@
 import type { FillChartExercise } from '@/data/exercise';
-import type { FillChartState } from '@/features/fillChart/fillChartSlice';
+import type { FillChartState } from '@/features/fillChart/slice';
 
 export default function initializeState(
   exercise: FillChartExercise,

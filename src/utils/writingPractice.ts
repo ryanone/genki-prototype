@@ -1,5 +1,5 @@
 import { type WritingPracticeExercise } from '@/data/exercise';
-import { type WritingPracticeState } from '@/features/writingPractice/writingPracticeSlice';
+import { type WritingPracticeState } from '@/features/writingPractice/slice';
 
 export default function initializeState(
   exercise: WritingPracticeExercise,

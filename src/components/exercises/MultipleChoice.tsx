@@ -7,7 +7,7 @@ import {
   selectIsFinished,
   selectResults,
   type ChoiceData,
-} from '@/features/multipleChoice/multipleChoiceSlice';
+} from '@/features/multipleChoice/slice';
 import AnswerList, { type FilledAnswer } from '@/components/AnswerList';
 import ExerciseResults from '@/components/ExerciseResults';
 import Instructions from '@/components/Instructions';

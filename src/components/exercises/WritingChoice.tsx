@@ -6,7 +6,7 @@ import {
   selectAnswers,
   selectResults,
   setAnswer,
-} from '@/features/writingChoice/writingChoiceSlice';
+} from '@/features/writingChoice/slice';
 import CheckAnswersDialog from '@/components/CheckAnswersDialog';
 import ExerciseResults from '@/components/ExerciseResults';
 import Instructions from '@/components/Instructions';

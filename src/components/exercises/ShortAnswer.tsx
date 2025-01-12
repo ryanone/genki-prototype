@@ -11,7 +11,7 @@ import {
   selectItems,
   selectResults,
   setAnswer,
-} from '@/features/shortAnswer/shortAnswerSlice';
+} from '@/features/shortAnswer/slice';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import commonStyles from '@/styles/common.module.css';

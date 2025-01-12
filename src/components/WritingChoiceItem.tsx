@@ -1,6 +1,6 @@
 import { useId, useState, type FormEvent } from 'react';
 import { type Question } from '@/data/exercise';
-import type { WritingChoiceResult } from '@/features/writingChoice/writingChoiceSlice';
+import type { WritingChoiceResult } from '@/features/writingChoice/slice';
 import commonStyles from '@/styles/common.module.css';
 import styles from './WritingChoiceItem.module.css';
 

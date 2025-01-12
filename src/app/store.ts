@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import dragDropReducer from '@/features/dragDrop/dragDropSlice';
-import fillChartReducer from '@/features/fillChart/fillChartSlice';
-import multipleChoiceReducer from '@/features/multipleChoice/multipleChoiceSlice';
-import shortAnswerReducer from '@/features/shortAnswer/shortAnswerSlice';
-import writingChoiceSlice from '@/features/writingChoice/writingChoiceSlice';
-import writingPracticeReducer from '@/features/writingPractice/writingPracticeSlice';
+import dragDropReducer from '@/features/dragDrop/slice';
+import fillChartReducer from '@/features/fillChart/slice';
+import multipleChoiceReducer from '@/features/multipleChoice/slice';
+import shortAnswerReducer from '@/features/shortAnswer/slice';
+import writingChoiceSlice from '@/features/writingChoice/slice';
+import writingPracticeReducer from '@/features/writingPractice/slice';
 
 const rootReducer = combineReducers({
   dragDrop: dragDropReducer,

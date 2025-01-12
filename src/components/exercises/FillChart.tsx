@@ -11,7 +11,7 @@ import {
   selectItemsMap,
   selectResults,
   setAnswer,
-} from '@/features/fillChart/fillChartSlice';
+} from '@/features/fillChart/slice';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import commonStyles from '@/styles/common.module.css';

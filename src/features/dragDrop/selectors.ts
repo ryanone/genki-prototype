@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { createLayoutConfiguration } from '@/utils/dragDrop';
 import { randomizeArray } from '@/utils/randomize';
-import type { Answer, DragDropState } from '@/features/dragDrop/dragDropSlice';
+import type { Answer, DragDropState } from '@/features/dragDrop/slice';
 import type { DragDropMeta } from '@/data/exercise';
 
 const selectAnswers = (state: DragDropState) => state.answers as Answer[];

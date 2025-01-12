@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ChoiceButton from '@/components/ChoiceButton';
-import type { ChoiceData } from '@/features/multipleChoice/multipleChoiceSlice';
+import type { ChoiceData } from '@/features/multipleChoice/slice';
 
 const DATA: ChoiceData = {
   content: 'Lorem ipsum dolor',
