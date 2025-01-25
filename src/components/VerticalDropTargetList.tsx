@@ -3,7 +3,7 @@ import { selectChoicesMap, selectIsFinished } from '@/features/dragDrop/slice';
 import MemoizedDropTarget from '@/components/MemoizedDropTarget';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import useAppSelector from '@/hooks/useAppSelector';
-import styles from './VerticalDropTargetList.module.css';
+import { verticalDropTargetListClass } from './VerticalDropTargetList.css';
 
 type VerticalDropTargetListProps = {
   onDropTargetDrop: (questionId: string) => void;
@@ -18,7 +18,7 @@ export default function VerticalDropTargetList({
   const isFinished = useAppSelector(selectIsFinished);
 
   return (
-    <div className={styles.verticalDropTargetList}>
+    <div className={verticalDropTargetListClass}>
       {answers?.map((a) => (
         <MemoizedDropTarget
           key={a.question.content}

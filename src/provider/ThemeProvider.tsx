@@ -1,33 +1,32 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import ThemeContext, { type Theme as ThemeType } from '@/context/ThemeContext';
+import ThemeContext, { type OptionalThemeClass } from '@/context/ThemeContext';
+import { themes } from '@/styles/theme.css';
 
 const THEME_KEY = 'theme';
-const DARK = 'dark';
-const LIGHT = 'light';
 
 type ThemeProviderProps = {
   children: ReactNode;
 };
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<ThemeType>();
+  const [theme, setTheme] = useState<OptionalThemeClass>();
 
   useEffect(() => {
     const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
     const darkMediaListener = (e: MediaQueryListEvent) =>
-      e.matches && setTheme(DARK);
+      e.matches && setTheme(themes.dark);
     const lightMedia = window.matchMedia('(prefers-color-scheme: light)');
     const lightMediaListener = (e: MediaQueryListEvent) =>
-      e.matches && setTheme(LIGHT);
+      e.matches && setTheme(themes.light);
 
-    const initialTheme = localStorage.getItem(THEME_KEY) as ThemeType;
+    const initialTheme = localStorage.getItem(THEME_KEY) as OptionalThemeClass;
     if (initialTheme) {
       setTheme(initialTheme);
     } else {
       if (lightMedia.matches) {
-        setTheme(LIGHT);
+        setTheme(themes.light);
       } else if (darkMedia.matches) {
-        setTheme(DARK);
+        setTheme(themes.dark);
       }
       darkMedia.addEventListener('change', darkMediaListener);
       lightMedia.addEventListener('change', lightMediaListener);
@@ -41,21 +40,22 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
 
   useEffect(() => {
     if (theme) {
-      const oldTheme = theme === DARK ? LIGHT : DARK;
+      const oldTheme = theme === themes.dark ? themes.light : themes.dark;
       if (document.documentElement.classList.contains(oldTheme)) {
         document.documentElement.classList.replace(oldTheme, theme);
       } else {
         document.documentElement.classList.add(theme);
       }
     } else {
-      document.documentElement.classList.remove(DARK, LIGHT);
+      document.documentElement.classList.remove(themes.dark, themes.light);
+      document.documentElement.classList.add(themes.dark);
     }
   }, [theme]);
 
   const providerValue = useMemo(
     () => ({
       theme,
-      setTheme: (t: ThemeType) => {
+      setTheme: (t: OptionalThemeClass) => {
         if (t) {
           localStorage.setItem(THEME_KEY, t);
         } else {

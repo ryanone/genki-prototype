@@ -1,7 +1,7 @@
 import { FaGear } from 'react-icons/fa6';
 import { useState } from 'react';
 import SettingsDialog from '@/components/SettingsDialog';
-import styles from './Footer.module.css';
+import * as styles from './Footer.css';
 
 export default function Footer() {
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
@@ -10,22 +10,22 @@ export default function Footer() {
   };
 
   return (
-    <footer className={styles.footer}>
-      <ul className={styles.links}>
+    <footer className={styles.footerClass}>
+      <ul className={styles.linksClass}>
         <li>
           <a href="https://sethclydesdale.github.io">Dummy link</a>
         </li>
       </ul>
-      <div className={styles.copyright}>
+      <div className={styles.copyrightClass}>
         Created by John Doe and the GitHub Community
       </div>
-      <div className={styles.actions}>
+      <div className={styles.actionsClass}>
         <button
-          className={styles.settingsButton}
+          className={styles.settingsButtonClass}
           onClick={() => setShowSettingsDialog(true)}
           type="button"
         >
-          <FaGear className={styles.settingsIcon} aria-label="Settings" />
+          <FaGear className={styles.settingsIconClass} aria-label="Settings" />
         </button>
         <SettingsDialog
           isOpen={showSettingsDialog}

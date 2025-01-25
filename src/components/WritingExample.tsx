@@ -1,4 +1,4 @@
-import styles from './WritingExample.module.css';
+import * as styles from './WritingExample.css';
 
 type WritingExampleProps = {
   alt?: string | undefined;
@@ -12,9 +12,9 @@ export default function WritingExample({
   showAlt = false,
 }: WritingExampleProps) {
   return (
-    <div className={styles.writingExample}>
-      <div className={styles.content}>{content}</div>
-      {showAlt && alt && <div className={styles.alt}>{alt}</div>}
+    <div className={styles.writingExampleClass}>
+      <div className={styles.contentClass}>{content}</div>
+      {showAlt && alt && <div className={styles.altClass}>{alt}</div>}
     </div>
   );
 }

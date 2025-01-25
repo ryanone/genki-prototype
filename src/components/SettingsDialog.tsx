@@ -7,9 +7,11 @@ import MultipleChoiceSettingsContext, {
   type MultipleChoiceQuestionFeedback,
 } from '@/context/MultipleChoiceSettingsContext';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
-import ThemeContext, { type Theme } from '@/context/ThemeContext';
-import commonStyles from '@/styles/common.module.css';
-import styles from './SettingsDialog.module.css';
+import ThemeContext, { type OptionalThemeClass } from '@/context/ThemeContext';
+import * as commonStyles from '@/styles/common.css';
+import { themes } from '@/styles/theme.css';
+import { settingName } from './SettingsDialog.css';
+import * as styles from './SettingsDialog.css';
 
 type SettingsDialogProps = {
   isOpen: boolean;
@@ -28,7 +30,7 @@ export default function SettingsDialog({
   } = useContext(MultipleChoiceSettingsContext);
   const multipleChoiceSelectId = useId();
 
-  const handleDarkModeChange = (value: Theme) => {
+  const handleDarkModeChange = (value: OptionalThemeClass) => {
     setTheme(value);
   };
 
@@ -48,46 +50,46 @@ export default function SettingsDialog({
     <Dialog isOpen={isOpen} onClose={handleClose}>
       <DialogHeader>Settings</DialogHeader>
       <DialogContent>
-        <div className={styles.heading}>Display</div>
-        <dl className={styles.settings}>
-          <dt className={styles.darkModeSettingName}>Dark mode</dt>
-          <dd className={styles.settingContent}>
-            <ul className={styles.list}>
+        <div className={styles.headingClass}>Display</div>
+        <dl className={styles.settingsClass}>
+          <dt className={settingName({ align: 'start' })}>Dark mode</dt>
+          <dd className={styles.settingContentClass}>
+            <ul className={styles.listClass}>
               <li>
-                <label className={styles.label}>
+                <label className={styles.labelClass}>
                   <input
-                    className={styles.radio}
+                    className={styles.radioClass}
                     type="radio"
                     name="darkMode"
                     value=""
                     defaultChecked={!theme}
-                    onClick={() => handleDarkModeChange(null)}
+                    onClick={() => handleDarkModeChange(undefined)}
                   />
                   Device settings
                 </label>
               </li>
               <li>
-                <label className={styles.label}>
+                <label className={styles.labelClass}>
                   <input
-                    className={styles.radio}
+                    className={styles.radioClass}
                     type="radio"
                     name="darkMode"
                     value="light"
-                    defaultChecked={theme === 'light'}
-                    onClick={() => handleDarkModeChange('light')}
+                    defaultChecked={theme === themes.light}
+                    onClick={() => handleDarkModeChange(themes.light)}
                   />
                   Off
                 </label>
               </li>
               <li>
-                <label className={styles.label}>
+                <label className={styles.labelClass}>
                   <input
-                    className={styles.radio}
+                    className={styles.radioClass}
                     type="radio"
                     name="darkMode"
                     value="dark"
-                    defaultChecked={theme === 'dark'}
-                    onClick={() => handleDarkModeChange('dark')}
+                    defaultChecked={theme === themes.dark}
+                    onClick={() => handleDarkModeChange(themes.dark)}
                   />
                   Dark
                 </label>
@@ -95,16 +97,16 @@ export default function SettingsDialog({
             </ul>
           </dd>
         </dl>
-        <div className={styles.heading}>Exercises</div>
-        <dl className={styles.settings}>
-          <dt className={styles.settingName}>
+        <div className={styles.headingClass}>Exercises</div>
+        <dl className={styles.settingsClass}>
+          <dt className={settingName()}>
             <label htmlFor={multipleChoiceSelectId}>
               Multiple Choice Feedback
             </label>
           </dt>
-          <dd className={styles.settingContent}>
+          <dd className={styles.settingContentClass}>
             <select
-              className={commonStyles.select}
+              className={commonStyles.selectClass}
               onChange={handleMultipleChoiceFeedbackChange}
               value={multipleChoiceSettings.feedback}
               id={multipleChoiceSelectId}
@@ -113,13 +115,13 @@ export default function SettingsDialog({
               <option value="AT_END">At end of exercise</option>
             </select>
           </dd>
-          <dt className={styles.furiganaSettingName}>Furigana</dt>
-          <dd className={styles.settingContent}>
-            <ul className={styles.list}>
+          <dt className={settingName({ align: 'start' })}>Furigana</dt>
+          <dd className={styles.settingContentClass}>
+            <ul className={styles.listClass}>
               <li>
-                <label className={styles.label}>
+                <label className={styles.labelClass}>
                   <input
-                    className={styles.radio}
+                    className={styles.radioClass}
                     type="radio"
                     name="furigana"
                     value="true"
@@ -130,9 +132,9 @@ export default function SettingsDialog({
                 </label>
               </li>
               <li>
-                <label className={styles.label}>
+                <label className={styles.labelClass}>
                   <input
-                    className={styles.radio}
+                    className={styles.radioClass}
                     type="radio"
                     name="furigana"
                     value="false"

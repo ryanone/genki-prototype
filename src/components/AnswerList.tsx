@@ -4,7 +4,7 @@ import Ruby from '@/components/Ruby';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import type { Answer, ChoiceData } from '@/features/multipleChoice/slice';
 import type { Question } from '@/data/exercise';
-import styles from './AnswerList.module.css';
+import * as styles from './AnswerList.css';
 
 export interface FilledAnswer extends Answer {
   choices: ChoiceData[];
@@ -19,7 +19,7 @@ export default function AnswerList({ data }: AnswerListProps) {
   const { showFurigana } = useContext(ShowFuriganaContext);
 
   return (
-    <div className={styles.answerList}>
+    <div className={styles.answerListClass}>
       {data.map((item, i) => (
         <MultipleChoiceQuestion
           key={item.question.content}

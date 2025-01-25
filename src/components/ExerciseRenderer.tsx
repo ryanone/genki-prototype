@@ -38,10 +38,15 @@ import type {
 import ChangeExerciseTypeDialog from '@/components/ChangeExerciseTypeDialog';
 import MultipleChoiceSettingsContext from '@/context/MultipleChoiceSettingsContext';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import styles from './ExerciseRenderer.module.css';
-import commonStyles from '@/styles/common.module.css';
 import useAppSelector from '@/hooks/useAppSelector';
 import { type AdjacentExerciseInfo } from '@/routes/loaders/exercise';
+import {
+  actionsClass,
+  exerciseTypeButtonClass,
+  loadingClass,
+  nextExerciseClass,
+  previousExerciseClass,
+} from './ExerciseRenderer.css';
 
 type ExerciseRendererProps = {
   data: Exercise;
@@ -165,7 +170,7 @@ export default function ExerciseRenderer({
     <div>
       <Suspense
         fallback={
-          <p className={styles.loading} role="alert">
+          <p className={loadingClass} role="alert">
             Loading...
           </p>
         }
@@ -175,7 +180,7 @@ export default function ExerciseRenderer({
       {canChangeExerciseType && (
         <>
           <button
-            className={`${styles.exerciseTypeButton} ${commonStyles.button}`}
+            className={exerciseTypeButtonClass}
             onClick={() => setShowChangeExerciseTypeDialog(true)}
             type="button"
           >
@@ -190,11 +195,11 @@ export default function ExerciseRenderer({
           />
         </>
       )}
-      <div className={styles.actions}>
+      <div className={actionsClass}>
         {previous && (
           <Link
             to={`/${previous.bookId}/lesson/${previous.lessonId}/exercise/${previous.id}`}
-            className={`${styles.previousExercise} ${commonStyles.button}`}
+            className={previousExerciseClass}
           >
             <FaArrowLeft role="presentation" />
             {previous.title}
@@ -203,7 +208,7 @@ export default function ExerciseRenderer({
         {next && (
           <Link
             to={`/${next.bookId}/lesson/${next.lessonId}/exercise/${next.id}`}
-            className={`${styles.nextExercise} ${commonStyles.button}`}
+            className={nextExerciseClass}
           >
             {next.title}
             <FaArrowRight role="presentation" />

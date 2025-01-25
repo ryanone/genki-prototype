@@ -4,7 +4,7 @@ import MemoizedDropTarget from '@/components/MemoizedDropTarget';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import useAppSelector from '@/hooks/useAppSelector';
 import { type LayoutConfigurationHorizontal } from '@/utils/dragDrop';
-import styles from './HorizontalDropTargetList.module.css';
+import { horizontalDropTargetListClass } from './HorizontalDropTargetList.css';
 
 type HorizontalDropTargetListProps = {
   layoutConfig: LayoutConfigurationHorizontal;
@@ -26,7 +26,7 @@ export default function HorizontalDropTargetList({
   let currTrackLen = 0;
   return (
     <div
-      className={styles.horizontalDropTargetList}
+      className={horizontalDropTargetListClass}
       style={layoutConfig.questionsStyles}
     >
       {answers?.map((a) => {

@@ -11,16 +11,12 @@ type DragDropExercisePropsAndCustomArgs = ComponentProps<
   typeof DragDropExercise
 >;
 
-type MockComponentProps = {
-  children: ReactNode;
-};
-
 const data = {
   ...Genki3Exercise01,
   title: 'Hiragana (p. 20-21)',
 } as DragDropExerciseType;
 
-function MockRoot({ children }: MockComponentProps) {
+function MockRoot({ children }: { children: ReactNode }) {
   return (
     <Provider store={setupStore({ dragDrop: initializeState(data) })}>
       {children}

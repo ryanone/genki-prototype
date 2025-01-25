@@ -1,15 +1,16 @@
 import { createContext } from 'react';
+import { lightThemeClass, type ThemeClass } from '@/styles/theme.css';
 
-export type Theme = 'dark' | 'light' | null | undefined;
+export type OptionalThemeClass = ThemeClass | null | undefined;
 
 type ThemeContextValue = {
-  setTheme: (value: Theme) => void;
-  theme: Theme;
+  setTheme: (value: OptionalThemeClass) => void;
+  theme: OptionalThemeClass;
 };
 
 const ThemeContext = createContext({
-  theme: 'light',
-  setTheme: (value: Theme) => {
+  theme: lightThemeClass,
+  setTheme: (value: OptionalThemeClass) => {
     console.error('ThemeContext: `setTheme()` not implemented: %o', value);
   },
 } as ThemeContextValue);

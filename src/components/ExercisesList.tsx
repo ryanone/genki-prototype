@@ -1,6 +1,6 @@
 import ExerciseLink from '@/components/ExerciseLink';
 import { type ExerciseInfo } from '@/data/lesson';
-import styles from './ExercisesList.module.css';
+import { exercisesListClass } from './ExercisesList.css';
 
 type ExercisesListProps = {
   bookId: string;
@@ -14,7 +14,7 @@ export default function ExercisesList({
   lessonId,
 }: ExercisesListProps) {
   return (
-    <ol className={styles.exercisesList}>
+    <ol className={exercisesListClass}>
       {exercises.map((e) => (
         <li key={e.id}>
           <ExerciseLink bookId={bookId} lessonId={lessonId} exercise={e} />

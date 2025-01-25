@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react';
-import styles from './Dialog.module.css';
+import { dialogClass, dialogFormClass } from '@/components/Dialog.css';
 
 type DialogProps = {
   children: ReactNode;
@@ -47,12 +47,12 @@ export default function Dialog({
   return (
     isOpen && (
       <dialog
-        className={styles.dialog}
+        className={dialogClass}
         ref={ref}
         role={role ?? 'dialog'}
         data-testid="dialog"
       >
-        <form className={styles.form} method="dialog">
+        <form className={dialogFormClass} method="dialog">
           {children}
         </form>
       </dialog>

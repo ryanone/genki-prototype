@@ -12,10 +12,11 @@ import RootRoute from '@/routes/Root';
 import bookLoader from '@/routes/loaders/book';
 import exerciseLoader from '@/routes/loaders/exercise';
 import { setupStore } from '@/app/store';
-import './index.css';
+import '@/styles/globalStyles.css';
 
 const router = createBrowserRouter([
   {
+    hydrateFallbackElement: <h2>Loading...</h2>,
     path: '/',
     errorElement: <RootBoundary />,
     element: <RootRoute />,

@@ -1,4 +1,4 @@
-import styles from './Ruby.module.css';
+import { rtClass, rubyClass } from './Ruby.css';
 
 type RubyProps = {
   alt?: string | undefined;
@@ -10,9 +10,9 @@ export default function Ruby({ alt, content, showAlt }: RubyProps) {
   if (showAlt) {
     if (alt) {
       return (
-        <ruby className={styles.ruby}>
+        <ruby className={rubyClass}>
           {content}
-          <rt className={styles.rt}>{alt}</rt>
+          <rt className={rtClass}>{alt}</rt>
         </ruby>
       );
     }

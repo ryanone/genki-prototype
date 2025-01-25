@@ -1,6 +1,6 @@
 import ShortAnswerInput from '@/components/ShortAnswerInput';
-import styles from './WritingAnswerItem.module.css';
 import type { Item as ShortAnswerItem } from '@/features/shortAnswer/slice';
+import * as styles from './WritingAnswerItem.css';
 
 type WritingAnswerItemProps = {
   data: ShortAnswerItem;
@@ -18,8 +18,8 @@ export default function WritingAnswerItem({
     onAnswerChange(question.id!, value);
   };
   return (
-    <div className={styles.writingAnswerItem} role="listitem">
-      <span className={styles.questionContent}>
+    <div className={styles.writingAnswerItemClass} role="listitem">
+      <span className={styles.questionContentClass}>
         {index}. {question.content}
       </span>
       <ShortAnswerInput

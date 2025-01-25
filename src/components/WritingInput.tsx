@@ -1,8 +1,13 @@
 import { forwardRef, useId, useState, type FormEvent } from 'react';
 import { FaStar } from 'react-icons/fa6';
 import type { WritingInputResult } from '@/features/writingPractice/slice';
-import commonStyles from '@/styles/common.module.css';
-import styles from './WritingInput.module.css';
+import * as commonStyles from '@/styles/common.css';
+import {
+  iconClass,
+  input,
+  writingInputClass,
+  type InputVariant,
+} from './WritingInput.css';
 
 type WritingInputProps = {
   defaultValue?: string | undefined;
@@ -34,32 +39,32 @@ const WritingInput = forwardRef<Ref, WritingInputProps>(function WritingInput(
     onChange(e.currentTarget.value, index);
   };
 
-  const inputClasses = [commonStyles.input, styles.input];
+  let inputVariant: InputVariant;
   let description;
   const isCorrect = result === 'CORRECT';
   if (result === 'INCORRECT') {
-    inputClasses.push(styles.incorrect);
+    inputVariant = { mode: 'incorrect' };
     description = 'The input value is incorrect';
   } else if (isCorrect) {
     description = 'The input value is correct';
   }
 
   return (
-    <div className={styles.writingInput}>
+    <div className={writingInputClass}>
       {description && (
         <span
           id={describedById}
-          className={commonStyles.hidden}
+          className={commonStyles.hiddenClass}
           data-testid="writing-input-result"
         >
           {description}
         </span>
       )}
-      <label className={commonStyles.hidden} htmlFor={inputId}>
+      <label className={commonStyles.hiddenClass} htmlFor={inputId}>
         {placeholder ? `Enter ${placeholder}` : 'Enter value'}
       </label>
       <input
-        className={inputClasses.join(' ')}
+        className={input(inputVariant)}
         id={inputId}
         type="text"
         placeholder={placeholder}
@@ -69,7 +74,7 @@ const WritingInput = forwardRef<Ref, WritingInputProps>(function WritingInput(
         disabled={!!isDisabled}
         aria-describedby={describedById}
       />
-      {isCorrect && <FaStar role="presentation" className={styles.icon} />}
+      {isCorrect && <FaStar role="presentation" className={iconClass} />}
     </div>
   );
 });

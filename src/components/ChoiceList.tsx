@@ -1,6 +1,6 @@
 import ChoiceButton from '@/components/ChoiceButton';
 import { type ChoiceData } from '@/features/multipleChoice/slice';
-import styles from './ChoiceList.module.css';
+import * as styles from './ChoiceList.css';
 
 type ChoiceListProps = {
   choices: ChoiceData[];
@@ -14,7 +14,7 @@ export default function ChoiceList({
   onChoiceSelect,
 }: ChoiceListProps) {
   return (
-    <ol className={styles.list}>
+    <ol className={styles.choiceListClass}>
       {choices.map((choice) => (
         <ChoiceButton
           key={choice.id}

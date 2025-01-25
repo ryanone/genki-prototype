@@ -1,6 +1,6 @@
 import { FaCircleInfo } from 'react-icons/fa6';
 import { ReactNode } from 'react';
-import styles from './Instructions.module.css';
+import * as styles from './Instructions.css';
 
 type InstructionsProps = {
   children: ReactNode;
@@ -8,8 +8,8 @@ type InstructionsProps = {
 
 export default function Instructions({ children }: InstructionsProps) {
   return (
-    <div className={styles.instructions}>
-      <FaCircleInfo className={styles.icon} role="presentation" />
+    <div className={styles.instructionsClass}>
+      <FaCircleInfo className={styles.iconClass} role="presentation" />
       {children}
     </div>
   );

@@ -14,8 +14,7 @@ import {
 } from '@/features/fillChart/slice';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import commonStyles from '@/styles/common.module.css';
-import styles from './FillChart.module.css';
+import * as styles from './FillChart.css';
 
 export default function FillChart() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
@@ -73,7 +72,7 @@ export default function FillChart() {
   }
 
   return (
-    <div className={styles.fillChart}>
+    <div className={styles.fillChartClass}>
       {isFinished && results ? (
         <ExerciseResults
           exerciseType="FILL_CHART"
@@ -84,13 +83,13 @@ export default function FillChart() {
         />
       ) : null}
       <Instructions>{instructions}</Instructions>
-      <div className={styles.items} style={itemsStyles}>
+      <div className={styles.itemsClass} style={itemsStyles}>
         {configuration.map((track, i) =>
           track.map((itemId, j) => {
             if (itemId === '-') {
               return (
                 // eslint-disable-next-line react/no-array-index-key
-                <div className={styles.emptyItem} key={`item-${i}-${j}`} />
+                <div className={styles.emptyItemClass} key={`item-${i}-${j}`} />
               );
             }
             const item = itemsMap.get(itemId)!;
@@ -115,11 +114,11 @@ export default function FillChart() {
         isRunning={!isFinished}
         onStop={setTimeElapsed}
       />
-      <div className={styles.actions}>
+      <div className={styles.actionsClass}>
         {!isFinished && (
           <button
             onClick={handleCheckAnswersClick}
-            className={`${commonStyles.button} ${styles.checkAnswersButton}`}
+            className={styles.checkAnswersButtonClass}
             type="button"
           >
             <FaCheck role="presentation" />

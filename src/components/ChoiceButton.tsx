@@ -1,5 +1,5 @@
 import type { ChoiceData } from '@/features/multipleChoice/slice';
-import styles from './ChoiceButton.module.css';
+import { choiceButton, ChoiceButtonVariant } from './ChoiceButton.css';
 
 type ChoiceButtonProps = {
   data: ChoiceData;
@@ -12,16 +12,16 @@ export default function ChoiceButton({
   isDisabled,
   onClick,
 }: ChoiceButtonProps) {
-  const classes = [styles.button];
   let ariaLabel = '';
+  let choiceButtonVariant: ChoiceButtonVariant;
   if (data.result === 'SELECTED_CORRECT') {
-    classes.push(styles.selectedCorrect);
+    choiceButtonVariant = { mode: 'selectedCorrect' };
     ariaLabel = 'Correct answer chosen';
   } else if (data.result === 'UNSELECTED_CORRECT') {
-    classes.push(styles.unselectedCorrect);
+    choiceButtonVariant = { mode: 'unselectedCorrect' };
     ariaLabel = 'This is the correct answer';
   } else if (data.result === 'INCORRECT') {
-    classes.push(styles.incorrect);
+    choiceButtonVariant = { mode: 'incorrect' };
     ariaLabel = 'Incorrect answer chosen';
   }
 
@@ -33,7 +33,7 @@ export default function ChoiceButton({
 
   return (
     <button
-      className={classes.join(' ')}
+      className={choiceButton(choiceButtonVariant)}
       onClick={handleClick}
       aria-label={ariaLabel}
       disabled={isDisabled ?? false}

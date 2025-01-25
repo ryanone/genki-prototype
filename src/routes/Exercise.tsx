@@ -3,7 +3,7 @@ import ExerciseRenderer from '@/components/ExerciseRenderer';
 import LessonsNavigation from '@/components/LessonsNavigation';
 import { type Book } from '@/data/book';
 import { type ExerciseRouteResponse } from '@/routes/loaders/exercise';
-import styles from './Exercise.module.css';
+import * as styles from './Exercise.css';
 
 export default function Exercise() {
   const exerciseResp = useLoaderData() as ExerciseRouteResponse;
@@ -11,9 +11,9 @@ export default function Exercise() {
   const { exercise, next, previous } = exerciseResp;
 
   return (
-    <div className={styles.exerciseRoute}>
+    <div className={styles.exerciseRouteClass}>
       <LessonsNavigation bookId={book.id} lessons={book.lessons} />
-      <div className={styles.heading}>{exercise.title}</div>
+      <div className={styles.headingClass}>{exercise.title}</div>
       <ExerciseRenderer
         data={exercise}
         next={next}

@@ -1,6 +1,6 @@
 import ExercisesList from '@/components/ExercisesList';
 import { type LessonSection } from '@/data/lesson';
-import styles from './ExercisesSection.module.css';
+import * as styles from './ExercisesSection.css';
 
 type ExercisesSectionProps = {
   bookId: string;
@@ -14,8 +14,11 @@ export default function ExercisesSection({
   section,
 }: ExercisesSectionProps) {
   return (
-    <div className={styles.exercisesSection}>
-      <div className={styles.heading} data-testid="exercises-section-heading">
+    <div className={styles.exercisesSectionClass}>
+      <div
+        className={styles.headingClass}
+        data-testid="exercises-section-heading"
+      >
         {section.content}
       </div>
       <ExercisesList

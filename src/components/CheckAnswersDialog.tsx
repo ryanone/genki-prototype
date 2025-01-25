@@ -3,7 +3,7 @@ import Dialog from '@/components/Dialog';
 import DialogActions from '@/components/Dialog/Actions';
 import DialogContent from '@/components/Dialog/Content';
 import DialogHeader from '@/components/Dialog/Header';
-import commonStyles from '@/styles/common.module.css';
+import * as commonStyles from '@/styles/common.css';
 
 type CheckAnswersDialogProps = {
   content: ReactNode;
@@ -36,7 +36,7 @@ export default function CheckAnswersDialog({
       <DialogActions onClose={handleClose}>
         <button
           onClick={handleConfirmClick}
-          className={commonStyles.button}
+          className={commonStyles.primaryButtonClass}
           type="button"
         >
           Yes, check my answers!

@@ -1,8 +1,9 @@
 import { useId, useState, type FormEvent } from 'react';
 import { type Question } from '@/data/exercise';
 import type { WritingChoiceResult } from '@/features/writingChoice/slice';
-import commonStyles from '@/styles/common.module.css';
-import styles from './WritingChoiceItem.module.css';
+import * as commonStyles from '@/styles/common.css';
+import { input, type InputVariant } from './WritingChoiceItem.css';
+import * as styles from './WritingChoiceItem.css';
 
 type WritingChoiceItemProps = {
   answerContent?: string;
@@ -26,25 +27,25 @@ export default function WritingChoiceItem({
     setValue(e.currentTarget.value);
     onChoiceChange(question, e.currentTarget.value);
   };
-  const inputClasses = [styles.input, commonStyles.input];
+  let inputVariant: InputVariant;
   const isDisabled = !!result;
   const isCorrect = result === 'CORRECT';
   const isIncorrect = result === 'INCORRECT';
   if (isIncorrect) {
-    inputClasses.push(styles.incorrect);
+    inputVariant = { mode: 'incorrect' };
   } else if (isCorrect) {
-    inputClasses.push(styles.correct);
+    inputVariant = { mode: 'correct' };
   }
 
   return (
-    <div className={styles.writingChoiceItem}>
+    <div className={styles.writingChoiceItemClass}>
       <div>{index}.</div>
-      <div className={styles.inputContainer}>
-        <span className={styles.inputLine}>
+      <div className={styles.inputContainerClass}>
+        <span className={styles.inputLineClass}>
           (
           <input
             type="text"
-            className={inputClasses.join(' ')}
+            className={`${input(inputVariant)} ${commonStyles.inputClass}`}
             id={inputId}
             value={value}
             disabled={!!isDisabled}
@@ -55,16 +56,18 @@ export default function WritingChoiceItem({
         </span>
         {isIncorrect && answerContent && (
           <>
-            <div className={styles.answerContent} aria-hidden="true">
+            <div className={styles.answerContentClass} aria-hidden="true">
               {answerContent}
             </div>
-            <div className={commonStyles.hidden}>
+            <div className={commonStyles.hiddenClass}>
               The correct answer is {answerContent}
             </div>
           </>
         )}
         {isCorrect && (
-          <div className={commonStyles.hidden}>This answer is correct.</div>
+          <div className={commonStyles.hiddenClass}>
+            This answer is correct.
+          </div>
         )}
       </div>
       <label htmlFor={inputId}>{question.content}</label>

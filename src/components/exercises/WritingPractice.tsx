@@ -14,8 +14,7 @@ import {
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import type { Ref as WritingInputRefType } from '@/components/WritingInput';
-import commonStyles from '@/styles/common.module.css';
-import styles from './WritingPractice.module.css';
+import * as styles from './WritingPractice.css';
 
 export default function WritingPractice() {
   const rowRefs = useRef<WritingInputRefType[]>([]);
@@ -92,7 +91,7 @@ export default function WritingPractice() {
   };
 
   return (
-    <div className={styles.writingPractice}>
+    <div className={styles.writingPracticeClass}>
       {isFinished && results ? (
         <ExerciseResults
           exerciseType="WRITING_PRACTICE"
@@ -103,7 +102,7 @@ export default function WritingPractice() {
         />
       ) : null}
       {instructions ? <Instructions>{instructions}</Instructions> : null}
-      <div className={styles.rows} style={rowsStyles}>
+      <div className={styles.rowsClass} style={rowsStyles}>
         {rows.length
           ? rows.map((row, i) => {
               return (
@@ -130,11 +129,11 @@ export default function WritingPractice() {
         isRunning={!isFinished}
         onStop={setTimeElapsed}
       />
-      <div className={styles.actions}>
+      <div className={styles.actionsClass}>
         {!isFinished && (
           <button
             onClick={handleCheckAnswersClick}
-            className={`${commonStyles.button} ${styles.checkAnswersButton}`}
+            className={styles.checkAnswersButtonClass}
             type="button"
           >
             <FaCheck role="presentation" />

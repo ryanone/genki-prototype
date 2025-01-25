@@ -3,8 +3,12 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import LessonsAccordion from '@/components/LessonsAccordion';
 import { type Lesson } from '@/data/lesson';
-import styles from './LessonsNavigation.module.css';
-import commonStyles from '@/styles/common.module.css';
+import * as commonStyles from '@/styles/common.css';
+import {
+  lessonsNavigation,
+  type LessonsNavigationVariant,
+} from './LessonsNavigation.css';
+import * as styles from './LessonsNavigation.css';
 
 type LessonsNavigationProps = {
   bookId: string;
@@ -16,9 +20,9 @@ export default function LessonsNavigation({
   lessons,
 }: LessonsNavigationProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const navigationClasses = [styles.lessonsNavigation];
+  let lessonsNavigationVariant: LessonsNavigationVariant;
   if (isVisible) {
-    navigationClasses.push(styles.expanded);
+    lessonsNavigationVariant = { mode: 'expanded' };
   }
   const location = useLocation();
 
@@ -29,18 +33,18 @@ export default function LessonsNavigation({
   return (
     <>
       <button
-        className={`${commonStyles.button} ${styles.openButton}`}
+        className={styles.openButtonClass}
         onClick={() => setIsVisible(true)}
         aria-label="Open navigation"
         type="button"
       >
         <FaBars />
       </button>
-      <nav className={navigationClasses.join(' ')}>
-        <div className={styles.header}>
-          <span className={styles.title}>Exercise List</span>
+      <nav className={lessonsNavigation(lessonsNavigationVariant)}>
+        <div className={styles.headerClass}>
+          <span className={styles.titleClass}>Exercise List</span>
           <button
-            className={commonStyles.secondaryButton}
+            className={commonStyles.secondaryButtonClass}
             onClick={() => setIsVisible(false)}
             aria-label="Close navigation"
             type="button"

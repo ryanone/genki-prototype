@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import GenkiImg from '@/assets/genki.png';
-import styles from './Header.module.css';
+import * as styles from './Header.css';
 
 type HeaderProps = {
   bookId: string;
@@ -10,22 +10,22 @@ type HeaderProps = {
 
 export default function Header({ bookId, description, title }: HeaderProps) {
   return (
-    <header className={styles.header}>
-      <h1 className={styles.heading}>
+    <header className={styles.headerClass}>
+      <h1 className={styles.headingClass}>
         <img
-          className={styles.logo}
+          className={styles.logoClass}
           src={GenkiImg}
           height="120"
           width="120"
           alt="Genki in Hiragana"
         />
-        <Link className={styles.title} to={`/${bookId}`}>
+        <Link className={styles.titleClass} to={`/${bookId}`}>
           {title}
         </Link>
-        <div className={styles.description}>{description}</div>
+        <div className={styles.descriptionClass}>{description}</div>
       </h1>
       <a
-        className={styles.forkMe}
+        className={styles.forkMeClass}
         href="https://github.com/SethClydesdale/genki-study-resources"
         target="_blank"
       >

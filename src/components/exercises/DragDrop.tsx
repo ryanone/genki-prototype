@@ -21,8 +21,15 @@ import VerticalDropTargetList from '@/components/VerticalDropTargetList';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import type { LayoutConfigurationHorizontal } from '@/utils/dragDrop';
-import styles from './DragDrop.module.css';
-import commonStyles from '@/styles/common.module.css';
+import {
+  actionsClass,
+  buttonClass,
+  choicesClass,
+  dragDrop,
+  mainClass,
+  type DragDropVariant,
+} from './DragDrop.css';
+import * as commonStyles from '@/styles/common.css';
 
 export default function DragDrop() {
   const selectedChoiceId = useRef<string | undefined>(undefined);
@@ -38,10 +45,10 @@ export default function DragDrop() {
   const isFinished = useAppSelector(selectIsFinished);
 
   const isHorizontal = useMemo(() => layout !== 'VERTICAL', [layout]);
-  const rootClasses = [
-    styles.dragDrop,
-    isHorizontal ? styles.horizontal : styles.vertical,
-  ];
+  let dragDropVariant: DragDropVariant = { orientation: 'vertical' };
+  if (isHorizontal) {
+    dragDropVariant = { orientation: 'horizontal' };
+  }
 
   const handleDropTargetDrop = (questionId: string) => {
     if (selectedChoiceId.current) {
@@ -95,7 +102,7 @@ export default function DragDrop() {
   }, [handleChoiceUnselect]);
 
   return (
-    <div className={rootClasses.join(' ')}>
+    <div className={dragDrop(dragDropVariant)}>
       {isFinished && results ? (
         <ExerciseResults
           exerciseType="DRAG_DROP"
@@ -108,7 +115,7 @@ export default function DragDrop() {
       {layoutConfig?.instructions ? (
         <Instructions>{layoutConfig.instructions}</Instructions>
       ) : null}
-      <div className={styles.main}>
+      <div className={mainClass}>
         {isHorizontal && layoutConfig ? (
           <HorizontalDropTargetList
             layoutConfig={layoutConfig as LayoutConfigurationHorizontal}
@@ -117,7 +124,7 @@ export default function DragDrop() {
         ) : (
           <VerticalDropTargetList onDropTargetDrop={handleDropTargetDrop} />
         )}
-        <div className={styles.choices}>
+        <div className={choicesClass}>
           {remainingChoices.map((choice) => (
             <MemoizedDraggableItem
               key={choice.id}
@@ -128,39 +135,38 @@ export default function DragDrop() {
           )) ?? null}
         </div>
       </div>
-      <div className={styles.actions}>
+      <div className={actionsClass}>
         {isFinished ? (
-          <button
-            className={`${styles.button} ${commonStyles.button}`}
-            onClick={handleRestart}
-            type="button"
-          >
+          <button className={buttonClass} onClick={handleRestart} type="button">
             <FaArrowsRotate
-              className={commonStyles.buttonIcon}
+              className={commonStyles.buttonIconClass}
               role="presentation"
             />
             Restart
           </button>
         ) : (
           <button
-            className={`${styles.button} ${commonStyles.button}`}
+            className={buttonClass}
             onClick={() => setShowReviewDialog(true)}
             type="button"
           >
-            <FaBook className={commonStyles.buttonIcon} role="presentation" />
+            <FaBook
+              className={commonStyles.buttonIconClass}
+              role="presentation"
+            />
             Review
           </button>
         )}
         {canChangeLayout && (
           <button
-            className={`${styles.button} ${commonStyles.button}`}
+            className={buttonClass}
             onClick={handleChangeLayoutClick}
             type="button"
           >
             {isHorizontal ? (
               <>
                 <CiGrid2V
-                  className={commonStyles.buttonIcon}
+                  className={commonStyles.buttonIconClass}
                   role="presentation"
                 />
                 Vertical Mode
@@ -168,7 +174,7 @@ export default function DragDrop() {
             ) : (
               <>
                 <CiGrid2H
-                  className={commonStyles.buttonIcon}
+                  className={commonStyles.buttonIconClass}
                   role="presentation"
                 />
                 Horizontal Mode

@@ -1,7 +1,7 @@
 import Accordion from '@/components/Accordion';
 import LessonDetail from '@/components/LessonDetail';
 import { type Lesson } from '@/data/lesson';
-import styles from './LessonsAccordion.module.css';
+import * as styles from './LessonsAccordion.css';
 
 type LessonsAccordionProps = {
   bookId: string;
@@ -16,8 +16,8 @@ export default function LessonsAccordion({
 }: LessonsAccordionProps) {
   const isViewModeDetailed = viewMode === 'DETAILED';
   const headerClass = isViewModeDetailed
-    ? styles.detailedHeader
-    : styles.compactHeader;
+    ? styles.detailedHeaderClass
+    : styles.compactHeaderClass;
   const sections = lessons.map((l: Lesson) => {
     const title = isViewModeDetailed ? `${l.title}: ${l.description}` : l.title;
     return {

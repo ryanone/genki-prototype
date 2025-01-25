@@ -1,5 +1,5 @@
 import type { KeyboardEvent } from 'react';
-import styles from './DraggableItem.module.css';
+import * as styles from './DraggableItem.css';
 
 type DraggableItemProps = {
   onSelect: (id: string) => void;
@@ -23,7 +23,7 @@ export default function DraggableItem({
 
   return (
     <div
-      className={styles.item}
+      className={styles.itemClass}
       onClick={() => onSelect(val.id)}
       onDragEnd={onUnselect}
       onDragStart={() => onSelect(val.id)}

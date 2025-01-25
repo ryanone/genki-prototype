@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react';
-import styles from './Header.module.css';
+import * as styles from './Header.css';
 
 type DialogHeaderProps = {
   children: ReactNode;
 };
 
 export default function DialogHeader({ children }: DialogHeaderProps) {
-  return <div className={styles.header}>{children}</div>;
+  return <div className={styles.headerClass}>{children}</div>;
 }

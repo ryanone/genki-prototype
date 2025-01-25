@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import styles from './ExerciseLink.module.css';
 import { type ExerciseInfo } from '@/data/lesson';
+import { exerciseLinkClass } from './ExerciseLink.css';
 
 type ExerciseLinkProps = {
   bookId: string;
@@ -15,7 +15,7 @@ export default function ExerciseLink({
 }: ExerciseLinkProps) {
   return (
     <Link
-      className={styles.exerciseLink}
+      className={exerciseLinkClass}
       to={`/${bookId}/lesson/${lessonId}/exercise/${exercise.id}`}
     >
       {exercise.title}

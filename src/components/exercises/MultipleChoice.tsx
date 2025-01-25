@@ -18,7 +18,7 @@ import ShowFuriganaContext from '@/context/ShowFuriganaContext';
 import Timer from '@/components/Timer';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import styles from './MultipleChoice.module.css';
+import * as styles from './MultipleChoice.css';
 
 export default function MultipleChoice() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
@@ -51,7 +51,7 @@ export default function MultipleChoice() {
   };
   const nextButton = isQuestionFinished && (
     <button
-      className={styles.nextButton}
+      className={styles.nextButtonClass}
       onClick={handleNextClick}
       type="button"
     >
@@ -78,13 +78,13 @@ export default function MultipleChoice() {
           }
           onChoiceSelect={handleChoiceSelect}
         />
-        <div className={styles.actions}>{nextButton}</div>
+        <div className={styles.actionsClass}>{nextButton}</div>
         <ProgressBar current={currentIndex} total={answers.length} />
         <Timer isRunning={!isFinished} onStop={setTimeElapsed} />
       </>
     );
   return (
-    <div className={styles.multipleChoice}>
+    <div className={styles.multipleChoiceClass}>
       {isFinished && results ? (
         <>
           <ExerciseResults

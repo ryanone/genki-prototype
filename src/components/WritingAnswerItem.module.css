@@ -1,9 +1,0 @@
-.writingAnswerItem {
-  display: flex;
-  flex-direction: column;
-  margin: 24px;
-}
-
-.questionContent {
-  color: var(--foreground-color-1);
-}

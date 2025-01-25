@@ -1,6 +1,6 @@
 import { type MouseEvent, type ReactNode } from 'react';
-import styles from './Actions.module.css';
-import commonStyles from '@/styles/common.module.css';
+import * as styles from './Actions.css';
+import * as commonStyles from '@/styles/common.css';
 
 type DialogActionsProps = {
   children?: ReactNode;
@@ -17,11 +17,11 @@ export default function DialogActions({
   };
 
   return (
-    <div className={styles.actions}>
+    <div className={styles.actionsClass}>
       {children}
       <button
         onClick={handleCloseClick}
-        className={commonStyles.button}
+        className={commonStyles.primaryButtonClass}
         type="button"
         formMethod="dialog"
       >

@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react';
-import styles from './Content.module.css';
+import * as styles from './Content.css';
 
 type DialogContentProps = {
   children: ReactNode;
 };
 
 export default function DialogContent({ children }: DialogContentProps) {
-  return <div className={styles.content}>{children}</div>;
+  return <div className={styles.contentClass}>{children}</div>;
 }

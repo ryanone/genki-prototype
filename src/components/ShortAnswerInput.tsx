@@ -1,6 +1,8 @@
 import { useId, useState, type FormEvent } from 'react';
-import commonStyles from '@/styles/common.module.css';
-import styles from './ShortAnswerInput.module.css';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+import * as commonStyles from '@/styles/common.css';
+import { input, widthVar, type InputVariant } from './ShortAnswerInput.css';
+import * as styles from './ShortAnswerInput.css';
 
 type ShortAnswerInputProps = {
   answerContent?: string | undefined;
@@ -23,44 +25,41 @@ export default function ShortAnswerInput({
     setValue(e.currentTarget.value);
     onChange(e.currentTarget.value);
   };
-  const inputClasses = [styles.input];
   const isDisabled = !!result;
   const isCorrect = result === 'CORRECT';
   const isIncorrect = result === 'INCORRECT';
+  let inputVariant: InputVariant;
   if (isCorrect) {
-    inputClasses.push(styles.correct);
-  } else if (result === 'INCORRECT') {
-    inputClasses.push(styles.incorrect);
-  }
-
-  const style: Record<string, string> = {};
-  if (width) {
-    style['--width'] = `${width}px`;
+    inputVariant = { mode: 'correct' };
+  } else if (isIncorrect) {
+    inputVariant = { mode: 'incorrect' };
   }
 
   return (
-    <span className={styles.shortAnswerInput}>
+    <span className={styles.shortAnswerInputClass}>
       <input
         id={inputId}
         type="text"
-        className={inputClasses.join(' ')}
+        className={input(inputVariant)}
         disabled={!!isDisabled}
         value={value}
         onChange={handleInputChange}
-        style={style}
+        style={assignInlineVars({
+          [widthVar]: width ? `${width}px` : undefined,
+        })}
       />
       {isIncorrect && answerContent && (
         <>
-          <div className={styles.answerContent} aria-hidden="true">
+          <div className={styles.answerContentClass} aria-hidden="true">
             {answerContent ?? ''}
           </div>
-          <div className={commonStyles.hidden}>
+          <div className={commonStyles.hiddenClass}>
             The correct answer is {answerContent}
           </div>
         </>
       )}
       {isCorrect && (
-        <div className={commonStyles.hidden}>This answer is correct.</div>
+        <div className={commonStyles.hiddenClass}>This answer is correct.</div>
       )}
     </span>
   );

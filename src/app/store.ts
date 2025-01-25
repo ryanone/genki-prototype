@@ -3,7 +3,7 @@ import dragDropReducer from '@/features/dragDrop/slice';
 import fillChartReducer from '@/features/fillChart/slice';
 import multipleChoiceReducer from '@/features/multipleChoice/slice';
 import shortAnswerReducer from '@/features/shortAnswer/slice';
-import writingChoiceSlice from '@/features/writingChoice/slice';
+import writingChoiceReducer from '@/features/writingChoice/slice';
 import writingPracticeReducer from '@/features/writingPractice/slice';
 
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   fillChart: fillChartReducer,
   multipleChoice: multipleChoiceReducer,
   shortAnswer: shortAnswerReducer,
-  writingChoice: writingChoiceSlice,
+  writingChoice: writingChoiceReducer,
   writingPractice: writingPracticeReducer,
 });
 

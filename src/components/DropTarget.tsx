@@ -1,7 +1,19 @@
 import { FaArrowLeft, FaStar, FaX } from 'react-icons/fa6';
 import { useState, type KeyboardEvent } from 'react';
 import { type TwoDirectionalFlow } from '@/data/exercise';
-import styles from './DropTarget.module.css';
+import {
+  altClass,
+  content,
+  dropTarget,
+  icon,
+  incorrectArrowClass,
+  numIncorrectClass,
+  primaryClass,
+  zone,
+  type ContentVariant,
+  type DropTargetVariant,
+  type ZoneVariant,
+} from './DropTarget.css';
 
 type DropTargetValue = {
   alt?: string | undefined;
@@ -49,19 +61,17 @@ export default function DropTarget({
     }
   };
 
-  const classes = [styles.dropTarget];
+  let dropTargetVariant: DropTargetVariant = { orientation: 'horizontal' };
   if (layout === 'VERTICAL') {
-    classes.push(styles.vertical);
-  } else {
-    classes.push(styles.horizontal);
+    dropTargetVariant = { orientation: 'vertical' };
   }
 
   const isCorrect = result === 'CORRECT';
   const isIncorrect = result === 'INCORRECT';
   const zoneContent = val2 && val2.content;
-  const zoneClasses = [styles.zone];
+  let zoneVariant: ZoneVariant = {};
   if (isZoneEntered) {
-    zoneClasses.push(styles.zoneEntered);
+    zoneVariant = { interaction: 'entered' };
   }
 
   let numIncorrectContent;
@@ -69,40 +79,43 @@ export default function DropTarget({
     numIncorrectContent =
       layout === 'HORIZONTAL' ? (
         <span
-          className={styles.numIncorrect}
+          className={numIncorrectClass}
           data-testid="drop-target-num-incorrect"
         >
-          <FaArrowLeft className={styles.incorrectArrow} role="presentation" />
+          <FaArrowLeft className={incorrectArrowClass} role="presentation" />
           {`wrong ${numIncorrectGuesses}x`}
         </span>
       ) : (
         <span
-          className={styles.numIncorrect}
+          className={numIncorrectClass}
           data-testid="drop-target-num-incorrect"
         >{`x${numIncorrectGuesses}`}</span>
       );
-    zoneClasses.push(styles.zoneHasIncorrect);
+    // zoneClasses.push(styles.zoneHasIncorrect);
+    zoneVariant.mode = 'incorrect';
   }
 
-  const contentClasses = [styles.content];
+  // const contentClasses = [styles.content];
+  let contentVariant: ContentVariant;
   if (showAlt && !val1.alt && layout === 'VERTICAL') {
-    contentClasses.push(styles.emptyContent);
+    // contentClasses.push(styles.emptyContent);
+    contentVariant = { contents: 'empty' };
   }
 
   return (
-    <div className={classes.join(' ')} style={style}>
-      <div className={contentClasses.join(' ')}>
-        <div className={styles.primary} data-testid="drop-target-val1-content">
+    <div className={dropTarget(dropTargetVariant)} style={style}>
+      <div className={content(contentVariant)}>
+        <div className={primaryClass} data-testid="drop-target-val1-content">
           {val1.content}
         </div>
         {showAlt && val1.alt && (
-          <div className={styles.alt} data-testid="drop-target-val1-alt">
+          <div className={altClass} data-testid="drop-target-val1-alt">
             {val1.alt}
           </div>
         )}
       </div>
       <div
-        className={zoneClasses.join(' ')}
+        className={zone(zoneVariant)}
         data-drop-target-zone="true"
         onDrop={handleZoneDropClick}
         onClick={handleZoneDropClick}
@@ -115,16 +128,10 @@ export default function DropTarget({
       >
         {zoneContent}
         {isIncorrect && (
-          <FaX
-            aria-label="Incorrect"
-            className={`${styles.icon} ${styles.iconIncorrect}`}
-          />
+          <FaX aria-label="Incorrect" className={icon({ mode: 'incorrect' })} />
         )}
         {isCorrect && (
-          <FaStar
-            aria-label="Correct"
-            className={`${styles.icon} ${styles.iconCorrect}`}
-          />
+          <FaStar aria-label="Correct" className={icon({ mode: 'correct' })} />
         )}
       </div>
       {numIncorrectContent}

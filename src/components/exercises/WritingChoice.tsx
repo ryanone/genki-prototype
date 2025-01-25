@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { FaCheck } from 'react-icons/fa6';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import {
   restart,
   review,
@@ -16,8 +17,16 @@ import WritingChoicesList from '@/components/WritingChoicesList';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import { type Question } from '@/data/exercise';
-import commonStyles from '@/styles/common.module.css';
-import styles from './WritingChoice.module.css';
+import {
+  actionsClass,
+  answersClass,
+  checkAnswersButtonClass,
+  contentClass,
+  numColumnsVar,
+  numRowsVar,
+  questionsFlowVar,
+  writingChoiceClass,
+} from './WritingChoice.css';
 
 export default function WritingChoice() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
@@ -32,11 +41,11 @@ export default function WritingChoice() {
   const answers = useAppSelector(selectAnswers);
   const numColumns = meta.numColumns ?? 2;
   const numRows = Math.ceil(answers.length / numColumns);
-  const answersStyles: Record<string, string | number> = {
-    '--questions-flow': meta.questionsFlow === 'HORIZONTAL' ? 'row' : 'column',
-    '--num-columns': numColumns,
-    '--num-rows': numRows,
-  };
+  const answersStyles = assignInlineVars({
+    [numColumnsVar]: `${numColumns}`,
+    [numRowsVar]: `${numRows}`,
+    [questionsFlowVar]: meta.questionsFlow === 'HORIZONTAL' ? 'row' : 'column',
+  });
   const handleCheckAnswersClick = () => {
     setCheckAnswersDialogContent(
       <p>Checking your answers will end the quiz. Do you want to continue?</p>,
@@ -62,7 +71,7 @@ export default function WritingChoice() {
   };
 
   return (
-    <div className={styles.writingChoice}>
+    <div className={writingChoiceClass}>
       {isFinished && results && (
         <ExerciseResults
           exerciseType="WRITING_CHOICE"
@@ -73,8 +82,8 @@ export default function WritingChoice() {
         />
       )}
       <Instructions>{meta.instructions}</Instructions>
-      <div className={styles.content}>
-        <div className={styles.answers} style={answersStyles}>
+      <div className={contentClass}>
+        <div className={answersClass} style={answersStyles}>
           {answers.map((a, i) => (
             <WritingChoiceItem
               key={a.question.content}
@@ -88,11 +97,11 @@ export default function WritingChoice() {
         </div>
         <WritingChoicesList choices={choices} />
       </div>
-      <div className={styles.actions}>
+      <div className={actionsClass}>
         {!isFinished && (
           <button
             onClick={handleCheckAnswersClick}
-            className={`${commonStyles.button} ${styles.checkAnswersButton}`}
+            className={checkAnswersButtonClass}
             type="button"
           >
             <FaCheck role="presentation" />

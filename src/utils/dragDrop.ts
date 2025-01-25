@@ -1,9 +1,11 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type {
   DragDropExercise,
   DragDropMeta,
   Question,
   TwoDirectionalFlow,
 } from '@/data/exercise';
+import { gridAutoFlowVar } from '@/components/HorizontalDropTargetList.css';
 import type { DragDropState } from '@/features/dragDrop/slice';
 import { randomizeArray } from '@/utils/randomize';
 
@@ -20,7 +22,7 @@ export interface LayoutConfigurationHorizontal extends LayoutConfigurationBase {
   layout: 'HORIZONTAL';
   maxTrackLen: number;
   questionsFlow: TwoDirectionalFlow;
-  questionsStyles: Record<string, string>;
+  questionsStyles: Record<string, CSSStyleValue>;
   questionsTrackConfig?: number[];
 }
 
@@ -70,7 +72,7 @@ export function createLayoutConfiguration(
       questionsFlow: meta?.HORIZONTAL?.questionsFlow ?? 'HORIZONTAL',
     } as LayoutConfigurationHorizontal;
 
-    const questionsStyles: Record<string, string> = {};
+    let questionsStyles: Record<string, CSSStyleValue> = {};
     let maxTrackLen = Number.MIN_VALUE;
     let crossAxisLen: number | undefined;
     if (meta?.HORIZONTAL?.configuration) {
@@ -85,12 +87,16 @@ export function createLayoutConfiguration(
     }
 
     if (horizontalConfig.questionsFlow === HORIZONTAL) {
-      questionsStyles['--grid-auto-flow'] = 'row';
+      questionsStyles = assignInlineVars({
+        [gridAutoFlowVar]: 'row',
+      });
       if (crossAxisLen) {
         questionsStyles.gridTemplateColumns = `repeat(${crossAxisLen}, 1fr)`;
       }
     } else {
-      questionsStyles['--grid-auto-flow'] = 'column';
+      questionsStyles = assignInlineVars({
+        [gridAutoFlowVar]: 'column',
+      });
       if (crossAxisLen) {
         questionsStyles.gridTemplateColumns = `repeat(${crossAxisLen}, max-content)`;
       }

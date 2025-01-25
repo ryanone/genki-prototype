@@ -1,9 +1,0 @@
-.exerciseLink {
-  color: var(--link-color-1);
-  text-decoration: none;
-}
-
-.exerciseLink:hover,
-.exerciseLink:focus {
-  text-decoration: underline;
-}

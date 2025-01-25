@@ -14,8 +14,7 @@ import {
 } from '@/features/shortAnswer/slice';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
-import commonStyles from '@/styles/common.module.css';
-import styles from './ShortAnswer.module.css';
+import * as styles from './ShortAnswer.css';
 
 export default function ShortAnswer() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
@@ -53,7 +52,7 @@ export default function ShortAnswer() {
     setCheckAnswersDialogContent(undefined);
   };
   return (
-    <div className={styles.shortAnswer}>
+    <div className={styles.shortAnswerClass}>
       {isFinished && results && (
         <ExerciseResults
           exerciseType="SHORT_ANSWER"
@@ -64,7 +63,7 @@ export default function ShortAnswer() {
         />
       )}
       {instructions ? <Instructions>{instructions}</Instructions> : null}
-      <div className={styles.items}>
+      <div className={styles.itemsClass}>
         {items.map((item, i) => {
           return (
             <WritingAnswerItem
@@ -76,11 +75,11 @@ export default function ShortAnswer() {
           );
         })}
       </div>
-      <div className={styles.actions}>
+      <div className={styles.actionsClass}>
         {!isFinished && (
           <button
             onClick={handleCheckAnswersClick}
-            className={`${commonStyles.button} ${styles.checkAnswersButton}`}
+            className={styles.checkAnswersButtonClass}
             type="button"
           >
             <FaCheck role="presentation" />

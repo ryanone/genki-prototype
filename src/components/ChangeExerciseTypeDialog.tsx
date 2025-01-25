@@ -4,8 +4,8 @@ import DialogActions from '@/components/Dialog/Actions';
 import DialogContent from '@/components/Dialog/Content';
 import DialogHeader from '@/components/Dialog/Header';
 import type { Exercise, ExerciseType } from '@/data/exercise';
-import styles from './ChangeExerciseTypeDialog.module.css';
-import commonStyles from '@/styles/common.module.css';
+import * as commonStyles from '@/styles/common.css';
+import * as styles from './ChangeExerciseTypeDialog.css';
 
 type ChangeExerciseTypeDialogProps = {
   exercise: Exercise;
@@ -57,12 +57,12 @@ export default function ChangeExerciseTypeDialog({
           Please select the type of exercise you would like to do, then select
           &apos;Begin&apos; to start studying.
         </p>
-        <div className={styles.heading}>Current Exercise</div>
-        <div className={styles.title}>{exercise.title}</div>
-        <label className={styles.label}>
+        <div className={styles.contentClass}>Current Exercise</div>
+        <div className={styles.contentClass}>{exercise.title}</div>
+        <label className={styles.contentClass}>
           Exercise Type
           <select
-            className={commonStyles.select}
+            className={commonStyles.selectClass}
             onChange={handleSelectChange}
             value={exerciseType}
           >
@@ -78,7 +78,7 @@ export default function ChangeExerciseTypeDialog({
       <DialogActions onClose={handleCancel}>
         <button
           onClick={handleConfirmClick}
-          className={commonStyles.button}
+          className={commonStyles.primaryButtonClass}
           type="button"
         >
           Begin

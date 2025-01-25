@@ -1,6 +1,12 @@
 import { useId, useState, type FormEvent } from 'react';
-import commonStyles from '@/styles/common.module.css';
-import styles from './ChoiceInput.module.css';
+import * as commonStyles from '@/styles/common.css';
+import {
+  choiceInputClass,
+  correctAnswerClass,
+  input,
+  labelClass,
+  ChoiceInputVariant,
+} from '@/components/ChoiceInput.css';
 
 type ChoiceInputProps = {
   correctValue?: string | undefined;
@@ -27,33 +33,33 @@ export default function ChoiceInput({
     onChange(questionContent, e.currentTarget.value);
   };
 
-  const inputClasses = [styles.input];
   let description;
+  let inputVariant: ChoiceInputVariant;
   if (result === 'CORRECT') {
-    inputClasses.push(styles.correct);
+    inputVariant = { mode: 'correct' };
     description = 'The input value is correct';
   } else if (result === 'INCORRECT') {
-    inputClasses.push(styles.incorrect);
+    inputVariant = { mode: 'incorrect' };
     description = 'The input value is incorrect';
   }
 
   return (
-    <div className={styles.choiceInput}>
+    <div className={choiceInputClass}>
       {description && (
         <span
           id={describedById}
-          className={commonStyles.hidden}
+          className={commonStyles.hiddenClass}
           data-testid="choice-input-result"
         >
           {description}
         </span>
       )}
-      <label className={styles.label} htmlFor={inputId}>
+      <label className={labelClass} htmlFor={inputId}>
         {questionContent}
       </label>
       <input
         type="text"
-        className={inputClasses.join(' ')}
+        className={input(inputVariant)}
         id={inputId}
         onChange={handleInputChange}
         disabled={!!isDisabled}
@@ -61,7 +67,7 @@ export default function ChoiceInput({
         aria-describedby={describedById}
       />
       {result && (
-        <div className={styles.correctAnswer}>
+        <div className={correctAnswerClass}>
           {result === 'INCORRECT' ? correctValue : ''}
         </div>
       )}
