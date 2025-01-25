@@ -7,9 +7,8 @@ import MultipleChoiceSettingsContext, {
   type MultipleChoiceQuestionFeedback,
 } from '@/context/MultipleChoiceSettingsContext';
 import ShowFuriganaContext from '@/context/ShowFuriganaContext';
-import ThemeContext, { type OptionalThemeClass } from '@/context/ThemeContext';
+import ThemeContext, { type OptionalThemeName } from '@/context/ThemeContext';
 import * as commonStyles from '@/styles/common.css';
-import { themes } from '@/styles/theme.css';
 import { settingName } from './SettingsDialog.css';
 import * as styles from './SettingsDialog.css';
 
@@ -30,7 +29,7 @@ export default function SettingsDialog({
   } = useContext(MultipleChoiceSettingsContext);
   const multipleChoiceSelectId = useId();
 
-  const handleDarkModeChange = (value: OptionalThemeClass) => {
+  const handleDarkModeChange = (value: OptionalThemeName) => {
     setTheme(value);
   };
 
@@ -63,7 +62,7 @@ export default function SettingsDialog({
                     name="darkMode"
                     value=""
                     defaultChecked={!theme}
-                    onClick={() => handleDarkModeChange(undefined)}
+                    onClick={() => handleDarkModeChange(null)}
                   />
                   Device settings
                 </label>
@@ -75,8 +74,8 @@ export default function SettingsDialog({
                     type="radio"
                     name="darkMode"
                     value="light"
-                    defaultChecked={theme === themes.light}
-                    onClick={() => handleDarkModeChange(themes.light)}
+                    defaultChecked={theme === 'light'}
+                    onClick={() => handleDarkModeChange('light')}
                   />
                   Off
                 </label>
@@ -88,8 +87,8 @@ export default function SettingsDialog({
                     type="radio"
                     name="darkMode"
                     value="dark"
-                    defaultChecked={theme === themes.dark}
-                    onClick={() => handleDarkModeChange(themes.dark)}
+                    defaultChecked={theme === 'dark'}
+                    onClick={() => handleDarkModeChange('dark')}
                   />
                   Dark
                 </label>

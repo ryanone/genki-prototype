@@ -75,7 +75,7 @@ const COMMON_COLORS: CommonThemeColors = {
   unselectedCorrect: '#09f',
 };
 
-const darkThemeVars = {
+const darkThemeVars: ThemeContract = {
   color: {
     ...COMMON_COLORS,
     background1: '#161616',
@@ -114,14 +114,9 @@ const lightThemeClass = createTheme(themeVars, {
 });
 
 const keys = ['dark', 'light'] as const;
-type ThemeKeys = (typeof keys)[number];
-
-export type ThemeName = Record<ThemeKeys, string>;
+export type ThemeName = (typeof keys)[number];
 
 export const themes = {
   dark: darkThemeClass,
   light: lightThemeClass,
 };
-
-export { darkThemeClass, lightThemeClass };
-export type ThemeClass = (typeof themes)[keyof typeof themes];
